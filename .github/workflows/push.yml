@@ -1,0 +1,133 @@
+name: 🚀 On Push
+
+on:
+  push:
+
+jobs:
+  cache-dependencies:
+    name: 📄 Cache Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Cache dependencies and cypress
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+
+  lint:
+    name: 🔎 Lint
+    runs-on: ubuntu-latest
+    needs:
+      - cache-dependencies
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Restore dependencies
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Run lint
+        run: npm run lint
+
+  test:
+    name: 🧪 Unit Tests
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Restore dependencies
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Run tests
+        run: npm run test
+
+  build:
+    name: 📦 Build Next.js
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Restore dependencies
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Build Next.js
+        run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: next-build
+          path: .next
+
+  e2e:
+    name: 🧪 End To End Tests
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Restore dependencies
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: next-build
+          path: .next
+      - name: Run e2e test
+        run: npm run e2e:test
