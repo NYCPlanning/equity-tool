@@ -2,7 +2,13 @@
   "name": "next-chakra-boilerplate",
   "private": true,
   "version": "0.1.0",
-  "keywords": ["boilerplate", "nextjs", "chakra", "chakra-ui", "template"],
+  "keywords": [
+    "boilerplate",
+    "nextjs",
+    "chakra",
+    "chakra-ui",
+    "template"
+  ],
   "description": "A simple project boilerplate with Next.js, Chakra-UI, and variable code quality tools",
   "engines": {
     "node": ">=16.13.0"
@@ -27,10 +33,12 @@
     "@chakra-ui/theme-tools": "^1.1.2",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "deck.gl": "^8.6.4",
     "framer-motion": "^4.1.17",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-map-gl": "^6.1.17"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
