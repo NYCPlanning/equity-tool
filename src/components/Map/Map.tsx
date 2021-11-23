@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { Box } from "@chakra-ui/react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
@@ -16,6 +17,8 @@ setDefaultCredentials({
 });
 
 export const Map = () => {
+  const router = useRouter();
+
   const INITIAL_VIEW_STATE = {
     longitude: -73.986607,
     latitude: 40.691869,
@@ -24,6 +27,15 @@ export const Map = () => {
     bearing: 0,
   };
 
+  const _onNtaClick = (info, event) => {
+    const {
+      object: {
+        properties: { ntacode },
+      },
+    } = info;
+
+    router.push(`/nta/${ntacode}`, undefined, { shallow: true });
+  };
   const [layers, setLayers] = useState([
     new CartoLayer({
       type: MAP_TYPES.QUERY,
@@ -34,6 +46,7 @@ export const Map = () => {
       lineWidthMinPixels: 3,
       stroked: true,
       pickable: true,
+      onClick: _onNtaClick,
     }),
   ]);
 
