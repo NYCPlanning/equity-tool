@@ -21,7 +21,10 @@
     "target": "esnext",
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@components/*": ["components/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
