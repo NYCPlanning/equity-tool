@@ -23,7 +23,8 @@
     "resolveJsonModule": true,
     "incremental": true,
     "paths": {
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@data/*": ["data/*"]
     }
   },
   "include": [

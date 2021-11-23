@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
+import baseMap from "@data/basemap.json";
 import {
   CartoLayer,
   setDefaultCredentials,
@@ -46,6 +47,7 @@ export const Map = () => {
       >
         <StaticMap
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+          mapStyle={baseMap}
         />
       </DeckGL>
     </Box>
