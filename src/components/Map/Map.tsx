@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Box, VStack, Button, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
 import baseMap from "@data/basemap.json";
