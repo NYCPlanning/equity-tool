@@ -78,7 +78,7 @@ const Nta = () => {
       onClick: (info: any) => {
         const id = info && info?.object?.properties?.id;
         if (id && typeof id === "string" && id !== selectedNta) {
-          router.push(`/map/${id}`, undefined, { shallow: true });
+          router.push(`/nta/${id}`, undefined, { shallow: true });
         }
       },
       // For performance reasons, Deck doesn't automatically rerender when external data changes
@@ -112,7 +112,7 @@ const Nta = () => {
           <Text>{selectedNta === null ? "No NTA Selected" : selectedNta}</Text>
           <Button
             onClick={() => {
-              router.push("/map", undefined, { shallow: true });
+              router.push("/nta", undefined, { shallow: true });
             }}
           >
             Clear Selection
