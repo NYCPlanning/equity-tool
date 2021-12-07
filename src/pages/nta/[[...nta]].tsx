@@ -1,22 +1,23 @@
-import { Box, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Map } from "@components/Map";
 import { Header } from "@components/Header";
 import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 
-const Nta = () => {
-  const [isMobile] = useMediaQuery("(max-width: 640px)");
-
-  return (
-    <Box height="100vh">
-      <Header />
-      <Map />
-      {!isMobile && (
-        <Legend position="absolute" left={8} bottom={8} w="215px" />
-      )}
+const Nta = () => (
+  <Box height="100vh">
+    <Header />
+    <Map />
+    <Flex direction="column" justify="end" height="100%">
+      <Legend
+        position={["relative", "absolute"]}
+        left={["auto", 8]}
+        bottom={["auto", 8]}
+        w={["100%", "215px"]}
+      />
       <IndicatorPanel />
-    </Box>
-  );
-};
+    </Flex>
+  </Box>
+);
 
 export default Nta;

@@ -74,7 +74,7 @@ export const Map = () => {
   ];
 
   return (
-    <Box h="100%" w="100%">
+    <Box h="100%" w="100%" position="absolute" bottom="0" left="0">
       <DeckGL
         initialViewState={INITIAL_VIEW_STATE}
         controller={true}
