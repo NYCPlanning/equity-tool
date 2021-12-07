@@ -5,6 +5,7 @@ import logo from "../../../public/logo.png";
 export const Header = () => {
   return (
     <HStack
+      as="header"
       spacing={4}
       paddingX={3}
       h="4.25rem"
