@@ -1,11 +1,4 @@
-import {
-  Box,
-  Heading,
-  Collapse,
-  useDisclosure,
-  Text,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Collapse, useDisclosure, Text, Button } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 
 export const IndicatorPanel = () => {
@@ -37,9 +30,6 @@ export const IndicatorPanel = () => {
       </Button>
       <Collapse in={isOpen}>
         <Box overflowY="auto" p={4} h="40vh">
-          <Heading as="h3" fontSize="md">
-            Welcome
-          </Heading>
           <Text>
             The Equitable Development Reporting tool is a partnership between
             NYC HPD and DCP. Please select an NTA from the map to view its
