@@ -9,7 +9,7 @@ export const IndicatorPanel = () => {
       background="#fff"
       position={["relative", "absolute"]}
       right={["auto", "0px"]}
-      top={["auto", "68px"]}
+      top={["auto", "4.25rem"]}
       bottom={["0px", "auto"]}
       w={["100%", "350px"]}
       marginTop={0}
