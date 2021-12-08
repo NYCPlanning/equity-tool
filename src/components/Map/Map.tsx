@@ -39,10 +39,9 @@ export const Map = () => {
       stroked: true,
       pickable: true,
       onClick: (info: any) => {
-        const id: any =
-          info && info?.object?.properties?.id
-            ? info.object.properties.id
-            : null;
+        const id: any = info?.object?.properties?.id
+          ? info.object.properties.id
+          : null;
         if (typeof id === "string") {
           router.push(`/nta/${id}`, undefined, { shallow: true });
         }
