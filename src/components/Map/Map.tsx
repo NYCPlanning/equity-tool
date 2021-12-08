@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import { Box } from "@chakra-ui/react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
-import baseMap from "@data/basemap.json";
 import {
   CartoLayer,
   setDefaultCredentials,
   API_VERSIONS,
   MAP_TYPES,
 } from "@deck.gl/carto";
+import baseMap from "@data/basemap.json";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -16,11 +16,7 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-export interface MapProps {
-  children?: React.ReactNode;
-}
-
-export const Map = ({ children = null }: MapProps) => {
+export const Map = () => {
   const INITIAL_VIEW_STATE = {
     longitude: -73.986607,
     latitude: 40.691869,
@@ -30,47 +26,43 @@ export const Map = ({ children = null }: MapProps) => {
   };
 
   const router = useRouter();
-  const { nta } = router.query;
-  const selectedNta: string | null = nta && nta?.length > 0 ? nta[0] : null;
 
   const layers = [
     new CartoLayer({
       type: MAP_TYPES.QUERY,
-      id: "dcpNta",
-      data: `SELECT *, ntacode as id FROM dcp_nta`,
+      id: "nta",
+      data: `SELECT *, nta2020 as id, ntaname as label FROM dcp_nta_2020 WHERE ntatype = '0'`,
       uniqueIdProperty: "id",
       getLineColor: [100, 100, 100, 255],
-      getFillColor: (feature: any) =>
-        feature?.properties?.id === selectedNta
-          ? [255, 0, 0, 50]
-          : [0, 0, 0, 1],
+      getFillColor: [0, 0, 0, 0],
       lineWidthMinPixels: 3,
       stroked: true,
       pickable: true,
       onClick: (info: any) => {
-        const id = info && info?.object?.properties?.id;
-        if (id && typeof id === "string" && id !== selectedNta) {
+        const id: any =
+          info && info?.object?.properties?.id
+            ? info.object.properties.id
+            : null;
+        if (typeof id === "string") {
           router.push(`/nta/${id}`, undefined, { shallow: true });
         }
-      },
-      updateTriggers: {
-        getFillColor: selectedNta,
       },
     }),
   ];
 
   return (
-    <Box h="100vh" w="100vh">
+    <Box h="100%" w="100%" position="absolute" bottom="0" left="0">
       <DeckGL
         initialViewState={INITIAL_VIEW_STATE}
         controller={true}
         layers={layers}
+        width="100%"
+        height="100%"
       >
         <StaticMap
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
           mapStyle={baseMap}
         />
-        {children}
       </DeckGL>
     </Box>
   );
