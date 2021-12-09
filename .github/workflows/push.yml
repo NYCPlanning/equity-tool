@@ -100,8 +100,8 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: next-build
-          path: .next
+          name: build
+          path: build
 
   e2e:
     name: 🧪 End To End Tests
@@ -127,7 +127,7 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: next-build
-          path: .next
+          name: build
+          path: build
       - name: Run e2e test
         run: npm run e2e:test

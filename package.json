@@ -74,7 +74,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "run-s lint:tsc lint:eslint -- --quiet --fix"
+      "npm run lint:eslint -- --quiet --fix"
     ]
   }
 }
