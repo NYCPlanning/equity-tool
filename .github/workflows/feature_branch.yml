@@ -1,6 +1,9 @@
-name: 🚀 On Push
+name: 🚧 Push to Feature Branch
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - feature/[0-9]+[-]**
 
 jobs:
   cache-dependencies:

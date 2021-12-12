@@ -1,6 +1,9 @@
-name: 🚀 On Push
+name: ✅ Push to Main
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   cache-dependencies:

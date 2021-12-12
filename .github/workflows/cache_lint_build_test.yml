@@ -1,6 +1,14 @@
-name: 🚀 On Push
+name: Cache Dependencies, Lint, Build, and Test
 
-on: workflow_dispatch
+on:
+  workflow_call:
+    # inputs:
+    #   username:
+    #     required: true
+    #     type: string
+    # secrets:
+    #   token:
+    #     required: true
 
 jobs:
   cache-dependencies:

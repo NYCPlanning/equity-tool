@@ -1,4 +1,4 @@
-name: 🚀 On Push
+name: 🚀 Create Release and Deploy
 
 on: workflow_dispatch
 
@@ -130,3 +130,5 @@ jobs:
           path: build
       - name: Run e2e test
         run: npm run e2e:test
+  version:
+  
