@@ -3,7 +3,7 @@ name: 🚧 Push to Feature Branch
 on:
   push:
     branches:
-      - feature/[0-9]+[-]**
+      - feature/[0-9]+-*
 
 jobs:
   cache-dependencies:
