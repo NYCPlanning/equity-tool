@@ -103,7 +103,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: build
+          path: .next
 
   e2e:
     name: 🧪 End To End Tests
@@ -130,7 +130,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: build
+          path: .next
       - name: Run e2e test
         run: npm run e2e:test
 
@@ -141,15 +141,10 @@ jobs:
     environment: development
     steps:
     - uses: actions/checkout@v2
-    - name: Download build artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: build
-        path: build
     - name: Deploy Preview
       uses: netlify/actions/cli@master
       with:
-        args: deploy --alias=${{ github.ref_name	}}
+        args: deploy --alias=${{ github.ref_name	}} --build
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
