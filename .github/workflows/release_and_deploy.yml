@@ -130,4 +130,9 @@ jobs:
           path: build
       - name: Run e2e test
         run: npm run e2e:test
-  
+  version:
+    name: 🆕 Version
+    needs: [build, e2e]
+    runs-on: ubuntu-latest
+    environment: production
+    steps: echo Version

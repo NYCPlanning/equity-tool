@@ -99,7 +99,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: Build Next.js
         run: npm run build
-      - name: Upload build artifacts
+      - name: Upload build artifact
         uses: actions/upload-artifact@v2
         with:
           name: build
@@ -126,10 +126,30 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Download a single artifact
+      - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
           name: build
           path: build
       - name: Run e2e test
         run: npm run e2e:test
+
+  deploy-preview:
+    name: Preview Deploy
+    needs: [build, e2e]
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download build artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+        path: build
+    - name: Deploy Preview
+      uses: netlify/actions/cli@master
+      with:
+        args: deploy --alias=${{ github.ref_name	}}
+      env:
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
