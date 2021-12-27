@@ -157,9 +157,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm
       - name: Deploy Preview
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --alias=${{ github.ref_name	}} --build
+        run: netlify deploy --build --alias dev
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
+          NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
