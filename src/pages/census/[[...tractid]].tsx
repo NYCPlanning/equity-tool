@@ -2,44 +2,25 @@ import { useRouter } from "next/router";
 import { Box, Flex } from "@chakra-ui/react";
 import { Map } from "@components/Map";
 import { Header } from "@components/Header";
-import { GeographySelect } from "@components/Map/GeographySelect";
+import { GeographySelect  } from "@components/Map/GeographySelect";
 import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 import {
   CartoLayer,
   MAP_TYPES,
 } from "@deck.gl/carto";
-import { scaleSequential } from "d3-scale";
-import { rgb } from "d3-color";
-import { interpolateRgb } from "d3-interpolate";
 
-import ntas from "@data/ntas.json";
-import { useSelectedNta } from "../../hooks/useSelectedNta";
-
-const Nta = () => {
-  const scale = scaleSequential().domain([0, 100]);
-  const interpolate = interpolateRgb("#f4f4b4", "#d44932");
+const CensusArea = () => {
   const router = useRouter();
-  const selectedNta = useSelectedNta();
 
   const layers = [
     new CartoLayer({
       type: MAP_TYPES.QUERY,
-      id: "nta",
-      data: `SELECT *, nta2020 as id, ntaname as label FROM dcp_nta_2020 WHERE ntatype = '0'`,
+      id: "censusarea",
+      data: `SELECT * FROM pff_2020_census_tracts_21c`,
       uniqueIdProperty: "id",
       getLineColor: [100, 100, 100, 255],
-      getFillColor: (feature: any) => {
-        if (feature?.properties?.id) {
-          const id: keyof typeof ntas = feature?.properties?.id;
-          if (typeof ntas[id] !== "undefined") {
-            const color = rgb(interpolate(scale(ntas[id].displacementRisk)));
-            return [color.r, color.g, color.b, 100];
-          }
-          return [0, 0, 0, 0];
-        }
-        return [0, 0, 0, 0];
-      },
+      getFillColor: [0, 0, 0, 0],
       lineWidthMinPixels: 3,
       stroked: true,
       pickable: true,
@@ -47,10 +28,7 @@ const Nta = () => {
         const id: any = info?.object?.properties?.id
           ? info.object.properties.id
           : null;
-        if (
-          selectedNta === null ||
-          (typeof id === "string" && id !== selectedNta.id)
-        ) {
+        if (typeof id === "string") {
           router.push(`/nta/${id}`, undefined, { shallow: true });
         }
       },
@@ -73,7 +51,7 @@ const Nta = () => {
         />
 
         <GeographySelect
-          geography='borough'
+          geography='census'
           position={["relative", "absolute"]}
           top={["auto", 20]}
           left={["auto", 8]}
@@ -82,6 +60,6 @@ const Nta = () => {
         <IndicatorPanel />
       </Flex>
     </Box>)
-};
+  };
 
-export default Nta;
+export default CensusArea;

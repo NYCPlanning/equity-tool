@@ -1,6 +1,6 @@
 import { Box, Collapse, useDisclosure, Text, Button } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { useSelectedNta } from "@hooks/useSelectedNta";
+import { useSelectedNta } from "../../hooks/useSelectedNta";
 
 export const IndicatorPanel = () => {
   const selectedNta = useSelectedNta();
