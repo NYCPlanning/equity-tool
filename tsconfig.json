@@ -24,7 +24,8 @@
     "incremental": true,
     "paths": {
       "@components/*": ["components/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": [
