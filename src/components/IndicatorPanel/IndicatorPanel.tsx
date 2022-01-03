@@ -1,14 +1,9 @@
 import { Box, Collapse, useDisclosure, Text, Button } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { NtaIndicatorRecord } from "../../types";
+import { useSelectedNta } from "@hooks/useSelectedNta";
 
-export interface IndicatorPanelProps {
-  initialNtaIndicatorRecord: NtaIndicatorRecord | null;
-}
-
-export const IndicatorPanel = ({
-  initialNtaIndicatorRecord,
-}: IndicatorPanelProps) => {
+export const IndicatorPanel = () => {
+  const selectedNta = useSelectedNta();
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -33,23 +28,17 @@ export const IndicatorPanel = ({
           )
         }
       >
-        {initialNtaIndicatorRecord
-          ? initialNtaIndicatorRecord.label
-          : "Welcome"}
+        {selectedNta ? selectedNta.label : "Welcome"}
       </Button>
       <Collapse in={isOpen}>
-        {initialNtaIndicatorRecord ? (
+        {selectedNta ? (
           <Box overflowY="auto" p={4} h="40vh">
             <Text fontSize="lg">
-              Overall Displacement Risk:{" "}
-              {initialNtaIndicatorRecord.displacementRisk}
+              Overall Displacement Risk: {selectedNta.displacementRisk}
             </Text>
-            {Object.entries(initialNtaIndicatorRecord.indicators).map(
+            {Object.entries(selectedNta.indicators).map(
               ([indicator, value]) => (
-                <Text
-                  py={2}
-                  key={`${initialNtaIndicatorRecord.id}-${indicator}`}
-                >
+                <Text py={2} key={`${selectedNta.id}-${indicator}`}>
                   {indicator}: {value}
                 </Text>
               )

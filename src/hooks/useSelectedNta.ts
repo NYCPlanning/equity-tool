@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import ntas from "@data/ntas.json";
+import { ntas } from "@data/ntas";
 import { NtaIndicatorRecord } from "../types/Nta";
 
 export const useSelectedNta = (): NtaIndicatorRecord | null => {

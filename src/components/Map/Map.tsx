@@ -12,7 +12,7 @@ import {
   MAP_TYPES,
 } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
-import ntas from "@data/ntas.json";
+import { ntas } from "@data/ntas";
 import { useSelectedNta } from "@hooks/useSelectedNta";
 
 setDefaultCredentials({
