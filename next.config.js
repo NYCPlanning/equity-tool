@@ -4,7 +4,7 @@ module.exports = {
       {
         source: "/",
         destination: "/nta",
-        permanent: true,
+        permanent: false,
       },
     ];
   },

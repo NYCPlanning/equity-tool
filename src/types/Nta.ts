@@ -1,4 +1,4 @@
-import { ntas } from "@data/ntas";
+import ntas from "@data/ntas.json";
 
 // This file takes the type automatically created by TS based on ntas.json and
 // decomposes it into some helpful utliity types for working with those records.

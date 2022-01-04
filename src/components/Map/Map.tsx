@@ -12,7 +12,7 @@ import {
   MAP_TYPES,
 } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
-import { ntas } from "@data/ntas";
+import ntas from "@data/ntas.json";
 import { useSelectedNta } from "@hooks/useSelectedNta";
 
 setDefaultCredentials({
@@ -64,7 +64,7 @@ export const Map = () => {
           selectedNta === null ||
           (typeof id === "string" && id !== selectedNta.id)
         ) {
-          router.push(`/nta/${id}`, undefined, { shallow: true });
+          router.push(`/nta/${id}`, `/nta/${id}`, { shallow: true });
         }
       },
     }),
