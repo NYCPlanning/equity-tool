@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Button, ButtonGroup, BoxProps } from '@chakra-ui/react';
 
 // Docs on BoxProps?
-export const GeographySelect = (props: any) => {
+export const GeographySelect = (boxProps: BoxProps) => {
   const router = useRouter()
 
-  const {
-    geography, 
-    ...boxProps
-  } = props;
+  const { geography } = router.query;
 
   return (
     <ButtonGroup
@@ -16,19 +13,19 @@ export const GeographySelect = (props: any) => {
       {...boxProps}
     >
       <Button
-        onClick={() => router.push('/census')}
+        onClick={() => router.push({ query: {geography: 'census'}})}
         isActive={geography === 'census'}
       >
         Census Area 
       </Button>
       <Button
-        onClick={() => router.push('/nta')}
+        onClick={() => router.push({ query: {geography: 'borough'}})}
         isActive={geography === 'borough'}
       >
         Borough
       </Button>
       <Button
-        onClick={() => router.push('/citywide')}
+        onClick={() => router.push({ query: {geography: 'citywide'}})}
         isActive={geography === 'citywide'}
       >
         Citywide

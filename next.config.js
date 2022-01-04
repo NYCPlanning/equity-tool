@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: "/",
-        destination: "/nta",
+        destination: "/map?geography=census",
         permanent: true,
       },
     ];
