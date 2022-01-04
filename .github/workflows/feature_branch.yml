@@ -157,7 +157,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm
       - name: Deploy Preview
-        run: netlify deploy --build --alias ${{ github.ref_name }}
+        run: |
+          DEPLOY_ALIAS="${${{ github.sha }}:0:6}"
+          netlify deploy --build --alias $DEPLOY_ALIAS
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
