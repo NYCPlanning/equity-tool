@@ -23,11 +23,12 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm install
+            ${{ runner.os }}-npm
+      - name: Install dependencies if cache invalid
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
 
   lint:
     name: 🔎 Lint
@@ -47,9 +48,9 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-npm
       - name: Run lint
         run: npm run lint
 
@@ -71,9 +72,9 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-npm
       - name: Run tests
         run: npm run test
 
@@ -95,12 +96,12 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-npm
       - name: Build Next.js
         run: npm run build
-      - name: Upload build artifacts
+      - name: Upload build artifact
         uses: actions/upload-artifact@v2
         with:
           name: build
@@ -124,13 +125,43 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Download a single artifact
+            ${{ runner.os }}-npm
+      - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
           name: build
           path: .next
       - name: Run e2e test
         run: npm run e2e:test
+
+  deploy-preview:
+    name: Preview Deploy
+    needs: [build, e2e]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Restore dependencies
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm
+      - name: Deploy Preview
+        run: netlify deploy --build --alias staging
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
+          NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
