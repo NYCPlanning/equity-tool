@@ -1,7 +1,10 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  environment = { NETLIFY_NEXT_PLUGIN_SKIP = true }
+
+[[redirects]]
+  from = "/"
+  to = "/nta"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
