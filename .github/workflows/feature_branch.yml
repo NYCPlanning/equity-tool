@@ -137,7 +137,8 @@ jobs:
 
   deploy-preview:
     name: Preview Deploy
-    needs: [build, e2e]
+    needs:
+      - lint
     runs-on: ubuntu-latest
     environment: development
     steps:
