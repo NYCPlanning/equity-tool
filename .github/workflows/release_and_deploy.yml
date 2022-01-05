@@ -34,6 +34,8 @@ jobs:
       - cache-dependencies
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: 'main'
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
         with:
@@ -58,6 +60,8 @@ jobs:
       - lint
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: 'main'
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
         with:
@@ -82,6 +86,8 @@ jobs:
       - lint
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: 'main'
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
         with:
@@ -111,6 +117,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: 'main'
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
         with:
@@ -133,11 +141,45 @@ jobs:
       - name: Run e2e test
         run: npm run e2e:test
 
-  version:
-    name: 🆕 Version
+  version-deploy:
+    name: 🚀 Version and Deploy
     needs: [build, e2e]
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Placeholder
-        run: echo Version
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+          token: ${{ secrets.SERVICE_ACCOUNT_PAT }}
+          persist-credentials: false
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      - name: Restore dependencies
+        uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm
+      - name: Version NPM Package
+        env:
+          SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
+          SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+        run: |
+          git config --local user.name "$SERVICE_ACCOUNT_NAME"
+          git config --local user.email "$SERVICE_ACCOUNT_EMAIL"
+          npm version patch --commit-hooks false
+          git push --follow-tags
+      - name: Deploy to Production
+        run: netlify deploy --prod
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
+          NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
