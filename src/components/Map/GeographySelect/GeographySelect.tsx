@@ -2,10 +2,13 @@ import { useRouter } from 'next/router'
 import { Button, ButtonGroup, BoxProps } from '@chakra-ui/react';
 
 // Docs on BoxProps?
-export const GeographySelect = (boxProps: BoxProps) => {
+export const GeographySelect = (props) => {
   const router = useRouter()
 
-  const { geography } = router.query;
+  const {
+    geography,
+    ...boxProps
+  } = props
 
   return (
     <ButtonGroup
