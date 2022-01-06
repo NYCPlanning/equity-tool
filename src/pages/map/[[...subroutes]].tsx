@@ -5,10 +5,10 @@ import { Map } from "@components/Map";
 import { Header } from "@components/Header";
 import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
+import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
 
 import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
-
-import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
+import { useIndicatorRecord } from "../../hooks/useIndicatorRecord/useIndicatorRecord";
 
 /*
   /Map route
@@ -23,20 +23,23 @@ const MapPage = () => {
   const { subroutes } = router.query;
 
   // acquire subroute info, if any
-  let [geography] = subroutes ? subroutes : [null, null];
+  const [geographyParam, geoid] = subroutes ? subroutes : [null, null];
 
-  geography =
-    typeof geography === "string"
-      ? geography
-      : geography !== null
-      ? geography[0]
+  const geography =
+    typeof geographyParam === "string"
+      ? geographyParam
+      : geographyParam !== null
+      ? geographyParam[0]
       : null;
 
   const layers = useSelectedLayer(geography);
 
+  const indicatorRecord = useIndicatorRecord(geoid);
+
   return (
     <Box height="100vh">
       <Header />
+
       <Map layers={layers} />
 
       <Flex direction="column" justify="end" height="100%">
@@ -54,7 +57,7 @@ const MapPage = () => {
           left={["auto", 8]}
         />
 
-        <IndicatorPanel />
+        <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Flex>
     </Box>
   );
