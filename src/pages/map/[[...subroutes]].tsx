@@ -4,7 +4,7 @@ import { Header } from "@components/Header";
 import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 
-const Nta = () => (
+const MapPage = () => (
   <Box height="100vh">
     <Header />
     <Map />
@@ -20,4 +20,4 @@ const Nta = () => (
   </Box>
 );
 
-export default Nta;
+export default MapPage;
