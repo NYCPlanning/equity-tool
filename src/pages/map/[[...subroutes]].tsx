@@ -1,9 +1,12 @@
+import { useRouter } from "next/router";
+
 import { Box, Flex } from "@chakra-ui/react";
 import { Map } from "@components/Map";
 import { Header } from "@components/Header";
 import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { useRouter } from "next/router";
+
+import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
 
 /*
   /Map route
@@ -18,12 +21,22 @@ const MapPage = () => {
   const { subroutes } = router.query;
 
   // acquire subroute info, if any
-  const [geography, geoid] = subroutes ? subroutes : [null, null];
+  let [geography] = subroutes ? subroutes : [null, null];
+
+  geography =
+    typeof geography === "string"
+      ? geography
+      : geography !== null
+      ? geography[0]
+      : null;
+
+  const layers = useSelectedLayer(geography);
 
   return (
     <Box height="100vh">
       <Header />
-      <Map />
+      <Map layers={layers} />
+
       <Flex direction="column" justify="end" height="100%">
         <Legend
           position={["relative", "absolute"]}
