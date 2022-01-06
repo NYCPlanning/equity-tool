@@ -1,9 +1,15 @@
 {
-  "name": "next-chakra-boilerplate",
+  "name": "equity-tool",
   "private": true,
   "version": "0.1.0",
-  "keywords": ["boilerplate", "nextjs", "chakra", "chakra-ui", "template"],
-  "description": "A simple project boilerplate with Next.js, Chakra-UI, and variable code quality tools",
+  "keywords": [
+    "boilerplate",
+    "nextjs",
+    "chakra",
+    "chakra-ui",
+    "template"
+  ],
+  "description": "An interactive citywide equitable development tool for New York City, built by DCP Digital Services.",
   "engines": {
     "node": ">=16.13.0"
   },
@@ -25,12 +31,21 @@
     "@chakra-ui/icons": "^1.0.17",
     "@chakra-ui/react": "^1.6.12",
     "@chakra-ui/theme-tools": "^1.1.2",
+    "@danmarshall/deckgl-typings": "^4.9.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@types/d3-color": "^3.0.2",
+    "@types/d3-interpolate": "^3.0.1",
+    "@types/d3-scale": "^4.0.2",
+    "d3-color": "^3.0.1",
+    "d3-interpolate": "^3.0.1",
+    "d3-scale": "^4.0.2",
+    "deck.gl": "^8.6.4",
     "framer-motion": "^4.1.17",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-map-gl": "^6.1.17"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -59,7 +74,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint:eslint -- --quiet --fix"
+      "run-s lint:tsc lint:eslint -- --quiet --fix"
     ]
   }
 }

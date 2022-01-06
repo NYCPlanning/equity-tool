@@ -1,25 +1,17 @@
-# Next-Chakra-Boilerplate
-
-## Features
-* Typescript
-* React with Next.js
-* Set up to use `chakra-ui` for components and styling
-* Code Quality with `eslint`, `prettier`, and `tsc` for type checking
-* Git hooks with `husky` and `lint-staged`
-* Unit tests with `jest` and `react-testing-library`
-* End to end testing with `cypress`
-
-## How to use
+# Equity Tool (AKA Equitable Development Data Tool)
 
 ### Setup
-After cloning the repo our using as a template, simply run:
-
-```bash
-npm i
-# or
-yarn
+1.  Install project
 ```
+git  clone git@github.com:NYCPlanning/equity-tool.git
+cd equity-tool
+npm i
+```
+
 This command should install all necessary dependencies and set up Husky to run on all commits
+
+2. Create `.env.local` and set the required environment variables.
+
 
 ### Running locally
 To run the Nextjs dev server, run:
