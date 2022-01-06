@@ -64,7 +64,7 @@ export const Map = () => {
           selectedNta === null ||
           (typeof id === "string" && id !== selectedNta.id)
         ) {
-          router.push(`/nta/${id}`, undefined, { shallow: true });
+          router.push(`/map/${id}`, undefined, { shallow: true });
         }
       },
     }),

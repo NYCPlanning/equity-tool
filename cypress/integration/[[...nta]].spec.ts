@@ -1,6 +1,6 @@
 describe("Map", () => {
   beforeEach(() => {
-    cy.visit("/nta");
+    cy.visit("/map");
   });
 
   it("should have a header", () => {
