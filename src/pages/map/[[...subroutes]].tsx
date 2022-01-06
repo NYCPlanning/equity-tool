@@ -8,6 +8,8 @@ import { IndicatorPanel } from "@components/IndicatorPanel";
 
 import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
 
+import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
+
 /*
   /Map route
 
@@ -43,6 +45,13 @@ const MapPage = () => {
           left={["auto", 8]}
           bottom={["auto", 8]}
           w={["100%", "215px"]}
+        />
+
+        <GeographySelect
+          geography={geography}
+          position={["relative", "absolute"]}
+          top={["auto", 20]}
+          left={["auto", 8]}
         />
 
         <IndicatorPanel />
