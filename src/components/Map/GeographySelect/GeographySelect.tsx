@@ -16,19 +16,25 @@ export const GeographySelect = (props) => {
       {...boxProps}
     >
       <Button
-        onClick={() => router.push({ query: {geography: 'census'}})}
+        onClick={() => router.push({pathname: `/map/census`, query: {
+          showPanel: 'true',
+        }})}
         isActive={geography === 'census'}
       >
         Census Area 
       </Button>
       <Button
-        onClick={() => router.push({ query: {geography: 'borough'}})}
+        onClick={() => router.push({pathname: `/map/borough`, query: {
+          showPanel: 'true',
+        }})}
         isActive={geography === 'borough'}
       >
         Borough
       </Button>
       <Button
-        onClick={() => router.push({ query: {geography: 'citywide'}})}
+        onClick={() => router.push({pathname: `/map/citywide`, query: {
+          showPanel: 'true',
+        }})}
         isActive={geography === 'citywide'}
       >
         Citywide

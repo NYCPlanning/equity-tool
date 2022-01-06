@@ -3,8 +3,11 @@ import { useRouter } from "next/router";
 import ntas from "@data/ntas.json";
 import { NtaIndicatorRecord } from "../types/Nta";
 
-export const useSelectedNta = (setSelectedNta: Dispatch<SetStateAction<any>>, router) => {
-    const { geoid } = router.query;
+export const useSelectedNta = () : NtaIndicatorRecord | null => {
+    const router = useRouter();
+
+    const { map } = router.query;
+    const [ geography, geoid ] = map ? map : [ null, null];
 
     let selectedNtaId: string | null = geoid ? geoid : null;
     
@@ -15,9 +18,6 @@ export const useSelectedNta = (setSelectedNta: Dispatch<SetStateAction<any>>, ro
       return Object.prototype.hasOwnProperty.call(obj, key);
     }
 
-    if(selectedNtaId !== null && hasOwnProperty(ntas, selectedNtaId)) {
-      setSelectedNta(ntas[selectedNtaId])
-    } else {
-      setSelectedNta(null);
-    }
+    return (selectedNtaId !== null && hasOwnProperty(ntas, selectedNtaId)) ?
+      ntas[selectedNtaId] : null;
 };

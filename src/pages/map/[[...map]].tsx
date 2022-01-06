@@ -5,35 +5,20 @@ import { Header } from "@components/Header";
 import { GeographySelect } from "@components/Map/GeographySelect";
 import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { useSelectedLayer } from "../hooks/useSelectedLayer/useSelectedLayer";
+import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
 import { useSelectedNta } from "@hooks/useSelectedNta";
 import { useRouter } from "next/router";
 
 const MapView = () => {
   const router = useRouter();
 
-  const [ layers, setLayers ] = useState([]);
-  const [ selectedNta, setSelectedNta ] = useState(null);
-  // necessary to distill router.query.geography down to string type, instead of type <string|string[]>
-  const [ selectedGeography, setSelectedGeography ] = useState('census');
+  const { map, showPanel } = router.query;
 
-  useEffect(() => {
-    const { geography } = router.query;
+  const [ geography, geoid ] = map ? map : [ null, null];
 
-    if (typeof geography === 'string') {
-      setSelectedGeography(geography)
-    }
-  }, [router.query.geography]);
+  let selectedNta = useSelectedNta();
 
-  useEffect(() => {
-    console.log("hello?1")
-    useSelectedNta(setSelectedNta, router);
-    console.log("Selected NTA: ", selectedNta);
-  }, [router.query.geoid]);
-
-  useEffect(() => {
-    useSelectedLayer(setLayers, router);
-  }, [router.query.geoid]);
+  let layers = useSelectedLayer();
 
   return (
     <Box height="100vh">
@@ -41,7 +26,7 @@ const MapView = () => {
       <Map
         layers={layers}
       />
-
+      
       <Flex direction="column" justify="end" height="100%">
         <Legend
           position={["relative", "absolute"]}
@@ -51,15 +36,17 @@ const MapView = () => {
         />
 
         <GeographySelect
-          geography={selectedGeography}
+          geography={geography}
           position={["relative", "absolute"]}
           top={["auto", 20]}
           left={["auto", 8]}
         />
 
-        <IndicatorPanel
-          selectedNta={selectedNta}
-        />
+        { showPanel === 'true' && 
+          <IndicatorPanel
+            selectedNta={selectedNta}
+          />
+        }
       </Flex>
     </Box>)
 };

@@ -10,16 +10,19 @@ import { interpolateRgb } from "d3-interpolate";
 
 import ntas from "@data/ntas.json";
 
-export const useSelectedLayer = (setLayers: Dispatch<SetStateAction<never []>>, router) => {
+export const useSelectedLayer = () => {
+  const router = useRouter();
 
   const scale = scaleSequential().domain([0, 100]);
   const interpolate = interpolateRgb("#f4f4b4", "#d44932");
 
-  const { geography } = router.query;
+  const { map } = router.query;
+
+  const [ geography, geoid ] = map ? map : [ null, null];
 
   switch (geography){
     case 'census':
-      setLayers(new CartoLayer({
+      return [new CartoLayer({
         type: MAP_TYPES.QUERY,
         id: "censusarea",
         data: `SELECT * FROM pff_2020_census_tracts_21c`,
@@ -35,13 +38,13 @@ export const useSelectedLayer = (setLayers: Dispatch<SetStateAction<never []>>, 
             : null;
           if (typeof id === "string") {
             // ugh https://github.com/vercel/next.js/issues/9473
-            router.push(router.pathname, { query: {...router.query, geoid: id}});
+            router.push(`map/census/${id}`);
           }
         },
-      }));
+      })];
       break;
     case 'borough':
-      setLayers(new CartoLayer({
+      return [new CartoLayer({
         type: MAP_TYPES.QUERY,
         id: "nta",
         data: `SELECT *, nta2020 as id, ntaname as label FROM dcp_nta_2020 WHERE ntatype = '0'`,
@@ -66,10 +69,12 @@ export const useSelectedLayer = (setLayers: Dispatch<SetStateAction<never []>>, 
             ? info.object.properties.id
             : null;
           if (typeof id === "string") {
-            router.push(router.pathname, { query: {...router.query, geoid: id} });
+            router.push({pathname: `/map/borough/${id}`, query: {
+              showPanel: 'false',
+            }});
           }
         },
-      }));
+      })];
       break;
     default:
       break;
