@@ -10,9 +10,11 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-export const Map = (props) => {
-  const { layers } = props;
+interface MapProps {
+  layers: any[];
+}
 
+export const Map = ({ layers }: MapProps) => {
   const INITIAL_VIEW_STATE = {
     longitude: -73.986607,
     latitude: 40.691869,

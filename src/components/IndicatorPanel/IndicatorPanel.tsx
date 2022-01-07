@@ -1,9 +1,12 @@
 import { Box, Collapse, useDisclosure, Text, Button } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { NtaIndicatorRecord } from "../../types/Nta";
 
-export const IndicatorPanel = (props) => {
-  const { indicatorRecord } = props;
+interface IndicatorPanelProps {
+  indicatorRecord: NtaIndicatorRecord;
+}
 
+export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (

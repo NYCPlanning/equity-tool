@@ -1,11 +1,15 @@
 import { useRouter } from "next/router";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { BoxProps, Button, ButtonGroup } from "@chakra-ui/react";
 
-// Docs on BoxProps?
-export const GeographySelect = (props) => {
+type GeographySelectProps = {
+  geography: string;
+} & BoxProps;
+
+export const GeographySelect = ({
+  geography,
+  ...boxProps
+}: GeographySelectProps) => {
   const router = useRouter();
-
-  const { geography, ...boxProps } = props;
 
   return (
     <ButtonGroup isAttached {...boxProps}>
