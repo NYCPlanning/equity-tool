@@ -3,12 +3,10 @@ import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { NtaIndicatorRecord } from "../../types/Nta";
 
 interface IndicatorPanelProps {
-  indicatorRecord: NtaIndicatorRecord;
+  indicatorRecord: NtaIndicatorRecord | null;
 }
 
-export const IndicatorPanel = ({
-  indicatorRecord,
-}: IndicatorPanelProps | null) => {
+export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (

@@ -6,7 +6,9 @@ import { interpolateRgb } from "d3-interpolate";
 
 import ntas from "@data/ntas.json";
 
-export const useSelectedLayer = (geography: string | null) => {
+export const useSelectedLayer = (
+  geography: string | null
+): CartoLayer<any, any>[] | null => {
   const router = useRouter();
 
   const scale = scaleSequential().domain([0, 100]);
@@ -73,6 +75,7 @@ export const useSelectedLayer = (geography: string | null) => {
       ];
       break;
     default:
+      return null;
       break;
   }
 };

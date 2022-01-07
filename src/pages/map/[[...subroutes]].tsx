@@ -40,7 +40,7 @@ const MapPage = () => {
     <Box height="100vh">
       <Header />
 
-      <Map layers={layers} />
+      <Map layers={layers === null ? [] : layers} />
 
       <Flex direction="column" justify="end" height="100%">
         <Legend
