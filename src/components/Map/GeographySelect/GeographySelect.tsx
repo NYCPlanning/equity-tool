@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { BoxProps, Button, ButtonGroup } from "@chakra-ui/react";
 
 type GeographySelectProps = {
-  geography: string;
+  geography: string | null;
 } & BoxProps;
 
 export const GeographySelect = ({

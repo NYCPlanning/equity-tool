@@ -6,7 +6,9 @@ interface IndicatorPanelProps {
   indicatorRecord: NtaIndicatorRecord;
 }
 
-export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
+export const IndicatorPanel = ({
+  indicatorRecord,
+}: IndicatorPanelProps | null) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (

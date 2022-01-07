@@ -3,6 +3,7 @@ import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
+import { CartoLayer } from "@deck.gl/carto";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -11,7 +12,7 @@ setDefaultCredentials({
 });
 
 interface MapProps {
-  layers: any[];
+  layers: CartoLayer<any, any>[];
 }
 
 export const Map = ({ layers }: MapProps) => {
