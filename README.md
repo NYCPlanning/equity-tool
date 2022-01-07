@@ -21,6 +21,12 @@ npm run dev
 
 You can also run unit tests or the linter by running `npm run test` or `npm run lint`, respectively.
 
+### Tests
+Run the suite of Jest tests under `/test`
+```
+npm run test
+```
+
 ## Attribution
 
 This project was originally bootstrapped via `create-next-app` using the `with-chakra-ui-typescript` preset
