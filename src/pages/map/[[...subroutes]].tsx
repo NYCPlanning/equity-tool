@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-
+import { GetServerSideProps } from "next";
 import { Box, Flex } from "@chakra-ui/react";
 import { Map } from "@components/Map";
 import { Header } from "@components/Header";
@@ -10,6 +10,35 @@ import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect
 import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
 import { useIndicatorRecord } from "../../hooks/useIndicatorRecord/useIndicatorRecord";
 
+export interface MapPageProps {
+  initialRouteParams: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  if (!context.params) {
+    return {
+      props: {
+        initialRouteParams: "",
+      },
+    };
+  }
+  const { subroutes } = context.params;
+
+  if (typeof subroutes === "string") {
+    return {
+      props: {
+        initialRouteParams: "",
+      },
+    };
+  }
+
+  return {
+    props: {
+      initialRouteParams: subroutes ? subroutes.join(",") : "",
+    },
+  };
+};
+
 /*
   /Map route
 
@@ -17,7 +46,8 @@ import { useIndicatorRecord } from "../../hooks/useIndicatorRecord/useIndicatorR
     /map/geography
     /map/geography/geoid
 */
-const MapPage = () => {
+const MapPage = ({ initialRouteParams }: MapPageProps) => {
+  console.log(initialRouteParams);
   const router = useRouter();
 
   const { subroutes } = router.query;
