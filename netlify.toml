@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[redirects]]
+  from = "/"
+  to = "/map"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
