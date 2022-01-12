@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
@@ -12,10 +11,11 @@ setDefaultCredentials({
 });
 
 interface MapProps {
-  layers: CartoLayer<any, any>[];
+  layers: CartoLayer<any, any>[] | null;
+  mapParent: any;
 }
 
-export const Map = ({ layers }: MapProps) => {
+export const Map = ({ layers, mapParent }: MapProps) => {
   const INITIAL_VIEW_STATE = {
     longitude: -73.986607,
     latitude: 40.691869,
@@ -24,20 +24,19 @@ export const Map = ({ layers }: MapProps) => {
     bearing: 0,
   };
 
-  return (
-    <Box h="100%" w="100%" position="absolute" bottom="0" left="0">
-      <DeckGL
-        initialViewState={INITIAL_VIEW_STATE}
-        controller={true}
-        layers={layers}
-        width="100%"
-        height="100%"
-      >
-        <StaticMap
-          mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-          mapStyle={baseMap}
-        />
-      </DeckGL>
-    </Box>
+  const map = (
+    <DeckGL
+      initialViewState={INITIAL_VIEW_STATE}
+      controller={true}
+      layers={layers}
+      parent={mapParent.current}
+    >
+      <StaticMap
+        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        mapStyle={baseMap}
+      />
+    </DeckGL>
   );
+
+  return map;
 };
