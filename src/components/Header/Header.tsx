@@ -9,12 +9,8 @@ export const Header = () => {
       spacing={4}
       paddingX={3}
       h="4.25rem"
-      backgroundColor="#fff"
-      zIndex="100"
-      position="fixed"
-      top="0"
-      left="0"
-      width="100%"
+      backgroundColor="white"
+      boxShadow="lg"
     >
       <Image
         src={logo}
