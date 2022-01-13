@@ -156,7 +156,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'main'
-          token: ${{ secrets.SERVICE_ACCOUNT_PAT }}
           persist-credentials: false
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
@@ -180,7 +179,7 @@ jobs:
           git config --local user.name "$SERVICE_ACCOUNT_NAME"
           git config --local user.email "$SERVICE_ACCOUNT_EMAIL"
           npm version patch --commit-hooks false
-          git push --follow-tags
+          git push https://${{ secrets.SERVICE_ACCOUNT_PAT }}@github.com/${{ secrets.SERVICE_ACCOUNT_NAME }} HEAD:main --follow-tags
       - name: Deploy to Production
         run: netlify deploy --prod
         env:
