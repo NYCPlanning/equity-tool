@@ -36,7 +36,7 @@ const MapPage = () => {
 
   const indicatorRecord = useIndicatorRecord(geoid);
 
-  const mapContainer = useRef(null);
+  const mapContainer = useRef<HTMLDivElement>(null);
 
   return (
     <Flex height="100vh" direction="column" bg="gray.100">
@@ -54,7 +54,10 @@ const MapPage = () => {
             height="100%"
             rounded="lg"
           >
-            <Map layers={layers} mapParent={mapContainer} />
+            <Map
+              layers={layers ? layers : undefined}
+              parent={mapContainer.current ? mapContainer.current : undefined}
+            />
           </Box>
         </Box>
       </Flex>
