@@ -1,14 +1,17 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+
+import { useRef } from "react";
+
 import { Box, Flex } from "@chakra-ui/react";
 import { Map } from "@components/Map";
 import { Header } from "@components/Header";
-import { Legend } from "@components/Legend";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
 
 import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
 import { useIndicatorRecord } from "../../hooks/useIndicatorRecord/useIndicatorRecord";
+
+import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -40,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 /*
-  /Map route
+  /Map route 
 
   Subroutes:
     /map/geography
@@ -66,30 +69,41 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const indicatorRecord = useIndicatorRecord(geoid);
 
+  const mapContainer = useRef<HTMLDivElement>(null);
+
   return (
-    <Box height="100vh">
+    <Flex height="100vh" direction="column" bg="gray.100">
       <Header />
 
-      <Map layers={layers === null ? [] : layers} />
+      <Flex direction="row" flex="auto">
+        <Box flex="1" height="100%" p="10px">
+          <IndicatorPanel indicatorRecord={indicatorRecord} />
+        </Box>
 
-      <Flex direction="column" justify="end" height="100%">
-        <Legend
-          position={["relative", "absolute"]}
-          left={["auto", 8]}
-          bottom={["auto", 8]}
-          w={["100%", "215px"]}
-        />
+        <Box flex="2" height="100%" p="10px">
+          <Box
+            ref={mapContainer}
+            position="relative"
+            height="100%"
+            rounded="lg"
+          >
+            <GeographySelect
+              geography={geography}
+              position="absolute"
+              top={5}
+              right={8}
+              zIndex={100}
+              boxShadow="lg"
+            />
 
-        <GeographySelect
-          geography={geography}
-          position={["relative", "absolute"]}
-          top={["auto", 20]}
-          left={["auto", 8]}
-        />
-
-        <IndicatorPanel indicatorRecord={indicatorRecord} />
+            <Map
+              layers={layers ? layers : undefined}
+              parent={mapContainer?.current ? mapContainer.current : undefined}
+            />
+          </Box>
+        </Box>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 
