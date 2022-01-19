@@ -11,6 +11,8 @@ import { IndicatorPanel } from "@components/IndicatorPanel";
 import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
 import { useIndicatorRecord } from "../../hooks/useIndicatorRecord/useIndicatorRecord";
 
+import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
+
 export interface MapPageProps {
   initialRouteParams: string;
 }
@@ -85,6 +87,15 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             height="100%"
             rounded="lg"
           >
+            <GeographySelect
+              geography={geography}
+              position="absolute"
+              top={5}
+              right={8}
+              zIndex={100}
+              boxShadow="lg"
+            />
+
             <Map
               layers={layers ? layers : undefined}
               parent={mapContainer?.current ? mapContainer.current : undefined}
