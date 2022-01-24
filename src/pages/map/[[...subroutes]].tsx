@@ -3,9 +3,8 @@ import { GetServerSideProps } from "next";
 
 import { useRef } from "react";
 
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Map } from "@components/Map";
-import { Header } from "@components/Header";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 
 import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
@@ -50,7 +49,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     /map/geography/geoid
 */
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
-  console.log(initialRouteParams);
+  console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
+
   const router = useRouter();
 
   const { subroutes } = router.query;
@@ -72,38 +72,29 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const mapContainer = useRef<HTMLDivElement>(null);
 
   return (
-    <Flex height="100vh" direction="column" bg="gray.100">
-      <Header />
+    <>
+      <Box flex="1" height="100%" p="10px">
+        <IndicatorPanel indicatorRecord={indicatorRecord} />
+      </Box>
 
-      <Flex direction="row" flex="auto">
-        <Box flex="1" height="100%" p="10px">
-          <IndicatorPanel indicatorRecord={indicatorRecord} />
+      <Box flex="2" height="100%" p="10px">
+        <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
+          <GeographySelect
+            geography={geography}
+            position="absolute"
+            top={5}
+            right={8}
+            zIndex={100}
+            boxShadow="lg"
+          />
+
+          <Map
+            layers={layers ? layers : undefined}
+            parent={mapContainer?.current ? mapContainer.current : undefined}
+          />
         </Box>
-
-        <Box flex="2" height="100%" p="10px">
-          <Box
-            ref={mapContainer}
-            position="relative"
-            height="100%"
-            rounded="lg"
-          >
-            <GeographySelect
-              geography={geography}
-              position="absolute"
-              top={5}
-              right={8}
-              zIndex={100}
-              boxShadow="lg"
-            />
-
-            <Map
-              layers={layers ? layers : undefined}
-              parent={mapContainer?.current ? mapContainer.current : undefined}
-            />
-          </Box>
-        </Box>
-      </Flex>
-    </Flex>
+      </Box>
+    </>
   );
 };
 
