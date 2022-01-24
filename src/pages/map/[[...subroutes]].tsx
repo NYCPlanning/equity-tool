@@ -68,11 +68,42 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   return (
     <>
-      <Box flex="1" height="100%" p="10px">
+      <Box
+        display={{
+          base: "none",
+          lg: "flex",
+        }}
+        flex="1"
+        height="100%"
+        p="10px"
+      >
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Box>
 
-      <Box flex="2" height="100%" p="10px">
+      <Box
+        display={{
+          base: "block",
+          lg: "none",
+        }}
+        width="100%"
+        position="fixed"
+        bottom="-800px"
+        left="0"
+        marginBottom="200px"
+        height="800px"
+        zIndex="999"
+      >
+        <IndicatorPanel indicatorRecord={indicatorRecord} />
+      </Box>
+
+      <Box
+        flex="2"
+        height="100%"
+        p={{
+          base: "none",
+          lg: "10px",
+        }}
+      >
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <GeographySelect
             geography={geography}
