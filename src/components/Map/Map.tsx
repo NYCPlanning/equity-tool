@@ -1,6 +1,9 @@
 import { DeckGL } from "@deck.gl/react";
 import { DeckGLProps } from "@deck.gl/react/deckgl";
-import { StaticMap } from "react-map-gl";
+import ReactMapGL, {
+  _MapContext as MapContext,
+  NavigationControl,
+} from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
 
@@ -21,17 +24,30 @@ export const Map = ({ layers, parent }: MapProps) => {
     bearing: 0,
   };
 
+  const navControlStyle = {
+    position: "absolute",
+    bottom: 150,
+    left: 10,
+  } as React.CSSProperties;
+
+  // MapContext is necessary for navigation controls to work.
+  // Unclear on why.
   const map = (
     <DeckGL
       initialViewState={INITIAL_VIEW_STATE}
       controller={true}
       layers={layers}
       parent={parent}
+      ContextProvider={MapContext.Provider}
     >
-      <StaticMap
+      <div style={navControlStyle}>
+        <NavigationControl />
+      </div>
+
+      <ReactMapGL
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle={baseMap}
-      />
+      ></ReactMapGL>
     </DeckGL>
   );
 
