@@ -1,5 +1,5 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
-import { NtaIndicatorRecord } from "../../types/Nta";
+import { NtaIndicatorRecord } from "@type/Nta";
 
 interface IndicatorPanelProps {
   indicatorRecord: NtaIndicatorRecord | null;

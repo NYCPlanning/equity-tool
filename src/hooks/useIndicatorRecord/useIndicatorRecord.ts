@@ -1,5 +1,5 @@
 import ntas from "@data/ntas.json";
-import { NtaIndicatorRecord } from "../../types/Nta";
+import { NtaIndicatorRecord } from "@type/Nta";
 
 export const useIndicatorRecord = (
   geoid: string | null
