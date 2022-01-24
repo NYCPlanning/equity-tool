@@ -1,16 +1,11 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-
 import { useRef } from "react";
-
 import { Box } from "@chakra-ui/react";
-import { Map } from "@components/Map";
+import { useSelectedLayer } from "@hooks/useSelectedLayer";
+import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-
-import { useSelectedLayer } from "../../hooks/useSelectedLayer/useSelectedLayer";
-import { useIndicatorRecord } from "../../hooks/useIndicatorRecord/useIndicatorRecord";
-
-import { GeographySelect } from "@components/Map/GeographySelect/GeographySelect";
+import { Map, GeographySelect } from "@components/Map";
 
 export interface MapPageProps {
   initialRouteParams: string;
