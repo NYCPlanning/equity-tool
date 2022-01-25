@@ -1,8 +1,13 @@
 import { DeckGL } from "@deck.gl/react";
 import { DeckGLProps } from "@deck.gl/react/deckgl";
-import { StaticMap } from "react-map-gl";
+import ReactMapGL, {
+  _MapContext as MapContext,
+  NavigationControl,
+} from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
+
+import { Box } from "@chakra-ui/react";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -21,17 +26,34 @@ export const Map = ({ layers, parent }: MapProps) => {
     bearing: 0,
   };
 
+  // MapContext is necessary for navigation controls to work.
+  // Likely because it holds the view state, and keeps Deck and
+  // MapGL in sync with that singular state.
+  // https://deck.gl/docs/api-reference/react/deckgl#react-context
   const map = (
     <DeckGL
       initialViewState={INITIAL_VIEW_STATE}
       controller={true}
       layers={layers}
       parent={parent}
+      ContextProvider={MapContext.Provider}
     >
-      <StaticMap
+      <Box
+        display={{
+          base: "none",
+          lg: "block",
+        }}
+        position="absolute"
+        bottom={150}
+        left={10}
+      >
+        <NavigationControl />
+      </Box>
+
+      <ReactMapGL
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle={baseMap}
-      />
+      ></ReactMapGL>
     </DeckGL>
   );
 
