@@ -5,7 +5,8 @@ import { Box } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { Map, GeographySelect } from "@components/Map";
+import { Map } from "@components/Map";
+import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -37,11 +38,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 /*
-  /Map route 
+  /Map route
 
   Subroutes:
-    /map/geography
-    /map/geography/geoid
+    /map/datatool/:geography
+    /map/dri/:geography/:geoid
 */
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
@@ -51,16 +52,27 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const { subroutes } = router.query;
 
   // acquire subroute info, if any
-  const [geographyParam, geoid] = subroutes ? subroutes : [null, null];
+  const [viewParam, geographyParam, geoid] = subroutes
+    ? subroutes
+    : [null, null, null];
+
+  const view =
+    typeof viewParam === "string"
+      ? viewParam
+      : viewParam !== null && viewParam !== undefined
+      ? viewParam[0]
+      : null;
+
+  console.log("view: ", view);
 
   const geography =
     typeof geographyParam === "string"
       ? geographyParam
-      : geographyParam !== null
+      : geographyParam !== null && geographyParam !== undefined
       ? geographyParam[0]
       : null;
 
-  const layers = useSelectedLayer(geography);
+  const layers = useSelectedLayer(view, geography);
 
   const indicatorRecord = useIndicatorRecord(geoid);
 
@@ -105,14 +117,16 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         }}
       >
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
-          <GeographySelect
-            geography={geography}
-            position="absolute"
-            top={5}
-            right={8}
-            zIndex={100}
-            boxShadow="lg"
-          />
+          {view === "datatool" && (
+            <DataToolGeographySelect
+              geography={geography}
+              position="absolute"
+              top={5}
+              right={8}
+              zIndex={100}
+              boxShadow="lg"
+            />
+          )}
 
           <Map
             layers={layers ? layers : undefined}
