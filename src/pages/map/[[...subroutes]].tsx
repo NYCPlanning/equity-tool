@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 import { Map } from "@components/Map";
+import { ViewSelect } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
@@ -78,6 +79,43 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
+  const [lastDataToolGeography, setLastDataToolGeography] = useState(
+    (): string | null => null
+  );
+  const [lastDataToolGeoid, setLastDataToolGeoid] = useState(
+    (): string | null => null
+  );
+  const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
+
+  const onDriClick = () => {
+    setLastDataToolGeography(geography);
+    setLastDataToolGeoid(geoid);
+
+    let driPath = "/map/dri/puma";
+
+    if (lastDriGeoid) {
+      driPath += `/${lastDriGeoid}`;
+    }
+
+    router.push({ pathname: driPath });
+  };
+
+  const onDataToolClick = () => {
+    setLastDriGeoid(geoid);
+
+    let dataToolPath = "/map/datatool";
+
+    if (lastDataToolGeography) {
+      dataToolPath += `/${lastDataToolGeography}`;
+
+      if (lastDataToolGeoid) {
+        dataToolPath += `/${lastDataToolGeoid}`;
+      }
+    }
+
+    router.push({ pathname: dataToolPath });
+  };
+
   return (
     <>
       <Box
@@ -117,6 +155,17 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         }}
       >
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
+          <ViewSelect
+            onDataToolClick={onDataToolClick}
+            onDriClick={onDriClick}
+            view={view}
+            position="absolute"
+            top={5}
+            left={8}
+            zIndex={100}
+            boxShadow="lg"
+          />
+
           {view === "datatool" && (
             <DataToolGeographySelect
               geography={geography}
