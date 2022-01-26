@@ -162,7 +162,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             position="absolute"
             top={5}
             left={8}
-            zIndex={100}
+            zIndex={200}
             boxShadow="lg"
           />
 

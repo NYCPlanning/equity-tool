@@ -14,10 +14,14 @@ export const ViewSelect = ({
 }: ViewSelectProps) => {
   return (
     <ButtonGroup isAttached {...boxProps}>
-      <Button onClick={onDataToolClick} isActive={view === "datatool"}>
+      <Button
+        onClick={onDataToolClick}
+        isActive={view === "datatool"}
+        data-cy="dataToolBtn"
+      >
         Data Tool
       </Button>
-      <Button onClick={onDriClick} isActive={view === "dri"}>
+      <Button onClick={onDriClick} isActive={view === "dri"} data-cy="driBtn">
         DRI
       </Button>
     </ButtonGroup>
