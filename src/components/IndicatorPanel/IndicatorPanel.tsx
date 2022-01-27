@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { NtaIndicatorRecord } from "@type/Nta";
 
 interface IndicatorPanelProps {
@@ -8,14 +8,6 @@ interface IndicatorPanelProps {
 export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
   return (
     <Box background="#fff" w={["100%"]} height="100%" p="15" rounded="lg">
-      <Heading as="h3" size="lg">
-        {indicatorRecord
-          ? indicatorRecord.label
-          : "Welcome to NYC's Equitable Development Data Tool"}
-      </Heading>
-
-      <hr />
-
       {indicatorRecord ? (
         <Box>
           <Box p={2}>
