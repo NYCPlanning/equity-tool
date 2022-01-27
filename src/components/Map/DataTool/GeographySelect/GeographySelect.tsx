@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { BoxProps, Button, ButtonGroup } from "@chakra-ui/react";
 
-type GeographySelectProps = {
+interface GeographySelectProps extends BoxProps {
   geography: string | null;
-} & BoxProps;
+}
 
 export const GeographySelect = ({
   geography,
@@ -14,19 +14,19 @@ export const GeographySelect = ({
   return (
     <ButtonGroup isAttached {...boxProps}>
       <Button
-        onClick={() => router.push({ pathname: `/map/census` })}
+        onClick={() => router.push({ pathname: `/map/datatool/census` })}
         isActive={geography === "census"}
       >
         Census Area
       </Button>
       <Button
-        onClick={() => router.push({ pathname: `/map/borough` })}
+        onClick={() => router.push({ pathname: `/map/datatool/borough` })}
         isActive={geography === "borough"}
       >
         Borough
       </Button>
       <Button
-        onClick={() => router.push({ pathname: `/map/citywide` })}
+        onClick={() => router.push({ pathname: `/map/datatool/citywide` })}
         isActive={geography === "citywide"}
       >
         Citywide

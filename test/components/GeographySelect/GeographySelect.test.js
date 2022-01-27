@@ -1,7 +1,7 @@
 import { unmountComponentAtNode } from "react-dom";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { GeographySelect } from "../../../src/components/Map/GeographySelect";
+import { GeographySelect } from "../../../src/components/Map/DataTool/GeographySelect";
 import { act } from "react-dom/test-utils";
 
 let container = null;

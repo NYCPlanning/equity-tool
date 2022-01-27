@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { Map, GeographySelect } from "@components/Map";
+import { Map } from "@components/Map";
+import { ViewSelect } from "@components/Map";
+import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -37,11 +39,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 /*
-  /Map route 
+  /Map route
 
   Subroutes:
-    /map/geography
-    /map/geography/geoid
+    /map/datatool/:geography
+    /map/dri/:geography/:geoid
 */
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
@@ -51,37 +53,129 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const { subroutes } = router.query;
 
   // acquire subroute info, if any
-  const [geographyParam, geoid] = subroutes ? subroutes : [null, null];
+  const [viewParam, geographyParam, geoid] = subroutes
+    ? subroutes
+    : [null, null, null];
+
+  const view =
+    typeof viewParam === "string"
+      ? viewParam
+      : viewParam !== null && viewParam !== undefined
+      ? viewParam[0]
+      : null;
+
+  console.log("view: ", view);
 
   const geography =
     typeof geographyParam === "string"
       ? geographyParam
-      : geographyParam !== null
+      : geographyParam !== null && geographyParam !== undefined
       ? geographyParam[0]
       : null;
 
-  const layers = useSelectedLayer(geography);
+  const layers = useSelectedLayer(view, geography);
 
   const indicatorRecord = useIndicatorRecord(geoid);
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
+  const [lastDataToolGeography, setLastDataToolGeography] = useState(
+    (): string | null => null
+  );
+  const [lastDataToolGeoid, setLastDataToolGeoid] = useState(
+    (): string | null => null
+  );
+  const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
+
+  const onDriClick = () => {
+    setLastDataToolGeography(geography);
+    setLastDataToolGeoid(geoid);
+
+    let driPath = "/map/dri/puma";
+
+    if (lastDriGeoid) {
+      driPath += `/${lastDriGeoid}`;
+    }
+
+    router.push({ pathname: driPath });
+  };
+
+  const onDataToolClick = () => {
+    setLastDriGeoid(geoid);
+
+    let dataToolPath = "/map/datatool";
+
+    if (lastDataToolGeography) {
+      dataToolPath += `/${lastDataToolGeography}`;
+
+      if (lastDataToolGeoid) {
+        dataToolPath += `/${lastDataToolGeoid}`;
+      }
+    }
+
+    router.push({ pathname: dataToolPath });
+  };
+
   return (
     <>
-      <Box flex="1" height="100%" p="10px">
+      <Box
+        display={{
+          base: "none",
+          lg: "flex",
+        }}
+        flex="1"
+        height="100%"
+        p="10px"
+      >
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Box>
 
-      <Box flex="2" height="100%" p="10px">
+      <Box
+        display={{
+          base: "block",
+          lg: "none",
+        }}
+        width="100%"
+        position="fixed"
+        bottom="-800px"
+        left="0"
+        marginBottom="200px"
+        height="800px"
+        zIndex="999"
+      >
+        <IndicatorPanel indicatorRecord={indicatorRecord} />
+      </Box>
+
+      <Box
+        flex="2"
+        height="100%"
+        p={{
+          base: "none",
+          lg: "10px",
+        }}
+      >
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
-          <GeographySelect
-            geography={geography}
+          <ViewSelect
+            onDataToolClick={onDataToolClick}
+            onDriClick={onDriClick}
+            view={view}
             position="absolute"
             top={5}
-            right={8}
-            zIndex={100}
+            left={8}
+            zIndex={200}
             boxShadow="lg"
           />
+
+          {view === "datatool" && (
+            <DataToolGeographySelect
+              geography={geography}
+              position="absolute"
+              top={5}
+              right={8}
+              zIndex={100}
+              boxShadow="lg"
+            />
+          )}
 
           <Map
             layers={layers ? layers : undefined}
