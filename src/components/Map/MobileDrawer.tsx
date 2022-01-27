@@ -21,7 +21,7 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
       position="fixed"
       top={isOpen ? "6rem" : "100vh"}
       marginTop={isOpen ? "auto" : "-10rem"}
-      paddingBottom="10rem"
+      paddingBottom="6rem"
       left="0"
       zIndex="999"
       bg="white"
@@ -66,7 +66,9 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
         <Box flex="shrink">
           <hr />
         </Box>
-        <Box flex="auto">{children}</Box>
+        <Box flex="auto" overflow="scroll">
+          {children}
+        </Box>
       </Flex>
     </Box>
   );
