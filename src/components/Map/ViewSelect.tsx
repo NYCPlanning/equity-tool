@@ -1,10 +1,10 @@
 import { BoxProps, Button, ButtonGroup } from "@chakra-ui/react";
 
-type ViewSelectProps = {
+interface ViewSelectProps extends BoxProps {
   onDataToolClick: () => void;
   onDriClick: () => void;
   view: string | null;
-} & BoxProps;
+}
 
 export const ViewSelect = ({
   onDataToolClick,
