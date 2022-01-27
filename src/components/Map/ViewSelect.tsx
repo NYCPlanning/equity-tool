@@ -22,7 +22,7 @@ export const ViewSelect = ({
         Data Tool
       </Button>
       <Button onClick={onDriClick} isActive={view === "dri"} data-cy="driBtn">
-        DRI
+        Displacement Risk Index
       </Button>
     </ButtonGroup>
   );
