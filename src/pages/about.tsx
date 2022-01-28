@@ -5,15 +5,19 @@ import {
   Heading,
   Text,
   Link,
-  Divider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 import screenshot from "../../public/screenshot.png";
 import driscreenshot from "../../public/driscreenshot.png";
-import logo from "../../public/logo.png";
+import Feedback from "@components/About/Feedback";
+import CustomDivider from "@components/About/CustomDivider";
+import StaticPageFooter from "@components/About/StaticPageFooter";
 
 const AboutPage = () => {
+  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+
   return (
     <Flex direction="column" width="100%">
       <Center py="2em" bg="teal">
@@ -35,30 +39,7 @@ const AboutPage = () => {
               patterns, public health and more.
             </Text>
           </Box>
-          <Box flex="2" p={10}>
-            <Heading size="md" pb="0.5em">
-              Feedback
-            </Heading>
-            <Text>
-              For questions or to let us know how this app could be better, send
-              us an email to{" "}
-              <Link
-                href="mailto:labs_dl@planning.nyc.gov"
-                textDecoration="underline"
-              >
-                labs_dl@planning.nyc.gov
-              </Link>
-              . You can also{" "}
-              <Link
-                href="https://github.com/NYCPlanning/equity-tool/issues"
-                textDecoration="underline"
-                isExternal
-              >
-                add a GitHub Issue
-              </Link>
-              .
-            </Text>
-          </Box>
+          {isLargerThan1024 ? <Feedback /> : ""}
         </Flex>
       </Center>
 
@@ -124,9 +105,7 @@ const AboutPage = () => {
         </Flex>
       </Center>
 
-      <Center py="2em">
-        <Divider width={["100%", "1024px"]} borderColor={"#A0AEC0"} />
-      </Center>
+      <CustomDivider />
 
       <Center>
         <Flex
@@ -192,27 +171,16 @@ const AboutPage = () => {
         </Flex>
       </Center>
 
-      <Center py="2em">
-        <Flex direction="row" width={["100%", "1024px"]} wrap="nowrap">
-          <Image src={logo} alt="NYC Logo" />
-          <Box maxW="90px" lineHeight="1" mx="10px" wrap="wrap">
-            <Text fontSize="xs" fontWeight="bold">
-              Department of City Planning
-            </Text>
-          </Box>
-          <Divider
-            height="24px"
-            orientation="vertical"
-            borderColor={"black"}
-            mr="10px"
-          />
-          <Box maxW="150px" lineHeight="1" wrap="wrap">
-            <Text fontSize="xs" fontWeight="bold">
-              Housing Preservation &amp; Development
-            </Text>
-          </Box>
-        </Flex>
-      </Center>
+      {isLargerThan1024 ? (
+        ""
+      ) : (
+        <>
+          <CustomDivider />
+          <Feedback />
+        </>
+      )}
+
+      <StaticPageFooter />
     </Flex>
   );
 };
