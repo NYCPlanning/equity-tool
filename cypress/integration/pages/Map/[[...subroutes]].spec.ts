@@ -3,58 +3,65 @@ describe("Map catch-all page", () => {
     cy.visit("/map/datatool");
   });
 
-  it("should have a header", () => {
-    cy.get("header").should("be.visible");
-  });
+  context("desktop", () => {
+    beforeEach(() => {
+      // iffy because chakra breakpoints are defined in ems.
+      cy.viewport(1080, 660);
+    });
 
-  it("should switch geography when user uses Geography Select toolbar", () => {
-    cy.url().should("include", "/map/datatool");
+    it("should have a header", () => {
+      cy.get("header").should("be.visible");
+    });
 
-    cy.contains("Census").click();
+    it("should switch geography when user uses Geography Select toolbar on Desktop size", () => {
+      cy.url().should("include", "/map/datatool");
 
-    cy.url().should("include", "/map/datatool/census");
+      cy.contains("Census").click();
 
-    cy.contains("Borough").click();
+      cy.url().should("include", "/map/datatool/census");
 
-    cy.url().should("include", "/map/datatool/borough");
+      cy.contains("Borough").click();
 
-    cy.visit("/map/datatool/census");
+      cy.url().should("include", "/map/datatool/borough");
 
-    cy.contains("Census Area").should("have.attr", "data-active");
-  });
+      cy.visit("/map/datatool/census");
 
-  it("should switch view when user uses ViewSelect toolbar", () => {
-    cy.url().should("include", "/map/datatool");
+      cy.contains("Census Area").should("have.attr", "data-active");
+    });
 
-    cy.get('[data-cy="driBtn"]').click();
+    it("should switch view when user uses ViewSelect toolbar", () => {
+      cy.url().should("include", "/map/datatool");
 
-    cy.url().should("include", "/map/dri/puma");
+      cy.get('[data-cy="driBtn"]').click();
 
-    cy.get('[data-cy="dataToolBtn"]').click();
+      cy.url().should("include", "/map/dri/puma");
 
-    cy.url().should("include", "/map/datatool");
-  });
+      cy.get('[data-cy="dataToolBtn"]').click();
 
-  it("ViewSelect should preserve previous view geo and geoid", () => {
-    cy.visit("/map/datatool/census");
+      cy.url().should("include", "/map/datatool");
+    });
 
-    cy.get('[data-cy="driBtn"]').click();
+    it("ViewSelect should preserve previous view geo and geoid", () => {
+      cy.visit("/map/datatool/census");
 
-    cy.url().should("include", "/map/dri/puma");
+      cy.get('[data-cy="driBtn"]').click();
 
-    cy.get('[data-cy="dataToolBtn"]').click();
+      cy.url().should("include", "/map/dri/puma");
 
-    cy.url().should("include", "/map/datatool/census");
+      cy.get('[data-cy="dataToolBtn"]').click();
 
-    cy.visit("/map/datatool/borough/BK0202");
+      cy.url().should("include", "/map/datatool/census");
 
-    cy.get('[data-cy="driBtn"]').click();
+      cy.visit("/map/datatool/borough/BK0202");
 
-    cy.url().should("include", "/map/dri/puma");
+      cy.get('[data-cy="driBtn"]').click();
 
-    cy.get('[data-cy="dataToolBtn"]').click();
+      cy.url().should("include", "/map/dri/puma");
 
-    cy.url().should("include", "/map/datatool/borough/BK0202");
+      cy.get('[data-cy="dataToolBtn"]').click();
+
+      cy.url().should("include", "/map/datatool/borough/BK0202");
+    });
   });
 });
 
