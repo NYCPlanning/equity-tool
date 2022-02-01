@@ -8,7 +8,7 @@ interface MobileDrawerProps {
 }
 
 export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Box
@@ -25,6 +25,7 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
       left="0"
       zIndex="999"
       bg="white"
+      data-cy="mobileDrawer"
     >
       <Flex direction="column" height="100%">
         <Flex
@@ -52,6 +53,7 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
+                data-cy="closeMobileDrawer"
               />
             ) : (
               <IconButton
@@ -59,6 +61,7 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
                 aria-label="Toggle Drawer"
                 fontSize="20px"
                 icon={<ChevronUpIcon />}
+                data-cy="openMobileDrawer"
               />
             )}
           </Box>

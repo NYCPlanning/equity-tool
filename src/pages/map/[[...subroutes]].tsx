@@ -129,6 +129,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         p="10px"
         boxShadow="lg"
         zIndex="999"
+        data-cy="desktopSidebar"
       >
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Box>

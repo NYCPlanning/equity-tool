@@ -63,6 +63,25 @@ describe("Map catch-all page", () => {
       cy.url().should("include", "/map/datatool/borough/BK0202");
     });
   });
+
+  context("mobile", () => {
+    beforeEach(() => {
+      // iffy because chakra breakpoints are defined in ems.
+      cy.viewport(600, 660);
+    });
+
+    it("should only show Mobile Drawer", () => {
+      cy.get('[data-cy="desktopSidebar"]').should("not.be.visible");
+
+      cy.get('[data-cy="openMobileDrawer"]').click();
+      cy.get('[data-cy="mobileDrawer"]').should("be.visible");
+    });
+
+    it("should allow opening and closing Mobile Drawer", () => {
+      cy.get('[data-cy="openMobileDrawer"]').click();
+      cy.get('[data-cy="closeMobileDrawer"]').click();
+    });
+  });
 });
 
 export {};
