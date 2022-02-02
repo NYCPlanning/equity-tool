@@ -30,7 +30,7 @@ const theme = extendTheme({
     },
     Button: {
       variants: {
-        aqua: {
+        toggle: {
           backgroundColor: "white",
           color: "gray.600",
           borderRadius: 50,
