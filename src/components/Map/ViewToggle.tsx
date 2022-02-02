@@ -18,7 +18,7 @@ export const ViewToggle = ({
       <Button
         onClick={onDataToolClick}
         isActive={view === "datatool"}
-        variant="aqua"
+        variant="toggle"
         data-cy="dataToolBtn"
       >
         Data Tool
@@ -27,7 +27,7 @@ export const ViewToggle = ({
         onClick={onDriClick}
         isActive={view === "dri"}
         data-cy="driBtn"
-        variant="aqua"
+        variant="toggle"
       >
         Displacement Risk Index
       </Button>
