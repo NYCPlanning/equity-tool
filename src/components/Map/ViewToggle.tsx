@@ -1,18 +1,18 @@
 import { BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 
-interface ViewSelectProps extends BoxProps {
+interface ViewToggleProps extends BoxProps {
   onDataToolClick: () => void;
   onDriClick: () => void;
   view: string | null;
 }
 
-export const ViewSelect = ({
+export const ViewToggle = ({
   onDataToolClick,
   onDriClick,
   view,
   ...boxProps
-}: ViewSelectProps) => {
+}: ViewToggleProps) => {
   return (
     <ToggleButtonGroup {...boxProps}>
       <Button

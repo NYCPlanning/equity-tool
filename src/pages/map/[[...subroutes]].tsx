@@ -6,7 +6,7 @@ import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 import { Map } from "@components/Map";
-import { ViewSelect } from "@components/Map";
+import { ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
@@ -155,7 +155,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         }}
       >
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
-          <ViewSelect
+          <ViewToggle
             onDataToolClick={onDataToolClick}
             onDriClick={onDriClick}
             view={view}
