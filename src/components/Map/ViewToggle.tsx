@@ -26,8 +26,8 @@ export const ViewToggle = ({
       <Button
         onClick={onDriClick}
         isActive={view === "dri"}
-        data-cy="driBtn"
         variant="toggle"
+        data-cy="driBtn"
       >
         Displacement Risk Index
       </Button>

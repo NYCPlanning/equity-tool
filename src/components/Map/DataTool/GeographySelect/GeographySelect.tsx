@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { BoxProps, Button, ButtonGroup } from "@chakra-ui/react";
+import { BoxProps, Button } from "@chakra-ui/react";
+import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 
 interface GeographySelectProps extends BoxProps {
   geography: string | null;
@@ -12,25 +13,28 @@ export const GeographySelect = ({
   const router = useRouter();
 
   return (
-    <ButtonGroup isAttached {...boxProps}>
+    <ToggleButtonGroup isAttached={true} {...boxProps}>
       <Button
         onClick={() => router.push({ pathname: `/map/datatool/census` })}
         isActive={geography === "census"}
+        variant="leftCap"
       >
         Census Area
       </Button>
       <Button
         onClick={() => router.push({ pathname: `/map/datatool/borough` })}
         isActive={geography === "borough"}
+        variant="middle"
       >
         Borough
       </Button>
       <Button
         onClick={() => router.push({ pathname: `/map/datatool/citywide` })}
         isActive={geography === "citywide"}
+        variant="rightCap"
       >
         Citywide
       </Button>
-    </ButtonGroup>
+    </ToggleButtonGroup>
   );
 };
