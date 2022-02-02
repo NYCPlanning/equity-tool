@@ -16,6 +16,38 @@ const theme = extendTheme({
   },
   fonts,
   breakpoints,
+  components: {
+    ButtonGroup: {
+      parts: ["group", "button"],
+      variants: {
+        toggle: {
+          group: {
+            backgroundColor: "white",
+            borderRadius: 50,
+          },
+        },
+      },
+    },
+    Button: {
+      variants: {
+        aqua: {
+          backgroundColor: "white",
+          color: "gray.600",
+          borderRadius: 50,
+
+          _hover: {
+            color: "teal",
+          },
+          _active: {
+            backgroundColor: "teal.50",
+            border: "1px solid teal",
+            color: "teal",
+            borderRadius: 50,
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;
