@@ -1,29 +1,11 @@
-import {
-  BoxProps,
-  Button,
-  ButtonGroup,
-  StylesProvider,
-  useMultiStyleConfig,
-} from "@chakra-ui/react";
+import { BoxProps, Button } from "@chakra-ui/react";
+import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 
 interface ViewSelectProps extends BoxProps {
   onDataToolClick: () => void;
   onDriClick: () => void;
   view: string | null;
 }
-
-// In this case we want implicit children
-const ThemedButtonGroup: React.FC = (props) => {
-  const { children, ...rest } = props;
-
-  const styles = useMultiStyleConfig("ButtonGroup", { variant: "toggle" });
-
-  return (
-    <ButtonGroup __css={styles.group} {...rest}>
-      <StylesProvider value={styles}>{children}</StylesProvider>
-    </ButtonGroup>
-  );
-};
 
 export const ViewSelect = ({
   onDataToolClick,
@@ -32,7 +14,7 @@ export const ViewSelect = ({
   ...boxProps
 }: ViewSelectProps) => {
   return (
-    <ThemedButtonGroup {...boxProps}>
+    <ToggleButtonGroup {...boxProps}>
       <Button
         onClick={onDataToolClick}
         isActive={view === "datatool"}
@@ -49,6 +31,6 @@ export const ViewSelect = ({
       >
         Displacement Risk Index
       </Button>
-    </ThemedButtonGroup>
+    </ToggleButtonGroup>
   );
 };
