@@ -50,9 +50,15 @@ const theme = extendTheme({
         middle: {
           borderRadius: 0,
           borderRight: "1px solid #A0AEC0",
+          _active: {
+            marginLeft: "-1px", // prevents double border
+          },
         },
         rightCap: {
           borderRadius: "0 50px 50px 0",
+          _active: {
+            marginLeft: "-1px", // prevents double border
+          },
         },
         toggle: {
           borderRadius: 50,
