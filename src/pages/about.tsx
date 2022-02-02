@@ -5,6 +5,7 @@ import {
   Heading,
   Text,
   Link,
+  Divider,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
@@ -12,7 +13,6 @@ import Image from "next/image";
 import screenshot from "../../public/screenshot.png";
 import driscreenshot from "../../public/driscreenshot.png";
 import Feedback from "@components/About/Feedback";
-import CustomDivider from "@components/About/CustomDivider";
 import StaticPageFooter from "@components/About/StaticPageFooter";
 
 const AboutPage = () => {
@@ -105,7 +105,9 @@ const AboutPage = () => {
         </Flex>
       </Center>
 
-      <CustomDivider />
+      <Center py="2em">
+        <Divider width={["90%", "1024px"]} borderColor={"#A0AEC0"} />
+      </Center>
 
       <Center>
         <Flex
@@ -175,7 +177,9 @@ const AboutPage = () => {
         ""
       ) : (
         <>
-          <CustomDivider />
+          <Center py="2em">
+            <Divider width={["90%", "1024px"]} borderColor={"#A0AEC0"} />
+          </Center>
           <Feedback />
         </>
       )}
