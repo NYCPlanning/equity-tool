@@ -29,7 +29,7 @@ describe("Map catch-all page", () => {
       cy.contains("Census Area").should("have.attr", "data-active");
     });
 
-    it("should switch view when user uses ViewSelect toolbar", () => {
+    it("should switch view when user uses ViewToggle toolbar", () => {
       cy.url().should("include", "/map/datatool");
 
       cy.get('[data-cy="driBtn"]').click();
@@ -41,7 +41,7 @@ describe("Map catch-all page", () => {
       cy.url().should("include", "/map/datatool");
     });
 
-    it("ViewSelect should preserve previous view geo and geoid", () => {
+    it("ViewToggle should preserve previous view geo and geoid", () => {
       cy.visit("/map/datatool/census");
 
       cy.get('[data-cy="driBtn"]').click();
