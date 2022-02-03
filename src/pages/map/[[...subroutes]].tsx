@@ -126,6 +126,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         flex="1"
         height="100%"
         p="10px"
+        boxShadow="lg"
+        zIndex="999"
       >
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Box>
@@ -146,14 +148,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Box>
 
-      <Box
-        flex="2"
-        height="100%"
-        p={{
-          base: "none",
-          lg: "10px",
-        }}
-      >
+      <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewSelect
             onDataToolClick={onDataToolClick}
