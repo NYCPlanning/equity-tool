@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Button } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
@@ -136,6 +136,43 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </MobileDrawer>
 
+      <Flex
+        display={{
+          base: "flex",
+          lg: "none",
+        }}
+        direction="row"
+        position="fixed"
+        width="100%"
+        height="3.75rem"
+        bottom="0"
+        left="0"
+        zIndex="999"
+      >
+        <Box flex="1">
+          <Button
+            onClick={onDataToolClick}
+            isActive={view === "datatool"}
+            height="100%"
+            isFullWidth
+            data-cy="dataToolBtn"
+          >
+            Data Tool
+          </Button>
+        </Box>
+        <Box flex="1">
+          <Button
+            onClick={onDriClick}
+            isActive={view === "dri"}
+            height="100%"
+            isFullWidth
+            data-cy="driBtn"
+          >
+            Displacement Risk Index
+          </Button>
+        </Box>
+      </Flex>
+
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
@@ -147,6 +184,10 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             left={8}
             zIndex={200}
             boxShadow="lg"
+            display={{
+              base: "none",
+              lg: "block",
+            }}
           />
 
           {view === "datatool" && (
