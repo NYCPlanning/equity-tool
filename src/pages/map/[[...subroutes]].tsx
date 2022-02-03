@@ -5,8 +5,7 @@ import { Box } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { Map } from "@components/Map";
-import { ViewSelect } from "@components/Map";
+import { Map, MobileDrawer, ViewSelect } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
@@ -128,25 +127,14 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         p="10px"
         boxShadow="lg"
         zIndex="999"
+        data-cy="desktopSidebar"
       >
         <IndicatorPanel indicatorRecord={indicatorRecord} />
       </Box>
 
-      <Box
-        display={{
-          base: "block",
-          lg: "none",
-        }}
-        width="100%"
-        position="fixed"
-        bottom="-800px"
-        left="0"
-        marginBottom="200px"
-        height="800px"
-        zIndex="999"
-      >
+      <MobileDrawer title="Welcome!">
         <IndicatorPanel indicatorRecord={indicatorRecord} />
-      </Box>
+      </MobileDrawer>
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
