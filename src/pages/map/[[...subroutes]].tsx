@@ -5,9 +5,7 @@ import { Box } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { MobileDrawer } from "@components/Map";
-import { Map } from "@components/Map";
-import { ViewSelect } from "@components/Map";
+import { Map, MobileDrawer, ViewSelect } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
