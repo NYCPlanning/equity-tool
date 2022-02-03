@@ -1,4 +1,3 @@
-import { Img } from "@chakra-ui/react";
 import {
   Flex,
   Heading,
@@ -9,18 +8,25 @@ import {
   DrawerBody,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useWindowWidth } from "@react-hook/window-size";
+import Image from "next/image";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
+import logo from "../../../public/logo.png";
 
 export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
+
+  // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR
+  // https://github.com/chakra-ui/chakra-ui/issues/5112
+  const isMobile = useWindowWidth() <= 640;
   return (
     <Flex
       align="center"
       justify="space-between"
       as="header"
-      h="4.375rem"
+      minH="4.375rem"
       backgroundColor="white"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       zIndex="1500"
@@ -53,13 +59,17 @@ export const Header = () => {
           mr={6}
           transform={`scale(${isOpen ? "1.125, 1.0833" : "1, 1"})`}
         />
-        <Drawer isOpen={isOpen} onClose={onClose} placement="left" size="xs">
+        <Drawer
+          isOpen={isOpen && isMobile}
+          onClose={onClose}
+          placement="left"
+          size="xs"
+        >
           <DrawerOverlay />
           <DrawerContent>
             <DrawerBody padding="110px 0 0">
               <Flex
                 direction="column"
-                display={["flex", "none"]}
                 align="flex-start"
                 justify="flex-start"
                 as="nav"
@@ -78,12 +88,7 @@ export const Header = () => {
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-        <Img
-          src="logo.png"
-          alt="City of New York Logo"
-          height={22}
-          width={66}
-        />
+        <Image src={logo} alt="City of New York Logo" height={22} width={66} />
         <Heading
           as="h1"
           fontSize={["sm", "md"]}

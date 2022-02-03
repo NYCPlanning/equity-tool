@@ -41,6 +41,10 @@ export const NavLink = ({
           boxShadow: "inset 0 -2px 0 0 #2C7A7B",
           color: "gray.700",
         }}
+        _focus={{
+          boxShadow: "inset 0 -2px 0 0 #2C7A7B",
+          color: "gray.700",
+        }}
         as="a"
         {...buttonProps}
       >
