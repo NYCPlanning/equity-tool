@@ -14,7 +14,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import StaticPageFooter from "@components/About/StaticPageFooter";
 
 const MethodsPage = () => {
-  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+  const [isLargerThan640] = useMediaQuery("(min-width: 640px)");
 
   return (
     <Flex direction="column" width="100%">
@@ -156,7 +156,7 @@ const MethodsPage = () => {
           </Box>
 
           <Box width={["100%", "35%"]}>
-            {isLargerThan1024 ? (
+            {isLargerThan640 ? (
               ""
             ) : (
               <Center py="2em">
