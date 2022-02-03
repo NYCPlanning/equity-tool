@@ -20,7 +20,7 @@ export const Header = () => {
 
   // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR
   // https://github.com/chakra-ui/chakra-ui/issues/5112
-  const isMobile = useWindowWidth() <= 640;
+  const isMobile = useWindowWidth() < 640;
   return (
     <Flex
       align="center"
