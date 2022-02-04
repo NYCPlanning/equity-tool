@@ -18,7 +18,7 @@ const theme = extendTheme({
   breakpoints,
   components: {
     ButtonGroup: {
-      parts: ["group", "button"],
+      parts: ["group"],
       variants: {
         toggle: {
           group: {
@@ -29,20 +29,34 @@ const theme = extendTheme({
       },
     },
     Button: {
-      variants: {
-        toggle: {
-          backgroundColor: "white",
-          color: "gray.600",
-          borderRadius: 50,
+      baseStyle: {
+        backgroundColor: "white",
+        color: "gray.600",
 
-          _hover: {
-            color: "teal",
-          },
+        _hover: {
+          color: "teal",
+        },
+        _active: {
+          backgroundColor: "teal.50",
+          color: "teal",
+        },
+      },
+      variants: {
+        leftCap: {
+          borderRadius: "50px 0 0 50px",
+          borderRight: "1px solid #A0AEC0",
+        },
+        middle: {
+          borderRadius: 0,
+          borderRight: "1px solid #A0AEC0",
+        },
+        rightCap: {
+          borderRadius: "0 50px 50px 0",
+        },
+        toggle: {
+          borderRadius: 50,
           _active: {
-            backgroundColor: "teal.50",
             border: "1px solid teal",
-            color: "teal",
-            borderRadius: 50,
           },
         },
       },
