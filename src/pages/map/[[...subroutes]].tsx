@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
-import { Map, MobileDrawer, ViewSelect } from "@components/Map";
+import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 
 export interface MapPageProps {
@@ -138,7 +138,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
-          <ViewSelect
+          <ViewToggle
             onDataToolClick={onDataToolClick}
             onDriClick={onDriClick}
             view={view}
