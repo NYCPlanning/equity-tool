@@ -34,6 +34,7 @@
     "@danmarshall/deckgl-typings": "^4.9.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@react-hook/window-size": "^3.0.7",
     "@types/d3-color": "^3.0.2",
     "@types/d3-interpolate": "^3.0.1",
     "@types/d3-scale": "^4.0.2",
