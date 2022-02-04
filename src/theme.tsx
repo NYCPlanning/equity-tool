@@ -38,7 +38,6 @@ const theme = extendTheme({
         },
         _active: {
           backgroundColor: "teal.50",
-          border: "1px solid teal",
           color: "teal",
         },
       },
@@ -50,18 +49,15 @@ const theme = extendTheme({
         middle: {
           borderRadius: 0,
           borderRight: "1px solid #A0AEC0",
-          _active: {
-            marginLeft: "-1px", // prevents double border
-          },
         },
         rightCap: {
           borderRadius: "0 50px 50px 0",
-          _active: {
-            marginLeft: "-1px", // prevents double border
-          },
         },
         toggle: {
           borderRadius: 50,
+          _active: {
+            border: "1px solid teal",
+          },
         },
       },
     },
