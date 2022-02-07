@@ -81,7 +81,7 @@ jobs:
   e2e:
     name: 🧪 End To End Tests
     needs:
-      - build
+      - lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
