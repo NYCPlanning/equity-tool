@@ -78,11 +78,11 @@ jobs:
       - name: Run tests
         run: npm run test
 
-  build:
-    name: 📦 Build Next.js
-    runs-on: ubuntu-latest
+  e2e:
+    name: 🧪 End To End Tests
     needs:
       - lint
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup node env
@@ -99,7 +99,7 @@ jobs:
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm
-      - name: Build Next.js
+      - name: Build Project
         run: npm run build
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -107,38 +107,6 @@ jobs:
           NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
           NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
           NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: .next
-
-  e2e:
-    name: 🧪 End To End Tests
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup node env
-        uses: actions/setup-node@v2.1.2
-        with:
-          node-version: 16
-      - name: Restore dependencies
-        uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: |
-            ~/.cache/Cypress
-            node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: .next
       - name: Run e2e test
         run: npm run e2e:test
 
