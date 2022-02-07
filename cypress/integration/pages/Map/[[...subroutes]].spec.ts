@@ -81,6 +81,18 @@ describe("Map catch-all page", () => {
       cy.get('[data-cy="openMobileDrawer"]').click();
       cy.get('[data-cy="closeMobileDrawer"]').click();
     });
+
+    it("should switch view when user uses ViewToggle toolbar", () => {
+      cy.url().should("include", "/map/datatool");
+
+      cy.get('[data-cy="driBtn"][data-cy-context="mobile"]').click();
+
+      cy.url().should("include", "/map/dri/puma");
+
+      cy.get('[data-cy="dataToolBtn"][data-cy-context="mobile"]').click();
+
+      cy.url().should("include", "/map/datatool");
+    });
   });
 });
 
