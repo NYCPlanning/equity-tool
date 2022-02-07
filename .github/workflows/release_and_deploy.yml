@@ -115,7 +115,8 @@ jobs:
 
   version-deploy:
     name: 🚀 Version and Deploy
-    needs: [build, e2e]
+    needs:
+      - e2e
     runs-on: ubuntu-latest
     environment: production
     steps:
