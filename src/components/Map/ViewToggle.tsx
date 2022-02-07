@@ -32,8 +32,7 @@ export const ViewToggle = ({
           onClick={onDataToolClick}
           isActive={view === "datatool"}
           isFullWidth
-          data-cy="dataToolBtn"
-          data-cy-context="mobile"
+          data-cy="dataToolBtn-mobile"
         >
           Data Tool
         </Button>
@@ -43,8 +42,7 @@ export const ViewToggle = ({
           onClick={onDriClick}
           isActive={view === "dri"}
           isFullWidth
-          data-cy="driBtn"
-          data-cy-context="mobile"
+          data-cy="driBtn-mobile"
         >
           Displacement Risk Index
         </Button>
@@ -65,8 +63,7 @@ export const ViewToggle = ({
           onClick={onDataToolClick}
           isActive={view === "datatool"}
           variant="toggle"
-          data-cy="dataToolBtn"
-          data-cy-context="desktop"
+          data-cy="dataToolBtn-desktop"
         >
           Data Tool
         </Button>
@@ -74,8 +71,7 @@ export const ViewToggle = ({
           onClick={onDriClick}
           isActive={view === "dri"}
           variant="toggle"
-          data-cy="driBtn"
-          data-cy-context="desktop"
+          data-cy="driBtn-desktop"
         >
           Displacement Risk Index
         </Button>

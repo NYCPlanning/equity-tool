@@ -32,11 +32,11 @@ describe("Map catch-all page", () => {
     it("should switch view when user uses ViewToggle toolbar", () => {
       cy.url().should("include", "/map/datatool");
 
-      cy.get('[data-cy="driBtn"][data-cy-context="desktop"]').click();
+      cy.get('[data-cy="driBtn-desktop"]').click();
 
       cy.url().should("include", "/map/dri/puma");
 
-      cy.get('[data-cy="dataToolBtn"][data-cy-context="desktop"]').click();
+      cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
       cy.url().should("include", "/map/datatool");
     });
@@ -44,21 +44,21 @@ describe("Map catch-all page", () => {
     it("ViewToggle should preserve previous view geo and geoid", () => {
       cy.visit("/map/datatool/census");
 
-      cy.get('[data-cy="driBtn"][data-cy-context="desktop"]').click();
+      cy.get('[data-cy="driBtn-desktop"]').click();
 
       cy.url().should("include", "/map/dri/puma");
 
-      cy.get('[data-cy="dataToolBtn"][data-cy-context="desktop"]').click();
+      cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
       cy.url().should("include", "/map/datatool/census");
 
       cy.visit("/map/datatool/borough/BK0202");
 
-      cy.get('[data-cy="driBtn"][data-cy-context="desktop"]').click();
+      cy.get('[data-cy="driBtn-desktop"]').click();
 
       cy.url().should("include", "/map/dri/puma");
 
-      cy.get('[data-cy="dataToolBtn"][data-cy-context="desktop"]').click();
+      cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
       cy.url().should("include", "/map/datatool/borough/BK0202");
     });
@@ -85,11 +85,11 @@ describe("Map catch-all page", () => {
     it("should switch view when user uses ViewToggle toolbar", () => {
       cy.url().should("include", "/map/datatool");
 
-      cy.get('[data-cy="driBtn"][data-cy-context="mobile"]').click();
+      cy.get('[data-cy="driBtn-mobile"]').click();
 
       cy.url().should("include", "/map/dri/puma");
 
-      cy.get('[data-cy="dataToolBtn"][data-cy-context="mobile"]').click();
+      cy.get('[data-cy="dataToolBtn-mobile"]').click();
 
       cy.url().should("include", "/map/datatool");
     });
