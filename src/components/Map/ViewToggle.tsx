@@ -1,4 +1,4 @@
-import { Flex, Box, BoxProps, Button } from "@chakra-ui/react";
+import { Flex, BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 
 interface ViewToggleProps extends BoxProps {
@@ -22,35 +22,32 @@ export const ViewToggle = ({
         direction="row"
         position="fixed"
         width="100%"
-        height="3.75rem"
         bottom="0"
         left="0"
         zIndex="999"
       >
-        <Box flex="1">
-          <Button
-            onClick={onDataToolClick}
-            isActive={view === "datatool"}
-            height="100%"
-            isFullWidth
-            data-cy="dataToolBtn"
-            data-cy-context="mobile"
-          >
-            Data Tool
-          </Button>
-        </Box>
-        <Box flex="1">
-          <Button
-            onClick={onDriClick}
-            isActive={view === "dri"}
-            height="100%"
-            isFullWidth
-            data-cy="driBtn"
-            data-cy-context="mobile"
-          >
-            Displacement Risk Index
-          </Button>
-        </Box>
+        <Button
+          flex="1"
+          variant="bigToggle"
+          onClick={onDataToolClick}
+          isActive={view === "datatool"}
+          isFullWidth
+          data-cy="dataToolBtn"
+          data-cy-context="mobile"
+        >
+          Data Tool
+        </Button>
+        <Button
+          flex="1"
+          variant="bigToggle"
+          onClick={onDriClick}
+          isActive={view === "dri"}
+          isFullWidth
+          data-cy="driBtn"
+          data-cy-context="mobile"
+        >
+          Displacement Risk Index
+        </Button>
       </Flex>
 
       <ToggleButtonGroup

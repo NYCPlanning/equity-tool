@@ -45,6 +45,19 @@ const theme = extendTheme({
         },
       },
       variants: {
+        bigToggle: {
+          backgroundColor: "gray.50",
+          height: "3.75rem",
+          _first: {
+            borderRadius: ".5rem 0 0 0",
+          },
+          _last: {
+            borderRadius: "0 .5rem 0 0",
+          },
+          _active: {
+            border: "1px solid teal",
+          },
+        },
         leftCap: {
           borderRadius: "50px 0 0 50px",
           borderRight: "1px solid #A0AEC0",
