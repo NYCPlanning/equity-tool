@@ -156,6 +156,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             height="100%"
             isFullWidth
             data-cy="dataToolBtn"
+            data-cy-context="mobile"
           >
             Data Tool
           </Button>
@@ -167,6 +168,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             height="100%"
             isFullWidth
             data-cy="driBtn"
+            data-cy-context="mobile"
           >
             Displacement Risk Index
           </Button>

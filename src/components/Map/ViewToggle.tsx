@@ -20,6 +20,7 @@ export const ViewToggle = ({
         isActive={view === "datatool"}
         variant="toggle"
         data-cy="dataToolBtn"
+        data-cy-context="desktop"
       >
         Data Tool
       </Button>
@@ -28,6 +29,7 @@ export const ViewToggle = ({
         isActive={view === "dri"}
         variant="toggle"
         data-cy="driBtn"
+        data-cy-context="desktop"
       >
         Displacement Risk Index
       </Button>
