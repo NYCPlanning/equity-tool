@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Link } from "@chakra-ui/react";
 import { NtaIndicatorRecord } from "@type/Nta";
 
 interface IndicatorPanelProps {
@@ -7,7 +7,7 @@ interface IndicatorPanelProps {
 
 export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
   return (
-    <Box background="#fff" w={["100%"]} height="100%" p="15" rounded="lg">
+    <Box background="#fff" w={["100%"]} height="100%" rounded="lg">
       {indicatorRecord ? (
         <Box>
           <Box p={2}>
@@ -24,15 +24,23 @@ export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
           )}
         </Box>
       ) : (
-        <Box p={2} h="40vh">
+        <>
+          <Text>You don&apos;t have anything selected yet.</Text>
+          <br />
           <Text>
-            You don&apos;t have anything selected yet.
-            <br />
-            The Equitable Development Reporting tool is a partnership between
-            NYC HPD and DCP. Please select an NTA from the map to view its
-            indicators
+            Make a selection on the map to explore data indicators and change
+            over time in the Data Tool.
           </Text>
-        </Box>
+          <br />
+          <Text>
+            Or switch to the Displacement Risk Index (DRI) and select a
+            neighborhood to see its’ DRI Profile.
+          </Text>
+
+          <br />
+
+          <Link>Learn More About the Data Tool</Link>
+        </>
       )}
     </Box>
   );

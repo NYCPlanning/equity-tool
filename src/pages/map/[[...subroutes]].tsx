@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
@@ -117,20 +117,23 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   return (
     <>
-      <Box
+      <Flex
         display={{
           base: "none",
           lg: "flex",
         }}
+        direction="column"
         flex="1"
         height="100%"
-        p="10px"
+        p="2.25rem 1rem"
         boxShadow="lg"
         zIndex="999"
         data-cy="desktopSidebar"
       >
+        <Heading>Welcome!</Heading>
+        <br />
         <IndicatorPanel indicatorRecord={indicatorRecord} />
-      </Box>
+      </Flex>
 
       <MobileDrawer title="Welcome!">
         <IndicatorPanel indicatorRecord={indicatorRecord} />
