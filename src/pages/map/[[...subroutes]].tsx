@@ -1,10 +1,9 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
-import { IndicatorPanel } from "@components/IndicatorPanel";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 import StaticPageFooter from "@components/About/StaticPageFooter";
@@ -38,6 +37,28 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
+const WelcomeContent = () => {
+  return (
+    <>
+      <Text>You don&apos;t have anything selected yet.</Text>
+      <br />
+      <Text>
+        Make a selection on the map to explore data indicators and change over
+        time in the Data Tool.
+      </Text>
+      <br />
+      <Text>
+        Or switch to the Displacement Risk Index (DRI) and select a neighborhood
+        to see its’ DRI Profile.
+      </Text>
+
+      <br />
+
+      <Link href="/about">Learn More About the Data Tool</Link>
+    </>
+  );
+};
+
 const WelcomeFooter = () => {
   return (
     <Box>
@@ -54,6 +75,33 @@ const WelcomeFooter = () => {
       <br />
       <StaticPageFooter />
     </Box>
+  );
+};
+
+// This is a temporary stub/placeholder for indicator data rendered into Sidebar/Drawer
+const SampleIndicatorDisplay = ({
+  indicatorRecord,
+}: {
+  indicatorRecord: any;
+}) => {
+  return (
+    <>
+      <Box p={2}>
+        Overall Displacement Risk: {indicatorRecord.displacementRisk}
+      </Box>
+
+      {indicatorRecord?.indicators
+        ? Object.entries(indicatorRecord.indicators).map(
+            ([indicator, value]) => (
+              <Box key={`${indicatorRecord.id}-${indicator}`} p={2}>
+                <Text>
+                  {indicator}: {value}
+                </Text>
+              </Box>
+            )
+          )
+        : ""}
+    </>
   );
 };
 
@@ -151,20 +199,38 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        <Box>
-          <Heading>Welcome!</Heading>
-          <br />
-          <IndicatorPanel indicatorRecord={indicatorRecord} />
-        </Box>
-        <WelcomeFooter />
+        {indicatorRecord ? (
+          <Box>
+            <Heading>{geoid}</Heading>
+            <br />
+            <SampleIndicatorDisplay indicatorRecord={indicatorRecord} />
+          </Box>
+        ) : (
+          <>
+            <Box>
+              <Heading>Welcome!</Heading>
+              <br />
+              <WelcomeContent />
+            </Box>
+            <Box>
+              <WelcomeFooter />
+            </Box>
+          </>
+        )}
       </Flex>
 
-      <MobileDrawer title="Welcome!">
-        <IndicatorPanel indicatorRecord={indicatorRecord} />
-        <br />
-        <hr />
-        <br />
-        <WelcomeFooter />
+      <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
+        {indicatorRecord ? (
+          <SampleIndicatorDisplay indicatorRecord={indicatorRecord} />
+        ) : (
+          <>
+            <WelcomeContent />
+            <br />
+            <hr />
+            <br />
+            <WelcomeFooter />
+          </>
+        )}
       </MobileDrawer>
 
       <Box flex="2" height="100%">
@@ -173,6 +239,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             onDataToolClick={onDataToolClick}
             onDriClick={onDriClick}
             view={view}
+            showToggle={!geoid}
           />
 
           {view === "datatool" && (
