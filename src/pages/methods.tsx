@@ -195,8 +195,10 @@ const MethodsPage = () => {
         </Flex>
       </Center>
 
-      <Center p="2em">
-        <StaticPageFooter />
+      <Center>
+        <Box width={["100%", "1024px"]} py="2rem">
+          <StaticPageFooter />
+        </Box>
       </Center>
     </Flex>
   );

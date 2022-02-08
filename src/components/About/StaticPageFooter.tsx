@@ -4,7 +4,7 @@ import logo from "../../../public/logo.png";
 
 const StaticPageFooter = () => {
   return (
-    <Flex direction="row" width={["100%", "auto"]} wrap="nowrap">
+    <Flex direction="row" width="100%" wrap="nowrap">
       <Image src={logo} alt="NYC Logo" />
       <Box maxW="90px" lineHeight="1" mx="10px" wrap="wrap">
         <Text fontSize="xs" fontWeight="bold">
