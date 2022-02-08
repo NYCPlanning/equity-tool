@@ -39,7 +39,7 @@ export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
 
           <br />
 
-          <Link>Learn More About the Data Tool</Link>
+          <Link href="/about">Learn More About the Data Tool</Link>
         </>
       )}
     </Box>
