@@ -184,7 +184,9 @@ const AboutPage = () => {
         </>
       )}
 
-      <StaticPageFooter />
+      <Center p="2em">
+        <StaticPageFooter />
+      </Center>
     </Flex>
   );
 };

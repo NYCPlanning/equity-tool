@@ -195,7 +195,9 @@ const MethodsPage = () => {
         </Flex>
       </Center>
 
-      <StaticPageFooter />
+      <Center p="2em">
+        <StaticPageFooter />
+      </Center>
     </Flex>
   );
 };

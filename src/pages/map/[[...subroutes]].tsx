@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { IndicatorPanel } from "@components/IndicatorPanel";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
+import StaticPageFooter from "@components/About/StaticPageFooter";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -35,6 +36,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       initialRouteParams: subroutes ? subroutes.join(",") : "",
     },
   };
+};
+
+const WelcomeFooter = () => {
+  return (
+    <Box>
+      <Text>
+        *Community Districts are approximated using data from Public Use
+        Microdata Areas (PUMAs).
+      </Text>
+      <br />
+      <Text>
+        The Equitable Development Reporting web tool is a partnership between
+        the New York City Department of Housing Preservation and Development
+        (HPD) and the Department of City Planning (DCP).
+      </Text>
+      <br />
+      <StaticPageFooter />
+    </Box>
+  );
 };
 
 /*
@@ -123,6 +143,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           lg: "flex",
         }}
         direction="column"
+        justify="space-between"
         flex="1"
         height="100%"
         p="2.25rem 1rem"
@@ -130,13 +151,20 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        <Heading>Welcome!</Heading>
-        <br />
-        <IndicatorPanel indicatorRecord={indicatorRecord} />
+        <Box>
+          <Heading>Welcome!</Heading>
+          <br />
+          <IndicatorPanel indicatorRecord={indicatorRecord} />
+        </Box>
+        <WelcomeFooter />
       </Flex>
 
       <MobileDrawer title="Welcome!">
         <IndicatorPanel indicatorRecord={indicatorRecord} />
+        <br />
+        <hr />
+        <br />
+        <WelcomeFooter />
       </MobileDrawer>
 
       <Box flex="2" height="100%">

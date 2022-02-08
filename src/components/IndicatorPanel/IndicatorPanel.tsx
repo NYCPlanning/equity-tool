@@ -7,7 +7,7 @@ interface IndicatorPanelProps {
 
 export const IndicatorPanel = ({ indicatorRecord }: IndicatorPanelProps) => {
   return (
-    <Box background="#fff" w={["100%"]} height="100%" rounded="lg">
+    <Box background="#fff" w={["100%"]} rounded="lg">
       {indicatorRecord ? (
         <Box>
           <Box p={2}>
