@@ -20,10 +20,10 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
       width="100%"
       position="fixed"
       top={isOpen ? "6rem" : "100vh"}
-      marginTop={isOpen ? "auto" : "-10rem"}
-      paddingBottom="6rem"
+      marginTop={isOpen ? "auto" : "-15rem"}
+      paddingBottom="12.5rem"
       left="0"
-      zIndex="999"
+      zIndex="900"
       bg="white"
       data-cy="mobileDrawer"
     >

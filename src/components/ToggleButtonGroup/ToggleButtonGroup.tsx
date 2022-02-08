@@ -1,11 +1,16 @@
 import {
+  BoxProps,
   ButtonGroup,
   StylesProvider,
   useMultiStyleConfig,
 } from "@chakra-ui/react";
 
+interface ToggleButtonGroupInterface extends BoxProps {
+  isAttached?: boolean;
+}
+
 // In this case we want implicit children
-export const ToggleButtonGroup: React.FC<{ isAttached?: boolean }> = (
+export const ToggleButtonGroup: React.FC<ToggleButtonGroupInterface> = (
   props
 ) => {
   const { isAttached = false, children, ...rest } = props;

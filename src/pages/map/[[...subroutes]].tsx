@@ -142,11 +142,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             onDataToolClick={onDataToolClick}
             onDriClick={onDriClick}
             view={view}
-            position="absolute"
-            top={5}
-            left={8}
-            zIndex={200}
-            boxShadow="lg"
           />
 
           {view === "datatool" && (
