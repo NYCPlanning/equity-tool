@@ -13,7 +13,7 @@ import Image from "next/image";
 import screenshot from "../../public/screenshot.png";
 import driscreenshot from "../../public/driscreenshot.png";
 import Feedback from "@components/About/Feedback";
-import StaticPageFooter from "@components/About/StaticPageFooter";
+import StaticPageFooter from "@components/StaticPageFooter";
 
 const AboutPage = () => {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
@@ -184,7 +184,11 @@ const AboutPage = () => {
         </>
       )}
 
-      <StaticPageFooter />
+      <Center>
+        <Box width={["100%", "1024px"]} py="2rem">
+          <StaticPageFooter />
+        </Box>
+      </Center>
     </Flex>
   );
 };
