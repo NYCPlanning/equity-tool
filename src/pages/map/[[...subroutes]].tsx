@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
-import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
-import StaticPageFooter from "@components/StaticPageFooter";
+import { useSidebarContent } from "@hooks/useSidebarContent";
+import { useDrawerContent } from "@hooks/useDrawerContent";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -35,74 +36,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       initialRouteParams: subroutes ? subroutes.join(",") : "",
     },
   };
-};
-
-const WelcomeContent = () => {
-  return (
-    <>
-      <Text>You don&apos;t have anything selected yet.</Text>
-      <br />
-      <Text>
-        Make a selection on the map to explore data indicators and change over
-        time in the Data Tool.
-      </Text>
-      <br />
-      <Text>
-        Or switch to the Displacement Risk Index (DRI) and select a neighborhood
-        to see its’ DRI Profile.
-      </Text>
-
-      <br />
-
-      <Link href="/about">Learn More About the Data Tool</Link>
-    </>
-  );
-};
-
-const WelcomeFooter = () => {
-  return (
-    <Box>
-      <Text>
-        *Community Districts are approximated using data from Public Use
-        Microdata Areas (PUMAs).
-      </Text>
-      <br />
-      <Text>
-        The Equitable Development Reporting web tool is a partnership between
-        the New York City Department of Housing Preservation and Development
-        (HPD) and the Department of City Planning (DCP).
-      </Text>
-      <br />
-      <StaticPageFooter />
-    </Box>
-  );
-};
-
-// This is a temporary stub/placeholder for indicator data rendered into Sidebar/Drawer
-const SampleIndicatorDisplay = ({
-  indicatorRecord,
-}: {
-  indicatorRecord: any;
-}) => {
-  return (
-    <>
-      <Box p={2}>
-        Overall Displacement Risk: {indicatorRecord.displacementRisk}
-      </Box>
-
-      {indicatorRecord?.indicators
-        ? Object.entries(indicatorRecord.indicators).map(
-            ([indicator, value]) => (
-              <Box key={`${indicatorRecord.id}-${indicator}`} p={2}>
-                <Text>
-                  {indicator}: {value}
-                </Text>
-              </Box>
-            )
-          )
-        : ""}
-    </>
-  );
 };
 
 /*
@@ -154,6 +87,9 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   );
   const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
 
+  const drawerContent = useDrawerContent(!!indicatorRecord);
+  const sidebarContent = useSidebarContent(!!indicatorRecord);
+
   const onDriClick = () => {
     setLastDataToolGeography(geography);
     setLastDataToolGeoid(geoid);
@@ -199,38 +135,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        {indicatorRecord ? (
-          <Box>
-            <Heading>{geoid}</Heading>
-            <br />
-            <SampleIndicatorDisplay indicatorRecord={indicatorRecord} />
-          </Box>
-        ) : (
-          <>
-            <Box>
-              <Heading>Welcome!</Heading>
-              <br />
-              <WelcomeContent />
-            </Box>
-            <Box>
-              <WelcomeFooter />
-            </Box>
-          </>
-        )}
+        {sidebarContent}
       </Flex>
 
       <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
-        {indicatorRecord ? (
-          <SampleIndicatorDisplay indicatorRecord={indicatorRecord} />
-        ) : (
-          <>
-            <WelcomeContent />
-            <br />
-            <hr />
-            <br />
-            <WelcomeFooter />
-          </>
-        )}
+        {drawerContent}
       </MobileDrawer>
 
       <Box flex="2" height="100%">
