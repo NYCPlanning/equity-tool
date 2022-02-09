@@ -5,18 +5,18 @@ interface ViewToggleProps extends BoxProps {
   onDataToolClick: () => void;
   onDriClick: () => void;
   view: string | null;
-  showToggle: boolean;
+  showOnMobile: boolean;
 }
 
 export const ViewToggle = ({
   onDataToolClick,
   onDriClick,
   view,
-  showToggle,
+  showOnMobile,
 }: ViewToggleProps) => {
   return (
     <>
-      {showToggle && (
+      {showOnMobile && (
         <Flex
           display={{
             base: "flex",

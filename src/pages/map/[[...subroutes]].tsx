@@ -239,7 +239,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             onDataToolClick={onDataToolClick}
             onDriClick={onDriClick}
             view={view}
-            showToggle={!geoid}
+            showOnMobile={!geoid}
           />
 
           {view === "datatool" && (
