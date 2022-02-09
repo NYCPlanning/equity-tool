@@ -11,7 +11,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import StaticPageFooter from "@components/About/StaticPageFooter";
+import StaticPageFooter from "@components/StaticPageFooter";
 
 const MethodsPage = () => {
   const [isLargerThan640] = useMediaQuery("(min-width: 640px)");

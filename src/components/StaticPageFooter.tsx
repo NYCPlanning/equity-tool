@@ -1,6 +1,6 @@
 import { Box, Text, Flex, Divider } from "@chakra-ui/react";
 import Image from "next/image";
-import logo from "../../../public/logo.png";
+import logo from "../../public/logo.png";
 
 const StaticPageFooter = () => {
   return (

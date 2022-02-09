@@ -6,7 +6,7 @@ import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
-import StaticPageFooter from "@components/About/StaticPageFooter";
+import StaticPageFooter from "@components/StaticPageFooter";
 
 export interface MapPageProps {
   initialRouteParams: string;
