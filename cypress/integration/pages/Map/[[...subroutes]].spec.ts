@@ -34,7 +34,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/dri/puma");
+      cy.url().should("include", "/map/dri/nta");
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
@@ -46,7 +46,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/dri/puma");
+      cy.url().should("include", "/map/dri/nta");
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
@@ -56,7 +56,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/dri/puma");
+      cy.url().should("include", "/map/dri/nta");
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
@@ -87,7 +87,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="driBtn-mobile"]').click();
 
-      cy.url().should("include", "/map/dri/puma");
+      cy.url().should("include", "/map/dri/nta");
 
       cy.get('[data-cy="dataToolBtn-mobile"]').click();
 
