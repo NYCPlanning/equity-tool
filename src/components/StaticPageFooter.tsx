@@ -1,10 +1,12 @@
-import { Box, Text, Flex, Divider } from "@chakra-ui/react";
+import { Box, BoxProps, Text, Flex, Divider } from "@chakra-ui/react";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 
-const StaticPageFooter = () => {
+type StaticPageFooterProps = BoxProps;
+
+const StaticPageFooter = (props: StaticPageFooterProps) => {
   return (
-    <Flex direction="row" width="100%" wrap="nowrap">
+    <Flex direction="row" width="100%" wrap="nowrap" {...props}>
       <Image src={logo} alt="NYC Logo" />
       <Box maxW="90px" lineHeight="1" mx="10px" wrap="wrap">
         <Text fontSize="xs" fontWeight="bold">
