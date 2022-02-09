@@ -111,7 +111,7 @@ const AboutPage = () => {
 
       <Center>
         <Flex
-          direction="row"
+          direction={["column", null, "row"]}
           width={["100%", "1024px"]}
           wrap="wrap"
           justifyContent={"space-between"}
