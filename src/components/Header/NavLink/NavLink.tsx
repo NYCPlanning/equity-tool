@@ -35,7 +35,7 @@ export const NavLink = ({
           fontWeight: "bold",
           color: "gray.700",
           bg: "gray.50",
-          py: [6, 0],
+          py: { base: 6, md: 0 },
         }}
         _hover={{
           boxShadow: "inset 0 -2px 0 0 #2C7A7B",

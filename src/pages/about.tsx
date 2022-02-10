@@ -75,7 +75,7 @@ const AboutPage = () => (
             groups.
           </Text>
           <Text color="teal">
-            <Link color={"white"} href="/map" textDecoration="underline">
+            <Link href="/map" textDecoration="underline">
               Go to the Data Tool
             </Link>
           </Text>
@@ -116,7 +116,7 @@ const AboutPage = () => (
             relative to residents in other neighborhoods.
           </Text>
           <Text color="teal">
-            <Link href="#" color={"white"} textDecoration="underline">
+            <Link href="#" textDecoration="underline">
               Go to the Displacement Risk Index (DRI) Tool
             </Link>
           </Text>
@@ -146,7 +146,7 @@ const AboutPage = () => (
             should be grouped and combined.
           </Text>
           <Text color="teal">
-            <Link href="#" color={"white"} textDecoration="underline">
+            <Link href="#" textDecoration="underline">
               Read more about our methodologies
             </Link>
           </Text>
@@ -166,7 +166,6 @@ const AboutPage = () => (
               href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-bibliography.pdf"
               textDecoration="underline"
               isExternal
-              color={"white"}
             >
               Open the Bibliography <ExternalLinkIcon mx="2px" />
             </Link>
@@ -185,7 +184,6 @@ const AboutPage = () => (
               href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-data-dictionary.pdf"
               textDecoration="underline"
               isExternal
-              color={"white"}
             >
               Open the Data Dictionary <ExternalLinkIcon mx="2px" />
             </Link>
