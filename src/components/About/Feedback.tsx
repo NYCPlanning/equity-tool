@@ -8,7 +8,11 @@ const Feedback = (props: BoxProps) => (
     <Text>
       For questions or to let us know how this app could be better, send us an
       email to{" "}
-      <Link href="mailto:labs_dl@planning.nyc.gov" textDecoration="underline">
+      <Link
+        color={"white"}
+        href="mailto:labs_dl@planning.nyc.gov"
+        textDecoration="underline"
+      >
         labs_dl@planning.nyc.gov
       </Link>
       . You can also{" "}
@@ -16,6 +20,7 @@ const Feedback = (props: BoxProps) => (
         href="https://github.com/NYCPlanning/equity-tool/issues"
         textDecoration="underline"
         isExternal
+        color={"white"}
       >
         add a GitHub Issue
       </Link>
