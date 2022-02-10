@@ -22,6 +22,7 @@ const AboutPage = () => (
         maxW={{ base: "565px", lg: "1024px" }}
         wrap="wrap"
         color="white"
+        gridGap={20}
       >
         <Box flex={{ base: "auto", xl: 2 }} py={10}>
           <Heading size="lg" pb="0.5em">
@@ -35,12 +36,12 @@ const AboutPage = () => (
             and more.
           </Text>
         </Box>
-        <Feedback flex={1} p={10} display={{ base: "none", xl: "block" }} />
+        <Feedback flex={1} py={10} display={{ base: "none", xl: "block" }} />
       </Flex>
     </Center>
 
     <Center
-      py={8}
+      py={20}
       px={{ base: 4, lg: 6 }}
       flexDirection={"column"}
       gridGap={12}
