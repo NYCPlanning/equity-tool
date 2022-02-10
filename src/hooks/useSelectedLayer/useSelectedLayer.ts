@@ -95,12 +95,11 @@ export const useSelectedLayer = (
             stroked: true,
             pickable: true,
             onClick: (info: any) => {
-              const id: any = info?.object?.properties?.id
-                ? info.object.properties.id
+              const id: any = info?.object?.properties?.cartodb_id
+                ? info.object.properties.cartodb_id
                 : null;
-              if (typeof id === "string") {
-                // ugh https://github.com/vercel/next.js/issues/9473
-                router.push(`map/datatool/census/${id}`);
+              if (typeof id === "number") {
+                router.push(`/map/dri/nta/${id}`);
               }
             },
           }),
