@@ -12,6 +12,17 @@ export const useSelectedLayer = (
 ): CartoLayer<any, any>[] | null => {
   const router = useRouter();
 
+  const { subroutes } = router.query;
+
+  // acquire subroute info, if any
+  const geoid = subroutes ? subroutes[2] : null;
+
+  const toggleGeoSelect = (newGeoId: number) => {
+    newGeoId.toString() === geoid
+      ? router.push(`/map/dri/nta/`)
+      : router.push(`/map/dri/nta/${newGeoId}`);
+  };
+
   const scale = scaleSequential().domain([0, 100]);
   const interpolate = interpolateRgb("#f4f4b4", "#d44932");
 
@@ -99,7 +110,7 @@ export const useSelectedLayer = (
                 ? info.object.properties.cartodb_id
                 : null;
               if (typeof id === "number") {
-                router.push(`/map/dri/nta/${id}`);
+                toggleGeoSelect(id);
               }
             },
           }),
