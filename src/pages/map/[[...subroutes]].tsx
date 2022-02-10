@@ -6,8 +6,8 @@ import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
-import { useSidebarContent } from "@hooks/useSidebarContent";
-import { useDrawerContent } from "@hooks/useDrawerContent";
+import { SidebarContent } from "@components/SidebarContent";
+import { DrawerContent } from "@components/DrawerContent";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -87,9 +87,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   );
   const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
 
-  const drawerContent = useDrawerContent(!!indicatorRecord);
-  const sidebarContent = useSidebarContent(!!indicatorRecord);
-
   const onDriClick = () => {
     setLastDataToolGeography(geography);
     setLastDataToolGeoid(geoid);
@@ -135,11 +132,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        {sidebarContent}
+        <SidebarContent isGeographySelected={!!geoid} />
       </Flex>
 
       <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
-        {drawerContent}
+        <DrawerContent isGeographySelected={!!geoid} />
       </MobileDrawer>
 
       <Box flex="2" height="100%">

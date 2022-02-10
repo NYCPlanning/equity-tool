@@ -1,11 +1,15 @@
 import React from "react";
 import { Box, Heading } from "@chakra-ui/react";
-import WelcomeContent from "../useWelcomeContent";
-import WelcomeFooter from "../useWelcomeFooter";
+import WelcomeContent from "@components/WelcomeContent";
+import WelcomeFooter from "@components/WelcomeFooter";
 
-export const useSidebarContent = (
-  isGeographySelected: boolean
-): JSX.Element => {
+interface SidebarContentProps {
+  isGeographySelected: boolean;
+}
+
+export const SidebarContent = ({
+  isGeographySelected,
+}: SidebarContentProps) => {
   if (isGeographySelected) {
     return (
       <Box>
