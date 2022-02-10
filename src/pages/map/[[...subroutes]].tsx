@@ -158,7 +158,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     setLastDataToolGeography(geography);
     setLastDataToolGeoid(geoid);
 
-    let driPath = "/map/dri/puma";
+    let driPath = "/map/dri/nta";
 
     if (lastDriGeoid) {
       driPath += `/${lastDriGeoid}`;

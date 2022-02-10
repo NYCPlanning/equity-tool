@@ -80,6 +80,36 @@ export const useSelectedLayer = (
         return null;
         break;
     }
+  } else if (view === "dri") {
+    switch (geography) {
+      case "nta":
+        return [
+          new CartoLayer({
+            type: MAP_TYPES.QUERY,
+            id: "nta",
+            data: `SELECT * FROM dcp_nta_2010`,
+            uniqueIdProperty: "id",
+            getLineColor: [100, 100, 100, 255],
+            getFillColor: [0, 0, 0, 0],
+            lineWidthMinPixels: 3,
+            stroked: true,
+            pickable: true,
+            onClick: (info: any) => {
+              const id: any = info?.object?.properties?.id
+                ? info.object.properties.id
+                : null;
+              if (typeof id === "string") {
+                // ugh https://github.com/vercel/next.js/issues/9473
+                router.push(`map/datatool/census/${id}`);
+              }
+            },
+          }),
+        ];
+        break;
+      default:
+        return null;
+        break;
+    }
   }
 
   return [];
