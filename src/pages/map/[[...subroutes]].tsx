@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
+import { useSelectGeo } from "@hooks/useSelectGeo";
 import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
@@ -64,8 +65,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       ? viewParam[0]
       : null;
 
-  console.log("view: ", view);
-
   const geography =
     typeof geographyParam === "string"
       ? geographyParam
@@ -74,6 +73,12 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       : null;
 
   const layers = useSelectedLayer(view, geography);
+
+  const selectedLayer = useSelectGeo(view, geography);
+
+  if (selectedLayer) {
+    layers?.push(selectedLayer[0]);
+  }
 
   const indicatorRecord = useIndicatorRecord(geoid);
 
