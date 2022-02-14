@@ -9,7 +9,7 @@ import { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <Flex height="100vh" direction="column">
+      <Flex height="100vh" direction="column" overflow="hidden">
         <Header />
 
         <Flex direction="row" flex="auto">
