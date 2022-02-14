@@ -18,10 +18,20 @@ export const SidebarContent = ({
           <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
             PUMA 4109
           </Heading>
-          <Heading as="h1" fontSize="1.5625rem" fontWeight={700}>
+          <Heading
+            as="h1"
+            fontSize="1.5625rem"
+            fontWeight={700}
+            padding=".5rem 0"
+          >
             Sunnyside &amp; Woodside
           </Heading>
-          <Heading as="h3" fontSize=".8125rem" fontWeight={400}>
+          <Heading
+            as="h3"
+            fontSize=".8125rem"
+            fontWeight={400}
+            paddingBottom=".25rem"
+          >
             Approx. Queens Community District 2
           </Heading>
           <Button rightIcon={<CloseIcon />} variant="outline" size="xs">
