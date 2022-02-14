@@ -3,20 +3,32 @@ import { Heading, Box, Button } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
-interface SidebarContentProps {
-  isGeographySelected: boolean;
+const getGeographyLabel = (geographyId:string):string | null => {
+  switch(geographyId) {
+    case 'borough':
+      return 'Borough';
+    case 'district':
+      return 'Community District';
+    case 'citywide':
+      return 'City';
+  }
+
+  return null;
 }
 
-export const SidebarContent = ({
-  isGeographySelected,
-}: SidebarContentProps) => {
-  if (isGeographySelected) {
+export const SidebarContent = () => {
+  const [view, geography, geoid] = useMapSubrouteInfo();
+
+  const geographyLabel = getGeographyLabel(geography);
+
+  if (geoid !== null) {
     return (
       <>
         <Box paddingBottom="2rem">
           <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
-            PUMA 4109
+             {geographyLabel} {geoid}
           </Heading>
           <Heading
             as="h1"
