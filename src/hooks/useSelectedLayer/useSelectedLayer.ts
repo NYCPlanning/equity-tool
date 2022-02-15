@@ -23,6 +23,10 @@ export const useSelectedLayer = (
       : router.push(`/map/dri/nta/${newGeoId}`);
   };
 
+  const driQueryString = geoid
+    ? `SELECT *, CASE WHEN cartodb_id = ${geoid} THEN 1 WHEN cartodb_id != ${geoid} THEN 0 END selected_geo FROM dcp_nta_2010 ORDER BY selected_geo`
+    : `SELECT * FROM dcp_nta_2010`;
+
   const scale = scaleSequential().domain([0, 100]);
   const interpolate = interpolateRgb("#f4f4b4", "#d44932");
 
@@ -98,9 +102,14 @@ export const useSelectedLayer = (
           new CartoLayer({
             type: MAP_TYPES.QUERY,
             id: "nta",
-            data: `SELECT * FROM dcp_nta_2010`,
+            data: driQueryString,
             uniqueIdProperty: "id",
-            getLineColor: [100, 100, 100, 255],
+            getLineColor: (feature: any) => {
+              if (feature?.properties?.cartodb_id == geoid) {
+                return [99, 179, 237, 255];
+              }
+              return [100, 100, 100, 255];
+            },
             getFillColor: [0, 0, 0, 0],
             lineWidthMinPixels: 3,
             stroked: true,
