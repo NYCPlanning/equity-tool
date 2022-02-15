@@ -8,6 +8,7 @@ import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
 
 import { Box } from "@chakra-ui/react";
+import { useView } from "@hooks/useView";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -18,6 +19,8 @@ setDefaultCredentials({
 type MapProps = Pick<DeckGLProps, "layers" | "parent">;
 
 export const Map = ({ layers, parent }: MapProps) => {
+  const view = useView();
+
   const INITIAL_VIEW_STATE = {
     longitude: -73.986607,
     latitude: 40.691869,
@@ -39,13 +42,12 @@ export const Map = ({ layers, parent }: MapProps) => {
       ContextProvider={MapContext.Provider}
     >
       <Box
-        display={{
-          base: "none",
-          lg: "block",
-        }}
         position="absolute"
-        bottom={150}
-        left={10}
+        top={{
+          base: view === "datatool" ? "5rem" : "1.3rem",
+          lg: "5rem",
+        }}
+        left="2.1875rem"
       >
         <NavigationControl />
       </Box>

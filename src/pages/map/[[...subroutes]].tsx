@@ -153,7 +153,14 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               geography={geography}
               position="absolute"
               top={5}
-              right={8}
+              right={{
+                lg: 8,
+                base: "auto",
+              }}
+              left={{
+                lg: "auto",
+                base: "2.1875rem",
+              }}
               zIndex={100}
               boxShadow="lg"
             />
