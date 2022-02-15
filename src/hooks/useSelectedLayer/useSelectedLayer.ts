@@ -106,11 +106,18 @@ export const useSelectedLayer = (
             uniqueIdProperty: "id",
             getLineColor: (feature: any) => {
               if (feature?.properties?.cartodb_id == geoid) {
-                return [99, 179, 237, 255];
+                return [42, 67, 101, 255];
               }
               return [100, 100, 100, 255];
             },
             getFillColor: [0, 0, 0, 0],
+            lineWidthUnits: "pixels",
+            getLineWidth: (feature: any) => {
+              if (feature?.properties?.cartodb_id == geoid) {
+                return 5;
+              }
+              return 3;
+            },
             lineWidthMinPixels: 3,
             stroked: true,
             pickable: true,
