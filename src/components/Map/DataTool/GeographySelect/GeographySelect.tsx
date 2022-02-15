@@ -15,11 +15,11 @@ export const GeographySelect = ({
   return (
     <ToggleButtonGroup isAttached={true} {...boxProps}>
       <Button
-        onClick={() => router.push({ pathname: `/map/datatool/census` })}
-        isActive={geography === "census"}
+        onClick={() => router.push({ pathname: `/map/datatool/district` })}
+        isActive={geography === "district"}
         variant="leftCap"
       >
-        Census Area
+        Community District*
       </Button>
       <Button
         onClick={() => router.push({ pathname: `/map/datatool/borough` })}

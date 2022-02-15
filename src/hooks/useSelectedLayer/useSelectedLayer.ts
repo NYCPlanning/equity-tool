@@ -17,7 +17,7 @@ export const useSelectedLayer = (
 
   if (view === "datatool") {
     switch (geography) {
-      case "census":
+      case "district":
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
@@ -35,7 +35,7 @@ export const useSelectedLayer = (
                 : null;
               if (typeof id === "string") {
                 // ugh https://github.com/vercel/next.js/issues/9473
-                router.push(`map/datatool/census/${id}`);
+                router.push(`map/datatool/district/${id}`);
               }
             },
           }),
@@ -100,7 +100,7 @@ export const useSelectedLayer = (
                 : null;
               if (typeof id === "string") {
                 // ugh https://github.com/vercel/next.js/issues/9473
-                router.push(`map/datatool/census/${id}`);
+                router.push(`map/dri/nta/${id}`);
               }
             },
           }),

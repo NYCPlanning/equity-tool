@@ -16,17 +16,17 @@ describe("Map catch-all page", () => {
     it("should switch geography when user uses Geography Select toolbar on Desktop size", () => {
       cy.url().should("include", "/map/datatool");
 
-      cy.contains("Census").click();
+      cy.contains("Community District*").click();
 
-      cy.url().should("include", "/map/datatool/census");
+      cy.url().should("include", "/map/datatool/district");
 
       cy.contains("Borough").click();
 
       cy.url().should("include", "/map/datatool/borough");
 
-      cy.visit("/map/datatool/census");
+      cy.visit("/map/datatool/district");
 
-      cy.contains("Census Area").should("have.attr", "data-active");
+      cy.contains("Community District*").should("have.attr", "data-active");
     });
 
     it("should switch view when user uses ViewToggle toolbar", () => {
@@ -42,7 +42,7 @@ describe("Map catch-all page", () => {
     });
 
     it("ViewToggle should preserve previous view geo and geoid", () => {
-      cy.visit("/map/datatool/census");
+      cy.visit("/map/datatool/district");
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
@@ -50,7 +50,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/datatool/census");
+      cy.url().should("include", "/map/datatool/district");
 
       cy.visit("/map/datatool/borough/BK0202");
 
