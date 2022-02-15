@@ -116,6 +116,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       if (lastDataToolGeoid) {
         dataToolPath += `/${lastDataToolGeoid}`;
       }
+    } else {
+      dataToolPath += "/district";
     }
 
     router.push({ pathname: dataToolPath });
@@ -129,7 +131,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           lg: "flex",
         }}
         direction="column"
-        justify="space-between"
         flex="1"
         height="100%"
         p="2.25rem 1rem"
@@ -158,7 +159,14 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               geography={geography}
               position="absolute"
               top={5}
-              right={8}
+              right={{
+                lg: 8,
+                base: "auto",
+              }}
+              left={{
+                lg: "auto",
+                base: "2.1875rem",
+              }}
               zIndex={100}
               boxShadow="lg"
             />

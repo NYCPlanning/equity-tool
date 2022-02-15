@@ -20,7 +20,7 @@ export const Header = () => {
 
   // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR
   // https://github.com/chakra-ui/chakra-ui/issues/5112
-  const isMobile = useWindowWidth() < 640;
+  const isMobile = useWindowWidth() < 768;
   return (
     <Flex
       align="center"
@@ -31,7 +31,7 @@ export const Header = () => {
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       zIndex="1500"
     >
-      <Flex h="full" paddingLeft={[3, 6]} align="center">
+      <Flex h="full" paddingLeft={{ base: 3, md: 6 }} align="center">
         <IconButton
           aria-label="Site Navigation"
           icon={
@@ -42,7 +42,7 @@ export const Header = () => {
               color={isOpen ? "teal.600" : "gray.600"}
             />
           }
-          display={["flex", "none"]}
+          display={{ base: "flex", md: "none" }}
           onClick={onToggle}
           backgroundColor={"white"}
           minWidth={6}
@@ -91,18 +91,18 @@ export const Header = () => {
         <Image src={logo} alt="City of New York Logo" height={22} width={66} />
         <Heading
           as="h1"
-          fontSize={["sm", "md"]}
+          fontSize={{ base: "sm", md: "md" }}
           color="gray.600"
-          fontWeight={["medium", "bold"]}
+          fontWeight={{ base: "medium", md: "bold" }}
           lineHeight="none"
-          marginLeft={[2, 4]}
+          marginLeft={{ base: 2, md: 4 }}
         >
           Equitable Development Data Tool
         </Heading>
       </Flex>
       <Flex
         direction="row"
-        display={["none", "flex"]}
+        display={{ base: "none", md: "flex" }}
         align="flex-start"
         justify="flex-start"
         as="nav"

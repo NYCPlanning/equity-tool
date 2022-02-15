@@ -19,23 +19,23 @@ export const NavLink = ({
     <NextLink href={href} passHref>
       <Button
         bg="white"
-        h={["auto", "full"]}
-        w={["full", "auto"]}
+        h={{ base: "auto", md: "full" }}
+        w={{ base: "full", md: "auto" }}
         borderRadius={"none"}
         color="gray.600"
         fontWeight="medium"
-        fontSize={["2xl", "md"]}
+        fontSize={{ base: "2xl", md: "md" }}
         m={0}
-        px={[10, 4]}
-        py={[4, 0]}
-        justifyContent={["left", "center"]}
+        px={{ base: 10, md: 4 }}
+        py={{ base: 4, md: 0 }}
+        justifyContent={{ base: "left", md: "center" }}
         aria-current={pathname === href ? "page" : false}
         _activeLink={{
           boxShadow: "inset 0 -2px 0 0 #2C7A7B",
           fontWeight: "bold",
           color: "gray.700",
           bg: "gray.50",
-          py: [6, 0],
+          py: { base: 6, md: 0 },
         }}
         _hover={{
           boxShadow: "inset 0 -2px 0 0 #2C7A7B",
