@@ -28,15 +28,17 @@ it("GeographySelect has at least three options", () => {
   expect(screen.queryAllByRole("button")).toHaveLength(3);
 });
 
-it("GeographySelect correctly indicates active Census geography", () => {
+it("GeographySelect correctly indicates active Community District geography", () => {
   act(() => {
     const {} = render( // eslint-disable-line
-      <GeographySelect geography="census" />,
+      <GeographySelect geography="district" />,
       container
     );
   });
 
-  expect(screen.getByText("Census Area")).toHaveAttribute("data-active");
+  expect(screen.getByText("Community District*")).toHaveAttribute(
+    "data-active"
+  );
   expect(screen.getByText("Borough")).not.toHaveAttribute("data-active");
   expect(screen.getByText("Citywide")).not.toHaveAttribute("data-active");
 });
@@ -49,7 +51,9 @@ it("GeographySelect correctly indicates active Borough geography", () => {
     );
   });
 
-  expect(screen.getByText("Census Area")).not.toHaveAttribute("data-active");
+  expect(screen.getByText("Community District*")).not.toHaveAttribute(
+    "data-active"
+  );
   expect(screen.getByText("Borough")).toHaveAttribute("data-active");
   expect(screen.getByText("Citywide")).not.toHaveAttribute("data-active");
 });
@@ -62,7 +66,9 @@ it("GeographySelect correctly indicates active Citywide geography", () => {
     );
   });
 
-  expect(screen.getByText("Census Area")).not.toHaveAttribute("data-active");
+  expect(screen.getByText("Community District*")).not.toHaveAttribute(
+    "data-active"
+  );
   expect(screen.getByText("Borough")).not.toHaveAttribute("data-active");
   expect(screen.getByText("Citywide")).toHaveAttribute("data-active");
 });
