@@ -111,6 +111,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       if (lastDataToolGeoid) {
         dataToolPath += `/${lastDataToolGeoid}`;
       }
+    } else {
+      dataToolPath += "/district";
     }
 
     router.push({ pathname: dataToolPath });
