@@ -124,7 +124,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           lg: "flex",
         }}
         direction="column"
-        justify="space-between"
         flex="1"
         height="100%"
         p="2.25rem 1rem"
