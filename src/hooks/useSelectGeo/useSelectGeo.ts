@@ -104,9 +104,9 @@ export const useSelectGeo = (
               id: "selected_nta",
               data: `SELECT * FROM dcp_nta_2010 WHERE cartodb_id = '${geoid}'`,
               uniqueIdProperty: "id",
-              getLineColor: [0, 0, 0, 255],
+              getLineColor: [99, 179, 237, 255],
               getFillColor: [0, 0, 0, 0],
-              lineWidthMinPixels: 3,
+              lineWidthMinPixels: 5,
               stroked: true,
               pickable: true,
               onClick: (info: any) => {
