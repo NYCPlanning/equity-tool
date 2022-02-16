@@ -43,10 +43,28 @@ export const EstimateTable = ({
           borderSpacing: 0,
           fontSize: "0.875rem",
           whiteSpace: "nowrap",
-          "thead tr:last-of-type th": {
-            minW: "calc((100vw - 26px) / 3)",
-            maxW: "calc((100vw - 26px) / 3)",
-            whiteSpace: "normal",
+          "thead tr": {
+            "&:first-of-type": {
+              "th:first-of-type": {
+                borderTopLeftRadius: "12px",
+              },
+              "th:last-of-type": {
+                borderTopRightRadius: "12px",
+              },
+            },
+            "&:last-of-type th": {
+              minW: "calc((100vw - 26px) / 3)",
+              maxW: "calc((100vw - 26px) / 3)",
+              whiteSpace: "normal",
+            },
+          },
+          "tbody tr:last-of-type": {
+            "td:first-of-type": {
+              borderBottomLeftRadius: "12px",
+            },
+            "td:last-of-type": {
+              borderBottomRightRadius: "12px",
+            },
           },
         }}
       >
