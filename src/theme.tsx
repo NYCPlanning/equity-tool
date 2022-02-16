@@ -14,18 +14,6 @@ const theme = extendTheme({
     Table: {
       variants: {
         striped: {
-          // table: {
-          //   display: "block",
-          //   width: "100%",
-          //   overflowX: "auto",
-          //   whiteSpace: "nowrap",
-          // },
-          // thead: {
-          //   borderRadius: "12px 12px 0 0",
-          //   "tr, th": {
-          //     borderRadius: "12px 12px 0 0",
-          //   },
-          // },
           thead: {
             width: "100%",
             display: "table",

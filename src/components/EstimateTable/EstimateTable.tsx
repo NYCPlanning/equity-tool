@@ -4,13 +4,23 @@ import {
   Tbody,
   Tr,
   Th,
-  Td,
+  Td as ChakraTd,
+  TableCellProps,
   Box,
   Flex,
   useDisclosure,
 } from "@chakra-ui/react";
 import { Estimate } from "@type/Estimate";
 
+const Td = (props: TableCellProps) => (
+  <ChakraTd
+    minW={"calc((100vw - 26px) / 3)"}
+    maxW={"calc((100vw - 26px) / 3)"}
+    px={"1.5rem"}
+    whiteSpace={"normal"}
+    {...props}
+  />
+);
 export interface EstimateTableProps {
   shouldShowReliability: boolean;
   data: Estimate[];
@@ -20,7 +30,6 @@ export const EstimateTable = ({
   shouldShowReliability,
   data,
 }: EstimateTableProps) => {
-  const cellWidth = "calc((100vw - 26px) / 3)";
   const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
   return (
     <Box marginLeft={{ base: 3, md: 0 }} overflowX={"scroll"}>
@@ -32,41 +41,16 @@ export const EstimateTable = ({
           overflowX: "auto",
           borderCollapse: "initial",
           borderSpacing: 0,
-          // width: "auto",
-          // tableLayout: "fixed",
           fontSize: "0.875rem",
           whiteSpace: "nowrap",
-          thead: {
-            width: "100%",
-            display: "table",
-          },
-          tbody: {
-            maxW: "100%",
-            display: "table",
-          },
-          td: {
-            minW: cellWidth,
-            maxW: cellWidth,
-            px: "1.5rem",
-            whiteSpace: "normal",
-            // whiteSpace: "wrap",
-          },
           "thead tr:last-of-type th": {
-            minW: cellWidth,
-            maxW: cellWidth,
+            minW: "calc((100vw - 26px) / 3)",
+            maxW: "calc((100vw - 26px) / 3)",
             whiteSpace: "normal",
-            // whiteSpace: "wrap",
           },
-          // "tbody tr td:first-of-type": {
-          //   textAlign: "start",
-          //   px: "0.375rem",
-          //   position: "sticky",
-          //   left: 0,
-          //   zIndex: 100,
-          // },
         }}
       >
-        <Thead>
+        <Thead width={"full"}>
           <Tr>
             <Th onClick={onToggle} colSpan={shouldShowReliability ? 6 : 3}>
               <Flex justify="center">2000 census pums</Flex>
@@ -77,8 +61,8 @@ export const EstimateTable = ({
               <Tr>
                 <Th
                   display={{ base: "table-cell", md: "none" }}
-                  minW={cellWidth}
-                  maxW={cellWidth}
+                  minW={"calc((100vw - 26px) / 3)"}
+                  maxW={"calc((100vw - 26px) / 3)"}
                   rowSpan={shouldShowReliability ? 2 : 1}
                   position={"sticky"}
                   left={"0"}
@@ -102,7 +86,7 @@ export const EstimateTable = ({
           )}
         </Thead>
         {isOpen && (
-          <Tbody>
+          <Tbody maxW={"full"} display={"table"}>
             {data.map((row) => (
               <Tr key={row.id}>
                 <Td
