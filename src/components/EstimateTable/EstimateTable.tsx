@@ -8,8 +8,11 @@ import {
   TableCellProps,
   Box,
   Flex,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { ChevronLeftIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { useWindowWidth } from "@react-hook/window-size";
 import { Estimate } from "@type/Estimate";
 
 const Td = (props: TableCellProps) => (
@@ -30,7 +33,14 @@ export const EstimateTable = ({
   shouldShowReliability,
   data,
 }: EstimateTableProps) => {
-  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
+  const { isOpen: isDrawerExpanded, onToggle } = useDisclosure({
+    defaultIsOpen: true,
+  });
+  const hasPercentages = data.some((row) => row.percent);
+  const isMobile = useWindowWidth() < 768;
+
+  // Table is always expanded if on size md or larger, else is expanded if drawer is expanded
+  const isOpen = isDrawerExpanded || !isMobile;
   return (
     <Box marginLeft={{ base: 3, md: 0 }} overflowX={"scroll"}>
       <Table
@@ -70,8 +80,38 @@ export const EstimateTable = ({
       >
         <Thead width={"full"}>
           <Tr>
-            <Th onClick={onToggle} colSpan={shouldShowReliability ? 6 : 3}>
-              <Flex justify="center">2000 census pums</Flex>
+            <Th
+              onClick={onToggle}
+              colSpan={shouldShowReliability ? 6 : 3}
+              borderBottomLeftRadius={isOpen ? "0px" : "12px"}
+              borderBottomRightRadius={isOpen ? "0px" : "12px"}
+            >
+              <Flex justifyContent={"center"} align={"center"}>
+                <Box>
+                  <Text>2000 census pums</Text>
+                </Box>
+                <Box
+                  display={{ base: "block", md: "none" }}
+                  position={"absolute"}
+                  right={"1.5rem"}
+                >
+                  {isOpen ? (
+                    <ChevronDownIcon
+                      color="teal.600"
+                      _hover={{ color: "teal.600" }}
+                      w={10}
+                      h={10}
+                    />
+                  ) : (
+                    <ChevronLeftIcon
+                      color="gray.500"
+                      _hover={{ color: "gray.500" }}
+                      w={10}
+                      h={10}
+                    />
+                  )}
+                </Box>
+              </Flex>
             </Th>
           </Tr>
           {isOpen && (
@@ -89,15 +129,21 @@ export const EstimateTable = ({
                   data
                 </Th>
                 <Th colSpan={shouldShowReliability ? 3 : 1}>number</Th>
-                <Th colSpan={shouldShowReliability ? 2 : 1}>percent</Th>
+                {hasPercentages && (
+                  <Th colSpan={shouldShowReliability ? 2 : 1}>percent</Th>
+                )}
               </Tr>
               {shouldShowReliability && (
                 <Tr>
                   <Th>estimate</Th>
                   <Th>moe</Th>
                   <Th>cv</Th>
-                  <Th>estimate</Th>
-                  <Th>moe</Th>
+                  {hasPercentages && (
+                    <>
+                      <Th>estimate</Th>
+                      <Th>moe</Th>
+                    </>
+                  )}
                 </Tr>
               )}
             </>
@@ -124,10 +170,12 @@ export const EstimateTable = ({
                     <Td isNumeric>{row.datum.coefficientOfVariation}</Td>
                   </>
                 )}
-                <Td isNumeric>{row.percent.value}</Td>
-                {shouldShowReliability && (
+                {row.percent && (
                   <>
-                    <Td isNumeric>{row.percent.marginOfError}</Td>
+                    <Td isNumeric>{row.percent.value}</Td>
+                    {shouldShowReliability && (
+                      <Td isNumeric>{row.percent.marginOfError}</Td>
+                    )}
                   </>
                 )}
               </Tr>
