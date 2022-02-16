@@ -11,6 +11,57 @@ const theme = extendTheme({
   },
   fonts,
   components: {
+    Table: {
+      variants: {
+        striped: {
+          // table: {
+          //   display: "block",
+          //   width: "100%",
+          //   overflowX: "auto",
+          //   whiteSpace: "nowrap",
+          // },
+          // thead: {
+          //   borderRadius: "12px 12px 0 0",
+          //   "tr, th": {
+          //     borderRadius: "12px 12px 0 0",
+          //   },
+          // },
+          thead: {
+            width: "100%",
+            display: "table",
+          },
+          th: {
+            background: "gray.50",
+            borderWidth: "1px",
+            borderColor: "gray.400",
+            textAlign: "center",
+            textTransform: "uppercase",
+          },
+          td: {
+            borderWidth: "1px",
+            borderColor: "gray.300",
+            textTransform: "capitalize",
+            textAlign: "center",
+          },
+          tbody: {
+            width: "100%",
+            display: "table",
+            tr: {
+              td: {
+                background: "#fafafa",
+              },
+              "&:nth-of-type(odd)": {
+                background: "#fafafa",
+                td: {
+                  background: "white",
+                  borderColor: "gray.300",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     ButtonGroup: {
       parts: ["group"],
       variants: {
