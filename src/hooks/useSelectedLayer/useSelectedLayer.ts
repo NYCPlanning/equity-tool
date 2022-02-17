@@ -16,12 +16,12 @@ export const useSelectedLayer = (
   const { subroutes } = router.query;
 
   // acquire subroute info, if any
-  const geoid = subroutes ? subroutes[2] : null;
+  const ntacode = subroutes ? subroutes[2] : null;
 
-  const toggleGeoSelect = (newGeoId: number) => {
-    newGeoId.toString() === geoid
+  const toggleGeoSelect = (newNtacode: string) => {
+    newNtacode.toString() === ntacode
       ? router.push(`/map/dri/nta/`)
-      : router.push(`/map/dri/nta/${newGeoId}`);
+      : router.push(`/map/dri/nta/${newNtacode}`);
   };
 
   const scale = scaleSequential().domain([0, 100]);
@@ -102,7 +102,7 @@ export const useSelectedLayer = (
             data: "SELECT * FROM dcp_nta_2010",
             uniqueIdProperty: "id",
             getLineColor: (feature: any) => {
-              if (feature?.properties?.cartodb_id == geoid) {
+              if (feature?.properties?.ntacode == ntacode) {
                 return [42, 67, 101, 255];
               }
               return [100, 100, 100, 255];
@@ -111,18 +111,18 @@ export const useSelectedLayer = (
             lineWidthUnits: "pixels",
             getLineWidth: 1.5,
             updateTriggers: {
-              getLineColor: [geoid],
+              getLineColor: [ntacode],
             },
-            lineWidthMinPixels: 3,
+            lineWidthMinPixels: 1.5,
             stroked: true,
             pickable: true,
             extensions: [new PathStyleExtension({ offset: true })],
             getOffset: 0.5,
             onClick: (info: any) => {
-              const id: any = info?.object?.properties?.cartodb_id
-                ? info.object.properties.cartodb_id
+              const id: string = info?.object?.properties?.ntacode
+                ? info.object.properties.ntacode
                 : null;
-              if (typeof id === "number") {
+              if (typeof id === "string") {
                 toggleGeoSelect(id);
               }
             },
