@@ -8,6 +8,7 @@ import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 import { SidebarContent } from "@components/SidebarContent";
 import { DrawerContent } from "@components/DrawerContent";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -50,28 +51,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const router = useRouter();
 
-  const { subroutes } = router.query;
-
   // acquire subroute info, if any
-  const [viewParam, geographyParam, geoid] = subroutes
-    ? subroutes
-    : [null, null, null];
-
-  const view =
-    typeof viewParam === "string"
-      ? viewParam
-      : viewParam !== null && viewParam !== undefined
-      ? viewParam[0]
-      : null;
-
-  console.log("view: ", view);
-
-  const geography =
-    typeof geographyParam === "string"
-      ? geographyParam
-      : geographyParam !== null && geographyParam !== undefined
-      ? geographyParam[0]
-      : null;
+  const { view, geography, geoid } = useMapSubrouteInfo();
 
   const layers = useSelectedLayer(view, geography);
 
@@ -133,11 +114,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        <SidebarContent isGeographySelected={!!geoid} />
+        <SidebarContent />
       </Flex>
 
       <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
-        <DrawerContent isGeographySelected={!!geoid} />
+        <DrawerContent />
       </MobileDrawer>
 
       <Box flex="2" height="100%">

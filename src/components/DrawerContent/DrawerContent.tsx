@@ -1,13 +1,12 @@
 import React from "react";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
-interface DrawerContentProps {
-  isGeographySelected: boolean;
-}
+export const DrawerContent = () => {
+  const { geoid } = useMapSubrouteInfo();
 
-export const DrawerContent = ({ isGeographySelected }: DrawerContentProps) => {
-  if (isGeographySelected) {
+  if (geoid !== null) {
     return (
       <>
         Either Data Tool Categories or DRI Indicators go here
