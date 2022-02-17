@@ -6,9 +6,9 @@ import WelcomeFooter from "@components/WelcomeFooter";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 export const SidebarContent = () => {
-  const { geoid } = useMapSubrouteInfo();
+  const { geography, geoid } = useMapSubrouteInfo();
 
-  if (geoid !== null) {
+  if (geoid !== null || geography === "citywide") {
     return (
       <>
         <DataToolGeographyInfo />
