@@ -4,6 +4,7 @@ import { CloseIcon } from "@chakra-ui/icons";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { usePumaInfo } from "@hooks/usePumaInfo";
 
 const getGeographyLabel = (geographyId: string | null): string | null => {
   switch (geographyId) {
@@ -23,6 +24,8 @@ export const SidebarContent = () => {
 
   const geographyLabel = getGeographyLabel(geography);
 
+  const pumaInfo = usePumaInfo(geoid);
+
   if (geoid !== null) {
     return (
       <>
@@ -36,7 +39,7 @@ export const SidebarContent = () => {
             fontWeight={700}
             padding=".5rem 0"
           >
-            Sunnyside &amp; Woodside
+            {pumaInfo?.neighborhoods ? pumaInfo.neighborhoods : ""}
           </Heading>
           <Heading
             as="h3"
@@ -44,7 +47,7 @@ export const SidebarContent = () => {
             fontWeight={400}
             paddingBottom=".25rem"
           >
-            Approx. Queens Community District 2
+            {pumaInfo?.districts ? pumaInfo.districts : ""}
           </Heading>
           <Button rightIcon={<CloseIcon />} variant="outline" size="xs">
             Clear Selection
