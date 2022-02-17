@@ -17,13 +17,13 @@ const theme = extendTheme({
           thead: {
             width: "100%",
             display: "table",
-          },
-          th: {
-            background: "gray.50",
-            borderWidth: "1px",
-            borderColor: "gray.400",
-            textAlign: "center",
-            textTransform: "uppercase",
+            th: {
+              background: "gray.50",
+              borderWidth: "1px",
+              borderColor: "gray.400",
+              textAlign: "center",
+              textTransform: "uppercase",
+            },
           },
           td: {
             borderWidth: "1px",

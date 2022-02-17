@@ -162,7 +162,7 @@ const testData: Estimate[] = [
       marginOfError: 0,
       coefficientOfVariation: 0,
     },
-    percent: {
+    percentage: {
       value: 100,
       marginOfError: 0,
     },
@@ -175,7 +175,7 @@ const testData: Estimate[] = [
       marginOfError: 1201,
       coefficientOfVariation: 0.31,
     },
-    percent: {
+    percentage: {
       value: 18,
       marginOfError: 1.5,
     },
@@ -188,7 +188,7 @@ const testData: Estimate[] = [
       marginOfError: 301,
       coefficientOfVariation: 0.2,
     },
-    percent: {
+    percentage: {
       value: 28,
       marginOfError: 5.3,
     },
@@ -201,7 +201,7 @@ const testData: Estimate[] = [
       marginOfError: 2539,
       coefficientOfVariation: 0.4,
     },
-    percent: {
+    percentage: {
       value: 54,
       marginOfError: 2.1,
     },

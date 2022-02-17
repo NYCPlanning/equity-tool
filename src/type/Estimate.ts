@@ -4,7 +4,7 @@ interface EstimateDatum {
   coefficientOfVariation: number;
 }
 
-interface EstimatePercent {
+interface EstimatePercentage {
   value: number;
   marginOfError: number;
 }
@@ -16,5 +16,5 @@ export interface Estimate {
   id: string;
   label: string;
   datum: EstimateDatum;
-  percent?: EstimatePercent;
+  percentage?: EstimatePercentage;
 }
