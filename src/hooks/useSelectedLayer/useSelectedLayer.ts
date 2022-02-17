@@ -14,7 +14,7 @@ export const useSelectedLayer = (
           new CartoLayer({
             type: MAP_TYPES.QUERY,
             id: "puma",
-            data: `SELECT * FROM dcp_puma`,
+            data: `SELECT * FROM dcp_puma_2010`,
             uniqueIdProperty: "id",
             getLineColor: [100, 100, 100, 255],
             getFillColor: [0, 0, 0, 0],
