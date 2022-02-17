@@ -109,9 +109,15 @@ export const useSelectedLayer = (
             },
             getFillColor: [0, 0, 0, 0],
             lineWidthUnits: "pixels",
-            getLineWidth: 1.5,
+            getLineWidth: (feature: any) => {
+              if (feature?.properties?.ntacode == ntacode) {
+                return 3.5;
+              }
+              return 1.5;
+            },
             updateTriggers: {
               getLineColor: [ntacode],
+              getLineWidth: [ntacode],
             },
             lineWidthMinPixels: 1.5,
             stroked: true,
