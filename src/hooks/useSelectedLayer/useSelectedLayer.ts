@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
+import { PathStyleExtension } from "@deck.gl/extensions";
 import { scaleSequential } from "d3-scale";
 import { rgb } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
@@ -22,10 +23,6 @@ export const useSelectedLayer = (
       ? router.push(`/map/dri/nta/`)
       : router.push(`/map/dri/nta/${newGeoId}`);
   };
-
-  const driQueryString = geoid
-    ? `SELECT *, CASE WHEN cartodb_id = ${geoid} THEN 1 WHEN cartodb_id != ${geoid} THEN 0 END selected_geo FROM dcp_nta_2010 ORDER BY selected_geo`
-    : `SELECT * FROM dcp_nta_2010`;
 
   const scale = scaleSequential().domain([0, 100]);
   const interpolate = interpolateRgb("#f4f4b4", "#d44932");
@@ -102,7 +99,7 @@ export const useSelectedLayer = (
           new CartoLayer({
             type: MAP_TYPES.QUERY,
             id: "nta",
-            data: driQueryString,
+            data: "SELECT * FROM dcp_nta_2010",
             uniqueIdProperty: "id",
             getLineColor: (feature: any) => {
               if (feature?.properties?.cartodb_id == geoid) {
@@ -112,15 +109,15 @@ export const useSelectedLayer = (
             },
             getFillColor: [0, 0, 0, 0],
             lineWidthUnits: "pixels",
-            getLineWidth: (feature: any) => {
-              if (feature?.properties?.cartodb_id == geoid) {
-                return 5;
-              }
-              return 3;
+            getLineWidth: 1.5,
+            updateTriggers: {
+              getLineColor: [geoid],
             },
             lineWidthMinPixels: 3,
             stroked: true,
             pickable: true,
+            extensions: [new PathStyleExtension({ offset: true })],
+            getOffset: 0.5,
             onClick: (info: any) => {
               const id: any = info?.object?.properties?.cartodb_id
                 ? info.object.properties.cartodb_id
