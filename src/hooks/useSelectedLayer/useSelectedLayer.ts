@@ -1,13 +1,6 @@
 import { useRouter } from "next/router";
 import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
-
 import { PathStyleExtension } from "@deck.gl/extensions";
-import { scaleSequential } from "d3-scale";
-import { rgb } from "d3-color";
-import { interpolateRgb } from "d3-interpolate";
-
-import ntas from "@data/ntas.json";
-
 
 export const useSelectedLayer = (
   view: string | null,
@@ -25,9 +18,6 @@ export const useSelectedLayer = (
       ? router.push(`/map/dri/nta/`)
       : router.push(`/map/dri/nta/${newNtacode}`);
   };
-
-  const scale = scaleSequential().domain([0, 100]);
-  const interpolate = interpolateRgb("#f4f4b4", "#d44932");
 
   if (view === "datatool") {
     switch (geography) {

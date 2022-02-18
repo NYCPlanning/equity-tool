@@ -20,11 +20,9 @@ const getGeographyLabel = (geographyId: string | null): string | null => {
   return null;
 };
 
-export const SidebarContent = () => {
-  const { geography, geoid } = useMapSubrouteInfo();
-
-  const geographyLabel = getGeographyLabel(geography);
-
+interface SidebarContentProps {
+  isGeographySelected: boolean;
+}
 
 export const SidebarContent = ({
   isGeographySelected,
@@ -33,6 +31,10 @@ export const SidebarContent = ({
   const router = useRouter();
   const { subroutes } = router.query;
   const [viewParam, geographyParam] = subroutes ? subroutes : [null, null];
+
+  const { geography, geoid } = useMapSubrouteInfo();
+
+  const geographyLabel = getGeographyLabel(geography);
 
   const clearSelection = () => {
     router.push(`/map/${viewParam}/${geographyParam}/`);
@@ -81,7 +83,12 @@ export const SidebarContent = ({
             >
               Approx. Queens Community District 2
             </Heading>
-            <Button rightIcon={<CloseIcon />} variant="outline" size="xs" onClick={clearSelection}>
+            <Button
+              rightIcon={<CloseIcon />}
+              variant="outline"
+              size="xs"
+              onClick={clearSelection}
+            >
               Clear Selection
             </Button>
           </Box>
@@ -89,6 +96,7 @@ export const SidebarContent = ({
         </>
       );
     }
+  }
   return (
     <>
       <Box height="100%" justify="space-between">
