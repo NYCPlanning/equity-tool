@@ -1,22 +1,21 @@
 import { Flex, BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 interface ViewToggleProps extends BoxProps {
   onDataToolClick: () => void;
   onDriClick: () => void;
-  view: string | null;
-  showOnMobile: boolean;
 }
 
 export const ViewToggle = ({
   onDataToolClick,
   onDriClick,
-  view,
-  showOnMobile,
 }: ViewToggleProps) => {
+  const { view, geography, geoid } = useMapSubrouteInfo();
+
   return (
     <>
-      {showOnMobile && (
+      {!geoid && geography !== "citywide" && (
         <Flex
           display={{
             base: "flex",

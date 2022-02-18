@@ -1,17 +1,16 @@
 import React from "react";
+import { DataToolGeographyInfo } from "@components/DataTool";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 export const DrawerContent = () => {
-  const { geoid } = useMapSubrouteInfo();
+  const { geography, geoid } = useMapSubrouteInfo();
 
-  if (geoid !== null) {
+  if (geoid !== null || geography === "citywide") {
     return (
       <>
-        Either Data Tool Categories or DRI Indicators go here
-        <br />
-        (you can use useView() to determine which)
+        <DataToolGeographyInfo />
       </>
     );
   }

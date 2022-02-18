@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Heading, Box, Center, IconButton, Flex } from "@chakra-ui/react";
+import { Box, IconButton, Flex } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 
 interface MobileDrawerProps {
-  title: string | null;
   children?: React.ReactNode;
 }
 
-export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
+// It is the responsibility of MobileDrawer's children to make sure
+// that content is not occluded by the open/close toggle at the top right.
+// The button is 3rem x 3rem. The MobileDrawer also has 1rem padding around the sides
+// One solution is to add 2rem right padding for content at the top of the MobileDrawer.
+export const MobileDrawer = ({ children }: MobileDrawerProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -20,59 +23,62 @@ export const MobileDrawer = ({ title, children }: MobileDrawerProps) => {
       width="100%"
       position="fixed"
       top={isOpen ? "6rem" : "100vh"}
-      marginTop={isOpen ? "auto" : "-7.875rem"}
+      marginTop={isOpen ? "auto" : "-9rem"}
       paddingBottom="6rem"
       left="0"
       zIndex="900"
       bg="white"
       data-cy="mobileDrawer"
     >
-      <Flex direction="column" height="100%">
-        <Flex
-          direction="row"
-          justifyContent="space-between"
-          height="4.125rem"
-          flex="shrink"
+      <Flex direction="column" height="100%" position="relative">
+        <Box
+          position="absolute"
+          width="100%"
+          top={0}
+          cursor="pointer"
+          zIndex="999"
+          align="right"
+          bg="rgba(0,0,0,0)"
           onClick={() => {
             setIsOpen(!isOpen);
           }}
-          cursor="pointer"
         >
-          <Box height="100%" p="0 1rem">
-            <Center h="100%">
-              <Heading>{title}</Heading>
-            </Center>
-          </Box>
+          {isOpen ? (
+            <IconButton
+              variant="ghost"
+              size="lg"
+              fontSize="1.25rem"
+              bg="rgba(0,0,0,0)"
+              icon={<ChevronDownIcon />}
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+              aria-label="Toggle Drawer"
+              data-cy="closeMobileDrawer"
+            />
+          ) : (
+            <IconButton
+              variant="ghost"
+              size="lg"
+              fontSize="1.25rem"
+              bg="rgba(0,0,0,0)"
+              icon={<ChevronUpIcon />}
+              aria-label="Toggle Drawer"
+              data-cy="openMobileDrawer"
+            />
+          )}
+        </Box>
 
-          <Box flex="shrink">
-            <Center h="100%" w="100%">
-              {isOpen ? (
-                <IconButton
-                  variant="ghost"
-                  size="lg"
-                  aria-label="Toggle Drawer"
-                  fontSize="20px"
-                  icon={<ChevronDownIcon />}
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                  data-cy="closeMobileDrawer"
-                />
-              ) : (
-                <IconButton
-                  variant="ghost"
-                  size="lg"
-                  aria-label="Toggle Drawer"
-                  fontSize="20px"
-                  icon={<ChevronUpIcon />}
-                  data-cy="openMobileDrawer"
-                />
-              )}
-            </Center>
-          </Box>
-        </Flex>
-
-        <Box flex="auto" overflow="scroll" p="0 1rem">
+        <Box
+          flex="auto"
+          overflow="scroll"
+          p="1rem"
+          css={{
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
           {children}
         </Box>
       </Flex>

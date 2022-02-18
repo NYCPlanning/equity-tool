@@ -3,6 +3,7 @@ import { Heading, Box, Button } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 
+// TODO: Consider consolidating the DRI geo info into this as well?
 export const DataToolGeographyInfo = () => {
   const { geography, geoid } = useMapSubrouteInfo();
 
@@ -31,7 +32,13 @@ export const DataToolGeographyInfo = () => {
           Community District {geoid}
         </Heading>
       )}
-      <Heading as="h1" fontSize="1.5625rem" fontWeight={700} padding=".5rem 0">
+      <Heading
+        as="h1"
+        fontSize="1.5625rem"
+        fontWeight={700}
+        padding=".5rem 0"
+        isTruncated
+      >
         {primaryHeading}
       </Heading>
       <Heading

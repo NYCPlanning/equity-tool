@@ -1,4 +1,4 @@
-import { Text, Link } from "@chakra-ui/react";
+import { Heading, Text, Link } from "@chakra-ui/react";
 import { useView } from "@hooks/useView";
 
 const WelcomeContent = () => {
@@ -7,6 +7,9 @@ const WelcomeContent = () => {
   if (view === "datatool") {
     return (
       <>
+        <Heading>Welcome!</Heading>
+        <br />
+
         <Text>You don&apos;t have anything selected yet.</Text>
         <br />
         <Text>

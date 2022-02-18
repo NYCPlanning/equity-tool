@@ -1,6 +1,6 @@
 import React from "react";
-import { Heading, Box } from "@chakra-ui/react";
-import { DataToolGeographyInfo } from "./DataTool/GeographyInfo";
+import { Box } from "@chakra-ui/react";
+import { DataToolGeographyInfo } from "@components/DataTool";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
@@ -20,8 +20,6 @@ export const SidebarContent = () => {
   return (
     <>
       <Box height="100%" justify="space-between">
-        <Heading>Welcome!</Heading>
-        <br />
         <WelcomeContent />
       </Box>
       <Box>
