@@ -1,7 +1,3 @@
-export const enum Category {
-  DEMO = "demo",
-  ECON = "econ",
-  HSAQ = "hsaq",
-  HOPD = "hopd",
-  QLAO = "qlao",
-}
+export const categories = ["demo", "econ", "hsaq", "hopd", "qlao"] as const;
+
+export type Category = typeof categories[number];

@@ -19,6 +19,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { EstimateTable } from "@components/EstimateTable";
 import { Estimate } from "@type/Estimate";
+import { useDataExplorerState } from "@hooks/useDataExplorerState";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -213,6 +214,7 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
+  console.log(useDataExplorerState());
   return (
     <Flex
       width={"full"}
