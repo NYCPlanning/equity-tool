@@ -152,36 +152,24 @@ describe("Map catch-all page", () => {
       );
     });
 
-    // Leo to fill in
-    // it("should display correct content in Drawer depending on if a geography is selected", () => {
+    it("should display correct content in Drawer depending on if a geography is selected", () => {
+      cy.contains("Welcome").should("exist");
 
-    // });
-    //
+      cy.get('[data-cy="openMobileDrawer"]').click();
 
-    // 1. Clone the project to your computer through git from GitHub (git clone)
-    //     - https://github.com/NYCPlanning/equity-tool
-    //     - git@github.com:NYCPlanning/equity-tool.git
-    // 2. Checkout this branch in the repo: task/6802-sidebar-content-tests
-    //      git checkout task/6802-sidebar-content-tests
-    // 3. Now you're ready to get working on your own machine
-    // 4. Start up the project locally
-    //    `npm run dev`
-    // 5. Start up Cypress test running client:
-    //     `npm run e2e:open`
-    // 6. Now you're ready to start coding out some tests!
-    // 7. Open up this Cypress integration file on your own machine (VS Code)
-    //       `cypress/integration/pages/Map/[[...subroutes]].spec.ts`
+      cy.get('[data-cy="mobileDrawer"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
 
-    // 8. Fill in the test above for Mobile, copying the format for Desktop
-    //     (also delete these comments here)
-    // 9. Stage your changes (reference your git tutorial)
-    //     `git add cypress/integration/pages/Map/[[...subroutes]].spec.ts`
-    // 10. Commit your changes
-    //     `git commit -m "6802 write mobile test for displaying correct content based on is geo selected"`
+      cy.get('[data-cy="closeMobileDrawer"]').click();
 
-    // 11. push your changes back to github
-    //     `git push origin HEAD`
-    // 12. Open a github PR for this branch
+      cy.visit("/map/datatool/borough/BK0202");
+
+      cy.get('[data-cy="mobileDrawer"]').should("not.contain", "Welcome");
+
+      cy.get('[data-cy="mobileDrawer"]').should("contain", "BK0202");
+    });
   });
 });
 
