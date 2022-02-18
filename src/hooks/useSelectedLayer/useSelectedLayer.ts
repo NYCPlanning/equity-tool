@@ -21,7 +21,7 @@ export const useSelectedLayer = (
 
   if (view === "datatool") {
     switch (geography) {
-      case "census":
+      case "district":
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
