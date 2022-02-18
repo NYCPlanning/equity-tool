@@ -103,7 +103,7 @@ export const useSelectedLayer = (
             lineWidthUnits: "pixels",
             getLineWidth: (feature: any) => {
               if (feature?.properties?.ntacode == ntacode) {
-                return 3.5;
+                return 4.5;
               }
               return 1.5;
             },
