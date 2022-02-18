@@ -4,6 +4,7 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { Geography } from "@constants/geography";
+import { DRISelection } from "@components/SidebarContent/DRISelection";
 
 export const GeographyInfo = () => {
   const { District, Borough, Citywide, Nta } = Geography;
@@ -32,6 +33,28 @@ export const GeographyInfo = () => {
     default:
       break;
   }
+
+  if (view === "dri") {
+    return (
+      <>
+        <Box paddingBottom="2rem">
+          <Heading as="h1" fontSize="1.5625rem" fontWeight={700}>
+            {primaryHeading}
+          </Heading>
+          <Button
+            rightIcon={<CloseIcon />}
+            variant="outline"
+            size="xs"
+            onClick={clearSelection}
+          >
+            Clear Selection
+          </Button>
+        </Box>
+        <hr />
+        <DRISelection />
+      </>
+    );
+  } 
 
   return (
     <Box paddingBottom="2rem">
