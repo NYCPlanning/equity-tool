@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
+
 import { PathStyleExtension } from "@deck.gl/extensions";
 import { scaleSequential } from "d3-scale";
 import { rgb } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 
 import ntas from "@data/ntas.json";
+
 
 export const useSelectedLayer = (
   view: string | null,
@@ -33,8 +35,8 @@ export const useSelectedLayer = (
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
-            id: "censusarea",
-            data: `SELECT * FROM pff_2020_census_tracts_21c`,
+            id: "puma",
+            data: `SELECT * FROM dcp_puma_2010`,
             uniqueIdProperty: "id",
             getLineColor: [100, 100, 100, 255],
             getFillColor: [0, 0, 0, 0],
@@ -42,12 +44,12 @@ export const useSelectedLayer = (
             stroked: true,
             pickable: true,
             onClick: (info: any) => {
-              const id: any = info?.object?.properties?.id
-                ? info.object.properties.id
+              const id: any = info?.object?.properties?.puma
+                ? info.object.properties.puma
                 : null;
               if (typeof id === "string") {
                 // ugh https://github.com/vercel/next.js/issues/9473
-                router.push(`map/datatool/census/${id}`);
+                router.push(`/map/datatool/district/${id}`);
               }
             },
           }),
@@ -57,29 +59,18 @@ export const useSelectedLayer = (
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
-            id: "nta",
-            data: `SELECT *, nta2020 as id, ntaname as label FROM dcp_nta_2020 WHERE ntatype = '0'`,
+            id: "borough",
+            data: `SELECT * FROM dcp_borough_boundary`,
             uniqueIdProperty: "id",
             getLineColor: [100, 100, 100, 255],
-            getFillColor: (feature: any) => {
-              if (feature?.properties?.id) {
-                const id: keyof typeof ntas = feature?.properties?.id;
-                if (typeof ntas[id] !== "undefined") {
-                  const color = rgb(
-                    interpolate(scale(ntas[id].displacementRisk))
-                  );
-                  return [color.r, color.g, color.b, 100];
-                }
-                return [0, 0, 0, 0];
-              }
-              return [0, 0, 0, 0];
-            },
+            getFillColor: [0, 0, 0, 0],
             lineWidthMinPixels: 3,
             stroked: true,
             pickable: true,
             onClick: (info: any) => {
-              const id: any = info?.object?.properties?.id
-                ? info.object.properties.id
+              // TODO: Translate to borocode if needed for data lookup
+              const id: any = info?.object?.properties?.boroname
+                ? info.object.properties.boroname
                 : null;
               if (typeof id === "string") {
                 router.push({ pathname: `/map/datatool/borough/${id}` });
@@ -87,10 +78,21 @@ export const useSelectedLayer = (
             },
           }),
         ];
-        break;
+      case "citywide":
+        return [
+          new CartoLayer({
+            type: MAP_TYPES.QUERY,
+            id: "city",
+            data: `SELECT * FROM pff_2020_city_21c`,
+            uniqueIdProperty: "id",
+            getLineColor: [100, 100, 100, 255],
+            getFillColor: [0, 0, 0, 0],
+            lineWidthMinPixels: 3,
+            stroked: true,
+          }),
+        ];
       default:
         return null;
-        break;
     }
   } else if (view === "dri") {
     switch (geography) {
