@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { categories, Category } from "@constants/Category";
 
-interface DataExplorerState {
+export interface DataExplorerState {
   geography: string;
   geoid: string;
   category: Category;
@@ -14,7 +14,7 @@ export const useDataExplorerState = (): DataExplorerState => {
   const result: DataExplorerState = {
     geography: "citywide",
     geoid: "1",
-    category: "demo",
+    category: categories.DEMO,
   };
 
   if (typeof geography === "string" && geography.length > 0) {
@@ -25,7 +25,10 @@ export const useDataExplorerState = (): DataExplorerState => {
     result.geoid = geoid;
   }
 
-  if (typeof category === "string" && category in categories) {
+  if (
+    typeof category === "string" &&
+    Object.values(categories).includes(category as Category)
+  ) {
     result.category = category as Category;
   }
 
