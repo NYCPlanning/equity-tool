@@ -114,7 +114,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        <SidebarContent isGeographySelected={!!geoid} />
+        <SidebarContent />
       </Flex>
 
       <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
