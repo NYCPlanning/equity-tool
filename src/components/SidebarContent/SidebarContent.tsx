@@ -4,17 +4,13 @@ import { CloseIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
-import { useRouter } from "next/router";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useClearSelection } from "@helpers/useClearSelection";
 
 export const SidebarContent = () => {
-  const router = useRouter();
+  const { view, geoid } = useMapSubrouteInfo();
 
-  const { view, geography, geoid } = useMapSubrouteInfo();
-
-  const clearSelection = () => {
-    router.push(`/map/${view}/${geography}/`);
-  };
+  const clearSelection = useClearSelection();
 
   if (geoid != null) {
     if (view === "dri") {

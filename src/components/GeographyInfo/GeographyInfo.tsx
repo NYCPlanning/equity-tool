@@ -2,6 +2,7 @@ import { CloseIcon } from "@chakra-ui/icons";
 import { Heading, Box, Button } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
+import { useClearSelection } from "@helpers/useClearSelection";
 
 const getGeographyLabel = (geographyId: string | null): string | null => {
   switch (geographyId) {
@@ -23,6 +24,8 @@ export const GeographyInfo = () => {
 
   const pumaInfo = usePumaInfo(geoid);
 
+  const clearSelection = useClearSelection();
+
   return (
     <Box paddingBottom="2rem">
       <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
@@ -39,7 +42,12 @@ export const GeographyInfo = () => {
       >
         {pumaInfo?.districts ? pumaInfo.districts : ""}
       </Heading>
-      <Button rightIcon={<CloseIcon />} variant="outline" size="xs">
+      <Button
+        rightIcon={<CloseIcon />}
+        variant="outline"
+        size="xs"
+        onClick={clearSelection}
+      >
         Clear Selection
       </Button>
     </Box>
