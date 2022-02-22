@@ -1,6 +1,5 @@
 import { ReactNode, createContext, useContext } from "react";
 import { Box, Table, useDisclosure } from "@chakra-ui/react";
-import { useWindowWidth } from "@react-hook/window-size";
 
 export interface DataTableProps {
   children: ReactNode;
@@ -25,13 +24,9 @@ export const DataTable = ({ children }: DataTableProps) => {
   const { isOpen, onToggle } = useDisclosure({
     defaultIsOpen: true,
   });
-  // Table is always expanded if on size md or larger, else is expanded if expanded flag is true
-  const isMobile = useWindowWidth() < 768;
 
   return (
-    <DataTableContext.Provider
-      value={{ isOpen: isOpen || !isMobile, onToggle }}
-    >
+    <DataTableContext.Provider value={{ isOpen, onToggle }}>
       <Box marginLeft={{ base: 3, md: 0 }} overflowX={"scroll"}>
         <Table
           variant="striped"
@@ -49,14 +44,6 @@ export const DataTable = ({ children }: DataTableProps) => {
                 maxW: "calc((100vw - 26px) / 3)",
                 whiteSpace: "normal",
               },
-              "&:first-of-type": {
-                "th:first-of-type": {
-                  borderTopLeftRadius: "12px",
-                },
-                "th:last-of-type": {
-                  borderTopRightRadius: "12px",
-                },
-              },
             },
             tbody: {
               td: {
@@ -67,10 +54,10 @@ export const DataTable = ({ children }: DataTableProps) => {
               },
               "tr:last-of-type": {
                 "td:first-of-type": {
-                  borderBottomLeftRadius: "12px",
+                  borderBottomLeftRadius: "0.75rem",
                 },
                 "td:last-of-type": {
-                  borderBottomRightRadius: "12px",
+                  borderBottomRightRadius: "0.75rem",
                 },
               },
             },

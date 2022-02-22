@@ -1,5 +1,10 @@
 import { Tr, Th, Td } from "@chakra-ui/react";
-import { DataTable, DataTableHead, DataTableBody } from "@components/DataTable";
+import {
+  DataTable,
+  DataTableHead,
+  DataTableBody,
+  DataTableHeaderRow,
+} from "@components/DataTable";
 import { Estimate } from "@type/Estimate";
 
 export interface EstimateTableProps {
@@ -19,7 +24,7 @@ export const EstimateTable = ({
         colSpan={shouldShowReliability ? 6 : 3}
         heading="2000 census pums"
       >
-        <Tr>
+        <DataTableHeaderRow>
           <Th
             display={{ base: "table-cell", md: "none" }}
             rowSpan={shouldShowReliability ? 2 : 1}
@@ -33,9 +38,9 @@ export const EstimateTable = ({
           {hasPercentages && (
             <Th colSpan={shouldShowReliability ? 2 : undefined}>percent</Th>
           )}
-        </Tr>
+        </DataTableHeaderRow>
         {shouldShowReliability && (
-          <Tr>
+          <DataTableHeaderRow>
             <Th>estimate</Th>
             <Th>moe</Th>
             <Th>cv</Th>
@@ -45,7 +50,7 @@ export const EstimateTable = ({
                 <Th>moe</Th>
               </>
             )}
-          </Tr>
+          </DataTableHeaderRow>
         )}
       </DataTableHead>
       <DataTableBody>

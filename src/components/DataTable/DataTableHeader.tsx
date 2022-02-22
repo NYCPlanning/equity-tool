@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Thead, Th, Tr, Flex, Box, Text } from "@chakra-ui/react";
-import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useDataTable } from ".";
 
 export interface DataTableHeadProps {
@@ -21,8 +21,16 @@ export const DataTableHead = ({
         <Th
           onClick={onToggle}
           colSpan={colSpan}
-          borderBottomLeftRadius={isOpen ? "0px" : "12px"}
-          borderBottomRightRadius={isOpen ? "0px" : "12px"}
+          borderTopLeftRadius="0.75rem"
+          borderTopRightRadius="0.75rem"
+          borderBottomLeftRadius={{
+            base: isOpen ? "0px" : "0.75rem",
+            md: "0rem",
+          }}
+          borderBottomRightRadius={{
+            base: isOpen ? "0px" : "0.75rem",
+            md: "0rem",
+          }}
         >
           <Flex justifyContent={"center"} align={"center"}>
             <Box>
@@ -33,26 +41,18 @@ export const DataTableHead = ({
               position={"absolute"}
               left={"1.5rem"}
             >
-              {isOpen ? (
-                <ChevronDownIcon
-                  color="teal.600"
-                  _hover={{ color: "teal.600" }}
-                  w={10}
-                  h={10}
-                />
-              ) : (
-                <ChevronRightIcon
-                  color="gray.500"
-                  _hover={{ color: "gray.500" }}
-                  w={10}
-                  h={10}
-                />
-              )}
+              <ChevronDownIcon
+                transform={`rotate(${isOpen ? "0deg" : "-90deg"})`}
+                color="teal.600"
+                _hover={{ color: "teal.600" }}
+                w={10}
+                h={10}
+              />
             </Box>
           </Flex>
         </Th>
       </Tr>
-      {isOpen && children}
+      {children}
     </Thead>
   );
 };

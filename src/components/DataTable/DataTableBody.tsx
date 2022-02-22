@@ -8,9 +8,12 @@ export interface DataTableBodyProps {
 
 export const DataTableBody = ({ children }: DataTableBodyProps) => {
   const { isOpen } = useDataTable();
-  return isOpen ? (
-    <Tbody maxW={"full"} display={"table"}>
+  return (
+    <Tbody
+      maxW={"full"}
+      display={{ base: isOpen ? "table" : "none", md: "table" }}
+    >
       {children}
     </Tbody>
-  ) : null;
+  );
 };
