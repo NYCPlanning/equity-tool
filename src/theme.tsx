@@ -11,6 +11,45 @@ const theme = extendTheme({
   },
   fonts,
   components: {
+    Table: {
+      variants: {
+        striped: {
+          thead: {
+            width: "100%",
+            display: "table",
+            th: {
+              background: "gray.50",
+              borderWidth: "1px",
+              borderColor: "gray.400",
+              textAlign: "center",
+              textTransform: "uppercase",
+            },
+          },
+          td: {
+            borderWidth: "1px",
+            borderColor: "gray.300",
+            textTransform: "capitalize",
+            textAlign: "center",
+          },
+          tbody: {
+            width: "100%",
+            display: "table",
+            tr: {
+              td: {
+                background: "#fafafa",
+              },
+              "&:nth-of-type(odd)": {
+                background: "#fafafa",
+                td: {
+                  background: "white",
+                  borderColor: "gray.300",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     ButtonGroup: {
       parts: ["group"],
       variants: {

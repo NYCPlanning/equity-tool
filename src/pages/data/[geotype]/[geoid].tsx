@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GetServerSideProps } from "next";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import {
@@ -10,9 +11,14 @@ import {
   Icon,
   Center,
   useDisclosure,
+  FormControl,
+  FormLabel,
+  Switch,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import { EstimateTable } from "@components/EstimateTable";
+import { Estimate } from "@type/Estimate";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -147,8 +153,65 @@ const GeographySummary = () => {
   );
 };
 
+const testData: Estimate[] = [
+  {
+    id: "tot_pop",
+    label: "Total population",
+    datum: {
+      value: 248738,
+      marginOfError: 0,
+      coefficientOfVariation: 0,
+    },
+    percentage: {
+      value: 100,
+      marginOfError: 0,
+    },
+  },
+  {
+    id: "anhps",
+    label: "Asian non-Hispanic",
+    datum: {
+      value: 44772,
+      marginOfError: 1201,
+      coefficientOfVariation: 0.31,
+    },
+    percentage: {
+      value: 18,
+      marginOfError: 1.5,
+    },
+  },
+  {
+    id: "bnhps",
+    label: "Black non-Hispanic",
+    datum: {
+      value: 69646,
+      marginOfError: 301,
+      coefficientOfVariation: 0.2,
+    },
+    percentage: {
+      value: 28,
+      marginOfError: 5.3,
+    },
+  },
+  {
+    id: "hisp",
+    label: "Hispanic",
+    datum: {
+      value: 134318,
+      marginOfError: 2539,
+      coefficientOfVariation: 0.4,
+    },
+    percentage: {
+      value: 54,
+      marginOfError: 2.1,
+    },
+  },
+];
+
 const DataPage = ({ initialRouteParams }: DataPageProps) => {
   console.log(initialRouteParams); // TODO: Remove this contrived usage of initialRouteParams
+  const [shouldShowReliability, setShouldShowReliability] =
+    useState<boolean>(false);
 
   return (
     <Flex
@@ -164,7 +227,39 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
           {/* racial subgroup selection can go here */}Subgroup switcher
         </Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
-        <Box>Tables</Box>
+        <Box>
+          <FormControl mb={4} display="flex" alignItems="center">
+            <Switch
+              isChecked={shouldShowReliability}
+              onChange={() => {
+                setShouldShowReliability(!shouldShowReliability);
+              }}
+              id="show-reliability"
+            />
+            <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
+              Show reliability data
+            </FormLabel>
+          </FormControl>
+          <Flex
+            direction={{ base: "column", md: "row" }}
+            gridGap={{ base: 3, md: 0 }}
+          >
+            <EstimateTable
+              data={testData}
+              shouldShowReliability={shouldShowReliability}
+            />
+
+            <EstimateTable
+              data={testData}
+              shouldShowReliability={shouldShowReliability}
+            />
+
+            <EstimateTable
+              data={testData}
+              shouldShowReliability={shouldShowReliability}
+            />
+          </Flex>
+        </Box>
       </Box>
     </Flex>
   );
