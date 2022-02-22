@@ -1,7 +1,7 @@
 import { Tr, TableRowProps } from "@chakra-ui/react";
 import { useDataTable } from ".";
 
-export const DataTableHeaderRow = (props: TableRowProps) => {
+export const DataTableHeadRow = (props: TableRowProps) => {
   const { isOpen } = useDataTable();
   return (
     <Tr

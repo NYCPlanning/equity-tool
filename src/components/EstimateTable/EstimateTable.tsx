@@ -3,7 +3,7 @@ import {
   DataTable,
   DataTableHead,
   DataTableBody,
-  DataTableHeaderRow,
+  DataTableHeadRow,
 } from "@components/DataTable";
 import { Estimate } from "@type/Estimate";
 
@@ -24,7 +24,7 @@ export const EstimateTable = ({
         colSpan={shouldShowReliability ? 6 : 3}
         heading="2000 census pums"
       >
-        <DataTableHeaderRow>
+        <DataTableHeadRow>
           <Th
             display={{ base: "table-cell", md: "none" }}
             rowSpan={shouldShowReliability ? 2 : 1}
@@ -38,9 +38,9 @@ export const EstimateTable = ({
           {hasPercentages && (
             <Th colSpan={shouldShowReliability ? 2 : undefined}>percent</Th>
           )}
-        </DataTableHeaderRow>
+        </DataTableHeadRow>
         {shouldShowReliability && (
-          <DataTableHeaderRow>
+          <DataTableHeadRow>
             <Th>estimate</Th>
             <Th>moe</Th>
             <Th>cv</Th>
@@ -50,7 +50,7 @@ export const EstimateTable = ({
                 <Th>moe</Th>
               </>
             )}
-          </DataTableHeaderRow>
+          </DataTableHeadRow>
         )}
       </DataTableHead>
       <DataTableBody>
