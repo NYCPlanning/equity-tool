@@ -24,11 +24,11 @@ export const DataTableHead = ({
           borderTopLeftRadius="0.75rem"
           borderTopRightRadius="0.75rem"
           borderBottomLeftRadius={{
-            base: isOpen ? "0px" : "0.75rem",
+            base: isOpen ? "0rem" : "0.75rem",
             md: "0rem",
           }}
           borderBottomRightRadius={{
-            base: isOpen ? "0px" : "0.75rem",
+            base: isOpen ? "0rem" : "0.75rem",
             md: "0rem",
           }}
         >
@@ -45,8 +45,8 @@ export const DataTableHead = ({
                 transform={`rotate(${isOpen ? "0deg" : "-90deg"})`}
                 color="teal.600"
                 _hover={{ color: "teal.600" }}
-                w={10}
-                h={10}
+                w={"2.5rem"}
+                h={"2.5rem"}
               />
             </Box>
           </Flex>

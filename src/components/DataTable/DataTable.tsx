@@ -27,7 +27,7 @@ export const DataTable = ({ children }: DataTableProps) => {
 
   return (
     <DataTableContext.Provider value={{ isOpen, onToggle }}>
-      <Box marginLeft={{ base: 3, md: 0 }} overflowX={"scroll"}>
+      <Box marginLeft={{ base: "0.75rem", md: 0 }} overflowX={"scroll"}>
         <Table
           variant="striped"
           sx={{
