@@ -20,6 +20,7 @@ import { EstimateTable } from "@components/EstimateTable";
 import { Estimate } from "@type/Estimate";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
+import { Geography } from "@constants/geography";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -71,10 +72,10 @@ const DataExplorerNav = () => {
         {/* "Back to map" button can go here for screen sizes < md */}
         <Flex
           px={{ base: "1.5rem", md: "0.875rem" }}
-          align={geography === "puma" ? "start" : "center"}
+          align={geography === Geography.District ? "start" : "center"}
           mb={{
             base: "0.5rem",
-            md: geography === "puma" ? "1.5rem" : "2.5rem",
+            md: geography === Geography.District ? "1.5rem" : "2.5rem",
           }}
         >
           <Flex
@@ -216,7 +217,6 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
-  console.log(useDataExplorerState());
   return (
     <Flex
       width={"full"}

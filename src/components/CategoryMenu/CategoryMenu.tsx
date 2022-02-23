@@ -1,6 +1,7 @@
 import { Flex, FlexProps } from "@chakra-ui/react";
 import { CategoryMenuLink } from "@components/CategoryMenu";
-import { categories, Category } from "@constants/Category";
+import { Category } from "@constants/Category";
+import { Geography } from "@constants/geography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BuildingHouseIcon, MentalHealthIcon } from "@components/Icons";
 import {
@@ -11,7 +12,7 @@ import {
 
 export interface CategoryMenuProps extends FlexProps {
   currentCategory?: Category;
-  geography: string;
+  geography: Geography;
   geoid: string;
 }
 
@@ -20,52 +21,48 @@ export const CategoryMenu = ({
   geoid,
   currentCategory,
   ...flexProps
-}: CategoryMenuProps) => {
-  console.log(currentCategory, categories.QLAO);
-
-  return (
-    <Flex
-      direction={{ base: "row", md: "column" }}
-      gridGap={{ base: "0.75rem", md: 0 }}
-      px={{ base: "0.75rem", md: "0rem" }}
-      overflowX={{ base: "auto", md: "hidden" }}
-      {...flexProps}
+}: CategoryMenuProps) => (
+  <Flex
+    direction={{ base: "row", md: "column" }}
+    gridGap={{ base: "0.75rem", md: 0 }}
+    px={{ base: "0.75rem", md: "0rem" }}
+    overflowX={{ base: "auto", md: "hidden" }}
+    {...flexProps}
+  >
+    <CategoryMenuLink
+      icon={<FontAwesomeIcon icon={faUserGroup} />}
+      href={`/data/${geography}/${geoid}/${Category.DEMO}`}
+      isActive={currentCategory === Category.DEMO}
     >
-      <CategoryMenuLink
-        icon={<FontAwesomeIcon icon={faUserGroup} />}
-        href={`/data/${geography}/${geoid}/${categories.DEMO}`}
-        isActive={currentCategory === categories.DEMO}
-      >
-        Demographic Conditions
-      </CategoryMenuLink>
-      <CategoryMenuLink
-        icon={<FontAwesomeIcon icon={faUmbrella} />}
-        href={`/data/${geography}/${geoid}/${categories.ECON}`}
-        isActive={currentCategory === categories.ECON}
-      >
-        Household Economic Security
-      </CategoryMenuLink>
-      <CategoryMenuLink
-        icon={<FontAwesomeIcon icon={faHouseUser} />}
-        href={`/data/${geography}/${geoid}/${categories.HSAQ}`}
-        isActive={currentCategory === categories.HSAQ}
-      >
-        Housing Security, Affordability and Quality
-      </CategoryMenuLink>
-      <CategoryMenuLink
-        icon={<BuildingHouseIcon />}
-        href={`/data/${geography}/${geoid}/${categories.HOPD}`}
-        isActive={currentCategory === categories.HOPD}
-      >
-        Housing Production
-      </CategoryMenuLink>
-      <CategoryMenuLink
-        icon={<MentalHealthIcon />}
-        href={`/data/${geography}/${geoid}/${categories.QLAO}`}
-        isActive={currentCategory === categories.QLAO}
-      >
-        Quality of Life and Access to Opportunity
-      </CategoryMenuLink>
-    </Flex>
-  );
-};
+      Demographic Conditions
+    </CategoryMenuLink>
+    <CategoryMenuLink
+      icon={<FontAwesomeIcon icon={faUmbrella} />}
+      href={`/data/${geography}/${geoid}/${Category.ECON}`}
+      isActive={currentCategory === Category.ECON}
+    >
+      Household Economic Security
+    </CategoryMenuLink>
+    <CategoryMenuLink
+      icon={<FontAwesomeIcon icon={faHouseUser} />}
+      href={`/data/${geography}/${geoid}/${Category.HSAQ}`}
+      isActive={currentCategory === Category.HSAQ}
+    >
+      Housing Security, Affordability and Quality
+    </CategoryMenuLink>
+    <CategoryMenuLink
+      icon={<BuildingHouseIcon />}
+      href={`/data/${geography}/${geoid}/${Category.HOPD}`}
+      isActive={currentCategory === Category.HOPD}
+    >
+      Housing Production
+    </CategoryMenuLink>
+    <CategoryMenuLink
+      icon={<MentalHealthIcon />}
+      href={`/data/${geography}/${geoid}/${Category.QLAO}`}
+      isActive={currentCategory === Category.QLAO}
+    >
+      Quality of Life and Access to Opportunity
+    </CategoryMenuLink>
+  </Flex>
+);
