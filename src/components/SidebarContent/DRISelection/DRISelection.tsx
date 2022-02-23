@@ -1,17 +1,46 @@
 import React from "react";
 import dridata from "@data/DRI_Subindices_Indicators.json";
-import { Box, Divider } from "@chakra-ui/react";
+import { Box, Divider, Heading, Button, Text } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
+import { useRouter } from "next/router";
 
 export const DRISelection = () => {
   const { geoid } = useMapSubrouteInfo();
 
   const selectedDRIdata = dridata.find((nta: any) => nta.ntacode === geoid);
 
+  const router = useRouter();
+  const clearSelection = () => {
+    router.push(`/map/dri/nta/`);
+  };
+
   return (
     <>
+      <Box p="0rem 0.5rem 1rem 0.5rem">
+        <Heading as="h1" fontSize="1.5625rem" fontWeight={700}>
+          QN68 - Queensbridge Ravenswood Long Island City
+        </Heading>
+        <Button
+          rightIcon={<CloseIcon />}
+          variant="outline"
+          size="xs"
+          onClick={clearSelection}
+        >
+          Clear Selection
+        </Button>
+      </Box>
+      <hr />
+      <Box p="1rem 0.5rem 1rem 0.5rem">
+        <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
+          Displacement Risk Index (DRI) Profile
+        </Heading>
+        <Text>Select a DRI indicator to learn more about it.</Text>
+      </Box>
+      <hr />
+
       <Box p="0rem 0.75rem 0rem 0.75rem">
         <Subindicator subindicatorTitle="Vulnerability" />
         <DataPoint

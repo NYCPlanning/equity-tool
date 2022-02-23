@@ -37,31 +37,10 @@ export const GeographyInfo = () => {
   if (view === "dri") {
     return (
       <>
-        <Box p="0rem 0.5rem 1rem 0.5rem">
-          <Heading as="h1" fontSize="1.5625rem" fontWeight={700}>
-            QN68 - Queensbridge Ravenswood Long Island City
-          </Heading>
-          <Button
-            rightIcon={<CloseIcon />}
-            variant="outline"
-            size="xs"
-            onClick={clearSelection}
-          >
-            Clear Selection
-          </Button>
-        </Box>
-        <hr />
-        <Box p="1rem 0.5rem 1rem 0.5rem">
-          <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
-            Displacement Risk Index (DRI) Profile
-          </Heading>
-          <Text>Select a DRI indicator to learn more about it.</Text>
-        </Box>
-        <hr />
         <DRISelection />
       </>
     );
-  } 
+  }
 
   return (
     <Box paddingBottom="2rem">
