@@ -119,9 +119,9 @@ const DataExplorerNav = () => {
           geography={geography}
           geoid={geoid}
           currentCategory={category}
+          justify={{ base: "space-around", md: "start" }}
         />
       </Box>
-      {/* Category selectory can go here... */}
       <Spacer />
       <IconButton
         px={"0.75rem"}
@@ -226,44 +226,29 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
     >
       <DataExplorerNav />
       <Box flexGrow={1}>
-        <Box>
-          {/* "Back to map" button can go here for screen sizes >= md */}
-          {/* racial subgroup selection can go here */}Subgroup switcher
-        </Box>
+        <Box>Subgroup switcher</Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
-        <Box>
-          <FormControl mb={4} display="flex" alignItems="center">
-            <Switch
-              isChecked={shouldShowReliability}
-              onChange={() => {
-                setShouldShowReliability(!shouldShowReliability);
-              }}
-              id="show-reliability"
-            />
-            <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
-              Show reliability data
-            </FormLabel>
-          </FormControl>
-          <Flex
-            direction={{ base: "column", md: "row" }}
-            gridGap={{ base: 3, md: 0 }}
-          >
-            <EstimateTable
-              data={testData}
-              shouldShowReliability={shouldShowReliability}
-            />
-
-            <EstimateTable
-              data={testData}
-              shouldShowReliability={shouldShowReliability}
-            />
-
-            <EstimateTable
-              data={testData}
-              shouldShowReliability={shouldShowReliability}
-            />
-          </Flex>
-        </Box>
+        <FormControl mb={4} display="flex" alignItems="center">
+          <Switch
+            isChecked={shouldShowReliability}
+            onChange={() => {
+              setShouldShowReliability(!shouldShowReliability);
+            }}
+            id="show-reliability"
+          />
+          <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
+            Show reliability data
+          </FormLabel>
+        </FormControl>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          gridGap={{ base: 3, md: 0 }}
+        >
+          <EstimateTable
+            data={testData}
+            shouldShowReliability={shouldShowReliability}
+          />
+        </Flex>
       </Box>
     </Flex>
   );
