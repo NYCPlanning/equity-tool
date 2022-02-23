@@ -1,0 +1,277 @@
+{
+  "3701": {
+    "id": "3701",
+    "neighborhoods": "Riverdale, Fieldston & Kingsbridge",
+    "districts": "Approx. Bronx CD 8"
+  },
+  "3702": {
+    "id": "3702",
+    "neighborhoods": "Wakefield, Williamsbridge & Woodlawn",
+    "districts": "Approx. Bronx CD 12"
+  },
+  "3703": {
+    "id": "3703",
+    "neighborhoods": "Co-op City, Pelham Bay & Schuylerville",
+    "districts": "Approx. Bronx CD 10"
+  },
+  "3704": {
+    "id": "3704",
+    "neighborhoods": "Pelham Parkway, Morris Park & Laconia",
+    "districts": "Approx. Bronx CD 11"
+  },
+  "3705": {
+    "id": "3705",
+    "neighborhoods": "Belmont, Crotona Park East & East Tremont",
+    "districts": "Approx. Bronx CD 3 & 6"
+  },
+  "3706": {
+    "id": "3706",
+    "neighborhoods": "Bedford Park, Fordham North & Norwood",
+    "districts": "Approx. Bronx CD 7"
+  },
+  "3707": {
+    "id": "3707",
+    "neighborhoods": "Morris Heights, Fordham South & Mount Hope",
+    "districts": "Approx. Bronx CD 5"
+  },
+  "3708": {
+    "id": "3708",
+    "neighborhoods": "Concourse, Highbridge & Mount Eden",
+    "districts": "Approx. Bronx CD 4"
+  },
+  "3709": {
+    "id": "3709",
+    "neighborhoods": "Castle Hill, Clason Point & Parkchester",
+    "districts": "Approx. Bronx CD 9"
+  },
+  "3710": {
+    "id": "3710",
+    "neighborhoods": "Hunts Point, Longwood & Melrose",
+    "districts": "Approx. Bronx CD 1 & 2"
+  },
+  "4001": {
+    "id": "4001",
+    "neighborhoods": "Greenpoint & Williamsburg",
+    "districts": "Approx. Brooklyn CD 1"
+  },
+  "4002": {
+    "id": "4002",
+    "neighborhoods": "Bushwick",
+    "districts": "Approx. Brooklyn CD 4"
+  },
+  "4003": {
+    "id": "4003",
+    "neighborhoods": "Bedford-Stuyvesant",
+    "districts": "Approx. Brooklyn CD 3"
+  },
+  "4004": {
+    "id": "4004",
+    "neighborhoods": "Brooklyn Heights & Fort Greene",
+    "districts": "Approx. Brooklyn CD 2"
+  },
+  "4005": {
+    "id": "4005",
+    "neighborhoods": "Park Slope, Carroll Gardens & Red Hook",
+    "districts": "Approx. Brooklyn CD 6"
+  },
+  "4006": {
+    "id": "4006",
+    "neighborhoods": "Crown Heights North & Prospect Heights",
+    "districts": "Approx. Brooklyn CD 8"
+  },
+  "4007": {
+    "id": "4007",
+    "neighborhoods": "Brownsville & Ocean Hill",
+    "districts": "Approx. Brooklyn CD 16"
+  },
+  "4008": {
+    "id": "4008",
+    "neighborhoods": "East New York & Starrett City",
+    "districts": "Approx. Brooklyn CD 5"
+  },
+  "4009": {
+    "id": "4009",
+    "neighborhoods": "Canarsie & Flatlands",
+    "districts": "Approx. Brooklyn CD 18"
+  },
+  "4010": {
+    "id": "4010",
+    "neighborhoods": "East Flatbush, Farragut & Rugby",
+    "districts": "Approx. Brooklyn CD 17"
+  },
+  "4011": {
+    "id": "4011",
+    "neighborhoods": "Crown Heights South, Prospect Lefferts & Wingate",
+    "districts": "Approx. Brooklyn CD 9"
+  },
+  "4012": {
+    "id": "4012",
+    "neighborhoods": "Sunset Park & Windsor Terrace",
+    "districts": "Approx. Brooklyn CD 7"
+  },
+  "4013": {
+    "id": "4013",
+    "neighborhoods": "Bay Ridge & Dyker Heights",
+    "districts": "Approx. Brooklyn CD 10"
+  },
+  "4014": {
+    "id": "4014",
+    "neighborhoods": "Borough Park, Kensington & Ocean Parkway",
+    "districts": "Approx. Brooklyn CD 12"
+  },
+  "4015": {
+    "id": "4015",
+    "neighborhoods": "Flatbush & Midwood",
+    "districts": "Approx. Brooklyn CD 14"
+  },
+  "4016": {
+    "id": "4016",
+    "neighborhoods": "Sheepshead Bay, Gerritsen Beach & Homecrest",
+    "districts": "Approx. Brooklyn CD 15"
+  },
+  "4017": {
+    "id": "4017",
+    "neighborhoods": "Bensonhurst & Bath Beach",
+    "districts": "Approx. Brooklyn CD 11"
+  },
+  "4018": {
+    "id": "4018",
+    "neighborhoods": "Brighton Beach & Coney Island",
+    "districts": "Approx. Brooklyn CD 13"
+  },
+  "3801": {
+    "id": "3801",
+    "neighborhoods": "Washington Heights, Inwood & Marble Hill",
+    "districts": "Approx. Manhattan CD 12"
+  },
+  "3802": {
+    "id": "3802",
+    "neighborhoods": "Hamilton Heights, Manhattanville & West Harlem",
+    "districts": "Approx. Manhattan CD 9"
+  },
+  "3803": {
+    "id": "3803",
+    "neighborhoods": "Central Harlem",
+    "districts": "Approx. Manhattan CD 10"
+  },
+  "3804": {
+    "id": "3804",
+    "neighborhoods": "East Harlem",
+    "districts": "Approx. Manhattan CD 11"
+  },
+  "3805": {
+    "id": "3805",
+    "neighborhoods": "Upper East Side",
+    "districts": "Approx. Manhattan CD 8"
+  },
+  "3806": {
+    "id": "3806",
+    "neighborhoods": "Upper West Side & West Side",
+    "districts": "Approx. Manhattan CD 7"
+  },
+  "3807": {
+    "id": "3807",
+    "neighborhoods": "Chelsea, Clinton & Midtown Business District",
+    "districts": "Approx. Manhattan CD 4 & 5"
+  },
+  "3808": {
+    "id": "3808",
+    "neighborhoods": "Murray Hill, Gramercy & Stuyvesant Town",
+    "districts": "Approx. Manhattan CD 6"
+  },
+  "3809": {
+    "id": "3809",
+    "neighborhoods": "Chinatown & Lower East Side",
+    "districts": "Approx. Manhattan CD 3"
+  },
+  "3810": {
+    "id": "3810",
+    "neighborhoods": "Battery Park City, Greenwich Village & Soho",
+    "districts": "Approx. Manhattan CD 1 & 2"
+  },
+  "4101": {
+    "id": "4101",
+    "neighborhoods": "Astoria & Long Island City",
+    "districts": "Approx. Queens CD 1"
+  },
+  "4102": {
+    "id": "4102",
+    "neighborhoods": "Jackson Heights & North Corona",
+    "districts": "Approx. Queens CD 3"
+  },
+  "4103": {
+    "id": "4103",
+    "neighborhoods": "Flushing, Murray Hill & Whitestone",
+    "districts": "Approx. Queens CD 7"
+  },
+  "4104": {
+    "id": "4104",
+    "neighborhoods": "Bayside, Douglaston & Little Neck",
+    "districts": "Approx. Queens CD 11"
+  },
+  "4105": {
+    "id": "4105",
+    "neighborhoods": "Queens Village, Cambria Heights & Rosedale",
+    "districts": "Approx. Queens CD 13"
+  },
+  "4106": {
+    "id": "4106",
+    "neighborhoods": "Briarwood, Fresh Meadows & Hillcrest",
+    "districts": "Approx. Queens CD 8"
+  },
+  "4107": {
+    "id": "4107",
+    "neighborhoods": "Elmhurst & South Corona",
+    "districts": "Approx. Queens CD 4"
+  },
+  "4108": {
+    "id": "4108",
+    "neighborhoods": "Forest Hills & Rego Park",
+    "districts": "Approx. Queens CD 6"
+  },
+  "4109": {
+    "id": "4109",
+    "neighborhoods": "Sunnyside & Woodside",
+    "districts": "Approx. Queens CD 2"
+  },
+  "4110": {
+    "id": "4110",
+    "neighborhoods": "Ridgewood, Glendale & Middle Village",
+    "districts": "Approx. Queens CD 5"
+  },
+  "4111": {
+    "id": "4111",
+    "neighborhoods": "Richmond Hill & Woodhaven",
+    "districts": "Approx. Queens CD 9"
+  },
+  "4112": {
+    "id": "4112",
+    "neighborhoods": "Jamaica, Hollis & St. Albans",
+    "districts": "Approx. Queens CD 12"
+  },
+  "4113": {
+    "id": "4113",
+    "neighborhoods": "Howard Beach & Ozone Park",
+    "districts": "Approx. Queens CD 10"
+  },
+  "4114": {
+    "id": "4114",
+    "neighborhoods": "Far Rockaway, Breezy Point & Broad Channel",
+    "districts": "Approx. Queens CD 14"
+  },
+  "3901": {
+    "id": "3901",
+    "neighborhoods": "Tottenville, Great Kills & Annadale",
+    "districts": "Approx. Staten Island CD 3"
+  },
+  "3902": {
+    "id": "3902",
+    "neighborhoods": "New Springville & South Beach",
+    "districts": "Approx. Staten Island CD 2"
+  },
+  "3903": {
+    "id": "3903",
+    "neighborhoods": "Port Richmond, Stapleton & Mariner's Harbor",
+    "districts": "Approx. Staten Island CD 1"
+  }
+}

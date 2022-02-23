@@ -3,7 +3,6 @@ import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
-import { useIndicatorRecord } from "@hooks/useIndicatorRecord";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 import { SidebarContent } from "@components/SidebarContent";
@@ -55,8 +54,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const { view, geography, geoid } = useMapSubrouteInfo();
 
   const layers = useSelectedLayer(view, geography);
-
-  const indicatorRecord = useIndicatorRecord(geoid);
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -114,10 +111,10 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         zIndex="999"
         data-cy="desktopSidebar"
       >
-        <SidebarContent isGeographySelected={!!geoid} />
+        <SidebarContent />
       </Flex>
 
-      <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
+      <MobileDrawer>
         <DrawerContent />
       </MobileDrawer>
 
@@ -126,8 +123,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           <ViewToggle
             onDataToolClick={onDataToolClick}
             onDriClick={onDriClick}
-            view={view}
-            showOnMobile={!geoid}
           />
 
           {view === "datatool" && (
