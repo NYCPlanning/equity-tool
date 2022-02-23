@@ -119,7 +119,7 @@ const DataExplorerNav = () => {
           geography={geography}
           geoid={geoid}
           currentCategory={category}
-          justify={{ base: "space-around", md: "start" }}
+          justify={{ base: "space-between", md: "start" }}
         />
       </Box>
       <Spacer />
