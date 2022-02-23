@@ -109,7 +109,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         direction="column"
         flex="1"
         height="100%"
-        p="2.25rem 1rem"
+        p="1rem 0.5rem"
         boxShadow="lg"
         zIndex="999"
         data-cy="desktopSidebar"
