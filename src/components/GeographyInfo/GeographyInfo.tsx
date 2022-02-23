@@ -5,6 +5,7 @@ import { usePumaInfo } from "@hooks/usePumaInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { Geography } from "@constants/geography";
 import { DRISelection } from "@components/SidebarContent/DRISelection";
+import { NYC } from "@constants/geoid";
 
 export const GeographyInfo = () => {
   const { District, Borough, Citywide, Nta } = Geography;
@@ -68,14 +69,17 @@ export const GeographyInfo = () => {
           {pumaInfo?.districts ? pumaInfo.districts : ""}
         </Heading>
       )}
-      <Button
-        rightIcon={<CloseIcon />}
-        variant="outline"
-        size="xs"
-        onClick={clearSelection}
-      >
-        Clear Selection
-      </Button>
+
+      {geoid !== NYC && (
+        <Button
+          rightIcon={<CloseIcon />}
+          variant="outline"
+          size="xs"
+          onClick={clearSelection}
+        >
+          Clear Selection
+        </Button>
+      )}
     </Box>
   );
 };
