@@ -5,7 +5,7 @@ import { usePumaInfo } from "@hooks/usePumaInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 
 export const GeographyInfo = () => {
-  const { geography, geoid } = useMapSubrouteInfo();
+  const { view, geography, geoid } = useMapSubrouteInfo();
 
   const pumaInfo = usePumaInfo(geoid);
 
@@ -23,13 +23,16 @@ export const GeographyInfo = () => {
     case "citywide":
       primaryHeading = "New York City";
       break;
+    case "nta":
+      primaryHeading = "QN68 - Queensbridge Ravenswood Long Island City";
+      break;
     default:
       break;
   }
 
   return (
     <Box paddingBottom="2rem">
-      {geography === "district" && (
+      {view === "datatool" && geography === "district" && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
         </Heading>
@@ -43,14 +46,16 @@ export const GeographyInfo = () => {
       >
         {primaryHeading}
       </Heading>
-      <Heading
-        as="h3"
-        fontSize=".8125rem"
-        fontWeight={400}
-        paddingBottom=".25rem"
-      >
-        {pumaInfo?.districts ? pumaInfo.districts : ""}
-      </Heading>
+      {view === "datatool" && (
+        <Heading
+          as="h3"
+          fontSize=".8125rem"
+          fontWeight={400}
+          paddingBottom=".25rem"
+        >
+          {pumaInfo?.districts ? pumaInfo.districts : ""}
+        </Heading>
+      )}
       <Button
         rightIcon={<CloseIcon />}
         variant="outline"
