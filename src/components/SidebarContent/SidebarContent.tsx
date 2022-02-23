@@ -45,8 +45,6 @@ export const SidebarContent = () => {
   return (
     <>
       <Box height="100%" justify="space-between">
-        <Heading>Welcome!</Heading>
-        <br />
         <WelcomeContent />
       </Box>
       <Box>
