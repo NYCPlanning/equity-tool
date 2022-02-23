@@ -1,11 +1,12 @@
 import React from "react";
 import dridata from "@data/DRI_Subindices_Indicators.json";
-import { Box, Divider, Heading, Button, Text } from "@chakra-ui/react";
+import { Box, Divider, Heading, Button, Text, Flex } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
 import { useRouter } from "next/router";
+import { FaDownload } from "react-icons/fa";
 
 export const DRISelection = () => {
   const { geoid } = useMapSubrouteInfo();
@@ -15,6 +16,10 @@ export const DRISelection = () => {
   const router = useRouter();
   const clearSelection = () => {
     router.push(`/map/dri/nta/`);
+  };
+
+  const downloadDRI = () => {
+    // At some point, we'll have to make this actually download something
   };
 
   return (
@@ -34,9 +39,19 @@ export const DRISelection = () => {
       </Box>
       <hr />
       <Box p="1rem 0.5rem 1rem 0.5rem">
-        <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
-          Displacement Risk Index (DRI) Profile
-        </Heading>
+        <Flex direction="row" justifyContent="space-between">
+          <Box>
+            <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
+              Displacement Risk Index (DRI) Profile
+            </Heading>
+          </Box>
+          <Box>
+            <Button variant="solid" colorScheme="teal" onClick={downloadDRI}>
+              <FaDownload />
+            </Button>
+          </Box>
+        </Flex>
+
         <Text>Select a DRI indicator to learn more about it.</Text>
       </Box>
       <hr />
