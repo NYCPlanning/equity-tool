@@ -8,11 +8,11 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 
 export const SidebarContent = () => {
-  const { view, geoid } = useMapSubrouteInfo();
+  const { view, geography, geoid } = useMapSubrouteInfo();
 
   const clearSelection = useClearSelection();
 
-  if (geoid != null) {
+  if (geoid != null || geography === "citywide") {
     if (view === "dri") {
       return (
         <>
@@ -41,6 +41,7 @@ export const SidebarContent = () => {
       );
     }
   }
+
   return (
     <>
       <Box height="100%" justify="space-between">
