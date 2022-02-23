@@ -41,7 +41,7 @@ export const CategoryMenuLink = ({
         leftIcon={<ChakraIcon w={"2.25rem"} h={"2.25rem"} as={Icon} />}
         iconSpacing={{ base: "0rem", md: "1rem" }}
         bg="inherit"
-        w={{ base: "4.75rem", md: "100%" }}
+        w={{ base: "auto", md: "100%" }}
         minW={"4.75rem"}
         h={"auto"}
         borderRadius={{ base: "0.25rem", md: "none" }}
