@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
 import { PathStyleExtension } from "@deck.gl/extensions";
+import { Geography } from "@constants/geography";
 
 export const useSelectedLayer = (
   view: string | null,
@@ -9,6 +10,8 @@ export const useSelectedLayer = (
   const router = useRouter();
 
   const { subroutes } = router.query;
+
+  const { District, Borough, Citywide, Nta } = Geography;
 
   // acquire subroute info, if any
   const ntacode = subroutes ? subroutes[2] : null;
@@ -21,11 +24,11 @@ export const useSelectedLayer = (
 
   if (view === "datatool") {
     switch (geography) {
-      case "district":
+      case District:
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
-            id: "puma",
+            id: District,
             data: `SELECT * FROM dcp_puma_2010`,
             uniqueIdProperty: "id",
             getLineColor: [100, 100, 100, 255],
@@ -45,11 +48,11 @@ export const useSelectedLayer = (
           }),
         ];
         break;
-      case "borough":
+      case Borough:
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
-            id: "borough",
+            id: Borough,
             data: `SELECT * FROM dcp_borough_boundary`,
             uniqueIdProperty: "id",
             getLineColor: [100, 100, 100, 255],
@@ -68,11 +71,11 @@ export const useSelectedLayer = (
             },
           }),
         ];
-      case "citywide":
+      case Citywide:
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,
-            id: "city",
+            id: Citywide,
             data: `SELECT * FROM pff_2020_city_21c`,
             uniqueIdProperty: "id",
             getLineColor: [100, 100, 100, 255],
@@ -86,7 +89,7 @@ export const useSelectedLayer = (
     }
   } else if (view === "dri") {
     switch (geography) {
-      case "nta":
+      case Nta:
         return [
           new CartoLayer({
             type: MAP_TYPES.QUERY,

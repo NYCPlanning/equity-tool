@@ -3,8 +3,11 @@ import { Heading, Box, Button } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
+import { Geography } from "@constants/geography";
 
 export const GeographyInfo = () => {
+  const { District, Borough, Citywide, Nta } = Geography;
+
   const { view, geography, geoid } = useMapSubrouteInfo();
 
   const pumaInfo = usePumaInfo(geoid);
@@ -14,16 +17,16 @@ export const GeographyInfo = () => {
   let primaryHeading = "";
 
   switch (geography) {
-    case "district":
+    case District:
       primaryHeading = pumaInfo?.neighborhoods ? pumaInfo.neighborhoods : "";
       break;
-    case "borough":
+    case Borough:
       primaryHeading = `${geoid}`;
       break;
-    case "citywide":
+    case Citywide:
       primaryHeading = "New York City";
       break;
-    case "nta":
+    case Nta:
       primaryHeading = "QN68 - Queensbridge Ravenswood Long Island City";
       break;
     default:
@@ -32,7 +35,7 @@ export const GeographyInfo = () => {
 
   return (
     <Box paddingBottom="2rem">
-      {view === "datatool" && geography === "district" && (
+      {view === "datatool" && geography === District && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
         </Heading>

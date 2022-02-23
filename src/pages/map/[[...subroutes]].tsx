@@ -8,6 +8,7 @@ import { GeographySelect as DataToolGeographySelect } from "@components/Map/Data
 import { SidebarContent } from "@components/SidebarContent";
 import { DrawerContent } from "@components/DrawerContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { Geography } from "@constants/geography";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -48,6 +49,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
 
+  const { District, Nta } = Geography;
+
   const router = useRouter();
 
   // acquire subroute info, if any
@@ -69,7 +72,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     setLastDataToolGeography(geography);
     setLastDataToolGeoid(geoid);
 
-    let driPath = "/map/dri/nta";
+    let driPath = `/map/dri/${Nta}`;
 
     if (lastDriGeoid) {
       driPath += `/${lastDriGeoid}`;
@@ -90,7 +93,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         dataToolPath += `/${lastDataToolGeoid}`;
       }
     } else {
-      dataToolPath += "/district";
+      dataToolPath += `/${District}`;
     }
 
     router.push({ pathname: dataToolPath });
@@ -127,7 +130,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
           {view === "datatool" && (
             <DataToolGeographySelect
-              geography={geography}
               position="absolute"
               top={5}
               right={{
