@@ -56,7 +56,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   // acquire subroute info, if any
   const { view, geography, geoid } = useMapSubrouteInfo();
 
-  const layers = useSelectedLayer(view, geography);
+  const layers = useSelectedLayer();
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
