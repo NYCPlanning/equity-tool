@@ -117,7 +117,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         <SidebarContent isGeographySelected={!!geoid} />
       </Flex>
 
-      <MobileDrawer title={indicatorRecord ? geoid : "Welcome!"}>
+      {/* //TODO: get rid of title component and move it into subcomponents */}
+      <MobileDrawer title={indicatorRecord ? geoid : ""}>
         <DrawerContent />
       </MobileDrawer>
 
