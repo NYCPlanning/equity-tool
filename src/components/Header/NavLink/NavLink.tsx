@@ -1,7 +1,6 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { Button, ButtonProps } from "@chakra-ui/react";
-import * as React from "react";
 
 interface NavLinkProps extends ButtonProps {
   href: string;
