@@ -11,11 +11,11 @@ export const ViewToggle = ({
   onDataToolClick,
   onDriClick,
 }: ViewToggleProps) => {
-  const { view, geography, geoid } = useMapSubrouteInfo();
+  const { view, geoid } = useMapSubrouteInfo();
 
   return (
     <>
-      {!geoid && geography !== "citywide" && (
+      {!geoid && (
         <Flex
           display={{
             base: "flex",

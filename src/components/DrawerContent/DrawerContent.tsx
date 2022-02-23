@@ -5,9 +5,9 @@ import WelcomeFooter from "@components/WelcomeFooter";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 export const DrawerContent = () => {
-  const { geography, geoid } = useMapSubrouteInfo();
+  const { geoid } = useMapSubrouteInfo();
 
-  if (geoid !== null || geography === "citywide") {
+  if (geoid !== null) {
     return (
       <>
         <GeographyInfo />

@@ -3,11 +3,13 @@ import { BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Geography } from "@constants/geography";
+import { Geoid } from "@constants/geoid";
 
 export const GeographySelect = ({ ...boxProps }: BoxProps) => {
   const router = useRouter();
   const { geography } = useMapSubrouteInfo();
   const { District, Borough, Citywide } = Geography;
+  const { Nyc } = Geoid;
 
   return (
     <ToggleButtonGroup isAttached={true} {...boxProps}>
@@ -26,7 +28,9 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         Borough
       </Button>
       <Button
-        onClick={() => router.push({ pathname: `/map/datatool/${Citywide}` })}
+        onClick={() =>
+          router.push({ pathname: `/map/datatool/${Citywide}/${Nyc}` })
+        }
         isActive={geography === Citywide}
         variant="rightCap"
       >
