@@ -93,6 +93,22 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/datatool");
     });
+
+    it("should switch geography when user uses Geography Select toolbar on Mobile", () => {
+      cy.url().should("include", "/map/datatool");
+
+      cy.contains("Community District*").click();
+
+      cy.url().should("include", "/map/datatool/district");
+
+      cy.contains("Borough").click();
+
+      cy.url().should("include", "/map/datatool/borough");
+
+      cy.visit("/map/datatool/district");
+
+      cy.contains("Community District*").should("have.attr", "data-active");
+    });
   });
 });
 
