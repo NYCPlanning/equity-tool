@@ -1,3 +1,1 @@
-export enum Geoid {
-  Nyc = "nyc",
-}
+export const NYC = "nyc";

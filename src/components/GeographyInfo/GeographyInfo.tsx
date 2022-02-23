@@ -4,11 +4,10 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { Geography } from "@constants/geography";
-import { Geoid } from "@constants/geoid";
+import { NYC } from "@constants/geoid";
 
 export const GeographyInfo = () => {
   const { District, Borough, Citywide, Nta } = Geography;
-  const { Nyc } = Geoid;
 
   const { view, geography, geoid } = useMapSubrouteInfo();
 
@@ -62,7 +61,7 @@ export const GeographyInfo = () => {
         </Heading>
       )}
 
-      {geoid !== Nyc && (
+      {geoid !== NYC && (
         <Button
           rightIcon={<CloseIcon />}
           variant="outline"
