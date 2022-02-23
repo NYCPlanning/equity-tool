@@ -34,7 +34,13 @@ export const GeographyInfo = () => {
           PUMA {geoid}
         </Heading>
       )}
-      <Heading as="h1" fontSize="1.5625rem" fontWeight={700} padding=".5rem 0">
+      <Heading
+        as="h1"
+        fontSize="1.5625rem"
+        fontWeight={700}
+        padding=".5rem 0"
+        isTruncated
+      >
         {primaryHeading}
       </Heading>
       <Heading
