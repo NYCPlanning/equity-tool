@@ -13,14 +13,14 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
   return (
     <ToggleButtonGroup isAttached={true} {...boxProps}>
       <Button
-        onClick={() => router.push({ pathname: `/map/datatool/${DISTRICT}` })}
+        onClick={() => router.push(`/map/datatool/${DISTRICT}`)}
         isActive={geography === DISTRICT}
         variant="leftCap"
       >
         Community District*
       </Button>
       <Button
-        onClick={() => router.push({ pathname: `/map/datatool/${BOROUGH}` })}
+        onClick={() => router.push(`/map/datatool/${BOROUGH}`)}
         isActive={geography === BOROUGH}
         variant="middle"
       >
@@ -28,7 +28,7 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
       </Button>
       <Button
         onClick={() =>
-          router.push({ pathname: `/map/datatool/${CITYWIDE}/${NYC}` })
+          router.push(`/map/datatool/${CITYWIDE}/${NYC}`)
         }
         isActive={geography === CITYWIDE}
         variant="rightCap"

@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
+import { Geography } from "@constants/geography";
 
 type ViewValue = "dri" | "datatool" | null;
 
 interface SubrouteInfo {
   view: ViewValue;
-  geography: string | null;
+  geography: Geography | null;
   geoid: string | null;
 }
 
@@ -12,29 +13,20 @@ interface SubrouteInfo {
 export const useMapSubrouteInfo = (): SubrouteInfo => {
   const router = useRouter();
 
-  const { subroutes } = router.query;
+  const { view, geography, geoid } = router.query;
 
-  const [viewParam, geographyParam, geoidParam] = subroutes
-    ? subroutes
-    : [null, null, null];
+  const viewParam: ViewValue =
+    view === "dri" || view === "datatool" ? view : null;
 
-  const view =
-    typeof viewParam === "string"
-      ? viewParam === "dri" || viewParam === "datatool"
-        ? viewParam
-        : null
-      : viewParam !== null && viewParam !== undefined
-      ? viewParam[0]
+  const geographyParam: Geography | null =
+    Array.isArray(geography) || geography === undefined
+      ? null
+      : Object.values(Geography).includes(geography as Geography)
+      ? (geography as Geography)
       : null;
 
-  const geography =
-    typeof geographyParam === "string"
-      ? geographyParam
-      : geographyParam !== null && geographyParam !== undefined
-      ? geographyParam[0]
-      : null;
+  const geoidParam: string | null =
+    Array.isArray(geoid) || geoid === undefined ? null : geoid;
 
-  const geoid = geoidParam ? geoidParam : null;
-
-  return { view, geography, geoid };
+  return { view: viewParam, geography: geographyParam, geoid: geoidParam };
 };
