@@ -4,15 +4,17 @@ import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { DRISelection } from "@components/SidebarContent/DRISelection";
 
 export const SidebarContent = () => {
-  const { geoid } = useMapSubrouteInfo();
+  const { view, geoid } = useMapSubrouteInfo();
 
   if (geoid != null) {
     return (
       <>
         <GeographyInfo />
         <hr />
+        {view === "dri" && <DRISelection />}
       </>
     );
   }

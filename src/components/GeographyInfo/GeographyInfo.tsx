@@ -4,7 +4,6 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { Geography } from "@constants/geography";
-import { DRISelection } from "@components/SidebarContent/DRISelection";
 import { NYC } from "@constants/geoid";
 
 export const GeographyInfo = () => {
@@ -35,16 +34,8 @@ export const GeographyInfo = () => {
       break;
   }
 
-  if (view === "dri") {
-    return (
-      <>
-        <DRISelection />
-      </>
-    );
-  }
-
   return (
-    <Box paddingBottom="2rem">
+    <Box paddingBottom="2rem" flex="shrink">
       {view === "datatool" && geography === District && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
