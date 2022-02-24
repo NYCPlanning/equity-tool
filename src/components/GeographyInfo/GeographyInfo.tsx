@@ -35,9 +35,7 @@ export const GeographyInfo = () => {
   }
 
   return (
-    <Box paddingBottom="2rem" flex="shrink"
-      title={primaryHeading}
-    >
+    <Box paddingBottom="2rem" flex="shrink" title={primaryHeading}>
       {view === "datatool" && geography === District && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
