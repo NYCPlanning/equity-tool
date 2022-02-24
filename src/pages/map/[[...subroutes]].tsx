@@ -108,9 +108,10 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         }}
         direction="column"
         flex="1"
-        height="100%"
+        height="calc(100vh - 4.375rem)" // workaround to ensure Sidebar vertically fills container
         p="1rem 0.5rem"
         boxShadow="lg"
+        overflowY="scroll"
         zIndex="999"
         data-cy="desktopSidebar"
       >

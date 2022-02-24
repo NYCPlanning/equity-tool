@@ -23,10 +23,11 @@ export const Header = () => {
   const isMobile = useWindowWidth() < 768;
   return (
     <Flex
+      flex="shrink"
       align="center"
       justify="space-between"
       as="header"
-      minH="4.375rem"
+      height="4.375rem"
       backgroundColor="white"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       zIndex="1500"
