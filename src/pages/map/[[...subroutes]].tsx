@@ -113,6 +113,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         boxShadow="lg"
         overflowY="scroll"
         zIndex="999"
+        css={{
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
         data-cy="desktopSidebar"
       >
         <SidebarContent />
