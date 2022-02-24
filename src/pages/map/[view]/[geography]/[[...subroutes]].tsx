@@ -5,6 +5,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
 import { Map, MobileDrawer, ViewToggle } from "@components/Map";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
+import { DRIMapLegend } from "@components/Map/DRI";
 import { SidebarContent } from "@components/SidebarContent";
 import { DrawerContent } from "@components/DrawerContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
@@ -152,6 +153,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               boxShadow="lg"
             />
           )}
+
+          {view === "dri" && <DRIMapLegend />}
 
           <Map
             layers={layers ? layers : undefined}
