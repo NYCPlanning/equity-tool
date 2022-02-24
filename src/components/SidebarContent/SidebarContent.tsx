@@ -1,19 +1,35 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Divider, Button } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { DRISelection } from "@components/SidebarContent/DRISelection";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useClearSelection } from "@helpers/useClearSelection";
+import { NYC } from "@constants/geoid";
 
 export const SidebarContent = () => {
   const { view, geoid } = useMapSubrouteInfo();
+  const clearSelection = useClearSelection();
 
   if (geoid != null) {
     return (
       <>
         <GeographyInfo />
-        <hr />
+        {geoid !== NYC && (
+          <Button
+            mt={"0.25rem"}
+            rightIcon={<CloseIcon />}
+            variant="outline"
+            size="xs"
+            onClick={clearSelection}
+            alignSelf={"start"}
+          >
+            Clear Selection
+          </Button>
+        )}
+        <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "dri" && <DRISelection />}
       </>
     );

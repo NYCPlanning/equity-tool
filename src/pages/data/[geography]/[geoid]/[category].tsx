@@ -14,6 +14,7 @@ import {
   FormControl,
   FormLabel,
   Switch,
+  Heading,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { EstimateTable } from "@components/EstimateTable";
@@ -102,20 +103,36 @@ const DataExplorerNav = () => {
             >
               {/* collapsed sidebar icon label can go here */}
             </Text>
-            <Flex
-              direction={"column"}
-              align={"middle"}
-              width={{ base: "full", md: "13.75rem" }}
-              ml={{ base: "0rem", md: "1rem" }}
+          </Flex>
+          <Flex
+            direction={"column"}
+            align={"middle"}
+            width={{ base: "full", md: "13.75rem" }}
+            ml={{ base: "0rem", md: "1rem" }}
+          >
+            <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
+              PUMA {geoid}
+            </Heading>
+            <Heading
+              as="h1"
+              fontSize="1.5625rem"
+              fontWeight={700}
+              padding=".5rem 0"
+              isTruncated
             >
-              <Divider
-                color={"gray.200"}
-                display={{ base: "block", md: "none" }}
-                mt={"0.5rem"}
-              />
-            </Flex>
+              Sunnyside and Woodside
+            </Heading>
+            <Heading as="h3" fontSize=".8125rem" fontWeight={400}>
+              Approx. Queens Community District 2
+            </Heading>
           </Flex>
         </Flex>
+        <Divider
+          color={"gray.200"}
+          display={{ base: "block", md: "none" }}
+          my={"1.5rem"}
+          mx={"1rem"}
+        />
         <CategoryMenu
           geography={geography}
           geoid={geoid}

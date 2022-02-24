@@ -1,10 +1,7 @@
-import { CloseIcon } from "@chakra-ui/icons";
-import { Heading, Box, Button } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { usePumaInfo } from "@hooks/usePumaInfo";
-import { useClearSelection } from "@helpers/useClearSelection";
 import { Geography } from "@constants/geography";
-import { NYC } from "@constants/geoid";
 
 export const GeographyInfo = () => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
@@ -12,8 +9,6 @@ export const GeographyInfo = () => {
   const { view, geography, geoid } = useMapSubrouteInfo();
 
   const pumaInfo = usePumaInfo(geoid);
-
-  const clearSelection = useClearSelection();
 
   let primaryHeading = "";
 
@@ -35,7 +30,7 @@ export const GeographyInfo = () => {
   }
 
   return (
-    <Box paddingBottom="2rem" flex="shrink" title={primaryHeading}>
+    <Box flex="shrink" title={primaryHeading}>
       {view === "datatool" && geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
@@ -51,25 +46,9 @@ export const GeographyInfo = () => {
         {primaryHeading}
       </Heading>
       {view === "datatool" && (
-        <Heading
-          as="h3"
-          fontSize=".8125rem"
-          fontWeight={400}
-          paddingBottom=".25rem"
-        >
+        <Heading as="h3" fontSize=".8125rem" fontWeight={400}>
           {pumaInfo?.districts ? pumaInfo.districts : ""}
         </Heading>
-      )}
-
-      {geoid !== NYC && (
-        <Button
-          rightIcon={<CloseIcon />}
-          variant="outline"
-          size="xs"
-          onClick={clearSelection}
-        >
-          Clear Selection
-        </Button>
       )}
     </Box>
   );
