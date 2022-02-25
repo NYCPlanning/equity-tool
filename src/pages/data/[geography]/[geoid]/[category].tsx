@@ -101,7 +101,7 @@ const DataExplorerNav = () => {
             </Center>
             <Text
               fontSize={"0.5rem"}
-              color={geography === Geography.DISTRICT ? "teal.600" : "gray.700"}
+              color={geography === Geography.DISTRICT ? "#2B797A" : "gray.700"}
               fontWeight={geography === Geography.DISTRICT ? "500" : "700"}
               display={isOpen ? "none" : "block"}
               textTransform={"capitalize"}

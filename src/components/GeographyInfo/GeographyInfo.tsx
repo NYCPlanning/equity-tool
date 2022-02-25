@@ -38,7 +38,7 @@ export const GeographyInfo = ({
   return (
     <Box flex="shrink" title={primaryHeading}>
       {geography === DISTRICT && (
-        <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
+        <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
           PUMA {geoid}
         </Heading>
       )}
