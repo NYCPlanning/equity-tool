@@ -22,9 +22,9 @@ export const Map = ({ layers, parent }: MapProps) => {
   const view = useView();
 
   const INITIAL_VIEW_STATE = {
-    longitude: -73.986607,
-    latitude: 40.691869,
-    zoom: 13,
+    longitude: -74.0008,
+    latitude: 40.6838,
+    zoom: 10.8,
     pitch: 0,
     bearing: 0,
   };
