@@ -31,7 +31,12 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
             }
             return [100, 100, 100, 255];
           },
-          getFillColor: [0, 0, 0, 0],
+          getFillColor: (feature: any) => {
+            if (feature?.properties?.puma?.trim() === geoid?.trim()) {
+              return [119, 129, 190, 127];
+            }
+            return [0, 0, 0, 0];
+          },
           lineWidthUnits: "pixels",
           getLineWidth: (feature: any) => {
             if (feature?.properties?.puma?.trim() === geoid?.trim()) {
@@ -41,6 +46,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           },
           updateTriggers: {
             getLineColor: [geoid],
+            getFillColor: [geoid],
             getLineWidth: [geoid],
           },
           lineWidthMinPixels: 1.5,
@@ -73,7 +79,12 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
             }
             return [100, 100, 100, 255];
           },
-          getFillColor: [0, 0, 0, 0],
+          getFillColor: (feature: any) => {
+            if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
+              return [119, 129, 190, 127];
+            }
+            return [0, 0, 0, 0];
+          },
           lineWidthUnits: "pixels",
           getLineWidth: (feature: any) => {
             if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
@@ -83,6 +94,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           },
           updateTriggers: {
             getLineColor: [geoid],
+            getFillColor: [geoid],
             getLineWidth: [geoid],
           },
           lineWidthMinPixels: 1.5,
@@ -109,7 +121,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           data: `SELECT * FROM pff_2020_city_21c`,
           uniqueIdProperty: "id",
           getLineColor: [42, 67, 101, 255],
-          getFillColor: [0, 0, 0, 0],
+          getFillColor: [119, 129, 190, 127],
           lineWidthMinPixels: 4.5,
           stroked: true,
         }),
@@ -127,7 +139,12 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
             }
             return [100, 100, 100, 255];
           },
-          getFillColor: [0, 0, 0, 0],
+          getFillColor: (feature: any) => {
+            if (feature?.properties?.ntacode?.trim() === geoid?.trim()) {
+              return [119, 129, 190, 127];
+            }
+            return [0, 0, 0, 0];
+          },
           lineWidthUnits: "pixels",
           getLineWidth: (feature: any) => {
             if (feature?.properties?.ntacode == geoid) {
@@ -137,6 +154,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           },
           updateTriggers: {
             getLineColor: [geoid],
+            getFillColor: [geoid],
             getLineWidth: [geoid],
           },
           lineWidthMinPixels: 1.5,
