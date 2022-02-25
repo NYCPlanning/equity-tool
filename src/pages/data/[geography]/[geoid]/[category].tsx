@@ -16,9 +16,11 @@ import {
   Switch,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
 import { EstimateTable } from "@components/EstimateTable";
 import { Estimate } from "@type/Estimate";
+import { CategoryMenu } from "@components/CategoryMenu";
+import { useDataExplorerState } from "@hooks/useDataExplorerState";
+import { Geography } from "@constants/geography";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -49,11 +51,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const GeographySummary = () => {
+const DataExplorerNav = () => {
   const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
-  // Will need to derive the selected geo name and labels here as well,
-  // likely by using useRouter()
-  const { geotype } = useRouter().query;
+  const { geography, geoid, category } = useDataExplorerState();
 
   return (
     <Flex
@@ -61,21 +61,25 @@ const GeographySummary = () => {
       height={{ base: "auto", md: "full" }}
       width={{
         base: "full",
-        md: isOpen ? "308px" : "72px",
+        md: isOpen ? "19.25rem" : "4.25rem",
       }}
       overflowX={"hidden"}
-      pt={{ base: 6, md: 16 }}
+      pt={{ base: "1.5rem", md: "4rem" }}
       background={{ base: "white", md: "gray.100" }}
       transition="width 0.5s ease"
     >
-      <Box width={{ base: "full", md: "308px" }}>
+      <Box width={{ base: "full", md: "19.25rem" }}>
         {/* "Back to map" button can go here for screen sizes < md */}
         <Flex
-          px={{ base: 6, md: 4 }}
-          align={geotype === "puma" ? "start" : "center"}
+          px={{ base: "1.5rem", md: "0.875rem" }}
+          align={geography === Geography.DISTRICT ? "start" : "center"}
+          mb={{
+            base: "0.5rem",
+            md: geography === Geography.DISTRICT ? "1.5rem" : "2.5rem",
+          }}
         >
           <Flex
-            width={"40px"}
+            width={"2.5rem"}
             direction={"column"}
             display={{ base: "none", md: "flex" }}
             align={"center"}
@@ -83,68 +87,68 @@ const GeographySummary = () => {
           >
             <Center
               display={{ base: "none", md: "flex" }}
-              borderRadius={"10px"}
+              borderRadius={"0.625rem"}
               background={"gray.200"}
-              width="40px"
-              height="40px"
+              width="2.5rem"
+              height="2.5rem"
             >
-              <Icon as={FaMapMarkerAlt} w={"14px"} height={"30px"} />
+              <Icon as={FaMapMarkerAlt} w={"0.875rem"} height={"1.875rem"} />
             </Center>
             <Text
               fontSize={"0.5rem"}
               color="teal.600"
               fontWeight={"500"}
-              display={isOpen ? "none" : "block"}
+              visibility={isOpen ? "hidden" : "visible"}
             >
               {/* collapsed sidebar icon label can go here */}
             </Text>
-          </Flex>
-          {/*
-            This Flex and everything inside of it can be replaced or turned into some 
-            sort of reusable "GeographyLabels" or "PumaLabels" component because it also shows up
-            in the Data Tool view of the map page. We might have to move the Divider up one level
-            in the tree depending on how that component shakes out
-          */}
-          <Flex
-            direction={"column"}
-            align={"middle"}
-            width={{ base: "full", md: "220px" }}
-            ml={{ base: 0, md: 4 }}
-          >
-            <Divider
-              color={"gray.200"}
-              display={{ base: "block", md: "none" }}
-              order={4}
-              mt={2}
-            />
+            <Flex
+              direction={"column"}
+              align={"middle"}
+              width={{ base: "full", md: "13.75rem" }}
+              ml={{ base: "0rem", md: "1rem" }}
+            >
+              <Divider
+                color={"gray.200"}
+                display={{ base: "block", md: "none" }}
+                mt={"0.5rem"}
+              />
+            </Flex>
           </Flex>
         </Flex>
+        <CategoryMenu
+          geography={geography}
+          geoid={geoid}
+          currentCategory={category}
+          justify={{ base: "space-between", md: "start" }}
+        />
       </Box>
-      {/* Category selectory can go here... */}
       <Spacer />
       <IconButton
-        px={3}
+        px={"0.75rem"}
         background={"gray.200"}
         display={{ base: "none", md: "flex" }}
-        borderRadius={0}
+        borderRadius={"0rem"}
         width={"full"}
-        justifyContent={isOpen ? "end" : "center"}
+        justifyContent={"end"}
         onClick={onToggle}
         aria-label="Show Categories"
         icon={
           isOpen ? (
             <ChevronLeftIcon
+              mr={"0.875rem"}
               color="gray.500"
               _hover={{ color: "gray.500" }}
-              w={10}
-              h={10}
+              w={"2.5rem"}
+              h={"2.5rem"}
             />
           ) : (
             <ChevronRightIcon
+              mr={"0.875rem"}
               color="gray.500"
               _hover={{ color: "gray.500" }}
-              w={10}
-              h={10}
+              w={"2.5rem"}
+              h={"2.5rem"}
             />
           )
         }
@@ -218,48 +222,33 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
       width={"full"}
       height={"full"}
       direction={{ base: "column", md: "row" }}
-      gridGap={{ base: 6, md: 0 }}
+      gridGap={{ base: "1.5rem", md: "0rem" }}
     >
-      <GeographySummary />
+      <DataExplorerNav />
       <Box flexGrow={1}>
-        <Box>
-          {/* "Back to map" button can go here for screen sizes >= md */}
-          {/* racial subgroup selection can go here */}Subgroup switcher
-        </Box>
+        <Box>Subgroup switcher</Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
-        <Box>
-          <FormControl mb={4} display="flex" alignItems="center">
-            <Switch
-              isChecked={shouldShowReliability}
-              onChange={() => {
-                setShouldShowReliability(!shouldShowReliability);
-              }}
-              id="show-reliability"
-            />
-            <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
-              Show reliability data
-            </FormLabel>
-          </FormControl>
-          <Flex
-            direction={{ base: "column", md: "row" }}
-            gridGap={{ base: 3, md: 0 }}
-          >
-            <EstimateTable
-              data={testData}
-              shouldShowReliability={shouldShowReliability}
-            />
-
-            <EstimateTable
-              data={testData}
-              shouldShowReliability={shouldShowReliability}
-            />
-
-            <EstimateTable
-              data={testData}
-              shouldShowReliability={shouldShowReliability}
-            />
-          </Flex>
-        </Box>
+        <FormControl mb={4} display="flex" alignItems="center">
+          <Switch
+            isChecked={shouldShowReliability}
+            onChange={() => {
+              setShouldShowReliability(!shouldShowReliability);
+            }}
+            id="show-reliability"
+          />
+          <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
+            Show reliability data
+          </FormLabel>
+        </FormControl>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          gridGap={{ base: 3, md: 0 }}
+        >
+          <EstimateTable
+            data={testData}
+            shouldShowReliability={shouldShowReliability}
+          />
+        </Flex>
       </Box>
     </Flex>
   );

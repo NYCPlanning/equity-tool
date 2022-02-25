@@ -9,7 +9,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
 
   const { view, geography, geoid } = useMapSubrouteInfo();
 
-  const { District, Borough, Citywide, Nta } = Geography;
+  const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
   const toggleGeoSelect = (newGeoid: string) => {
     newGeoid.toString() === geoid
@@ -18,11 +18,11 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
   };
 
   switch (geography) {
-    case District:
+    case DISTRICT:
       return [
         new CartoLayer({
           type: MAP_TYPES.QUERY,
-          id: District,
+          id: DISTRICT,
           data: `SELECT * FROM dcp_puma_2010`,
           uniqueIdProperty: "id",
           getLineColor: [100, 100, 100, 255],
@@ -42,11 +42,11 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
         }),
       ];
       break;
-    case Borough:
+    case BOROUGH:
       return [
         new CartoLayer({
           type: MAP_TYPES.QUERY,
-          id: Borough,
+          id: BOROUGH,
           data: `SELECT * FROM dcp_borough_boundary`,
           uniqueIdProperty: "id",
           getLineColor: [100, 100, 100, 255],
@@ -65,11 +65,11 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           },
         }),
       ];
-    case Citywide:
+    case CITYWIDE:
       return [
         new CartoLayer({
           type: MAP_TYPES.QUERY,
-          id: Citywide,
+          id: CITYWIDE,
           data: `SELECT * FROM pff_2020_city_21c`,
           uniqueIdProperty: "id",
           getLineColor: [100, 100, 100, 255],
@@ -78,11 +78,11 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           stroked: true,
         }),
       ];
-    case Nta:
+    case NTA:
       return [
         new CartoLayer({
           type: MAP_TYPES.QUERY,
-          id: Nta,
+          id: NTA,
           data: "SELECT * FROM dcp_nta_2010",
           uniqueIdProperty: "id",
           getLineColor: (feature: any) => {

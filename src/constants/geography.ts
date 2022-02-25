@@ -1,6 +1,6 @@
 export enum Geography {
-  District = "district",
-  Borough = "borough",
-  Nta = "nta",
-  Citywide = "citywide",
+  DISTRICT = "district",
+  BOROUGH = "borough",
+  NTA = "nta",
+  CITYWIDE = "citywide",
 }
