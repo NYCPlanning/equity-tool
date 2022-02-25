@@ -8,7 +8,7 @@ import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
 
 import { Box } from "@chakra-ui/react";
-import { useView } from "@hooks/useView";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -19,7 +19,7 @@ setDefaultCredentials({
 type MapProps = Pick<DeckGLProps, "layers" | "parent">;
 
 export const Map = ({ layers, parent }: MapProps) => {
-  const view = useView();
+  const { view } = useMapSubrouteInfo();
 
   const INITIAL_VIEW_STATE = {
     longitude: -73.986607,

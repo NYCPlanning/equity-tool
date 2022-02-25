@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   Subroutes:
     /map/datatool/:geography
-    /map/dri/:geography/:geoid
+    /map/dri/:geography?geoid=:geoid
 */
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
@@ -75,10 +75,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     let driPath = `/map/dri/${NTA}`;
 
     if (lastDriGeoid) {
-      driPath += `/${lastDriGeoid}`;
+      // TODO: revisit this if more query params will exist on Map view
+      driPath += `?geoid=${lastDriGeoid}`;
     }
 
-    router.push({ pathname: driPath });
+    router.push(driPath);
   };
 
   const onDataToolClick = () => {
@@ -90,13 +91,14 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       dataToolPath += `/${lastDataToolGeography}`;
 
       if (lastDataToolGeoid) {
-        dataToolPath += `/${lastDataToolGeoid}`;
+        // TODO: revisit this if more query params will exist on Map view
+        dataToolPath += `?geoid=${lastDataToolGeoid}`;
       }
     } else {
       dataToolPath += `/${DISTRICT}`;
     }
 
-    router.push({ pathname: dataToolPath });
+    router.push(dataToolPath);
   };
 
   return (

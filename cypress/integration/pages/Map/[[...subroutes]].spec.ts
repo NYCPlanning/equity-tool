@@ -1,6 +1,6 @@
 describe("Map catch-all page", () => {
   beforeEach(() => {
-    cy.visit("/map/datatool");
+    cy.visit("/map/datatool/district");
   });
 
   context("desktop", () => {
@@ -52,7 +52,7 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/datatool/district");
 
-      cy.visit("/map/datatool/borough/BK0202");
+      cy.visit("/map/datatool/borough?geoid=BK0202");
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
@@ -60,7 +60,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/datatool/borough/BK0202");
+      cy.url().should("include", "/map/datatool/borough?geoid=BK0202");
     });
   });
 

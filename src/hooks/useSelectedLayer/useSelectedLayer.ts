@@ -14,7 +14,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
   const toggleGeoSelect = (newGeoid: string) => {
     newGeoid.toString() === geoid
       ? router.push(`/map/${view}/${geography}/`)
-      : router.push(`/map/${view}/${geography}/${newGeoid}`);
+      : router.push(`/map/${view}/${geography}?geoid=${newGeoid}`);
   };
 
   switch (geography) {
@@ -36,7 +36,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
               : null;
             if (typeof id === "string") {
               // ugh https://github.com/vercel/next.js/issues/9473
-              router.push(`/map/datatool/district/${id}`);
+              router.push(`/map/datatool/${DISTRICT}?geoid=${id}`);
             }
           },
         }),
@@ -60,7 +60,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
               ? info.object.properties.boroname
               : null;
             if (typeof id === "string") {
-              router.push({ pathname: `/map/datatool/borough/${id}` });
+              router.push(`/map/datatool/${BOROUGH}?geoid=${id}`);
             }
           },
         }),

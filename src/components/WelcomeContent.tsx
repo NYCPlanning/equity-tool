@@ -1,8 +1,8 @@
 import { Heading, Text, Link } from "@chakra-ui/react";
-import { useView } from "@hooks/useView";
+import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 const WelcomeContent = () => {
-  const view = useView();
+  const { view } = useMapSubrouteInfo();
 
   if (view === "datatool") {
     return (
