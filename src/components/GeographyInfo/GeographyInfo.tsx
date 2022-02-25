@@ -1,12 +1,18 @@
-import { Heading, Box } from "@chakra-ui/react";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { Heading, HeadingProps, Box } from "@chakra-ui/react";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { Geography } from "@constants/geography";
 
-export const GeographyInfo = () => {
-  const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
+export interface GeographyInfoProps extends HeadingProps {
+  geography: Geography | null;
+  geoid: string;
+}
 
-  const { view, geography, geoid } = useMapSubrouteInfo();
+export const GeographyInfo = ({
+  geoid,
+  geography,
+  ...headingProps
+}: GeographyInfoProps) => {
+  const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
   const pumaInfo = usePumaInfo(geoid);
 
@@ -20,7 +26,7 @@ export const GeographyInfo = () => {
       primaryHeading = `${geoid}`;
       break;
     case CITYWIDE:
-      primaryHeading = "New York City";
+      primaryHeading = "Citywide";
       break;
     case NTA:
       primaryHeading = "QN68 - Queensbridge Ravenswood Long Island City";
@@ -31,23 +37,23 @@ export const GeographyInfo = () => {
 
   return (
     <Box flex="shrink" title={primaryHeading}>
-      {view === "datatool" && geography === DISTRICT && (
+      {geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
         </Heading>
       )}
       <Heading
         as="h1"
-        fontSize="1.5625rem"
         fontWeight={700}
         padding=".5rem 0"
-        isTruncated
+        textTransform={"capitalize"}
+        {...headingProps}
       >
         {primaryHeading}
       </Heading>
-      {view === "datatool" && (
+      {pumaInfo?.districts && (
         <Heading as="h3" fontSize=".8125rem" fontWeight={400}>
-          {pumaInfo?.districts ? pumaInfo.districts : ""}
+          {pumaInfo.districts}
         </Heading>
       )}
     </Box>

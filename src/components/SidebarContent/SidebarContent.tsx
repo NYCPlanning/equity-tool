@@ -10,13 +10,18 @@ import { useClearSelection } from "@helpers/useClearSelection";
 import { NYC } from "@constants/geoid";
 
 export const SidebarContent = () => {
-  const { view, geoid } = useMapSubrouteInfo();
+  const { view, geoid, geography } = useMapSubrouteInfo();
   const clearSelection = useClearSelection();
 
   if (geoid != null) {
     return (
       <>
-        <GeographyInfo />
+        <GeographyInfo
+          geoid={geoid}
+          geography={geography}
+          fontSize="1.5625rem"
+          isTruncated
+        />
         {geoid !== NYC && (
           <Button
             mt={"0.25rem"}
