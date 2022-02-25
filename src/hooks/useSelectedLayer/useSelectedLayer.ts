@@ -25,18 +25,36 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           id: DISTRICT,
           data: `SELECT * FROM dcp_puma_2010`,
           uniqueIdProperty: "id",
-          getLineColor: [100, 100, 100, 255],
+          getLineColor: (feature: any) => {
+            if (feature?.properties?.puma?.trim() === geoid?.trim()) {
+              return [42, 67, 101, 255];
+            }
+            return [100, 100, 100, 255];
+          },
           getFillColor: [0, 0, 0, 0],
-          lineWidthMinPixels: 3,
+          lineWidthUnits: "pixels",
+          getLineWidth: (feature: any) => {
+            if (feature?.properties?.puma?.trim() === geoid?.trim()) {
+              return 4.5;
+            }
+            return 1.5;
+          },
+          updateTriggers: {
+            getLineColor: [geoid],
+            getLineWidth: [geoid],
+          },
+          lineWidthMinPixels: 1.5,
           stroked: true,
           pickable: true,
+          extensions: [new PathStyleExtension({ offset: true })],
+          getOffset: 0.5,
           onClick: (info: any) => {
             const id: any = info?.object?.properties?.puma
               ? info.object.properties.puma
               : null;
             if (typeof id === "string") {
               // ugh https://github.com/vercel/next.js/issues/9473
-              router.push(`/map/datatool/${DISTRICT}?geoid=${id}`);
+              toggleGeoSelect(id);
             }
           },
         }),
@@ -49,18 +67,36 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           id: BOROUGH,
           data: `SELECT * FROM dcp_borough_boundary`,
           uniqueIdProperty: "id",
-          getLineColor: [100, 100, 100, 255],
+          getLineColor: (feature: any) => {
+            if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
+              return [42, 67, 101, 255];
+            }
+            return [100, 100, 100, 255];
+          },
           getFillColor: [0, 0, 0, 0],
-          lineWidthMinPixels: 3,
+          lineWidthUnits: "pixels",
+          getLineWidth: (feature: any) => {
+            if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
+              return 4.5;
+            }
+            return 1.5;
+          },
+          updateTriggers: {
+            getLineColor: [geoid],
+            getLineWidth: [geoid],
+          },
+          lineWidthMinPixels: 1.5,
           stroked: true,
           pickable: true,
+          extensions: [new PathStyleExtension({ offset: true })],
+          getOffset: 0.5,
           onClick: (info: any) => {
             // TODO: Translate to borocode if needed for data lookup
             const id: any = info?.object?.properties?.boroname
               ? info.object.properties.boroname
               : null;
             if (typeof id === "string") {
-              router.push(`/map/datatool/${BOROUGH}?geoid=${id}`);
+              toggleGeoSelect(id);
             }
           },
         }),
@@ -72,9 +108,9 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           id: CITYWIDE,
           data: `SELECT * FROM pff_2020_city_21c`,
           uniqueIdProperty: "id",
-          getLineColor: [100, 100, 100, 255],
+          getLineColor: [42, 67, 101, 255],
           getFillColor: [0, 0, 0, 0],
-          lineWidthMinPixels: 3,
+          lineWidthMinPixels: 4.5,
           stroked: true,
         }),
       ];
