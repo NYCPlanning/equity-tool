@@ -139,12 +139,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
             }
             return [100, 100, 100, 255];
           },
-          getFillColor: (feature: any) => {
-            if (feature?.properties?.ntacode?.trim() === geoid?.trim()) {
-              return [119, 129, 190, 127];
-            }
-            return [0, 0, 0, 0];
-          },
+          getFillColor: [0, 0, 0, 0],
           lineWidthUnits: "pixels",
           getLineWidth: (feature: any) => {
             if (feature?.properties?.ntacode == geoid) {
@@ -154,7 +149,6 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           },
           updateTriggers: {
             getLineColor: [geoid],
-            getFillColor: [geoid],
             getLineWidth: [geoid],
           },
           lineWidthMinPixels: 1.5,
