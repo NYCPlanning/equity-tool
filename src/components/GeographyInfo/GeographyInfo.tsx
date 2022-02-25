@@ -1,19 +1,20 @@
-import { CloseIcon } from "@chakra-ui/icons";
-import { Heading, Box, Button } from "@chakra-ui/react";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { Heading, HeadingProps, Box } from "@chakra-ui/react";
 import { usePumaInfo } from "@hooks/usePumaInfo";
-import { useClearSelection } from "@helpers/useClearSelection";
 import { Geography } from "@constants/geography";
-import { NYC } from "@constants/geoid";
 
-export const GeographyInfo = () => {
+export interface GeographyInfoProps extends HeadingProps {
+  geography: Geography | null;
+  geoid: string;
+}
+
+export const GeographyInfo = ({
+  geoid,
+  geography,
+  ...headingProps
+}: GeographyInfoProps) => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
-  const { view, geography, geoid } = useMapSubrouteInfo();
-
   const pumaInfo = usePumaInfo(geoid);
-
-  const clearSelection = useClearSelection();
 
   let primaryHeading = "";
 
@@ -25,7 +26,7 @@ export const GeographyInfo = () => {
       primaryHeading = `${geoid}`;
       break;
     case CITYWIDE:
-      primaryHeading = "New York City";
+      primaryHeading = "Citywide";
       break;
     case NTA:
       primaryHeading = "QN68 - Queensbridge Ravenswood Long Island City";
@@ -35,41 +36,25 @@ export const GeographyInfo = () => {
   }
 
   return (
-    <Box paddingBottom="2rem" flex="shrink" title={primaryHeading}>
-      {view === "datatool" && geography === DISTRICT && (
-        <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
+    <Box flex="shrink" title={primaryHeading}>
+      {geography === DISTRICT && (
+        <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
           PUMA {geoid}
         </Heading>
       )}
       <Heading
         as="h1"
-        fontSize="1.5625rem"
         fontWeight={700}
         padding=".5rem 0"
-        isTruncated
+        textTransform={"capitalize"}
+        {...headingProps}
       >
         {primaryHeading}
       </Heading>
-      {view === "datatool" && (
-        <Heading
-          as="h3"
-          fontSize=".8125rem"
-          fontWeight={400}
-          paddingBottom=".25rem"
-        >
-          {pumaInfo?.districts ? pumaInfo.districts : ""}
+      {pumaInfo?.districts && (
+        <Heading as="h3" fontSize=".8125rem" fontWeight={400}>
+          {pumaInfo.districts}
         </Heading>
-      )}
-
-      {geoid !== NYC && (
-        <Button
-          rightIcon={<CloseIcon />}
-          variant="outline"
-          size="xs"
-          onClick={clearSelection}
-        >
-          Clear Selection
-        </Button>
       )}
     </Box>
   );
