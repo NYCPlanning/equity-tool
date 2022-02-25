@@ -8,29 +8,29 @@ import { NYC } from "@constants/geoid";
 export const GeographySelect = ({ ...boxProps }: BoxProps) => {
   const router = useRouter();
   const { geography } = useMapSubrouteInfo();
-  const { District, Borough, Citywide } = Geography;
+  const { DISTRICT, BOROUGH, CITYWIDE } = Geography;
 
   return (
     <ToggleButtonGroup isAttached={true} {...boxProps}>
       <Button
-        onClick={() => router.push({ pathname: `/map/datatool/${District}` })}
-        isActive={geography === District}
+        onClick={() => router.push({ pathname: `/map/datatool/${DISTRICT}` })}
+        isActive={geography === DISTRICT}
         variant="leftCap"
       >
         Community District*
       </Button>
       <Button
-        onClick={() => router.push({ pathname: `/map/datatool/${Borough}` })}
-        isActive={geography === Borough}
+        onClick={() => router.push({ pathname: `/map/datatool/${BOROUGH}` })}
+        isActive={geography === BOROUGH}
         variant="middle"
       >
         Borough
       </Button>
       <Button
         onClick={() =>
-          router.push({ pathname: `/map/datatool/${Citywide}/${NYC}` })
+          router.push({ pathname: `/map/datatool/${CITYWIDE}/${NYC}` })
         }
-        isActive={geography === Citywide}
+        isActive={geography === CITYWIDE}
         variant="rightCap"
       >
         Citywide

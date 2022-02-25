@@ -14,7 +14,7 @@ export const useDataExplorerState = (): DataExplorerState => {
   const { geography, geoid, category } = router.query;
 
   const result: DataExplorerState = {
-    geography: Geography.Citywide,
+    geography: Geography.CITYWIDE,
     geoid: NYC,
     category: Category.DEMO,
   };

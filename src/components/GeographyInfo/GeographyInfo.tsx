@@ -7,7 +7,7 @@ import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 
 export const GeographyInfo = () => {
-  const { District, Borough, Citywide, Nta } = Geography;
+  const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
   const { view, geography, geoid } = useMapSubrouteInfo();
 
@@ -18,16 +18,16 @@ export const GeographyInfo = () => {
   let primaryHeading = "";
 
   switch (geography) {
-    case District:
+    case DISTRICT:
       primaryHeading = pumaInfo?.neighborhoods ? pumaInfo.neighborhoods : "";
       break;
-    case Borough:
+    case BOROUGH:
       primaryHeading = `${geoid}`;
       break;
-    case Citywide:
+    case CITYWIDE:
       primaryHeading = "New York City";
       break;
-    case Nta:
+    case NTA:
       primaryHeading = "QN68 - Queensbridge Ravenswood Long Island City";
       break;
     default:
@@ -36,7 +36,7 @@ export const GeographyInfo = () => {
 
   return (
     <Box paddingBottom="2rem">
-      {view === "datatool" && geography === District && (
+      {view === "datatool" && geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="teal.600">
           PUMA {geoid}
         </Heading>

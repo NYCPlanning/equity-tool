@@ -72,10 +72,10 @@ const DataExplorerNav = () => {
         {/* "Back to map" button can go here for screen sizes < md */}
         <Flex
           px={{ base: "1.5rem", md: "0.875rem" }}
-          align={geography === Geography.District ? "start" : "center"}
+          align={geography === Geography.DISTRICT ? "start" : "center"}
           mb={{
             base: "0.5rem",
-            md: geography === Geography.District ? "1.5rem" : "2.5rem",
+            md: geography === Geography.DISTRICT ? "1.5rem" : "2.5rem",
           }}
         >
           <Flex

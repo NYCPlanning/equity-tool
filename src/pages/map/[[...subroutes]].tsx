@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
 
-  const { District, Nta } = Geography;
+  const { DISTRICT, NTA } = Geography;
 
   const router = useRouter();
 
@@ -72,7 +72,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     setLastDataToolGeography(geography);
     setLastDataToolGeoid(geoid);
 
-    let driPath = `/map/dri/${Nta}`;
+    let driPath = `/map/dri/${NTA}`;
 
     if (lastDriGeoid) {
       driPath += `/${lastDriGeoid}`;
@@ -93,7 +93,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         dataToolPath += `/${lastDataToolGeoid}`;
       }
     } else {
-      dataToolPath += `/${District}`;
+      dataToolPath += `/${DISTRICT}`;
     }
 
     router.push({ pathname: dataToolPath });
