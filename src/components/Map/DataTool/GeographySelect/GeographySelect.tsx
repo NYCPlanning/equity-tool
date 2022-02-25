@@ -27,9 +27,7 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         Borough
       </Button>
       <Button
-        onClick={() =>
-          router.push(`/map/datatool/${CITYWIDE}/${NYC}`)
-        }
+        onClick={() => router.push(`/map/datatool/${CITYWIDE}?geoid=${NYC}`)}
         isActive={geography === CITYWIDE}
         variant="rightCap"
       >

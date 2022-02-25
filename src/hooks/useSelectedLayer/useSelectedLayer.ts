@@ -36,7 +36,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
               : null;
             if (typeof id === "string") {
               // ugh https://github.com/vercel/next.js/issues/9473
-              router.push(`/map/datatool/${District}?geoid=${id}`);
+              router.push(`/map/datatool/${DISTRICT}?geoid=${id}`);
             }
           },
         }),
@@ -60,7 +60,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
               ? info.object.properties.boroname
               : null;
             if (typeof id === "string") {
-              router.push(`/map/datatool/${Borough}?geoid=${id}`);
+              router.push(`/map/datatool/${BOROUGH}?geoid=${id}`);
             }
           },
         }),
