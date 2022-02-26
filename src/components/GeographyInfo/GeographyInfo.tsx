@@ -1,6 +1,8 @@
 import { Heading, HeadingProps, Box } from "@chakra-ui/react";
 import { usePumaInfo } from "@hooks/usePumaInfo";
+import { fetchNtaInfo } from "@helpers/fetchNtaInfo";
 import { Geography } from "@constants/geography";
+import { useEffect, useState } from "react";
 
 export interface GeographyInfoProps extends HeadingProps {
   geography: Geography | null;
@@ -16,6 +18,17 @@ export const GeographyInfo = ({
 
   const pumaInfo = usePumaInfo(geoid);
 
+  const [ntaInfo, setNtaInfo] = useState({
+    ntaname: "",
+    ntacode: "",
+  });
+
+  useEffect(() => {
+    fetchNtaInfo(geoid, (ntaInfo: any) => {
+      setNtaInfo(ntaInfo);
+    });
+  }, [geoid]);
+
   let primaryHeading = "";
 
   switch (geography) {
@@ -29,7 +42,7 @@ export const GeographyInfo = ({
       primaryHeading = "Citywide";
       break;
     case NTA:
-      primaryHeading = "QN68 - Queensbridge Ravenswood Long Island City";
+      primaryHeading = `${ntaInfo?.ntacode} - ${ntaInfo?.ntaname}`;
       break;
     default:
       break;

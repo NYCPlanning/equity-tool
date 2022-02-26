@@ -12,7 +12,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
   const toggleGeoSelect = (newGeoid: string) => {
-    newGeoid.toString() === geoid
+    newGeoid.toString().trim() === geoid?.trim()
       ? router.push(`/map/${view}/${geography}/`)
       : router.push(`/map/${view}/${geography}?geoid=${newGeoid}`);
   };
@@ -131,7 +131,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
         new CartoLayer({
           type: MAP_TYPES.QUERY,
           id: NTA,
-          data: "SELECT * FROM dcp_nta_2010",
+          data: `SELECT * FROM ${process.env.ntaLayer}`,
           uniqueIdProperty: "id",
           getLineColor: (feature: any) => {
             if (feature?.properties?.ntacode == geoid) {
@@ -158,7 +158,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
           getOffset: 0.5,
           onClick: (info: any) => {
             const id: string = info?.object?.properties?.ntacode
-              ? info.object.properties.ntacode
+              ? info.object.properties.ntacode.trim()
               : null;
             if (typeof id === "string") {
               toggleGeoSelect(id);
