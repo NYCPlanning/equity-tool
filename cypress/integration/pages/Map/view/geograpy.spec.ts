@@ -62,6 +62,48 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/datatool/borough?geoid=BK0202");
     });
+
+    it("should display correct content in Sidebar depending on view (Data Tool or DRI)", () => {
+      cy.visit("/map/datatool/district");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="driBtn-desktop"]').click();
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Or switch to the Data Tool"
+      );
+    });
+
+    it("should display correct content in Sidebar depending on if a geography is selected", () => {
+      cy.visit("/map/datatool/district");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Sunnyside & Woodside"
+      );
+
+      cy.visit("/map/datatool/district?geoid=4109");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Sunnyside & Woodside"
+      );
+    });
   });
 
   context("mobile", () => {
@@ -108,6 +150,48 @@ describe("Map catch-all page", () => {
       cy.visit("/map/datatool/district");
 
       cy.contains("Community District*").should("have.attr", "data-active");
+    });
+
+    it("should display correct content in Drawer depending on view (Data Tool or DRI)", () => {
+      cy.visit("/map/datatool/district");
+
+      cy.get('[data-cy="mobileDrawer"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="driBtn-mobile"]').click();
+
+      cy.get('[data-cy="mobileDrawer"]').should(
+        "contain",
+        "Or switch to the Data Tool"
+      );
+    });
+
+    it("should display correct content in Sidebar depending on if a geography is selected", () => {
+      cy.visit("/map/datatool/district");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Sunnyside & Woodside"
+      );
+
+      cy.visit("/map/datatool/district?geoid=4109");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Sunnyside & Woodside"
+      );
     });
   });
 });
