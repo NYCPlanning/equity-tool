@@ -131,7 +131,7 @@ export const useSelectedLayer = (): CartoLayer<any, any>[] | null => {
         new CartoLayer({
           type: MAP_TYPES.QUERY,
           id: NTA,
-          data: `SELECT * FROM ${process.env.ntaLayer}`,
+          data: `SELECT * FROM ${process.env.NTA_LAYER}`,
           uniqueIdProperty: "id",
           getLineColor: (feature: any) => {
             if (feature?.properties?.ntacode == geoid) {

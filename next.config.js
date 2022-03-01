@@ -9,6 +9,6 @@ module.exports = {
     ];
   },
   env: {
-    ntaLayer: "dcp_nta_2010",
+    NTA_LAYER: "dcp_nta_2010",
   },
 };

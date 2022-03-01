@@ -4,7 +4,7 @@ export const fetchNtaInfo = async (
 ): Promise<null> => {
   if (!ntacode) return null;
 
-  const ntaInfoSql = `SELECT ntacode, ntaname FROM ${process.env.ntaLayer} WHERE ntacode='${ntacode}'`;
+  const ntaInfoSql = `SELECT ntacode, ntaname FROM ${process.env.NTA_LAYER} WHERE ntacode='${ntacode}'`;
 
   try {
     const fetchResponse = await (
