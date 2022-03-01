@@ -19,6 +19,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { EstimateTable } from "@components/EstimateTable";
 import { Estimate } from "@type/Estimate";
 import { CategoryMenu } from "@components/CategoryMenu";
+import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Geography } from "@constants/geography";
 
@@ -71,15 +72,19 @@ const DataExplorerNav = () => {
       <Box width={{ base: "full", md: "19.25rem" }}>
         {/* "Back to map" button can go here for screen sizes < md */}
         <Flex
-          px={{ base: "1.5rem", md: "0.875rem" }}
-          align={geography === Geography.DISTRICT ? "start" : "center"}
+          mx={{ base: "0.75rem", md: "0rem" }}
+          align={"start"}
+          pb={{ base: "0.5rem", md: "0rem" }}
           mb={{
             base: "0.5rem",
             md: geography === Geography.DISTRICT ? "1.5rem" : "2.5rem",
           }}
+          borderBottom={{ base: "1px solid", md: "none" }}
+          borderBottomColor={"gray.200"}
         >
           <Flex
-            width={"2.5rem"}
+            width={"4.25rem"}
+            minWidth={"4.25rem"}
             direction={"column"}
             display={{ base: "none", md: "flex" }}
             align={"center"}
@@ -96,26 +101,25 @@ const DataExplorerNav = () => {
             </Center>
             <Text
               fontSize={"0.5rem"}
-              color="teal.600"
-              fontWeight={"500"}
-              visibility={isOpen ? "hidden" : "visible"}
+              color={geography === Geography.DISTRICT ? "#2B797A" : "gray.700"}
+              fontWeight={geography === Geography.DISTRICT ? "500" : "700"}
+              display={isOpen ? "none" : "block"}
+              textTransform={"capitalize"}
             >
-              {/* collapsed sidebar icon label can go here */}
+              {geography === Geography.DISTRICT && `PUMA ${geoid}`}
+              {geography === Geography.BOROUGH && geoid}
+              {geography === Geography.CITYWIDE && "Citywide"}
             </Text>
-            <Flex
-              direction={"column"}
-              align={"middle"}
-              width={{ base: "full", md: "13.75rem" }}
-              ml={{ base: "0rem", md: "1rem" }}
-            >
-              <Divider
-                color={"gray.200"}
-                display={{ base: "block", md: "none" }}
-                mt={"0.5rem"}
-              />
-            </Flex>
           </Flex>
+          <Box pr={"1rem"}>
+            <GeographyInfo
+              geoid={geoid}
+              geography={geography}
+              fontSize={{ base: "1.6525rem", md: "1.25rem " }}
+            />
+          </Box>
         </Flex>
+
         <CategoryMenu
           geography={geography}
           geoid={geoid}
