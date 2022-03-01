@@ -16,6 +16,7 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         onClick={() => router.push(`/map/datatool/${DISTRICT}`)}
         isActive={geography === DISTRICT}
         variant="leftCap"
+        data-cy="districtButton"
       >
         Community District*
       </Button>
@@ -23,6 +24,7 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         onClick={() => router.push(`/map/datatool/${BOROUGH}`)}
         isActive={geography === BOROUGH}
         variant="middle"
+        data-cy="boroughButton"
       >
         Borough
       </Button>
@@ -30,6 +32,7 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         onClick={() => router.push(`/map/datatool/${CITYWIDE}?geoid=${NYC}`)}
         isActive={geography === CITYWIDE}
         variant="rightCap"
+        data-cy="citywideButton"
       >
         Citywide
       </Button>
