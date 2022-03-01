@@ -6,16 +6,30 @@ export const fetchNtaInfo = async (
 
   const ntaInfoSql = `SELECT ntacode, ntaname FROM ${process.env.ntaLayer} WHERE ntacode='${ntacode}'`;
 
-  const {
-    rows: [ntaInfo],
-  } = await (
-    await fetch(`https://planninglabs.carto.com/api/v2/sql?q=${ntaInfoSql}`)
-  ).json();
+  try {
+    const fetchResponse = await (
+      await fetch(`https://planninglabs.carto.com/api/v2/sql?q=${ntaInfoSql}`)
+    ).json();
 
-  onNtaInfo({
-    ntacode: ntaInfo?.ntacode,
-    ntaname: ntaInfo?.ntaname,
-  });
+    if (!fetchResponse.error) {
+      const {
+        rows: [ntaInfo],
+      } = fetchResponse;
+
+      onNtaInfo({
+        ntacode: ntaInfo?.ntacode,
+        ntaname: ntaInfo?.ntaname,
+      });
+    } else {
+      console.log(`Error: ${fetchResponse.error}`);
+    }
+  } catch (e: unknown) {
+    if (typeof e === "object") {
+      const error = e as { error: string };
+
+      console.log(`Error: ${error}`);
+    }
+  }
 
   return null;
 };
