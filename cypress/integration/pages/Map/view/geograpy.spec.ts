@@ -104,6 +104,34 @@ describe("Map catch-all page", () => {
         "Sunnyside & Woodside"
       );
     });
+
+    it("should render correct geography information for each geography type"),
+      () => {
+        cy.visit("/map/datatool/district?geoid=4108");
+
+        cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
+          "contain",
+          "Forest Hills & Rego Park"
+        );
+
+        cy.visit("/map/datatool/borough?geoid=Queens");
+
+        cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Queens");
+
+        cy.visit("/map/datatool/citywide?geoid=nyc");
+
+        cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
+          "contain",
+          "Citywide"
+        );
+
+        cy.visit("/map/dri/nta?geoid=BK76");
+
+        cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
+          "contain",
+          "QN68 - Queensbridge"
+        );
+      };
   });
 
   context("mobile", () => {
@@ -136,21 +164,28 @@ describe("Map catch-all page", () => {
       cy.url().should("include", "/map/datatool");
     });
 
-    it("should switch geography when user uses Geography Select toolbar on Mobile", () => {
-      cy.url().should("include", "/map/datatool");
+    // Switching to Borough suddenly exceeded 4000ms... perhaps due to some MVT errors
+    it.only(
+      "should switch geography when user uses Geography Select toolbar on Mobile",
+      {
+        defaultCommandTimeout: 4000,
+      },
+      () => {
+        cy.url().should("include", "/map/datatool");
 
-      cy.contains("Community District*").click();
+        cy.get('[data-cy="districtButton"]').click();
 
-      cy.url().should("include", "/map/datatool/district");
+        cy.url().should("include", "/map/datatool/district");
 
-      cy.contains("Borough").click();
+        cy.get('[data-cy="boroughButton"]').click();
 
-      cy.url().should("include", "/map/datatool/borough");
+        cy.url().should("include", "/map/datatool/borough");
 
-      cy.visit("/map/datatool/district");
+        cy.visit("/map/datatool/district");
 
-      cy.contains("Community District*").should("have.attr", "data-active");
-    });
+        cy.contains("Community District*").should("have.attr", "data-active");
+      }
+    );
 
     it("should display correct content in Drawer depending on view (Data Tool or DRI)", () => {
       cy.visit("/map/datatool/district");

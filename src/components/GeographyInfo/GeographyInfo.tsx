@@ -48,6 +48,7 @@ export const GeographyInfo = ({
         padding=".5rem 0"
         textTransform={"capitalize"}
         {...headingProps}
+        data-cy="geoInfoPrimaryHeading"
       >
         {primaryHeading}
       </Heading>
