@@ -49,7 +49,7 @@ export const GeographyInfo = ({
   }
 
   return (
-    <Box flex="shrink" title={primaryHeading}>
+    <Box flex="shrink" title={primaryHeading} padding="2.5rem 1rem 1.5rem 1rem">
       {geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
           PUMA {geoid}

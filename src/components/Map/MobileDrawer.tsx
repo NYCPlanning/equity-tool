@@ -72,7 +72,6 @@ export const MobileDrawer = ({ children }: MobileDrawerProps) => {
         <Box
           flex="auto"
           overflow="scroll"
-          p="1rem"
           css={{
             "&::-webkit-scrollbar": {
               display: "none",
