@@ -27,28 +27,33 @@ export const DataTable = ({ children }: DataTableProps) => {
 
   return (
     <DataTableContext.Provider value={{ isOpen, onToggle }}>
-      <Box marginLeft={{ base: "0.75rem", md: 0 }} overflowX={"scroll"}>
+      <Box
+        flexShrink={{ base: 1, md: 0 }}
+        overflowX={{ base: "auto", md: "hidden" }}
+      >
         <Table
           variant="striped"
           sx={{
             paddingRight: { base: 3, md: 0 },
             display: "block",
-            overflowX: "auto",
+            overflowX: { base: "auto", md: "hidden" },
             borderCollapse: "initial",
             borderSpacing: 0,
             fontSize: "0.875rem",
             whiteSpace: "nowrap",
+            tableLayout: "fixed",
+
             "thead tr": {
               th: {
-                minW: "calc((100vw - 26px) / 3)",
-                maxW: "calc((100vw - 26px) / 3)",
+                minW: { base: "calc((100vw - 26px) / 3)", md: "8rem" },
+                maxW: { base: "calc((100vw - 26px) / 3)", md: "8rem" },
                 whiteSpace: "normal",
               },
             },
             tbody: {
               td: {
-                minW: "calc((100vw - 26px) / 3)",
-                maxW: "calc((100vw - 26px) / 3)",
+                minW: { base: "calc((100vw - 26px) / 3)", md: "8rem" },
+                maxW: { base: "calc((100vw - 26px) / 3)", md: "8rem" },
                 whiteSpace: "normal",
                 px: "1.5rem",
               },
@@ -57,7 +62,10 @@ export const DataTable = ({ children }: DataTableProps) => {
                   borderBottomLeftRadius: "0.75rem",
                 },
                 "td:last-of-type": {
-                  borderBottomRightRadius: "0.75rem",
+                  borderBottomRightRadius: {
+                    base: "0.75rem",
+                    md: "0rem",
+                  },
                 },
               },
             },
