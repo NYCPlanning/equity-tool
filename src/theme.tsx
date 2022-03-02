@@ -30,6 +30,7 @@ const theme = extendTheme({
             borderColor: "gray.300",
             textTransform: "capitalize",
             textAlign: "center",
+            py: "0.75rem",
           },
           tbody: {
             width: "100%",

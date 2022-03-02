@@ -21,8 +21,14 @@ export const DataTableHead = ({
         <Th
           onClick={onToggle}
           colSpan={colSpan}
-          borderTopLeftRadius="0.75rem"
-          borderTopRightRadius="0.75rem"
+          borderTopLeftRadius={{
+            base: "0.75rem",
+            md: "0rem",
+          }}
+          borderTopRightRadius={{
+            base: "0.75rem",
+            md: "0rem",
+          }}
           borderBottomLeftRadius={{
             base: isOpen ? "0rem" : "0.75rem",
             md: "0rem",

@@ -58,6 +58,7 @@ const DataExplorerNav = () => {
 
   return (
     <Flex
+      flexShrink={"0"}
       direction={"column"}
       height={{ base: "auto", md: "full" }}
       width={{
@@ -229,8 +230,8 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
       <DataExplorerNav />
-      <Box flexGrow={1}>
-        <Box>Subgroup switcher</Box>
+      <Box flexGrow={1} overflowX={"hidden"}>
+        <Box>Subgroup switcher can go here</Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
         <FormControl mb={4} display="flex" alignItems="center">
           <Switch
@@ -247,6 +248,7 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
         <Flex
           direction={{ base: "column", md: "row" }}
           gridGap={{ base: 3, md: 0 }}
+          overflowX={"auto"}
         >
           <EstimateTable
             data={testData}
