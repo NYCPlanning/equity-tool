@@ -14,12 +14,14 @@ export interface CategoryMenuProps extends FlexProps {
   currentCategory?: Category;
   geography: Geography;
   geoid: string;
+  bottomLabels?: boolean;
 }
 
 export const CategoryMenu = ({
   geography,
   geoid,
   currentCategory,
+  bottomLabels = false,
   ...flexProps
 }: CategoryMenuProps) => (
   <Flex
@@ -33,6 +35,8 @@ export const CategoryMenu = ({
       icon={<FontAwesomeIcon icon={faUserGroup} />}
       href={`/data/${geography}/${geoid}/${Category.DEMO}`}
       isActive={currentCategory === Category.DEMO}
+      flexDirection={bottomLabels ? "column" : { base: "column", md: "row" }}
+      textAlign={bottomLabels ? "center" : { base: "center", md: "left" }}
     >
       Demographic Conditions
     </CategoryMenuLink>
@@ -40,6 +44,8 @@ export const CategoryMenu = ({
       icon={<FontAwesomeIcon icon={faUmbrella} />}
       href={`/data/${geography}/${geoid}/${Category.ECON}`}
       isActive={currentCategory === Category.ECON}
+      flexDirection={bottomLabels ? "column" : { base: "column", md: "row" }}
+      textAlign={bottomLabels ? "center" : { base: "center", md: "left" }}
     >
       Household Economic Security
     </CategoryMenuLink>
@@ -47,6 +53,8 @@ export const CategoryMenu = ({
       icon={<FontAwesomeIcon icon={faHouseUser} />}
       href={`/data/${geography}/${geoid}/${Category.HSAQ}`}
       isActive={currentCategory === Category.HSAQ}
+      flexDirection={bottomLabels ? "column" : { base: "column", md: "row" }}
+      textAlign={bottomLabels ? "center" : { base: "center", md: "left" }}
     >
       Housing Security, Affordability and Quality
     </CategoryMenuLink>
@@ -54,6 +62,8 @@ export const CategoryMenu = ({
       icon={<BuildingHouseIcon />}
       href={`/data/${geography}/${geoid}/${Category.HOPD}`}
       isActive={currentCategory === Category.HOPD}
+      flexDirection={bottomLabels ? "column" : { base: "column", md: "row" }}
+      textAlign={bottomLabels ? "center" : { base: "center", md: "left" }}
     >
       Housing Production
     </CategoryMenuLink>
@@ -61,6 +71,8 @@ export const CategoryMenu = ({
       icon={<MentalHealthIcon />}
       href={`/data/${geography}/${geoid}/${Category.QLAO}`}
       isActive={currentCategory === Category.QLAO}
+      flexDirection={bottomLabels ? "column" : { base: "column", md: "row" }}
+      textAlign={bottomLabels ? "center" : { base: "center", md: "left" }}
     >
       Quality of Life and Access to Opportunity
     </CategoryMenuLink>

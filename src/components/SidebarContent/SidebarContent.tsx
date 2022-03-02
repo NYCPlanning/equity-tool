@@ -8,6 +8,8 @@ import { DRISelection } from "@components/SidebarContent/DRISelection";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { NYC } from "@constants/geoid";
+import { Geography } from "@constants/geography";
+import { CategoryMenu } from "@components/CategoryMenu";
 
 export const SidebarContent = () => {
   const { view, geoid, geography } = useMapSubrouteInfo();
@@ -36,6 +38,12 @@ export const SidebarContent = () => {
         )}
         <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "dri" && <DRISelection />}
+        {view === "datatool" && (
+          <CategoryMenu
+            geography={geography ? geography : Geography.CITYWIDE}
+            geoid={geography && geoid ? geoid : NYC}
+          />
+        )}
       </>
     );
   }
