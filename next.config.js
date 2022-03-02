@@ -8,4 +8,7 @@ module.exports = {
       },
     ];
   },
+  env: {
+    NTA_LAYER: "dcp_nta_2010",
+  },
 };
