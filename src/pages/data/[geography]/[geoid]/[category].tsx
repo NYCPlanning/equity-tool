@@ -241,8 +241,7 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
     >
       <DataExplorerNav />
       <Box flexGrow={1} overflowX={"hidden"}>
-        {/* <Box>Subgroup switcher can go here</Box> */}
-        <Box>
+        <Box width={{ base: "full", md: "max-content" }} p={"1rem"}>
           <Select onChange={changeSubgroup} defaultValue={subgroup}>
             <option value="tot">Total Population</option>
             <option value="wnh">White Non-hispanic</option>
