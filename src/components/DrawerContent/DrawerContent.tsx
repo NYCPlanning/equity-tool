@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "@chakra-ui/react";
+import { Box, Divider } from "@chakra-ui/react";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
@@ -42,12 +42,12 @@ export const DrawerContent = () => {
   }
 
   return (
-    <>
+    <Box padding="1rem">
       <WelcomeContent />
       <br />
       <hr />
       <br />
       <WelcomeFooter />
-    </>
+    </Box>
   );
 };
