@@ -140,15 +140,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           {view === "datatool" && (
             <DataToolGeographySelect
               position="absolute"
-              top={5}
-              right={{
-                md: 8,
-                base: "auto",
+              top={{
+                base: "1rem",
+                md: "4.5rem",
               }}
-              left={{
-                md: "auto",
-                base: "2.1875rem",
-              }}
+              left="2.1875rem"
               zIndex={100}
               boxShadow="lg"
             />

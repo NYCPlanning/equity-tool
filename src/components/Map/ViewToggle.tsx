@@ -70,8 +70,8 @@ export const ViewToggle = ({
 
       <ToggleButtonGroup
         position="absolute"
-        top={5}
-        left={8}
+        top="1rem"
+        left="2.1875rem"
         zIndex={200}
         boxShadow="lg"
         display={{
