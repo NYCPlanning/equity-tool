@@ -43,35 +43,61 @@ export const PageHeader = () => {
       <meta
         name="title"
         content={`${currentPage.title} - NYC Equitable Development Data Tool`}
+        key="title"
       />
       <meta
         name="description"
         content="Explore New York City's housing conditions, demographic patterns, and more."
+        key="description"
       />
 
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://equitytool.planning.nyc.gov/" />
-      <meta property="og:title" content="NYC Equitable Development Data Tool" />
+      <meta property="og:type" content="website" key="og:type" />
+      <meta
+        property="og:url"
+        content="https://equitytool.planning.nyc.gov/"
+        key="og:url"
+      />
+      <meta
+        property="og:title"
+        content="NYC Equitable Development Data Tool"
+        key="og:title"
+      />
       <meta
         property="og:description"
         content="Explore New York City's housing conditions, demographic patterns, and more."
+        key="og:description"
       />
-      <meta property="og:image" content={`${currentPage.image}`} />
+      <meta
+        property="og:image"
+        content={`${currentPage.image}`}
+        key="og:image"
+      />
 
-      <meta property="twitter:card" content="summary_large_image" />
+      <meta
+        property="twitter:card"
+        content="summary_large_image"
+        key="twitter:card"
+      />
       <meta
         property="twitter:url"
         content="https://equitytool.planning.nyc.gov/"
+        key="twitter:url"
       />
       <meta
         property="twitter:title"
         content="NYC Equitable Development Data Tool"
+        key="twitter:title"
       />
       <meta
         property="twitter:description"
         content="Explore New York City's housing conditions, demographic patterns, and more."
+        key="twitter:description"
       />
-      <meta property="twitter:image" content={`${currentPage.image}`} />
+      <meta
+        property="twitter:image"
+        content={`${currentPage.image}`}
+        key="twitter:image"
+      />
     </Head>
   );
 };
