@@ -107,7 +107,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       <Flex
         display={{
           base: "none",
-          lg: "flex",
+          md: "flex",
         }}
         direction="column"
         flex="1"
@@ -142,11 +142,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               position="absolute"
               top={5}
               right={{
-                lg: 8,
+                md: 8,
                 base: "auto",
               }}
               left={{
-                lg: "auto",
+                md: "auto",
                 base: "2.1875rem",
               }}
               zIndex={100}

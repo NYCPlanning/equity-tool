@@ -19,7 +19,7 @@ export const ViewToggle = ({
         <Flex
           display={{
             base: "flex",
-            lg: "none",
+            md: "none",
           }}
           direction="row"
           position="fixed"
@@ -76,7 +76,7 @@ export const ViewToggle = ({
         boxShadow="lg"
         display={{
           base: "none",
-          lg: "block",
+          md: "block",
         }}
       >
         <Button

@@ -17,7 +17,7 @@ export const MobileDrawer = ({ children }: MobileDrawerProps) => {
     <Box
       display={{
         base: "block",
-        lg: "none",
+        md: "none",
       }}
       height="100vh"
       width="100%"
