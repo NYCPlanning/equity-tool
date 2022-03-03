@@ -18,12 +18,14 @@ export const SidebarContent = () => {
   if (geoid != null) {
     return (
       <>
-        <GeographyInfo
-          geoid={geoid}
-          geography={geography}
-          fontSize="1.5625rem"
-          isTruncated
-        />
+        <Box padding="2.5rem 1rem 1.5rem 1rem">
+          <GeographyInfo
+            geoid={geoid}
+            geography={geography}
+            fontSize="1.5625rem"
+            isTruncated
+          />
+        </Box>
         {geoid !== NYC && (
           <Button
             mt={"0.25rem"}
