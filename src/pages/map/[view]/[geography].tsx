@@ -3,11 +3,12 @@ import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useSelectedLayer } from "@hooks/useSelectedLayer";
-import { Map, MobileDrawer, ViewToggle } from "@components/Map";
+import { Map, ViewToggle, WelcomeMobileDrawer } from "@components/Map";
+import { DataToolMobileDrawer } from "@components/Map/DataTool";
+import { DriMobileDrawer } from "@components/Map/DRI";
 import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
 import { DRIMapLegend } from "@components/Map/DRI";
 import { SidebarContent } from "@components/SidebarContent";
-import { DrawerContent } from "@components/DrawerContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Geography } from "@constants/geography";
 
@@ -126,9 +127,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         <SidebarContent />
       </Flex>
 
-      <MobileDrawer>
-        <DrawerContent />
-      </MobileDrawer>
+      {!geoid && <WelcomeMobileDrawer />}
+
+      {view === "datatool" && geoid && <DataToolMobileDrawer />}
+
+      {view === "dri" && geoid && <DriMobileDrawer />}
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
