@@ -30,11 +30,8 @@ export const DrawerContent = () => {
           <CategoryMenu
             geography={geography ? geography : Geography.CITYWIDE}
             geoid={geography && geoid ? geoid : NYC}
-            direction="row"
-            overflowX="auto"
             px="0.75rem"
             paddingRight="0rem"
-            bottomLabels={true}
           />
         )}
       </>
