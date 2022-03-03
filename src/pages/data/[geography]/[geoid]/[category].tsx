@@ -14,6 +14,7 @@ import {
   FormControl,
   FormLabel,
   Switch,
+  Select,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { EstimateTable } from "@components/EstimateTable";
@@ -222,6 +223,8 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
+  const { subgroup } = useDataExplorerState();
+
   return (
     <Flex
       width={"full"}
@@ -231,7 +234,46 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
     >
       <DataExplorerNav />
       <Box flexGrow={1} overflowX={"hidden"}>
-        <Box>Subgroup switcher can go here</Box>
+        {/* <Box>Subgroup switcher can go here</Box> */}
+        <Box>
+          <Select>
+            {subgroup === "tot" ? (
+              <option value="tot" selected>
+                Total Population
+              </option>
+            ) : (
+              <option value="tot">Total Population</option>
+            )}
+            {subgroup === "wnh" ? (
+              <option value="wnh" selected>
+                White Non-hispanic
+              </option>
+            ) : (
+              <option value="wnh">White Non-hispanic</option>
+            )}
+            {subgroup === "bnh" ? (
+              <option value="bnh" selected>
+                Black Non-hispanic
+              </option>
+            ) : (
+              <option value="bnh">Black Non-hispanic</option>
+            )}
+            {subgroup === "anh" ? (
+              <option value="anh" selected>
+                Asian Non-hispanic
+              </option>
+            ) : (
+              <option value="anh">Asian Non-hispanic</option>
+            )}
+            {subgroup === "hsp" ? (
+              <option value="hsp" selected>
+                Hispanic
+              </option>
+            ) : (
+              <option value="hsp">Hispanic</option>
+            )}
+          </Select>
+        </Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
         <FormControl mb={4} display="flex" alignItems="center">
           <Switch

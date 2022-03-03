@@ -1,22 +1,25 @@
 import { useRouter } from "next/router";
 import { Category } from "@constants/Category";
 import { Geography } from "@constants/geography";
+import { Subgroup } from "@constants/Subgroup";
 import { NYC } from "@constants/geoid";
 
 export interface DataExplorerState {
   geography: Geography;
   geoid: string;
   category: Category;
+  subgroup: string;
 }
 
 export const useDataExplorerState = (): DataExplorerState => {
   const router = useRouter();
-  const { geography, geoid, category } = router.query;
+  const { geography, geoid, category, subgroup } = router.query;
 
   const result: DataExplorerState = {
     geography: Geography.CITYWIDE,
     geoid: NYC,
     category: Category.DEMO,
+    subgroup: Subgroup.TOT,
   };
 
   if (
@@ -35,6 +38,13 @@ export const useDataExplorerState = (): DataExplorerState => {
     Object.values(Category).includes(category as Category)
   ) {
     result.category = category as Category;
+  }
+
+  if (
+    typeof subgroup === "string" &&
+    Object.values(Subgroup).includes(subgroup as Subgroup)
+  ) {
+    result.subgroup = subgroup as Subgroup;
   }
 
   return result;
