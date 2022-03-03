@@ -23,6 +23,7 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Geography } from "@constants/geography";
+import { useRouter } from "next/router";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -223,7 +224,13 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
-  const { subgroup } = useDataExplorerState();
+  const { geography, geoid, category, subgroup } = useDataExplorerState();
+  const router = useRouter();
+  const changeSubgroup = (event: any) => {
+    router.push(
+      `/data/${geography}/${geoid}/${category}?subgroup=${event.target.value}`
+    );
+  };
 
   return (
     <Flex
@@ -236,7 +243,7 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
       <Box flexGrow={1} overflowX={"hidden"}>
         {/* <Box>Subgroup switcher can go here</Box> */}
         <Box>
-          <Select>
+          <Select onChange={changeSubgroup}>
             {subgroup === "tot" ? (
               <option value="tot" selected>
                 Total Population
