@@ -45,7 +45,7 @@ export const Map = ({ layers, parent }: MapProps) => {
         position="absolute"
         top={{
           base: view === "datatool" ? "5rem" : "1.3rem",
-          lg: "5rem",
+          md: "5rem",
         }}
         left="2.1875rem"
       >

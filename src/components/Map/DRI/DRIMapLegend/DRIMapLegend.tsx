@@ -5,20 +5,20 @@ import { useState } from "react";
 export const DRIMapLegend = () => {
   const [displayMinimizedLegend, setDisplayMinimizedLegend] = useState({
     base: "block",
-    lg: "none",
+    md: "none",
   });
   const [displayFullLegend, setDisplayFullLegend] = useState({
     base: "none",
-    lg: "none",
+    md: "none",
   });
 
   const toggleLegend = () => {
     if (displayMinimizedLegend.base === "block") {
-      setDisplayMinimizedLegend({ base: "none", lg: "none" });
-      setDisplayFullLegend({ base: "block", lg: "none" });
+      setDisplayMinimizedLegend({ base: "none", md: "none" });
+      setDisplayFullLegend({ base: "block", md: "none" });
     } else {
-      setDisplayMinimizedLegend({ base: "block", lg: "none" });
-      setDisplayFullLegend({ base: "none", lg: "none" });
+      setDisplayMinimizedLegend({ base: "block", md: "none" });
+      setDisplayFullLegend({ base: "none", md: "none" });
     }
   };
 
@@ -29,7 +29,7 @@ export const DRIMapLegend = () => {
         position="absolute"
         bottom={8}
         right={{
-          lg: 8,
+          md: 8,
           base: "auto",
         }}
         zIndex={100}
@@ -39,7 +39,7 @@ export const DRIMapLegend = () => {
         borderRadius="5px"
         display={{
           base: "none",
-          lg: "block",
+          md: "block",
         }}
       >
         <Text fontWeight={700}>Displacement Risk Index</Text>
