@@ -243,42 +243,12 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
       <Box flexGrow={1} overflowX={"hidden"}>
         {/* <Box>Subgroup switcher can go here</Box> */}
         <Box>
-          <Select onChange={changeSubgroup}>
-            {subgroup === "tot" ? (
-              <option value="tot" selected>
-                Total Population
-              </option>
-            ) : (
-              <option value="tot">Total Population</option>
-            )}
-            {subgroup === "wnh" ? (
-              <option value="wnh" selected>
-                White Non-hispanic
-              </option>
-            ) : (
-              <option value="wnh">White Non-hispanic</option>
-            )}
-            {subgroup === "bnh" ? (
-              <option value="bnh" selected>
-                Black Non-hispanic
-              </option>
-            ) : (
-              <option value="bnh">Black Non-hispanic</option>
-            )}
-            {subgroup === "anh" ? (
-              <option value="anh" selected>
-                Asian Non-hispanic
-              </option>
-            ) : (
-              <option value="anh">Asian Non-hispanic</option>
-            )}
-            {subgroup === "hsp" ? (
-              <option value="hsp" selected>
-                Hispanic
-              </option>
-            ) : (
-              <option value="hsp">Hispanic</option>
-            )}
+          <Select onChange={changeSubgroup} defaultValue={subgroup}>
+            <option value="tot">Total Population</option>
+            <option value="wnh">White Non-hispanic</option>
+            <option value="bnh">Black Non-hispanic</option>
+            <option value="anh">Asian Non-hispanic</option>
+            <option value="hsp">Hispanic</option>
           </Select>
         </Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
