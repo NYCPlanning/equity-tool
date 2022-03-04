@@ -1,16 +1,10 @@
 import { useState } from "react";
 import { Box, IconButton, Flex } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import WelcomeContent from "@components/WelcomeContent";
+import WelcomeFooter from "@components/WelcomeFooter";
 
-interface MobileDrawerProps {
-  children?: React.ReactNode;
-}
-
-// It is the responsibility of MobileDrawer's children to make sure
-// that content is not occluded by the open/close toggle at the top right.
-// The button is 3rem x 3rem. The MobileDrawer also has 1rem padding around the sides
-// One solution is to add 2rem right padding for content at the top of the MobileDrawer.
-export const MobileDrawer = ({ children }: MobileDrawerProps) => {
+export const WelcomeMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,6 +22,7 @@ export const MobileDrawer = ({ children }: MobileDrawerProps) => {
       left="0"
       zIndex="900"
       bg="white"
+      borderRadius="1rem 1rem 0 0"
       data-cy="mobileDrawer"
     >
       <Flex direction="column" height="100%" position="relative">
@@ -72,13 +67,18 @@ export const MobileDrawer = ({ children }: MobileDrawerProps) => {
         <Box
           flex="auto"
           overflow="scroll"
+          padding="1rem"
           css={{
             "&::-webkit-scrollbar": {
               display: "none",
             },
           }}
         >
-          {children}
+          <WelcomeContent />
+          <br />
+          <hr />
+          <br />
+          <WelcomeFooter />
         </Box>
       </Flex>
     </Box>
