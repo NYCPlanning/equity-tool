@@ -8,7 +8,7 @@ export interface DataExplorerState {
   geography: Geography;
   geoid: string;
   category: Category;
-  subgroup: string;
+  subgroup: Subgroup;
 }
 
 export const useDataExplorerState = (): DataExplorerState => {
