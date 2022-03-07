@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { useSelectedLayer } from "@hooks/useSelectedLayer";
+import { useLayers } from "@hooks/useLayers";
 import { Map, ViewToggle, WelcomeMobileDrawer } from "@components/Map";
 import { DataToolMobileDrawer } from "@components/Map/DataTool";
 import { DriMobileDrawer } from "@components/Map/DRI";
@@ -58,7 +58,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   // acquire subroute info, if any
   const { view, geography, geoid } = useMapSubrouteInfo();
 
-  const layers = useSelectedLayer();
+  const layers = useLayers();
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
