@@ -23,7 +23,7 @@ export const WelcomeMobileDrawer = () => {
       zIndex="900"
       bg="white"
       borderRadius="1rem 1rem 0 0"
-      data-cy="mobileDrawer"
+      data-cy="mobileDrawer-welcome"
     >
       <Flex direction="column" height="100%" position="relative">
         <Box

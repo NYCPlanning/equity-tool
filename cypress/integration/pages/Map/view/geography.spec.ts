@@ -105,33 +105,55 @@ describe("Map catch-all page", () => {
       );
     });
 
-    it("should render correct geography information for each geography type"),
-      () => {
-        cy.visit("/map/datatool/district?geoid=4108");
+    it("should render correct geography information for each geography type", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
 
-        cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
-          "contain",
-          "Forest Hills & Rego Park"
-        );
+      cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
+        "contain",
+        "Forest Hills & Rego Park"
+      );
 
-        cy.visit("/map/datatool/borough?geoid=Queens");
+      cy.visit("/map/datatool/borough?geoid=Queens");
 
-        cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Queens");
+      cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Queens");
 
-        cy.visit("/map/datatool/citywide?geoid=nyc");
+      cy.visit("/map/datatool/citywide?geoid=nyc");
 
-        cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
-          "contain",
-          "Citywide"
-        );
+      cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Citywide");
 
-        cy.visit("/map/dri/nta?geoid=BK76");
+      cy.visit("/map/dri/nta?geoid=BK76");
 
-        cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
-          "contain",
-          "QN68 - Queensbridge"
-        );
-      };
+      cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
+        "contain",
+        "BK76 - Greenpoint"
+      );
+    });
+
+    it("should clear selection when user hits 'back' button", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Forest Hills & Rego Park"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="exitDataToolSelection-desktop"]').click();
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Forest Hills & Rego Park"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
+    });
   });
 
   context("mobile", () => {
@@ -165,7 +187,7 @@ describe("Map catch-all page", () => {
     });
 
     // Switching to Borough suddenly exceeded 4000ms... perhaps due to some MVT errors
-    it.only(
+    it(
       "should switch geography when user uses Geography Select toolbar on Mobile",
       {
         defaultCommandTimeout: 4000,
@@ -227,6 +249,23 @@ describe("Map catch-all page", () => {
         "contain",
         "Sunnyside & Woodside"
       );
+    });
+
+    it.only("should clear selection when user hits 'back' button", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
+
+      cy.get('[data-cy="mobileDrawer-datatool"]').should(
+        "contain",
+        "Forest Hills & Rego Park"
+      );
+
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("not.exist");
+
+      cy.get('[data-cy="exitDataToolSelection-mobile"]').click();
+
+      cy.get('[data-cy="mobileDrawer-datatool"]').should("not.exist");
+
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("exist");
     });
   });
 });
