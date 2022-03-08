@@ -128,6 +128,32 @@ describe("Map catch-all page", () => {
         "BK76 - Greenpoint"
       );
     });
+
+    it("should clear selection when user hits 'back' button", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Forest Hills & Rego Park"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Or switch to the Displacement Risk Index"
+      );
+
+      cy.get('[data-cy="exitDataToolSelection-desktop"]').click();
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "not.contain",
+        "Forest Hills & Rego Park"
+      );
+
+      cy.get('[data-cy="desktopSidebar"]').should(
+        "contain",
+        "Or switch to the Displacement Risk Index"
+      );
+    });
   });
 
   context("mobile", () => {
@@ -223,6 +249,23 @@ describe("Map catch-all page", () => {
         "contain",
         "Sunnyside & Woodside"
       );
+    });
+
+    it.only("should clear selection when user hits 'back' button", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
+
+      cy.get('[data-cy="mobileDrawer-datatool"]').should(
+        "contain",
+        "Forest Hills & Rego Park"
+      );
+
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("not.exist");
+
+      cy.get('[data-cy="exitDataToolSelection-mobile"]').click();
+
+      cy.get('[data-cy="mobileDrawer-datatool"]').should("not.exist");
+
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("exist");
     });
   });
 });

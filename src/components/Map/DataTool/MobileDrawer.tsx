@@ -46,7 +46,7 @@ export const DataToolMobileDrawer = () => {
             color="gray.500"
             leftIcon={<ArrowBackIcon />}
             aria-label="Exit Data Tool Selection"
-            data-cy="exitDataToolSelection"
+            data-cy="exitDataToolSelection-mobile"
             onClick={clearSelection}
           >
             back
