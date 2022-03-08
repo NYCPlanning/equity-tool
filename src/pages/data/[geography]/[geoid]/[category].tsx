@@ -14,6 +14,7 @@ import {
   FormControl,
   FormLabel,
   Switch,
+  Select,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { EstimateTable } from "@components/EstimateTable";
@@ -22,6 +23,7 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Geography } from "@constants/geography";
+import { useRouter } from "next/router";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -222,6 +224,14 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
+  const { geography, geoid, category, subgroup } = useDataExplorerState();
+  const router = useRouter();
+  const changeSubgroup = (event: any) => {
+    router.push(
+      `/data/${geography}/${geoid}/${category}?subgroup=${event.target.value}`
+    );
+  };
+
   return (
     <Flex
       width={"full"}
@@ -231,7 +241,15 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
     >
       <DataExplorerNav />
       <Box flexGrow={1} overflowX={"hidden"}>
-        <Box>Subgroup switcher can go here</Box>
+        <Box width={{ base: "full", md: "max-content" }} p={"1rem"}>
+          <Select onChange={changeSubgroup} defaultValue={subgroup}>
+            <option value="tot">Total Population</option>
+            <option value="wnh">White Non-hispanic</option>
+            <option value="bnh">Black Non-hispanic</option>
+            <option value="anh">Asian Non-hispanic</option>
+            <option value="hsp">Hispanic</option>
+          </Select>
+        </Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
         <FormControl mb={4} display="flex" alignItems="center">
           <Switch
