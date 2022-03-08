@@ -52,6 +52,7 @@ export const DriMobileDrawer = () => {
             padding="1.5rem 1rem"
             variant="ghost"
             bg="rgba(0,0,0,0)"
+            color="gray.500"
             leftIcon={<ArrowBackIcon />}
             aria-label="Exit Data Tool Selection"
             data-cy="exitDataToolSelection"

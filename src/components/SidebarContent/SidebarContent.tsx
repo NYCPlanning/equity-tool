@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Divider, Button } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
@@ -18,26 +18,27 @@ export const SidebarContent = () => {
   if (geoid != null) {
     return (
       <>
-        <Box padding="2.5rem 1rem 1.5rem 1rem">
+        <Box>
+          <Button
+            padding="1.5rem 1rem"
+            variant="ghost"
+            bg="rgba(0,0,0,0)"
+            color="gray.500"
+            leftIcon={<ArrowBackIcon />}
+            aria-label="Exit Data Tool Selection"
+            data-cy="exitDataToolSelection"
+            onClick={clearSelection}
+          >
+            back
+          </Button>
+        </Box>
+        <Box padding="0 1rem 1.5rem 1rem">
           <GeographyInfo
             geoid={geoid}
             geography={geography}
             fontSize="1.5625rem"
-            isTruncated
           />
         </Box>
-        {geoid !== NYC && (
-          <Button
-            mt={"0.25rem"}
-            rightIcon={<CloseIcon />}
-            variant="outline"
-            size="xs"
-            onClick={clearSelection}
-            alignSelf={"start"}
-          >
-            Clear Selection
-          </Button>
-        )}
         <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "dri" && <DRISelection />}
         {view === "datatool" && (
