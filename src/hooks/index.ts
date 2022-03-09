@@ -1,2 +1,2 @@
 export * from "./useIndicatorRecord";
-export * from "./useSelectedLayer";
+export * from "./useLayers";
