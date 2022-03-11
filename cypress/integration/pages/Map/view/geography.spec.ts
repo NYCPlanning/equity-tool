@@ -188,7 +188,7 @@ describe("Map catch-all page", () => {
       cy.get('[data-cy="desktopSidebar"]').should("not.be.visible");
 
       cy.get('[data-cy="openMobileDrawer"]').click();
-      cy.get('[data-cy="mobileDrawer"]').should("be.visible");
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("be.visible");
     });
 
     it("should allow opening and closing Mobile Drawer", () => {
@@ -234,14 +234,14 @@ describe("Map catch-all page", () => {
     it("should display correct content in Drawer depending on view (Data Tool or DRI)", () => {
       cy.visit("/map/datatool/district");
 
-      cy.get('[data-cy="mobileDrawer"]').should(
+      cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
         "Or switch to the Displacement Risk Index"
       );
 
       cy.get('[data-cy="driBtn-mobile"]').click();
 
-      cy.get('[data-cy="mobileDrawer"]').should(
+      cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
         "Or switch to the Data Tool"
       );
