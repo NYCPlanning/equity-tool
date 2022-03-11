@@ -29,7 +29,7 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
           return [42, 67, 101, 255];
         }
-        return [100, 100, 100, 255];
+        return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
@@ -40,16 +40,16 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       lineWidthUnits: "pixels",
       getLineWidth: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
-          return 4.5;
+          return 2.5;
         }
-        return 1.5;
+        return 0;
       },
       updateTriggers: {
         getLineColor: [geoid],
         getFillColor: [geoid],
         getLineWidth: [geoid],
       },
-      lineWidthMinPixels: 1.5,
+      lineWidthMinPixels: 0.5,
       stroked: true,
       pickable: true,
       extensions: [new PathStyleExtension({ offset: true })],
@@ -74,7 +74,7 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
           return [42, 67, 101, 255];
         }
-        return [100, 100, 100, 255];
+        return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
         if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
@@ -85,16 +85,16 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       lineWidthUnits: "pixels",
       getLineWidth: (feature: any) => {
         if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
-          return 4.5;
+          return 2.5;
         }
-        return 1.5;
+        return 0;
       },
       updateTriggers: {
         getLineColor: [geoid],
         getFillColor: [geoid],
         getLineWidth: [geoid],
       },
-      lineWidthMinPixels: 1.5,
+      lineWidthMinPixels: 0.5,
       stroked: true,
       pickable: true,
       extensions: [new PathStyleExtension({ offset: true })],
@@ -117,7 +117,7 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       uniqueIdProperty: "id",
       getLineColor: [42, 67, 101, 255],
       getFillColor: [119, 129, 190, 127],
-      lineWidthMinPixels: 4.5,
+      lineWidthMinPixels: 3,
       stroked: true,
     }),
     new CartoLayer({
@@ -130,7 +130,7 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         if (feature?.properties?.ntacode == geoid) {
           return [42, 67, 101, 255];
         }
-        return [100, 100, 100, 255];
+        return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
         const singleDRI = dridata.find(
@@ -138,15 +138,15 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         );
         switch (singleDRI?.displacementriskindex_reclass) {
           case "Highest":
-            return [119, 47, 122, 255];
+            return [119, 47, 122, 178];
           case "Higher":
-            return [189, 46, 137, 255];
+            return [189, 46, 137, 178];
           case "Intermediate":
-            return [237, 108, 160, 255];
+            return [237, 108, 160, 178];
           case "Lower":
-            return [245, 182, 188, 255];
+            return [245, 182, 188, 178];
           case "Lowest":
-            return [254, 239, 229, 255];
+            return [254, 239, 229, 178];
           default:
             return [0, 0, 0, 0];
         }
@@ -154,15 +154,15 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       lineWidthUnits: "pixels",
       getLineWidth: (feature: any) => {
         if (feature?.properties?.ntacode == geoid) {
-          return 4.5;
+          return 2.5;
         }
-        return 1.5;
+        return 0;
       },
       updateTriggers: {
         getLineColor: [geoid],
         getLineWidth: [geoid],
       },
-      lineWidthMinPixels: 1.5,
+      lineWidthMinPixels: 0.5,
       stroked: true,
       pickable: true,
       extensions: [new PathStyleExtension({ offset: true })],
