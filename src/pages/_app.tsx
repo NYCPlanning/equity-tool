@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 
 import { ChakraProvider } from "@chakra-ui/react";
@@ -14,9 +14,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Flex height="100vh" direction="column">
         <Header />
 
-        <Flex direction="row" flex="auto">
-          <Component {...pageProps} />
-        </Flex>
+        <Box height="calc(100vh - 4.375rem)" overflow="auto">
+          <Flex direction="row" height="100%">
+            <Component {...pageProps} />
+          </Flex>
+        </Box>
       </Flex>
     </ChakraProvider>
   );

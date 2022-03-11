@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Heading,
   IconButton,
@@ -10,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useWindowWidth } from "@react-hook/window-size";
 import Image from "next/image";
+import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
@@ -23,7 +25,6 @@ export const Header = () => {
   const isMobile = useWindowWidth() < 768;
   return (
     <Flex
-      flex="shrink"
       align="center"
       justify="space-between"
       as="header"
@@ -89,17 +90,29 @@ export const Header = () => {
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-        <Image src={logo} alt="City of New York Logo" height={22} width={66} />
-        <Heading
-          as="h1"
-          fontSize={{ base: "sm", md: "md" }}
-          color="gray.600"
-          fontWeight={{ base: "medium", md: "bold" }}
-          lineHeight="none"
-          marginLeft={{ base: 2, md: 4 }}
-        >
-          Equitable Development Data Tool
-        </Heading>
+        <NextLink href="/map/datatool/districts">
+          <Box cursor="pointer">
+            <Image
+              src={logo}
+              alt="City of New York Logo"
+              height={22}
+              width={66}
+            />
+          </Box>
+        </NextLink>
+        <NextLink href="/map/datatool/districts">
+          <Heading
+            as="h1"
+            fontSize={{ base: "sm", md: "md" }}
+            color="gray.600"
+            fontWeight={{ base: "medium", md: "bold" }}
+            lineHeight="none"
+            marginLeft={{ base: 2, md: 4 }}
+            cursor="pointer"
+          >
+            Equitable Development Data Tool
+          </Heading>
+        </NextLink>
       </Flex>
       <Flex
         direction="row"
