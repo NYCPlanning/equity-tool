@@ -188,7 +188,7 @@ describe("Map catch-all page", () => {
       cy.get('[data-cy="desktopSidebar"]').should("not.be.visible");
 
       cy.get('[data-cy="openMobileDrawer"]').click();
-      cy.get('[data-cy="mobileDrawer"]').should("be.visible");
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("be.visible");
     });
 
     it("should allow opening and closing Mobile Drawer", () => {
