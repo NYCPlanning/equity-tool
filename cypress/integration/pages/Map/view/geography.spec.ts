@@ -154,6 +154,28 @@ describe("Map catch-all page", () => {
         "Or switch to the Displacement Risk Index"
       );
     });
+
+    it("GeographySelect should remember previously selected District and Borough", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
+
+      cy.get('[data-cy="boroughButton"]').click();
+
+      cy.url().should("not.include", "district?geoid=4108");
+
+      cy.get('[data-cy="districtButton"]').click();
+
+      cy.url().should("include", "district?geoid=4108");
+
+      cy.visit("/map/datatool/borough?geoid=BK0202");
+
+      cy.get('[data-cy="districtButton"]').click();
+
+      cy.url().should("not.include", "borough?geoid=BK0202");
+
+      cy.get('[data-cy="boroughButton"]').click();
+
+      cy.url().should("include", "borough?geoid=BK0202");
+    });
   });
 
   context("mobile", () => {
@@ -251,7 +273,7 @@ describe("Map catch-all page", () => {
       );
     });
 
-    it.only("should clear selection when user hits 'back' button", () => {
+    it("should clear selection when user hits 'back' button", () => {
       cy.visit("/map/datatool/district?geoid=4108");
 
       cy.get('[data-cy="mobileDrawer-datatool"]').should(
