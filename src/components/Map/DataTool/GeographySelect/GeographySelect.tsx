@@ -1,19 +1,25 @@
-import { useRouter } from "next/router";
 import { BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Geography } from "@constants/geography";
-import { NYC } from "@constants/geoid";
 
-export const GeographySelect = ({ ...boxProps }: BoxProps) => {
-  const router = useRouter();
+export interface GeographySelectInterface extends BoxProps {
+  onGeographySelect: (targetGeography: Geography) => void;
+}
+
+export const GeographySelect = ({
+  onGeographySelect,
+  ...boxProps
+}: GeographySelectInterface) => {
   const { geography } = useMapSubrouteInfo();
   const { DISTRICT, BOROUGH, CITYWIDE } = Geography;
 
   return (
     <ToggleButtonGroup isAttached={true} {...boxProps}>
       <Button
-        onClick={() => router.push(`/map/datatool/${DISTRICT}`)}
+        onClick={() => {
+          onGeographySelect(DISTRICT);
+        }}
         isActive={geography === DISTRICT}
         variant="leftCap"
         data-cy="districtButton"
@@ -21,7 +27,9 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         Community District*
       </Button>
       <Button
-        onClick={() => router.push(`/map/datatool/${BOROUGH}`)}
+        onClick={() => {
+          onGeographySelect(BOROUGH);
+        }}
         isActive={geography === BOROUGH}
         variant="middle"
         data-cy="boroughButton"
@@ -29,7 +37,9 @@ export const GeographySelect = ({ ...boxProps }: BoxProps) => {
         Borough
       </Button>
       <Button
-        onClick={() => router.push(`/map/datatool/${CITYWIDE}?geoid=${NYC}`)}
+        onClick={() => {
+          onGeographySelect(CITYWIDE);
+        }}
         isActive={geography === CITYWIDE}
         variant="rightCap"
         data-cy="citywideButton"
