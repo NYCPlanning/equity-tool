@@ -18,6 +18,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { FaDownload } from "react-icons/fa";
+import { usePumaInfo } from "@hooks/usePumaInfo";
 
 export interface DataDownloadModalProps {
   downloadType: string; // "datatool" | "dri";
@@ -42,6 +43,13 @@ export const DataDownloadModal = ({
       onClose();
     }
   };
+  const pumaInfo = usePumaInfo(geoid);
+  const geolabel = `PUMA ${pumaInfo?.id}: ${
+    pumaInfo?.neighborhoods
+  }, ${pumaInfo?.districts.slice(
+    8,
+    pumaInfo?.districts.indexOf(" CD")
+  )}, Citywide`;
 
   return (
     <>
@@ -72,7 +80,7 @@ export const DataDownloadModal = ({
             >
               GEOGRAPHY
             </Heading>
-            <Text pb="1rem">{geoid} and more stuff</Text>
+            <Text pb="1rem">{geolabel}</Text>
             <Heading
               fontSize="0.8125rem"
               color="#2C7A7B"
