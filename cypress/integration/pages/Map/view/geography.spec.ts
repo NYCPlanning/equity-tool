@@ -154,6 +154,28 @@ describe("Map catch-all page", () => {
         "Or switch to the Displacement Risk Index"
       );
     });
+
+    it("GeographySelect should remember previously selected District and Borough", () => {
+      cy.visit("/map/datatool/district?geoid=4108");
+
+      cy.get('[data-cy="boroughButton"]').click();
+
+      cy.url().should("not.include", "district?geoid=4108");
+
+      cy.get('[data-cy="districtButton"]').click();
+
+      cy.url().should("include", "district?geoid=4108");
+
+      cy.visit("/map/datatool/borough?geoid=BK0202");
+
+      cy.get('[data-cy="districtButton"]').click();
+
+      cy.url().should("not.include", "borough?geoid=BK0202");
+
+      cy.get('[data-cy="boroughButton"]').click();
+
+      cy.url().should("include", "borough?geoid=BK0202");
+    });
   });
 
   context("mobile", () => {
@@ -166,7 +188,7 @@ describe("Map catch-all page", () => {
       cy.get('[data-cy="desktopSidebar"]').should("not.be.visible");
 
       cy.get('[data-cy="openMobileDrawer"]').click();
-      cy.get('[data-cy="mobileDrawer"]').should("be.visible");
+      cy.get('[data-cy="mobileDrawer-welcome"]').should("be.visible");
     });
 
     it("should allow opening and closing Mobile Drawer", () => {
@@ -212,14 +234,14 @@ describe("Map catch-all page", () => {
     it("should display correct content in Drawer depending on view (Data Tool or DRI)", () => {
       cy.visit("/map/datatool/district");
 
-      cy.get('[data-cy="mobileDrawer"]').should(
+      cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
         "Or switch to the Displacement Risk Index"
       );
 
       cy.get('[data-cy="driBtn-mobile"]').click();
 
-      cy.get('[data-cy="mobileDrawer"]').should(
+      cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
         "Or switch to the Data Tool"
       );
@@ -251,7 +273,7 @@ describe("Map catch-all page", () => {
       );
     });
 
-    it.only("should clear selection when user hits 'back' button", () => {
+    it("should clear selection when user hits 'back' button", () => {
       cy.visit("/map/datatool/district?geoid=4108");
 
       cy.get('[data-cy="mobileDrawer-datatool"]').should(

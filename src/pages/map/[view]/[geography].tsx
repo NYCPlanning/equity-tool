@@ -11,6 +11,7 @@ import { DRIMapLegend } from "@components/Map/DRI";
 import { SidebarContent } from "@components/SidebarContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Geography } from "@constants/geography";
+import { NYC } from "@constants/geoid";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -51,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
 
-  const { DISTRICT, NTA } = Geography;
+  const { BOROUGH, CITYWIDE, DISTRICT, NTA } = Geography;
 
   const router = useRouter();
 
@@ -62,13 +63,18 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
-  const [lastDataToolGeography, setLastDataToolGeography] = useState(
-    (): string | null => null
-  );
-  const [lastDataToolGeoid, setLastDataToolGeoid] = useState(
-    (): string | null => null
+  const [lastDataToolGeography, setLastDataToolGeography] =
+    useState<Geography | null>(null);
+  const [lastDataToolGeoid, setLastDataToolGeoid] = useState<string | null>(
+    null
   );
   const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
+
+  const [lastDistrictGeoid, setLastDistrictGeoid] = useState<string | null>(
+    null
+  );
+
+  const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
 
   const onDriClick = () => {
     setLastDataToolGeography(geography);
@@ -101,6 +107,35 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     }
 
     router.push(dataToolPath);
+  };
+
+  const onDataToolGeographyChange = (targetGeography: Geography) => {
+    if (geography === targetGeography) return;
+
+    const targetUrl = `/map/datatool/${targetGeography}`;
+
+    if (geography === DISTRICT) setLastDistrictGeoid(geoid);
+    if (geography === BOROUGH) setLastBoroughGeoid(geoid);
+
+    if (targetGeography === CITYWIDE) {
+      router.push(`${targetUrl}?geoid=${NYC}`);
+
+      return;
+    }
+
+    if (targetGeography === DISTRICT && lastDistrictGeoid) {
+      router.push(`${targetUrl}?geoid=${lastDistrictGeoid}`);
+
+      return;
+    }
+
+    if (targetGeography === BOROUGH && lastBoroughGeoid) {
+      router.push(`${targetUrl}?geoid=${lastBoroughGeoid}`);
+
+      return;
+    }
+
+    router.push(`${targetUrl}`);
   };
 
   return (
@@ -150,6 +185,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               left="2.1875rem"
               zIndex={100}
               boxShadow="lg"
+              onGeographySelect={onDataToolGeographyChange}
             />
           )}
 
