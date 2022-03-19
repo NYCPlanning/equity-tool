@@ -28,7 +28,9 @@
       "@hooks/*": ["hooks/*"],
       "@type/*": ["type/*"],
       "@helpers/*": ["helpers/*"],
-      "@constants/*": ["constants/*"]
+      "@constants/*": ["constants/*"],
+      "@services/*": ["services/*"],
+      "@schemas/*": ["schemas/*"]
     }
   },
   "include": [

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import {
   Box,
@@ -24,36 +24,100 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Geography } from "@constants/geography";
+import { Category } from "@constants/Category";
+import pumas from "@data/pumas.json";
+import { DataExplorerService } from "@services/DataExplorerService";
+import { categoryProfileSchema, TableRecord } from "@schemas/tableSchema";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
+import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
+import { Subgroup } from "@constants/Subgroup";
+import { hasOwnProperty } from "@helpers/hasOwnProperty";
 
 export interface DataPageProps {
-  initialRouteParams: string;
+  hasRacialBreakdown: boolean;
+  tables: TableRecord[];
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  if (!context.params) {
-    return {
-      props: {
-        initialRouteParams: "",
-      },
-    };
-  }
-  const { subroutes } = context.params;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: any[] = [];
+  // subset of categories, add to this list when data
+  // for a category is uploaded
+  const categories = [Category.HOPD];
 
-  if (typeof subroutes === "string") {
-    return {
-      props: {
-        initialRouteParams: "",
-      },
-    };
-  }
+  // Build list of paths for districs (pumas)
+  const pumaIds = Object.keys(pumas);
+
+  // Build list of paths for boroughs
+  const boroCodes = ["1", "2", "3", "4", "5"];
+
+  categories.forEach((category) => {
+    Object.values(Subgroup).forEach((subgroup) => {
+      pumaIds.forEach((geoid) => {
+        paths.push({
+          params: { geography: "district", geoid, category, subgroup },
+        });
+      });
+
+      boroCodes.forEach((geoid) => {
+        paths.push({
+          params: { geography: "borough", geoid, category, subgroup },
+        });
+      });
+
+      paths.push({
+        params: { geography: "citywide", geoid: "nyc", category, subgroup },
+      });
+    });
+  });
 
   return {
-    props: {
-      initialRouteParams: subroutes ? subroutes.join(",") : "",
-    },
+    paths,
+    fallback: false,
   };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  if (typeof context.params === "undefined") {
+    return {
+      notFound: true,
+    };
+  }
+  const { subgroup, geography, geoid, category } = parseDataExplorerSelection(
+    context.params
+  );
+
+  const dataExplorerService = new DataExplorerService(
+    process.env.NEXT_PUBLIC_DO_SPACE_URL
+      ? process.env.NEXT_PUBLIC_DO_SPACE_URL
+      : ""
+  );
+
+  try {
+    // Download the data file for this geoid and category
+    const res = await dataExplorerService.get(geography, geoid, category);
+    // Validate file follows expected schema
+    const profile = await categoryProfileSchema.validate(res.data);
+    const hasRacialBreakdown = Object.keys(profile) === Object.values(Category);
+    // Return Profile data for given subgroup
+    if (hasOwnProperty(profile, subgroup)) {
+      return {
+        props: {
+          hasRacialBreakdown,
+          tables: profile[subgroup],
+        },
+      };
+    }
+    // Return 404 if Profile doesn't have data for subgroup
+    return {
+      notFound: true,
+    };
+  } catch {
+    // Return 404 if download or schema validation failed
+    return {
+      notFound: true,
+    };
+  }
 };
 
 const DataExplorerNav = () => {
@@ -230,8 +294,8 @@ const testData: Estimate[] = [
   },
 ];
 
-const DataPage = ({ initialRouteParams }: DataPageProps) => {
-  console.log(initialRouteParams); // TODO: Remove this contrived usage of initialRouteParams
+const DataPage = ({ hasRacialBreakdown, tables }: DataPageProps) => {
+  console.log({ tables });
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
@@ -265,7 +329,11 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
           <DataDownloadModal downloadType="datatool" geoid={geoid} />
         </Box>
         <Box width={{ base: "full", md: "max-content" }} p={"1rem"}>
-          <Select onChange={changeSubgroup} defaultValue={subgroup}>
+          <Select
+            isDisabled={!hasRacialBreakdown}
+            onChange={changeSubgroup}
+            defaultValue={subgroup}
+          >
             <option value="tot">Total Population</option>
             <option value="wnh">White Non-hispanic</option>
             <option value="bnh">Black Non-hispanic</option>
