@@ -53,7 +53,7 @@ export const DataDownloadModal = ({
 
   return (
     <>
-      <Button variant="solid" colorScheme="teal" onClick={onOpen}>
+      <Button variant="download" colorScheme="teal" onClick={onOpen}>
         <Text display={{ base: "none", md: "inherit" }}>
           Download Data&nbsp;
         </Text>
@@ -117,7 +117,7 @@ export const DataDownloadModal = ({
                 p="1rem 0rem"
                 borderTopRadius={0}
                 onClick={submit}
-                variant="solid"
+                variant="download"
                 colorScheme="teal"
                 isDisabled={formSubmitDisabled}
               >
