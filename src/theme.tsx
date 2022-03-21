@@ -1,8 +1,20 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const fonts = { mono: `'Menlo', monospace` };
+const defaultFontFamily = "Helvetica Neue, Helvetica, sans-serif";
+
+const fonts = {
+  mono: `'Menlo', monospace`,
+  heading: defaultFontFamily,
+};
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      "html, body": {
+        fontFamily: defaultFontFamily,
+      },
+    },
+  },
   colors: {
     black: "#16161D",
   },
