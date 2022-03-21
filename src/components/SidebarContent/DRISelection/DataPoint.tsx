@@ -18,7 +18,7 @@ export const DataPoint = ({
 }: DataPointProps) => {
   return (
     <Box p="1.375rem 0.5rem 1.375rem 0.5rem">
-      <Heading fontSize="0.8125rem" color="#2C7A7B" fontWeight={400}>
+      <Heading fontSize="0.8125rem" color="teal.600" fontWeight={400}>
         {title.toUpperCase()}
       </Heading>
       <Flex direction="row" justifyContent="space-between">
@@ -29,7 +29,7 @@ export const DataPoint = ({
           </Text>
         </Box>
         <Box alignSelf="end">
-          <Text>{moe ? `${moe}% margin of error` : ""}</Text>
+          <Text color="gray.600">{moe ? `${moe}% margin of error` : ""}</Text>
         </Box>
       </Flex>
     </Box>
