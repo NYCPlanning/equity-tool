@@ -16,9 +16,22 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
 import logo from "../../../public/logo.png";
+import { useRouter } from "next/router";
 
 export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
+
+  const router = useRouter();
+
+  const { geography, geoid } = router.query;
+
+  const isDataroute = router.pathname.startsWith("/data/");
+
+  let logoUrl = isDataroute ? "/map/datatool/district" : router.asPath;
+
+  if (isDataroute && geography && geoid) {
+    logoUrl = `/map/datatool/${geography}?geoid=${geoid}`;
+  }
 
   // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR
   // https://github.com/chakra-ui/chakra-ui/issues/5112
@@ -90,7 +103,7 @@ export const Header = () => {
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-        <NextLink href="/map/datatool/districts">
+        <NextLink href={logoUrl}>
           <Box cursor="pointer">
             <Image
               src={logo}
@@ -100,7 +113,7 @@ export const Header = () => {
             />
           </Box>
         </NextLink>
-        <NextLink href="/map/datatool/districts">
+        <NextLink href={logoUrl}>
           <Heading
             as="h1"
             fontSize={{ base: "sm", md: "md" }}
