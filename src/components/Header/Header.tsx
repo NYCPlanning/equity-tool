@@ -23,11 +23,18 @@ export const Header = () => {
 
   const router = useRouter();
 
-  const { geography, geoid } = router.query;
+  const { geography, geoid } = router?.query || {
+    geography: undefined,
+    geoid: undefined,
+  };
+
+  // fallback in case router.asPath is undefined
+  let logoUrl = "/map/datatool/district";
 
   const isDataroute = router.pathname.startsWith("/data/");
 
-  let logoUrl = isDataroute ? "/map/datatool/district" : router.asPath;
+  // Logo links to current route on map page
+  if (!isDataroute && router.asPath) logoUrl = router.asPath;
 
   if (isDataroute && geography && geoid) {
     logoUrl = `/map/datatool/${geography}?geoid=${geoid}`;
