@@ -21,7 +21,7 @@ import { FaDownload } from "react-icons/fa";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 
 export interface DataDownloadModalProps {
-  downloadType: string; // "datatool" | "dri";
+  downloadType: "datatool" | "dri" | null;
   geoid: string | null;
 }
 
@@ -74,7 +74,7 @@ export const DataDownloadModal = ({
           <ModalBody p="0rem 1rem">
             <Heading
               fontSize="0.8125rem"
-              color="#2C7A7B"
+              color="teal.600"
               fontWeight={700}
               pb="0.5rem"
             >
@@ -83,7 +83,7 @@ export const DataDownloadModal = ({
             <Text pb="1rem">{geolabel}</Text>
             <Heading
               fontSize="0.8125rem"
-              color="#2C7A7B"
+              color="teal.600"
               fontWeight={700}
               pb="0.5rem"
             >
@@ -92,7 +92,7 @@ export const DataDownloadModal = ({
             <Text pb="1rem">All</Text>
             <Heading
               fontSize="0.8125rem"
-              color="#2C7A7B"
+              color="teal.600"
               fontWeight={700}
               pb="0.5rem"
             >
