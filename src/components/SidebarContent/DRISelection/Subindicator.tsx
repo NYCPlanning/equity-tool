@@ -8,7 +8,9 @@ interface SubindicatorProps {
 export const Subindicator = ({ subindicatorTitle }: SubindicatorProps) => {
   return (
     <Box p="1.5rem 0rem 0rem 0rem">
-      <Text fontSize="0.875rem">{subindicatorTitle}</Text>
+      <Text fontSize="0.875rem" fontWeight={500} color="gray.600">
+        {subindicatorTitle}
+      </Text>
     </Box>
   );
 };
