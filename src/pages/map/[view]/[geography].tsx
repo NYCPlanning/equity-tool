@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 // import { GetServerSideProps } from "next";
+import { GetStaticPaths } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useLayers } from "@hooks/useLayers";
@@ -42,6 +43,39 @@ import ReactGA from "react-ga4";
 //     },
 //   };
 // };
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths = [
+    {
+      params: {
+        view: "datatool",
+        geography: "district",
+      },
+    },
+    {
+      params: {
+        view: "datatool",
+        geography: "borough",
+      },
+    },
+    {
+      params: {
+        view: "datatool",
+        geography: "citywide",
+      },
+    },
+    {
+      params: {
+        view: "dri",
+        geography: "nta",
+      },
+    },
+  ];
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
 /*
   /Map route

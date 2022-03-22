@@ -40,7 +40,7 @@ export interface DataPageProps {
   indicators: IndicatorRecord[];
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths: any[] = [];
   const pumaIds = Object.keys(pumas);
   const boroCodes = ["1", "2", "3", "4", "5"];
