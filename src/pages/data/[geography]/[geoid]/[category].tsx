@@ -17,6 +17,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { DataDownloadModal } from "@components/DataDownloadModal";
 import { EstimateTable } from "@components/EstimateTable";
 import { Estimate } from "@type/Estimate";
 import { CategoryMenu } from "@components/CategoryMenu";
@@ -241,6 +242,9 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
     >
       <DataExplorerNav />
       <Box flexGrow={1} overflowX={"hidden"}>
+        <Box>
+          <DataDownloadModal downloadType="datatool" geoid={geoid} />
+        </Box>
         <Box width={{ base: "full", md: "max-content" }} p={"1rem"}>
           <Select onChange={changeSubgroup} defaultValue={subgroup}>
             <option value="tot">Total Population</option>

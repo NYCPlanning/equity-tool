@@ -80,10 +80,15 @@ const theme = extendTheme({
         color: "gray.600",
 
         _hover: {
+          backgroundColor: "teal.50",
           color: "teal",
         },
         _active: {
           backgroundColor: "teal.50",
+          color: "teal",
+        },
+        _disabled: {
+          backgroundColor: "white",
           color: "teal",
         },
       },
@@ -103,6 +108,18 @@ const theme = extendTheme({
           borderRadius: 50,
           _active: {
             border: "1px solid teal",
+          },
+        },
+        download: {
+          backgroundColor: "teal",
+          color: "white",
+          _hover: {
+            backgroundColor: "teal.50",
+            color: "teal",
+          },
+          _disabled: {
+            backgroundColor: "white",
+            color: "teal",
           },
         },
       },

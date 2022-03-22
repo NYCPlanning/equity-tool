@@ -1,19 +1,15 @@
 import React from "react";
 import dridata from "@data/DRI_Subindices_Indicators.json";
-import { Box, Divider, Heading, Button, Text, Flex } from "@chakra-ui/react";
+import { Box, Divider, Heading, Text, Flex } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
-import { FaDownload } from "react-icons/fa";
+import { DataDownloadModal } from "@components/DataDownloadModal";
 
 export const DRISelection = () => {
   const { geoid } = useMapSubrouteInfo();
 
   const selectedDRIdata = dridata.find((nta: any) => nta.ntacode === geoid);
-
-  const downloadDRI = () => {
-    // At some point, we'll have to make this actually download something
-  };
 
   return (
     <>
@@ -25,9 +21,7 @@ export const DRISelection = () => {
             </Heading>
           </Box>
           <Box>
-            <Button variant="solid" colorScheme="teal" onClick={downloadDRI}>
-              <FaDownload />
-            </Button>
+            <DataDownloadModal downloadType="dri" geoid={geoid} />
           </Box>
         </Flex>
 
