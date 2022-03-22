@@ -10,13 +10,12 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useWindowWidth } from "@react-hook/window-size";
-import Image from "next/image";
+// import Image from "next/image";
 import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
-import logo from "../../../public/logo.png";
-import { useRouter } from "next/router";
+// import logo from "../../../public/logo.png";
 
 export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
@@ -112,13 +111,12 @@ export const Header = () => {
         </Drawer>
         <NextLink href={logoUrl}>
           <Box cursor="pointer">
-            <Image
+            {/* <Image
               src={logo}
               alt="City of New York Logo"
               height={22}
               width={66}
-              data-test="header-app-logo"
-            />
+            /> */}
           </Box>
         </NextLink>
         <NextLink href={logoUrl}>
