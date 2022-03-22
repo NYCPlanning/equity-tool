@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { Geography } from "@constants/geography";
 import { Category } from "@constants/Category";
-import { CategoryProfile } from "@schemas/tableSchema";
+import { CategoryProfile } from "@schemas/categoryProfile";
 
 export class DataExplorerService {
   client: AxiosInstance;

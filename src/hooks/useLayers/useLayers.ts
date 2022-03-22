@@ -113,7 +113,6 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
       onClick: (info: any) => {
-        // TODO: Translate to borocode if needed for data lookup
         const id: number | null = info?.object?.properties?.borocode
           ? info.object.properties.borocode
           : null;

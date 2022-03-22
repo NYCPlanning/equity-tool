@@ -18,8 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { DataDownloadModal } from "@components/DataDownloadModal";
-import { EstimateTable } from "@components/EstimateTable";
-import { Estimate } from "@type/Estimate";
+import { Indicator } from "@components/Indicator";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
@@ -27,44 +26,45 @@ import { Geography } from "@constants/geography";
 import { Category } from "@constants/Category";
 import pumas from "@data/pumas.json";
 import { DataExplorerService } from "@services/DataExplorerService";
-import { categoryProfileSchema, TableRecord } from "@schemas/tableSchema";
+import { categoryProfileSchema } from "@schemas/categoryProfile";
+import { IndicatorRecord } from "@schemas/indicatorRecord";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
 import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
+import { getBoroughName } from "@helpers/getBoroughName";
 
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
-  tables: TableRecord[];
+  indicators: IndicatorRecord[];
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths: any[] = [];
+  const pumaIds = Object.keys(pumas);
+  const boroCodes = ["1", "2", "3", "4", "5"];
   // subset of categories, add to this list when data
   // for a category is uploaded
   const categories = [Category.HOPD];
 
-  // Build list of paths for districs (pumas)
-  const pumaIds = Object.keys(pumas);
-
-  // Build list of paths for boroughs
-  const boroCodes = ["1", "2", "3", "4", "5"];
-
   categories.forEach((category) => {
     Object.values(Subgroup).forEach((subgroup) => {
+      // Build list of paths for districs (pumas)
       pumaIds.forEach((geoid) => {
         paths.push({
           params: { geography: "district", geoid, category, subgroup },
         });
       });
 
+      // Build list of paths for boroughs
       boroCodes.forEach((geoid) => {
         paths.push({
           params: { geography: "borough", geoid, category, subgroup },
         });
       });
 
+      // Add path for citywide
       paths.push({
         params: { geography: "citywide", geoid: "nyc", category, subgroup },
       });
@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       return {
         props: {
           hasRacialBreakdown,
-          tables: profile[subgroup],
+          indicators: profile[subgroup],
         },
       };
     }
@@ -185,7 +185,7 @@ const DataExplorerNav = () => {
               textTransform={"capitalize"}
             >
               {geography === Geography.DISTRICT && `PUMA ${geoid}`}
-              {geography === Geography.BOROUGH && geoid}
+              {geography === Geography.BOROUGH && getBoroughName(geoid)}
               {geography === Geography.CITYWIDE && "Citywide"}
             </Text>
           </Flex>
@@ -239,63 +239,7 @@ const DataExplorerNav = () => {
   );
 };
 
-const testData: Estimate[] = [
-  {
-    id: "tot_pop",
-    label: "Total population",
-    datum: {
-      value: 248738,
-      marginOfError: 0,
-      coefficientOfVariation: 0,
-    },
-    percentage: {
-      value: 100,
-      marginOfError: 0,
-    },
-  },
-  {
-    id: "anhps",
-    label: "Asian non-Hispanic",
-    datum: {
-      value: 44772,
-      marginOfError: 1201,
-      coefficientOfVariation: 0.31,
-    },
-    percentage: {
-      value: 18,
-      marginOfError: 1.5,
-    },
-  },
-  {
-    id: "bnhps",
-    label: "Black non-Hispanic",
-    datum: {
-      value: 69646,
-      marginOfError: 301,
-      coefficientOfVariation: 0.2,
-    },
-    percentage: {
-      value: 28,
-      marginOfError: 5.3,
-    },
-  },
-  {
-    id: "hisp",
-    label: "Hispanic",
-    datum: {
-      value: 134318,
-      marginOfError: 2539,
-      coefficientOfVariation: 0.4,
-    },
-    percentage: {
-      value: 54,
-      marginOfError: 2.1,
-    },
-  },
-];
-
-const DataPage = ({ hasRacialBreakdown, tables }: DataPageProps) => {
-  console.log({ tables });
+const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
@@ -324,7 +268,7 @@ const DataPage = ({ hasRacialBreakdown, tables }: DataPageProps) => {
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
       <DataExplorerNav />
-      <Box flexGrow={1} overflowX={"hidden"}>
+      <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
         <Box>
           <DataDownloadModal downloadType="datatool" geoid={geoid} />
         </Box>
@@ -354,16 +298,11 @@ const DataPage = ({ hasRacialBreakdown, tables }: DataPageProps) => {
             Show reliability data
           </FormLabel>
         </FormControl>
-        <Flex
-          direction={{ base: "column", md: "row" }}
-          gridGap={{ base: 3, md: 0 }}
-          overflowX={"auto"}
-        >
-          <EstimateTable
-            data={testData}
-            shouldShowReliability={shouldShowReliability}
-          />
-        </Flex>
+        <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
+          {indicators.map((indicator, i) => (
+            <Indicator key={`indicator-${i}`} data={indicator} />
+          ))}
+        </Box>
       </Box>
     </Flex>
   );

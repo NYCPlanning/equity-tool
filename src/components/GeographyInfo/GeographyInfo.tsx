@@ -3,6 +3,7 @@ import { usePumaInfo } from "@hooks/usePumaInfo";
 import { fetchNtaInfo } from "@helpers/fetchNtaInfo";
 import { Geography } from "@constants/geography";
 import { useEffect, useState } from "react";
+import { getBoroughName } from "@helpers/getBoroughName";
 
 export interface GeographyInfoProps extends HeadingProps {
   geography: Geography | null;
@@ -36,7 +37,7 @@ export const GeographyInfo = ({
       primaryHeading = pumaInfo?.neighborhoods ? pumaInfo.neighborhoods : "";
       break;
     case BOROUGH:
-      primaryHeading = `${geoid}`;
+      primaryHeading = getBoroughName(geoid);
       break;
     case CITYWIDE:
       primaryHeading = "Citywide";
