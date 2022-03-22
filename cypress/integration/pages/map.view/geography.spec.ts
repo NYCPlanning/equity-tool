@@ -5,7 +5,7 @@ describe("Map catch-all page", () => {
 
   context("desktop", () => {
     beforeEach(() => {
-      // iffy because chakra breakpoints are defined in ems.
+      // iffy because chakra breakpoints are defined in rems.
       cy.viewport(1080, 660);
     });
 

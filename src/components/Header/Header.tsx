@@ -16,9 +16,29 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
 import logo from "../../../public/logo.png";
+import { useRouter } from "next/router";
 
 export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
+
+  const router = useRouter();
+
+  const { geography, geoid } = router?.query || {
+    geography: undefined,
+    geoid: undefined,
+  };
+
+  // fallback in case router.asPath is undefined
+  let logoUrl = "/map/datatool/district";
+
+  const isDataroute = router.pathname.startsWith("/data/");
+
+  // Logo links to current route on map page
+  if (!isDataroute && router.asPath) logoUrl = router.asPath;
+
+  if (isDataroute && geography && geoid) {
+    logoUrl = `/map/datatool/${geography}?geoid=${geoid}`;
+  }
 
   // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR
   // https://github.com/chakra-ui/chakra-ui/issues/5112
@@ -90,17 +110,18 @@ export const Header = () => {
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-        <NextLink href="/map/datatool/districts">
+        <NextLink href={logoUrl}>
           <Box cursor="pointer">
             <Image
               src={logo}
               alt="City of New York Logo"
               height={22}
               width={66}
+              data-test="header-app-logo"
             />
           </Box>
         </NextLink>
-        <NextLink href="/map/datatool/districts">
+        <NextLink href={logoUrl}>
           <Heading
             as="h1"
             fontSize={{ base: "sm", md: "md" }}
@@ -109,6 +130,7 @@ export const Header = () => {
             lineHeight="none"
             marginLeft={{ base: 2, md: 4 }}
             cursor="pointer"
+            data-test="header-app-title"
           >
             Equitable Development Data Tool
           </Heading>

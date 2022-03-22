@@ -1,0 +1,30 @@
+describe("data/geography/geoid/category page", () => {
+  beforeEach(() => {
+    cy.visit("data/district/4001/demo");
+  });
+
+  context("desktop", () => {
+    beforeEach(() => {
+      // iffy because chakra breakpoints are defined in rems.
+      cy.viewport(1080, 660);
+    });
+
+    it("should have a header", () => {
+      cy.get("header").should("be.visible");
+    });
+
+    it("should return user to map page through header logo with current geography selected", () => {
+      cy.get('[data-test="header-app-title"]').click();
+
+      cy.url().should("include", "/map/datatool/district?geoid=4001");
+
+      cy.visit("data/district/4001/demo");
+
+      cy.get('[data-test="header-app-logo"]').click();
+
+      cy.url().should("include", "/map/datatool/district?geoid=4001");
+    });
+  });
+});
+
+export {};
