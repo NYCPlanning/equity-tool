@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   publish = "out"
+  environment = { NODE_ENV="staging" }
 
 [[redirects]]
   from = "/"
