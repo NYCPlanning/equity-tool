@@ -107,6 +107,7 @@ jobs:
           NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
           NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
           NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+          NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
       - name: Run e2e test
         run: npm run e2e:test
 
@@ -142,3 +143,4 @@ jobs:
           NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
           NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
           NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+          NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
