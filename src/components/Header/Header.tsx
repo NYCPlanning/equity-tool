@@ -117,6 +117,7 @@ export const Header = () => {
               alt="City of New York Logo"
               height={22}
               width={66}
+              data-test="header-app-logo"
             />
           </Box>
         </NextLink>
@@ -129,6 +130,7 @@ export const Header = () => {
             lineHeight="none"
             marginLeft={{ base: 2, md: 4 }}
             cursor="pointer"
+            data-test="header-app-title"
           >
             Equitable Development Data Tool
           </Heading>
