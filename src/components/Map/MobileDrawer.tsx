@@ -3,9 +3,19 @@ import { Box, IconButton, Flex } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
+import ReactGA from "react-ga4";
 
 export const WelcomeMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMobileDrawer = () => {
+    ReactGA.event({
+      category: "Mobile Card Open",
+      action: "Click",
+      label: (!isOpen).toString(),
+    });
+    setIsOpen(!isOpen);
+  };
 
   return (
     <Box
@@ -34,9 +44,7 @@ export const WelcomeMobileDrawer = () => {
           zIndex="999"
           align="right"
           bg="rgba(0,0,0,0)"
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
+          onClick={toggleMobileDrawer}
         >
           {isOpen ? (
             <IconButton

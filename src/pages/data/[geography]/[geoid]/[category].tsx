@@ -25,6 +25,7 @@ import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Geography } from "@constants/geography";
 import { useRouter } from "next/router";
+import ReactGA from "react-ga4";
 
 export interface DataPageProps {
   initialRouteParams: string;
@@ -58,6 +59,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const DataExplorerNav = () => {
   const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
   const { geography, geoid, category } = useDataExplorerState();
+
+  const toggleSidebar = () => {
+    ReactGA.event({
+      category: "Toggle Sidebar Open",
+      action: "Click",
+      label: (!isOpen).toString(),
+    });
+    onToggle();
+  };
 
   return (
     <Flex
@@ -139,7 +149,7 @@ const DataExplorerNav = () => {
         borderRadius={"0rem"}
         width={"full"}
         justifyContent={"end"}
-        onClick={onToggle}
+        onClick={toggleSidebar}
         aria-label="Show Categories"
         icon={
           isOpen ? (
@@ -233,6 +243,15 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
     );
   };
 
+  const toggleReliability = () => {
+    ReactGA.event({
+      category: "Show reliability data",
+      action: "Click",
+      label: (!shouldShowReliability).toString(),
+    });
+    setShouldShowReliability(!shouldShowReliability);
+  };
+
   return (
     <Flex
       width={"full"}
@@ -259,7 +278,7 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
           <Switch
             isChecked={shouldShowReliability}
             onChange={() => {
-              setShouldShowReliability(!shouldShowReliability);
+              toggleReliability();
             }}
             id="show-reliability"
           />
