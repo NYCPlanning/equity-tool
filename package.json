@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
-    "start": "next start",
+    "start": "next build && next start",
     "lint": "run-s lint:tsc lint:eslint",
     "lint:eslint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "lint:tsc": "tsc --noEmit && tsc --noEmit --project ./cypress/tsconfig.json",
