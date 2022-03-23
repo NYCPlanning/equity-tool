@@ -15,6 +15,7 @@ import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
+import { useRouter } from "next/router";
 // import logo from "../../../public/logo.png";
 
 export const Header = () => {

@@ -32,7 +32,7 @@ export const CategoryMenu = ({
   >
     <CategoryMenuLink
       icon={<FontAwesomeIcon icon={faUserGroup} />}
-      href={`/data/${geography}/${geoid}/${Category.DEMO}`}
+      href={`/data/${geography}/${geoid}/${Category.DEMO}/tot`}
       isActive={currentCategory === Category.DEMO}
       onClick={() => {
         ReactGA.event({
@@ -46,7 +46,7 @@ export const CategoryMenu = ({
     </CategoryMenuLink>
     <CategoryMenuLink
       icon={<FontAwesomeIcon icon={faUmbrella} />}
-      href={`/data/${geography}/${geoid}/${Category.ECON}`}
+      href={`/data/${geography}/${geoid}/${Category.ECON}/tot`}
       isActive={currentCategory === Category.ECON}
       onClick={() => {
         ReactGA.event({
@@ -60,7 +60,7 @@ export const CategoryMenu = ({
     </CategoryMenuLink>
     <CategoryMenuLink
       icon={<FontAwesomeIcon icon={faHouseUser} />}
-      href={`/data/${geography}/${geoid}/${Category.HSAQ}`}
+      href={`/data/${geography}/${geoid}/${Category.HSAQ}/tot`}
       isActive={currentCategory === Category.HSAQ}
       onClick={() => {
         ReactGA.event({
@@ -74,7 +74,7 @@ export const CategoryMenu = ({
     </CategoryMenuLink>
     <CategoryMenuLink
       icon={<BuildingHouseIcon />}
-      href={`/data/${geography}/${geoid}/${Category.HOPD}`}
+      href={`/data/${geography}/${geoid}/${Category.HOPD}/tot`}
       isActive={currentCategory === Category.HOPD}
       onClick={() => {
         ReactGA.event({
@@ -88,7 +88,7 @@ export const CategoryMenu = ({
     </CategoryMenuLink>
     <CategoryMenuLink
       icon={<MentalHealthIcon />}
-      href={`/data/${geography}/${geoid}/${Category.QLAO}`}
+      href={`/data/${geography}/${geoid}/${Category.QLAO}/tot`}
       isActive={currentCategory === Category.QLAO}
       onClick={() => {
         ReactGA.event({
