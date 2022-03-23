@@ -8,9 +8,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import Image from "next/image";
-import screenshot from "../../public/screenshot.png";
-import driscreenshot from "../../public/driscreenshot.png";
+import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
 import StaticPageFooter from "@components/StaticPageFooter";
 
@@ -57,7 +55,7 @@ const AboutPage = () => (
           minH={{ base: "200px", md: "300px", lg: "unset" }}
         >
           <Image
-            src={screenshot}
+            src="/screenshot.png"
             alt="NYC Department of City Planning - Equitable Development Data Tool Screenshot"
             layout="fill"
             objectFit="contain"
@@ -94,7 +92,7 @@ const AboutPage = () => (
           minH={{ base: "200px", md: "300px", lg: "unset" }}
         >
           <Image
-            src={driscreenshot}
+            src="/driscreenshot.png"
             alt="NYC Department of City Planning - Equitable Development Data Tool Screenshot"
             layout="fill"
             objectFit="contain"

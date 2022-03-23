@@ -84,20 +84,20 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       data: `SELECT * FROM dcp_borough_boundary`,
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
-        if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
+        if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
           return [42, 67, 101, 255];
         }
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
-        if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
+        if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
           return [119, 129, 190, 127];
         }
         return [0, 0, 0, 0];
       },
       lineWidthUnits: "pixels",
       getLineWidth: (feature: any) => {
-        if (feature?.properties?.boroname?.trim() === geoid?.trim()) {
+        if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
           return 2.5;
         }
         return 0;
@@ -113,12 +113,11 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
       onClick: (info: any) => {
-        // TODO: Translate to borocode if needed for data lookup
-        const id: any = info?.object?.properties?.boroname
-          ? info.object.properties.boroname
+        const id: number | null = info?.object?.properties?.borocode
+          ? info.object.properties.borocode
           : null;
-        if (typeof id === "string") {
-          toggleGeoSelect(id);
+        if (typeof id === "number") {
+          toggleGeoSelect(id.toString());
         }
       },
     }),

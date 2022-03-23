@@ -1,10 +1,19 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
 [[redirects]]
   from = "/"
-  to = "/map"
+  to = "/map/datatool/district"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+[[redirects]]
+  from = "/map"
+  to = "/map/datatool/district"
+
+[[redirects]]
+  from = "/map/datatool"
+  to = "/map/datatool/district"
+
+[[redirects]]
+  from = "/map/dri"
+  to = "/map/dri/nta"

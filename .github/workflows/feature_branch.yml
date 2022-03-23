@@ -99,16 +99,15 @@ jobs:
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm
-      - name: Build Project
-        run: npm run build
+      - name: Run e2e test
+        run: npm run e2e:test
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
           NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
           NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-      - name: Run e2e test
-        run: npm run e2e:test
+          NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
 
   deploy-preview:
     name: Preview Deploy
@@ -142,3 +141,4 @@ jobs:
           NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
           NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
           NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+          NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}

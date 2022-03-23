@@ -27,8 +27,6 @@ const theme = extendTheme({
       variants: {
         striped: {
           thead: {
-            width: "100%",
-            display: "table",
             th: {
               background: "gray.50",
               borderWidth: "1px",
@@ -41,19 +39,17 @@ const theme = extendTheme({
             borderWidth: "1px",
             borderColor: "gray.300",
             textTransform: "capitalize",
-            textAlign: "center",
+            textAlign: "left",
             py: "0.75rem",
           },
           tbody: {
-            width: "100%",
-            display: "table",
             tr: {
-              td: {
+              "td, th": {
                 background: "#fafafa",
               },
               "&:nth-of-type(odd)": {
                 background: "#fafafa",
-                td: {
+                "td, th": {
                   background: "white",
                   borderColor: "gray.300",
                 },

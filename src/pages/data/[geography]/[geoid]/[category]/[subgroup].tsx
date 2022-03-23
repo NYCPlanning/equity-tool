@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import {
   Box,
@@ -18,42 +18,106 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { DataDownloadModal } from "@components/DataDownloadModal";
-import { EstimateTable } from "@components/EstimateTable";
-import { Estimate } from "@type/Estimate";
+import { Indicator } from "@components/Indicator";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Geography } from "@constants/geography";
+import { Category } from "@constants/Category";
+import pumas from "@data/pumas.json";
+import { DataExplorerService } from "@services/DataExplorerService";
+import { categoryProfileSchema } from "@schemas/categoryProfile";
+import { IndicatorRecord } from "@schemas/indicatorRecord";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
+import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
+import { Subgroup } from "@constants/Subgroup";
+import { hasOwnProperty } from "@helpers/hasOwnProperty";
+import { getBoroughName } from "@helpers/getBoroughName";
 
 export interface DataPageProps {
-  initialRouteParams: string;
+  hasRacialBreakdown: boolean;
+  indicators: IndicatorRecord[];
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  if (!context.params) {
-    return {
-      props: {
-        initialRouteParams: "",
-      },
-    };
-  }
-  const { subroutes } = context.params;
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths: any[] = [];
+  const pumaIds = Object.keys(pumas);
+  const boroCodes = ["1", "2", "3", "4", "5"];
+  // subset of categories, add to this list when data
+  // for a category is uploaded
+  const categories = [Category.HOPD];
 
-  if (typeof subroutes === "string") {
-    return {
-      props: {
-        initialRouteParams: "",
-      },
-    };
-  }
+  categories.forEach((category) => {
+    Object.values(Subgroup).forEach((subgroup) => {
+      // Build list of paths for districs (pumas)
+      pumaIds.forEach((geoid) => {
+        paths.push({
+          params: { geography: "district", geoid, category, subgroup },
+        });
+      });
+
+      // Build list of paths for boroughs
+      boroCodes.forEach((geoid) => {
+        paths.push({
+          params: { geography: "borough", geoid, category, subgroup },
+        });
+      });
+
+      // Add path for citywide
+      paths.push({
+        params: { geography: "citywide", geoid: "nyc", category, subgroup },
+      });
+    });
+  });
 
   return {
-    props: {
-      initialRouteParams: subroutes ? subroutes.join(",") : "",
-    },
+    paths,
+    fallback: false,
   };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  if (typeof context.params === "undefined") {
+    return {
+      notFound: true,
+    };
+  }
+  const { subgroup, geography, geoid, category } = parseDataExplorerSelection(
+    context.params
+  );
+
+  const dataExplorerService = new DataExplorerService(
+    process.env.NEXT_PUBLIC_DO_SPACE_URL
+      ? process.env.NEXT_PUBLIC_DO_SPACE_URL
+      : ""
+  );
+
+  try {
+    // Download the data file for this geoid and category
+    const res = await dataExplorerService.get(geography, geoid, category);
+    // Validate file follows expected schema
+    const profile = await categoryProfileSchema.validate(res.data);
+    const hasRacialBreakdown = Object.keys(profile) === Object.values(Category);
+    // Return Profile data for given subgroup
+    if (hasOwnProperty(profile, subgroup)) {
+      return {
+        props: {
+          hasRacialBreakdown,
+          indicators: profile[subgroup],
+        },
+      };
+    }
+    // Return 404 if Profile doesn't have data for subgroup
+    return {
+      notFound: true,
+    };
+  } catch {
+    // Return 404 if download or schema validation failed
+    return {
+      notFound: true,
+    };
+  }
 };
 
 const DataExplorerNav = () => {
@@ -121,7 +185,7 @@ const DataExplorerNav = () => {
               textTransform={"capitalize"}
             >
               {geography === Geography.DISTRICT && `PUMA ${geoid}`}
-              {geography === Geography.BOROUGH && geoid}
+              {geography === Geography.BOROUGH && getBoroughName(geoid)}
               {geography === Geography.CITYWIDE && "Citywide"}
             </Text>
           </Flex>
@@ -175,63 +239,7 @@ const DataExplorerNav = () => {
   );
 };
 
-const testData: Estimate[] = [
-  {
-    id: "tot_pop",
-    label: "Total population",
-    datum: {
-      value: 248738,
-      marginOfError: 0,
-      coefficientOfVariation: 0,
-    },
-    percentage: {
-      value: 100,
-      marginOfError: 0,
-    },
-  },
-  {
-    id: "anhps",
-    label: "Asian non-Hispanic",
-    datum: {
-      value: 44772,
-      marginOfError: 1201,
-      coefficientOfVariation: 0.31,
-    },
-    percentage: {
-      value: 18,
-      marginOfError: 1.5,
-    },
-  },
-  {
-    id: "bnhps",
-    label: "Black non-Hispanic",
-    datum: {
-      value: 69646,
-      marginOfError: 301,
-      coefficientOfVariation: 0.2,
-    },
-    percentage: {
-      value: 28,
-      marginOfError: 5.3,
-    },
-  },
-  {
-    id: "hisp",
-    label: "Hispanic",
-    datum: {
-      value: 134318,
-      marginOfError: 2539,
-      coefficientOfVariation: 0.4,
-    },
-    percentage: {
-      value: 54,
-      marginOfError: 2.1,
-    },
-  },
-];
-
-const DataPage = ({ initialRouteParams }: DataPageProps) => {
-  console.log(initialRouteParams); // TODO: Remove this contrived usage of initialRouteParams
+const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
 
@@ -260,12 +268,16 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
       <DataExplorerNav />
-      <Box flexGrow={1} overflowX={"hidden"}>
+      <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
         <Box>
           <DataDownloadModal downloadType="datatool" geoid={geoid} />
         </Box>
         <Box width={{ base: "full", md: "max-content" }} p={"1rem"}>
-          <Select onChange={changeSubgroup} defaultValue={subgroup}>
+          <Select
+            isDisabled={!hasRacialBreakdown}
+            onChange={changeSubgroup}
+            defaultValue={subgroup}
+          >
             <option value="tot">Total Population</option>
             <option value="wnh">White Non-hispanic</option>
             <option value="bnh">Black Non-hispanic</option>
@@ -286,16 +298,11 @@ const DataPage = ({ initialRouteParams }: DataPageProps) => {
             Show reliability data
           </FormLabel>
         </FormControl>
-        <Flex
-          direction={{ base: "column", md: "row" }}
-          gridGap={{ base: 3, md: 0 }}
-          overflowX={"auto"}
-        >
-          <EstimateTable
-            data={testData}
-            shouldShowReliability={shouldShowReliability}
-          />
-        </Flex>
+        <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
+          {indicators.map((indicator, i) => (
+            <Indicator key={`indicator-${i}`} data={indicator} />
+          ))}
+        </Box>
       </Box>
     </Flex>
   );
