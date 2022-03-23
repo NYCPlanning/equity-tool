@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import Image from "next/image";
+import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
 import StaticPageFooter from "@components/StaticPageFooter";
 

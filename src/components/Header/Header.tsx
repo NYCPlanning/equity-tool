@@ -8,9 +8,9 @@ import {
   DrawerContent,
   DrawerBody,
   useDisclosure,
+  Image,
 } from "@chakra-ui/react";
 import { useWindowWidth } from "@react-hook/window-size";
-import Image from "next/image";
 import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";

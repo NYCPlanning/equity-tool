@@ -1,5 +1,4 @@
-import { Box, BoxProps, Text, Flex, Divider } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, BoxProps, Text, Flex, Divider, Image } from "@chakra-ui/react";
 
 type StaticPageFooterProps = BoxProps;
 
