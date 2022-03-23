@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { FaDownload } from "react-icons/fa";
 import { usePumaInfo } from "@hooks/usePumaInfo";
+import ReactGA from "react-ga4";
 
 export interface DataDownloadModalProps {
   downloadType: "datatool" | "dri" | null;
@@ -40,9 +41,33 @@ export const DataDownloadModal = ({
 
   const submit = () => {
     if (!formSubmitDisabled) {
+      ReactGA.event({
+        category: `Download ${filetype.toUpperCase()}`,
+        action: "Click",
+        label: `${geoid}`,
+      });
       onClose();
     }
   };
+
+  const openDownloadModal = () => {
+    ReactGA.event({
+      category: "Download Modal",
+      action: "Click",
+      label: "Open",
+    });
+    onOpen();
+  };
+
+  const closeDownloadModal = () => {
+    ReactGA.event({
+      category: "Download Modal",
+      action: "Click",
+      label: "Close",
+    });
+    onClose();
+  };
+
   const pumaInfo = usePumaInfo(geoid);
   const geolabel = `PUMA ${pumaInfo?.id}: ${
     pumaInfo?.neighborhoods
@@ -53,14 +78,14 @@ export const DataDownloadModal = ({
 
   return (
     <>
-      <Button variant="download" colorScheme="teal" onClick={onOpen}>
+      <Button variant="download" colorScheme="teal" onClick={openDownloadModal}>
         <Text display={{ base: "none", md: "inherit" }}>
           Download Data&nbsp;
         </Text>
         <FaDownload />
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered={true}>
+      <Modal isOpen={isOpen} onClose={closeDownloadModal} isCentered={true}>
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />

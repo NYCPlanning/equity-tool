@@ -4,6 +4,7 @@ import { PathStyleExtension } from "@deck.gl/extensions";
 import { Geography } from "@constants/geography";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import dridata from "@data/DRI_Subindices_Indicators.json";
+import ReactGA from "react-ga4";
 
 export const useLayers = (): CartoLayer<any, any>[] | null => {
   const router = useRouter();
@@ -13,9 +14,21 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
   const toggleGeoSelect = (newGeoid: string) => {
-    newGeoid.toString().trim() === geoid?.trim()
-      ? router.push(`/map/${view}/${geography}/`)
-      : router.push(`/map/${view}/${geography}?geoid=${newGeoid}`);
+    if (newGeoid.toString().trim() === geoid?.trim()) {
+      ReactGA.event({
+        category: "Clear Geoselection",
+        action: `${geography}`,
+        label: `${newGeoid}`,
+      });
+      router.push(`/map/${view}/${geography}/`);
+    } else {
+      ReactGA.event({
+        category: "Select Geo",
+        action: `${geography}`,
+        label: `${newGeoid}`,
+      });
+      router.push(`/map/${view}/${geography}?geoid=${newGeoid}`);
+    }
   };
 
   return [

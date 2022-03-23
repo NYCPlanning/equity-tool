@@ -12,6 +12,7 @@ import { SidebarContent } from "@components/SidebarContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
+import ReactGA from "react-ga4";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -80,6 +81,12 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     setLastDataToolGeography(geography);
     setLastDataToolGeoid(geoid);
 
+    ReactGA.event({
+      category: "Toggle Tool",
+      action: "Click",
+      label: "Displacement Risk Index",
+    });
+
     let driPath = `/map/dri/${NTA}`;
 
     if (lastDriGeoid) {
@@ -92,6 +99,12 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const onDataToolClick = () => {
     setLastDriGeoid(geoid);
+
+    ReactGA.event({
+      category: "Toggle Tool",
+      action: "Click",
+      label: "Data Tool",
+    });
 
     let dataToolPath = "/map/datatool";
 
@@ -111,6 +124,12 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const onDataToolGeographyChange = (targetGeography: Geography) => {
     if (geography === targetGeography) return;
+
+    ReactGA.event({
+      category: "Toggle Geo",
+      action: "Click",
+      label: `${targetGeography}`,
+    });
 
     const targetUrl = `/map/datatool/${targetGeography}`;
 

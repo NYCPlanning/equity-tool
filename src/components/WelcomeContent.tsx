@@ -1,5 +1,6 @@
 import { Heading, Text, Link } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import ReactGA from "react-ga4";
 
 const WelcomeContent = () => {
   const { view } = useMapSubrouteInfo();
@@ -24,7 +25,18 @@ const WelcomeContent = () => {
 
         <br />
 
-        <Link href="/about">Learn More About the Data Tool</Link>
+        <Link
+          href="/about"
+          onClick={() => {
+            ReactGA.event({
+              category: "Learn More About the Data Tool",
+              action: "Click",
+              label: "Learn More About the Data Tool",
+            });
+          }}
+        >
+          Learn More About the Data Tool
+        </Link>
       </>
     );
   }
@@ -47,7 +59,18 @@ const WelcomeContent = () => {
           indicators and change over time.
         </Text>
         <br />
-        <Link href="/about">Learn More About the DRI</Link>
+        <Link
+          href="/about"
+          onClick={() => {
+            ReactGA.event({
+              category: "Learn More About the DRI",
+              action: "Click",
+              label: "Learn More About the DRI",
+            });
+          }}
+        >
+          Learn More About the DRI
+        </Link>
       </>
     );
   }
