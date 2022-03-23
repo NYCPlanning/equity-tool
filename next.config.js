@@ -6,6 +6,21 @@ module.exports = {
         destination: "/map/datatool/district",
         permanent: true,
       },
+      {
+        source: "/map",
+        destination: "/map/datatool/district",
+        permanent: true,
+      },
+      {
+        source: "/map/datatool",
+        destination: "/map/datatool/district",
+        permanent: true,
+      },
+      {
+        source: "/map/dri",
+        destination: "/map/dri/nta",
+        permanent: true,
+      },
     ];
   },
   env: {
