@@ -41,7 +41,7 @@ export const VintageTable = ({ vintage }: VintageTableProps) => {
           <Th
             rowSpan={headers.length + 1}
             display={{ base: "none", md: "table-cell" }}
-            borderTopLeftRadius={"0.75rem"}
+            borderTopLeftRadius={{ base: "0.75rem", md: "0rem" }}
             border={"none"}
           ></Th>
           <Th
