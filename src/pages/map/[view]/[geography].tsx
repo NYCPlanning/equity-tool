@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-// import { GetServerSideProps } from "next";
-import { GetStaticPaths } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useLayers } from "@hooks/useLayers";
@@ -15,34 +14,34 @@ import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 import ReactGA from "react-ga4";
 
-// export interface MapPageProps {
-//   initialRouteParams: string;
-// }
+export interface MapPageProps {
+  initialRouteParams: string;
+}
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   if (!context.params) {
-//     return {
-//       props: {
-//         initialRouteParams: "",
-//       },
-//     };
-//   }
-//   const { subroutes } = context.params;
+export const getStaticProps: GetStaticProps = (context) => {
+  if (!context.params) {
+    return {
+      props: {
+        initialRouteParams: "",
+      },
+    };
+  }
+  const { subroutes } = context.params;
 
-//   if (typeof subroutes === "string") {
-//     return {
-//       props: {
-//         initialRouteParams: "",
-//       },
-//     };
-//   }
+  if (typeof subroutes === "string") {
+    return {
+      props: {
+        initialRouteParams: "",
+      },
+    };
+  }
 
-//   return {
-//     props: {
-//       initialRouteParams: subroutes ? subroutes.join(",") : "",
-//     },
-//   };
-// };
+  return {
+    props: {
+      initialRouteParams: subroutes ? subroutes.join(",") : "",
+    },
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = [
@@ -84,8 +83,8 @@ export const getStaticPaths: GetStaticPaths = () => {
     /map/datatool/:geography
     /map/dri/:geography?geoid=:geoid
 */
-const MapPage = () => {
-  // console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
+const MapPage = ({ initialRouteParams }: MapPageProps) => {
+  console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
 
   const { BOROUGH, CITYWIDE, DISTRICT, NTA } = Geography;
 
