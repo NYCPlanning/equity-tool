@@ -113,7 +113,7 @@ describe("Map catch-all page", () => {
         "Forest Hills & Rego Park"
       );
 
-      cy.visit("/map/datatool/borough?geoid=Queens");
+      cy.visit("/map/datatool/borough?geoid=4");
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Queens");
 
@@ -155,7 +155,7 @@ describe("Map catch-all page", () => {
       );
     });
 
-    it("GeographySelect should remember previously selected District and Borough", () => {
+    it("GeographySelect should remember previously selected District", () => {
       cy.visit("/map/datatool/district?geoid=4108");
 
       cy.get('[data-cy="boroughButton"]').click();
@@ -165,7 +165,9 @@ describe("Map catch-all page", () => {
       cy.get('[data-cy="districtButton"]').click();
 
       cy.url().should("include", "district?geoid=4108");
+    });
 
+    it("GeographySelect should remember previously selected Borough", () => {
       cy.visit("/map/datatool/borough?geoid=BK0202");
 
       cy.get('[data-cy="districtButton"]').click();

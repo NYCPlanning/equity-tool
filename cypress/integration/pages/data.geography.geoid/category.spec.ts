@@ -1,6 +1,6 @@
 describe("data/geography/geoid/category page", () => {
   beforeEach(() => {
-    cy.visit("data/district/4001/demo");
+    cy.visit("data/borough/1/hopd/tot");
   });
 
   context("desktop", () => {
@@ -16,13 +16,13 @@ describe("data/geography/geoid/category page", () => {
     it("should return user to map page through header logo with current geography selected", () => {
       cy.get('[data-test="header-app-title"]').click();
 
-      cy.url().should("include", "/map/datatool/district?geoid=4001");
+      cy.url().should("include", "/map/datatool/borough?geoid=1");
 
-      cy.visit("data/district/4001/demo");
+      cy.visit("data/borough/1/hopd/tot");
 
       cy.get('[data-test="header-app-logo"]').click();
 
-      cy.url().should("include", "/map/datatool/district?geoid=4001");
+      cy.url().should("include", "/map/datatool/borough?geoid=1");
     });
   });
 });
