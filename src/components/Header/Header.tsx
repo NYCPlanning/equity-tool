@@ -27,15 +27,16 @@ export const Header = () => {
     geoid: undefined,
   };
 
-  // fallback in case router.asPath is undefined
+  // fallback for About/Source pages or in case router.asPath is undefined
   let logoUrl = "/map/datatool/district";
 
-  const isDataroute = router.pathname.startsWith("/data/");
-
   // Logo links to current route on map page
-  if (!isDataroute && router.asPath) logoUrl = router.asPath;
+  if (router.pathname.startsWith("/map/") && router.asPath) {
+    logoUrl = router.asPath;
+  }
 
-  if (isDataroute && geography && geoid) {
+  // Logo links to map page with current geography re-selected
+  if (router.pathname.startsWith("/data/") && geography && geoid) {
     logoUrl = `/map/datatool/${geography}?geoid=${geoid}`;
   }
 
