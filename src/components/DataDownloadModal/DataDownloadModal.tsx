@@ -8,6 +8,7 @@ import {
   Divider,
   Text,
   Button,
+  Link,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -42,7 +43,7 @@ export const DataDownloadModal = ({
   const submit = () => {
     if (downloadType === "dri") {
       ReactGA.event({
-        category: "Download CSV",
+        category: "Download XLS",
         action: "Click",
         label: "Displacement Risk Index",
       });
@@ -134,20 +135,26 @@ export const DataDownloadModal = ({
               >
                 REPORT TYPE
               </Heading>
-              <Text pb="1rem">Data set (.csv)</Text>
+              <Text pb="1rem">Data set (.xls)</Text>
             </ModalBody>
             <ModalFooter w="100%" p="0">
-              <Button
+              <Link
+                href="https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls"
+                isExternal={true}
                 w="100%"
-                h="100%"
-                p="1rem 0rem"
-                borderTopRadius={0}
-                onClick={submit}
-                variant="download"
-                colorScheme="teal"
               >
-                <FaDownload /> &nbsp;Download data
-              </Button>
+                <Button
+                  w="100%"
+                  h="100%"
+                  p="1rem 0rem"
+                  borderTopRadius={0}
+                  onClick={submit}
+                  variant="download"
+                  colorScheme="teal"
+                >
+                  <FaDownload /> &nbsp;Download data
+                </Button>
+              </Link>
             </ModalFooter>
           </ModalContent>
         </Modal>
