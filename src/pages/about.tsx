@@ -115,7 +115,7 @@ const AboutPage = () => (
             relative to residents in other neighborhoods.
           </Text>
           <Text color="teal">
-            <Link href="#" textDecoration="underline">
+            <Link href="/map/dri" textDecoration="underline">
               Go to the Displacement Risk Index (DRI) Tool
             </Link>
           </Text>
