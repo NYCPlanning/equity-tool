@@ -83,6 +83,15 @@ jobs:
     needs:
       - lint
     runs-on: ubuntu-latest
+    environment: development
+    env:
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
+      NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+      NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+      NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node env
@@ -101,16 +110,6 @@ jobs:
             ${{ runner.os }}-npm
       - name: Run e2e test
         run: npm run e2e:test
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
-          NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
-          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-          NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      - name: Run e2e test
-        run: npm run e2e:test
 
   deploy-preview:
     name: Preview Deploy
@@ -118,6 +117,14 @@ jobs:
       - lint
     runs-on: ubuntu-latest
     environment: development
+    env:
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
+      NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+      NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+      NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node env
@@ -138,11 +145,3 @@ jobs:
         run: |
           DEPLOY_ALIAS=${GITHUB_SHA:0:6}
           echo $(eval "netlify deploy --build --alias $DEPLOY_ALIAS")
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
-          NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
-          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-          NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
