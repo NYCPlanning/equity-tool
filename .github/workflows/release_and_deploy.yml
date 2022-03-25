@@ -84,6 +84,7 @@ jobs:
     needs:
       - lint
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - uses: actions/checkout@v2
         with:
