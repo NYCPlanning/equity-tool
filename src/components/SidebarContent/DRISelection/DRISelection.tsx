@@ -20,7 +20,7 @@ export const DRISelection = () => {
               Displacement Risk Index (DRI) Profile
             </Heading>
           </Box>
-          <Box>
+          <Box pl="0.5rem">
             <DataDownloadModal downloadType="dri" geoid={geoid} />
           </Box>
         </Flex>
