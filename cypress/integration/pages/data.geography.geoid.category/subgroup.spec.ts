@@ -1,4 +1,4 @@
-describe("data/geography/geoid/category page", () => {
+describe("data/geography/geoid/category/subgroup page", () => {
   beforeEach(() => {
     cy.visit("data/borough/1/hopd/tot");
   });
