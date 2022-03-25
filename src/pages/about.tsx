@@ -115,7 +115,7 @@ const AboutPage = () => (
             relative to residents in other neighborhoods.
           </Text>
           <Text color="teal">
-            <Link href="#" textDecoration="underline">
+            <Link href="/map/dri" textDecoration="underline">
               Go to the Displacement Risk Index (DRI) Tool
             </Link>
           </Text>
@@ -145,7 +145,7 @@ const AboutPage = () => (
             should be grouped and combined.
           </Text>
           <Text color="teal">
-            <Link href="#" textDecoration="underline">
+            <Link href="/methods" textDecoration="underline">
               Read more about our methodologies
             </Link>
           </Text>
