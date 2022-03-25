@@ -232,7 +232,7 @@ export const SidebarContent = () => {
               fontSize="1.5625rem"
             />
           </Box>
-          <Box>
+          <Box pr="1rem">
             {view === "dri" && <SubindicatorBin bin={ntaIndexes[geoid]} />}
           </Box>
         </Flex>
