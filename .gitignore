@@ -16,7 +16,7 @@
 /build
 
 # misc
-.DS_Store
+**/.DS_Store
 *.pem
 
 # debug
@@ -42,3 +42,6 @@ tsconfig.tsbuildinfo
 
 # Local Netlify folder
 .netlify
+
+# Sentry
+.sentryclirc

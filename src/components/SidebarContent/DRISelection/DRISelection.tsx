@@ -13,14 +13,14 @@ export const DRISelection = () => {
 
   return (
     <>
-      <Box p="1rem 0.5rem 1rem 0.5rem" flex="auto">
+      <Box p="1rem 0.75rem 1rem 0.75rem" flex="auto">
         <Flex direction="row" justifyContent="space-between">
           <Box>
             <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
               Displacement Risk Index (DRI) Profile
             </Heading>
           </Box>
-          <Box>
+          <Box pl="0.5rem">
             <DataDownloadModal downloadType="dri" geoid={geoid} />
           </Box>
         </Flex>
@@ -29,7 +29,7 @@ export const DRISelection = () => {
       </Box>
       <hr />
 
-      <Box p="0rem 0.75rem 0rem 0.75rem">
+      <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Vulnerability"
           subindicatorBin={selectedDRIdata?.populationvulnerability_reclass}

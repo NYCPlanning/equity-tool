@@ -126,7 +126,7 @@ const MethodsPage = () => (
                   Sample (PUMS)
                 </Text>
                 <Link
-                  href="https://www.census.gov/programs-surveys/nychvs.html"
+                  href="https://www.census.gov/programs-surveys/acs/microdata.html"
                   textDecoration="underline"
                   isExternal
                   color="teal"
