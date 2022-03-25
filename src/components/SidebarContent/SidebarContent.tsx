@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Divider, Button } from "@chakra-ui/react";
+import { Box, Divider, Button, Flex } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
@@ -224,14 +224,19 @@ export const SidebarContent = () => {
             back
           </Button>
         </Box>
-        <Box padding="0 1rem 1.5rem 1rem">
-          <GeographyInfo
-            geoid={geoid}
-            geography={geography}
-            fontSize="1.5625rem"
-          />
-          {view === "dri" && <SubindicatorBin bin={ntaIndexes[geoid]} />}
-        </Box>
+        <Flex direction="row" justifyContent="space-between">
+          <Box padding="0 1rem 1.5rem 1rem">
+            <GeographyInfo
+              geoid={geoid}
+              geography={geography}
+              fontSize="1.5625rem"
+            />
+          </Box>
+          <Box>
+            {view === "dri" && <SubindicatorBin bin={ntaIndexes[geoid]} />}
+          </Box>
+        </Flex>
+
         <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "dri" && <DRISelection />}
         {view === "datatool" && (
