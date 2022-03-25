@@ -13,7 +13,7 @@ export const DRISelection = () => {
 
   return (
     <>
-      <Box p="1rem 0.5rem 1rem 0.5rem" flex="auto">
+      <Box p="1rem 0.75rem 1rem 0.75rem" flex="auto">
         <Flex direction="row" justifyContent="space-between">
           <Box>
             <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
@@ -29,7 +29,7 @@ export const DRISelection = () => {
       </Box>
       <hr />
 
-      <Box p="0rem 0.75rem 0rem 0.75rem">
+      <Box p="0rem 1rem 0rem 1rem">
         <Subindicator subindicatorTitle="Vulnerability" />
         <DataPoint
           title="Non-white Population"
