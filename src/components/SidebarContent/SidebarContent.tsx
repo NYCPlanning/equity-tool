@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Divider, Button } from "@chakra-ui/react";
+import { Box, Divider, Button, Flex } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
@@ -10,10 +10,13 @@ import { useClearSelection } from "@helpers/useClearSelection";
 import { NYC } from "@constants/geoid";
 import { Geography } from "@constants/geography";
 import { CategoryMenu } from "@components/CategoryMenu";
+import { SubindicatorBin } from "@components/SidebarContent";
+import ntaIndexes from "@data/ntaIndexes.json";
 
 export const SidebarContent = () => {
   const { view, geoid, geography } = useMapSubrouteInfo();
   const clearSelection = useClearSelection();
+  const ntaIndex: { [index: string]: any } = ntaIndexes;
 
   if (geoid != null) {
     return (
@@ -32,13 +35,19 @@ export const SidebarContent = () => {
             back
           </Button>
         </Box>
-        <Box padding="0 1rem 1.5rem 1rem">
-          <GeographyInfo
-            geoid={geoid}
-            geography={geography}
-            fontSize="1.5625rem"
-          />
-        </Box>
+        <Flex direction="row" justifyContent="space-between">
+          <Box padding="0 1rem 1.5rem 1rem">
+            <GeographyInfo
+              geoid={geoid}
+              geography={geography}
+              fontSize="1.5625rem"
+            />
+          </Box>
+          <Box pr="1rem">
+            {view === "dri" && <SubindicatorBin bin={ntaIndex[geoid]} />}
+          </Box>
+        </Flex>
+
         <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "dri" && <DRISelection />}
         {view === "datatool" && (

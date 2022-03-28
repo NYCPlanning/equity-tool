@@ -30,7 +30,11 @@ export const DRISelection = () => {
       <hr />
 
       <Box p="0rem 1rem 0rem 1rem">
-        <Subindicator subindicatorTitle="Vulnerability" />
+        <Subindicator
+          subindicatorTitle="Vulnerability"
+          subindicatorBin={selectedDRIdata?.populationvulnerability_reclass}
+        />
+        <Text>{selectedDRIdata?.populationvulnerability_reclass}</Text>
         <DataPoint
           title="Non-white Population"
           value={selectedDRIdata?.percentnotwhite}
@@ -59,7 +63,10 @@ export const DRISelection = () => {
         />
         <Divider borderColor={"#A0AEC0"} />
 
-        <Subindicator subindicatorTitle="Housing Conditions" />
+        <Subindicator
+          subindicatorTitle="Housing Conditions"
+          subindicatorBin={selectedDRIdata?.housingconditions_reclass}
+        />
         <DataPoint
           title="housing with 3+ maintenance deficiencies"
           value={
@@ -91,7 +98,10 @@ export const DRISelection = () => {
         />
         <Divider borderColor={"#A0AEC0"} />
 
-        <Subindicator subindicatorTitle="Pressure" />
+        <Subindicator
+          subindicatorTitle="Pressure"
+          subindicatorBin={selectedDRIdata?.marketpressure_reclass}
+        />
         <DataPoint
           title="Rent Change Vs. City"
           value={selectedDRIdata?.changeinrentsvscity}
