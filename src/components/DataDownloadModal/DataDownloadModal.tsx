@@ -8,6 +8,7 @@ import {
   Divider,
   Text,
   Button,
+  Link,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -40,6 +41,14 @@ export const DataDownloadModal = ({
   };
 
   const submit = () => {
+    if (downloadType === "dri") {
+      ReactGA.event({
+        category: "Download XLS",
+        action: "Click",
+        label: "Displacement Risk Index",
+      });
+      onClose();
+    }
     if (!formSubmitDisabled) {
       ReactGA.event({
         category: `Download ${filetype.toUpperCase()}`,
@@ -75,6 +84,83 @@ export const DataDownloadModal = ({
     8,
     pumaInfo?.districts.indexOf(" CD")
   )}, Citywide`;
+
+  if (downloadType === "dri") {
+    return (
+      <>
+        <Button
+          variant="download"
+          colorScheme="teal"
+          onClick={openDownloadModal}
+        >
+          <FaDownload />
+        </Button>
+
+        <Modal isOpen={isOpen} onClose={closeDownloadModal} isCentered={true}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalCloseButton />
+            <ModalHeader p="1rem 1rem 1rem 1rem">
+              <Text fontWeight={700} fontSize="1.25rem">
+                Data Download
+              </Text>
+            </ModalHeader>
+            <Divider color={"gray.200"} />
+
+            <ModalBody p="0rem 1rem">
+              <Heading
+                fontSize="0.8125rem"
+                color="teal.600"
+                fontWeight={700}
+                pb="0.5rem"
+                pt="1rem"
+              >
+                GEOGRAPHY
+              </Heading>
+              <Text pb="1rem">NTA: All</Text>
+              <Heading
+                fontSize="0.8125rem"
+                color="teal.600"
+                fontWeight={700}
+                pb="0.5rem"
+              >
+                DRI SUBINDICATORS
+              </Heading>
+              <Text pb="1rem">All</Text>
+              <Heading
+                fontSize="0.8125rem"
+                color="teal.600"
+                fontWeight={700}
+                pb="0.5rem"
+              >
+                REPORT TYPE
+              </Heading>
+              <Text pb="1rem">Data set (.xls)</Text>
+            </ModalBody>
+            <ModalFooter w="100%" p="0">
+              <Link
+                href="https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls"
+                isExternal={true}
+                w="100%"
+              >
+                <Button
+                  w="100%"
+                  h="100%"
+                  p="1rem 0rem"
+                  borderTopRadius={0}
+                  onClick={submit}
+                  variant="download"
+                  colorScheme="teal"
+                >
+                  <FaDownload /> &nbsp;Download data
+                </Button>
+              </Link>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
+    );
+  }
 
   return (
     <>
