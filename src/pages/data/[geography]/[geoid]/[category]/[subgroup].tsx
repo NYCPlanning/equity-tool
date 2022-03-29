@@ -34,6 +34,7 @@ import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection"
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
 import { getBoroughName } from "@helpers/getBoroughName";
+import BOROUGH_1_HSAQ_TEST_JSON from "../../../../../fixtures/borough_1_hsaq";
 
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
@@ -87,17 +88,25 @@ export const getStaticProps: GetStaticProps = async (context) => {
     context.params
   );
 
-  const dataExplorerService = new DataExplorerService(
-    process.env.NEXT_PUBLIC_DO_SPACE_URL
-      ? process.env.NEXT_PUBLIC_DO_SPACE_URL
-      : ""
-  );
-
   try {
-    // Download the data file for this geoid and category
-    const res = await dataExplorerService.get(geography, geoid, category);
-    // Validate file follows expected schema
-    const profile = await categoryProfileSchema.validate(res.data);
+    let dataExplorerService,
+      res,
+      profile = {};
+
+    if (process.env.NEXT_PUBLIC_USE_FIXTURE === "true") {
+      profile = await categoryProfileSchema.validate(BOROUGH_1_HSAQ_TEST_JSON);
+    } else {
+      dataExplorerService = new DataExplorerService(
+        process.env.NEXT_PUBLIC_DO_SPACE_URL
+          ? process.env.NEXT_PUBLIC_DO_SPACE_URL
+          : ""
+      );
+
+      // Download the data file for this geoid and category
+      res = await dataExplorerService.get(geography, geoid, category);
+      // Validate file follows expected schema
+      profile = await categoryProfileSchema.validate(res.data);
+    }
 
     // Enabled subgroup dropdown if category profile has values for each subgroup
     const hasRacialBreakdown =

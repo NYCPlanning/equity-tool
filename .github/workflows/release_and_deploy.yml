@@ -91,7 +91,7 @@ jobs:
       NEXT_PUBLIC_CARTO_USERNAME: ${{ secrets.CARTO_USERNAME }}
       NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
       NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-      NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
+      NEXT_PUBLIC_USE_FIXTURE: true
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v2
