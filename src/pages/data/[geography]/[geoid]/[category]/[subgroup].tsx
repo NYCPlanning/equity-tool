@@ -78,6 +78,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  console.log("foo");
   if (typeof context.params === "undefined") {
     return {
       notFound: true,
