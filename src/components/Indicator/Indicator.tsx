@@ -17,7 +17,7 @@ export const Indicator = ({ data }: IndicatorProps) => {
         marginBottom={{ base: "0.75rem", md: "1rem" }}
         textTransform={"capitalize"}
       >
-        {data.label}
+        {data.title}
       </Heading>
       <VintageList vintages={data.vintages} />
     </Box>

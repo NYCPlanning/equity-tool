@@ -6,9 +6,18 @@ export interface DataPointCellProps {
 }
 
 export const DataPointCell = ({ dataPoint }: DataPointCellProps) => {
-  let formattedValue = dataPoint.value.toLocaleString();
-  if (dataPoint.type === "PERCENT") {
-    formattedValue = `${formattedValue}%`;
+  const { value, measure } = dataPoint;
+  let formattedValue = "";
+  if (value === null) {
+    formattedValue = measure === "PERCENT" ? "0.0%" : "-";
+  } else {
+    formattedValue = value.toLocaleString(undefined, {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 0,
+    });
+    if (measure === "PERCENT") {
+      formattedValue = formattedValue + "%";
+    }
   }
   return (
     <Td

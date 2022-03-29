@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   const boroCodes = ["1", "2", "3", "4", "5"];
   // subset of categories, add to this list when data
   // for a category is uploaded
-  const categories = [Category.HOPD];
+  const categories = [Category.HSAQ];
 
   categories.forEach((category) => {
     Object.values(Subgroup).forEach((subgroup) => {
@@ -113,6 +113,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       notFound: true,
     };
   } catch {
+    // TODO - Catch and handle errors here
     // Return 404 if download or schema validation failed
     return {
       notFound: true,
@@ -241,7 +242,7 @@ const DataExplorerNav = () => {
 
 const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
-    useState<boolean>(false);
+    useState<boolean>(true);
 
   const { geography, geoid, category, subgroup } = useDataExplorerState();
   const router = useRouter();

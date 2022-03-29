@@ -1,9 +1,9 @@
-import { object, string, array, InferType } from "yup";
+import { object, string, array, InferType, boolean } from "yup";
 import { vintageSchema } from "@schemas/vintage";
 
 export const indicatorRecordSchema = object({
-  extends: string().optional(),
-  label: string().required(),
+  title: string().required(),
+  isSurvey: boolean().required(),
   vintages: array().of(vintageSchema).required(),
 });
 
