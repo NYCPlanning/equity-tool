@@ -98,7 +98,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const res = await dataExplorerService.get(geography, geoid, category);
     // Validate file follows expected schema
     const profile = await categoryProfileSchema.validate(res.data);
-    const hasRacialBreakdown = Object.keys(profile) === Object.values(Category);
+
+    // Enabled subgroup dropdown if category profile has values for each subgroup
+    const hasRacialBreakdown =
+      JSON.stringify(Object.keys(profile).sort()) ===
+      JSON.stringify(Object.values(Subgroup).sort());
     // Return Profile data for given subgroup
     if (hasOwnProperty(profile, subgroup)) {
       return {
@@ -112,8 +116,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return {
       notFound: true,
     };
-  } catch {
+  } catch (e) {
     // TODO - Catch and handle errors here
+    console.log(e);
     // Return 404 if download or schema validation failed
     return {
       notFound: true,
@@ -243,12 +248,11 @@ const DataExplorerNav = () => {
 const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(true);
-
   const { geography, geoid, category, subgroup } = useDataExplorerState();
   const router = useRouter();
   const changeSubgroup = (event: any) => {
     router.push(
-      `/data/${geography}/${geoid}/${category}?subgroup=${event.target.value}`
+      `/data/${geography}/${geoid}/${category}/${event.target.value}`
     );
   };
 
