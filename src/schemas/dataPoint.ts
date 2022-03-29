@@ -1,10 +1,11 @@
-import { object, string, boolean, number, InferType } from "yup";
+import { object, string, number, InferType } from "yup";
 
 export const dataPointSchema = object({
-  value: number().required(),
-  name: string().required(),
-  type: string().required(),
-  isReliable: boolean().optional(),
+  value: number().nullable().defined(),
+  measure: string()
+    .oneOf(["COUNT", "PERCENT", "RATE", "INDEX", "MEDIAN"])
+    .required(),
+  variance: string().oneOf(["NONE", "MOE", "CV"]).required(),
 });
 
 export type DataPoint = InferType<typeof dataPointSchema>;
