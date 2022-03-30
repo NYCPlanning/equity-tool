@@ -4,10 +4,17 @@ import { DataPointCell } from "@components/DataPointCell";
 
 export interface DataPointRowProps extends TableRowProps {
   row: Row;
+  shouldShowReliability: boolean;
 }
 
-export const DataPointRow = ({ row, ...props }: DataPointRowProps) => {
+export const DataPointRow = ({
+  row,
+  shouldShowReliability,
+  ...props
+}: DataPointRowProps) => {
   const { label, isDenominator, cells } = row;
+  const cv = cells.find((dataPoint) => dataPoint.variance === "CV");
+  const isReliable = cv && cv.value !== null && cv.value >= 20 ? false : true;
   return (
     <Tr
       {...props}
@@ -36,9 +43,22 @@ export const DataPointRow = ({ row, ...props }: DataPointRowProps) => {
       >
         {label}
       </Td>
-      {cells.map((dataPoint, j) => (
-        <DataPointCell key={`data-point-cell-${j}`} dataPoint={dataPoint} />
-      ))}
+      {cells
+        .filter((dataPoint) => {
+          // If showing reliability information, show all cells
+          if (shouldShowReliability) {
+            return true;
+          }
+          // Otherwise, only show those with variance of "NONE"
+          return dataPoint.variance === "NONE";
+        })
+        .map((dataPoint, j) => (
+          <DataPointCell
+            key={`data-point-cell-${j}`}
+            dataPoint={dataPoint}
+            isReliable={isReliable}
+          />
+        ))}
     </Tr>
   );
 };

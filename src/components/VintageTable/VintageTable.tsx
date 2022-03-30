@@ -17,10 +17,12 @@ import { Vintage } from "@schemas/vintage";
 export interface VintageTableProps {
   vintage: Vintage;
   rowHeights: number[];
+  shouldShowReliability: boolean;
+  isSurvey: boolean;
 }
 
 export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
-  ({ vintage, rowHeights }, ref) => {
+  ({ vintage, rowHeights, shouldShowReliability, isSurvey }, ref) => {
     const { rows, headers, label } = vintage;
     const { isOpen, onToggle } = useDisclosure({
       defaultIsOpen: true,
@@ -101,28 +103,27 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
               </Flex>
             </Th>
           </Tr>
-          {headers.map((headerRow, i, headers) => (
+          {/* If indicator data is a survey and shouldShowReliability is false,
+          just render first row of headers with colspan of 1 */}
+          {isSurvey && !shouldShowReliability ? (
             <Tr
               display={{ base: isOpen ? "table-row" : "none", md: "table-row" }}
-              key={`header-row-${i}`}
             >
-              {i === 0 && (
-                <Th
-                  rowSpan={headers.length}
-                  display={{ base: "table-cell", md: "none" }}
-                  position={"sticky"}
-                  left={"0"}
-                  zIndex={"100"}
-                  minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
-                  maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
-                >
-                  data
-                </Th>
-              )}
+              <Th
+                rowSpan={headers.length}
+                display={{ base: "table-cell", md: "none" }}
+                position={"sticky"}
+                left={"0"}
+                zIndex={"100"}
+                minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+              >
+                data
+              </Th>
 
-              {headerRow.map((headerCell, j) => (
+              {headers[0].map((headerCell, j) => (
                 <Th
-                  colSpan={headerCell.colspan}
+                  colSpan={1}
                   minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
                   maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
                   key={`header-cell-${j}`}
@@ -131,7 +132,43 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 </Th>
               ))}
             </Tr>
-          ))}
+          ) : (
+            // Otherwise, render all header rows, taking colspans from the data
+            headers.map((headerRow, i, headers) => (
+              <Tr
+                display={{
+                  base: isOpen ? "table-row" : "none",
+                  md: "table-row",
+                }}
+                key={`header-row-${i}`}
+              >
+                {i === 0 && (
+                  <Th
+                    rowSpan={headers.length}
+                    display={{ base: "table-cell", md: "none" }}
+                    position={"sticky"}
+                    left={"0"}
+                    zIndex={"100"}
+                    minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                    maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                  >
+                    data
+                  </Th>
+                )}
+
+                {headerRow.map((headerCell, j) => (
+                  <Th
+                    colSpan={headerCell.colspan}
+                    minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                    maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                    key={`header-cell-${j}`}
+                  >
+                    {headerCell.label}
+                  </Th>
+                ))}
+              </Tr>
+            ))
+          )}
         </Thead>
         <Tbody
           display={{
@@ -140,7 +177,12 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
           }}
         >
           {rows.map((row, i) => (
-            <DataPointRow height={rowHeights[i]} key={i} row={row} />
+            <DataPointRow
+              shouldShowReliability={shouldShowReliability}
+              height={rowHeights[i]}
+              key={i}
+              row={row}
+            />
           ))}
         </Tbody>
       </Table>

@@ -5,9 +5,15 @@ import { VintageTable } from "@components/VintageTable";
 
 export interface VintageListProps {
   vintages: Vintage[];
+  shouldShowReliability: boolean;
+  isSurvey: boolean;
 }
 
-export const VintageList = ({ vintages }: VintageListProps) => {
+export const VintageList = ({
+  vintages,
+  shouldShowReliability,
+  isSurvey,
+}: VintageListProps) => {
   const [rowHeights, setRowHeights] = useState<number[]>([]);
 
   // This ref is passed to the first VintageTable for the indicator
@@ -41,6 +47,8 @@ export const VintageList = ({ vintages }: VintageListProps) => {
               key={`vintage-${i}`}
               vintage={vintage}
               rowHeights={rowHeights}
+              shouldShowReliability={shouldShowReliability}
+              isSurvey={isSurvey}
             />
           );
         }
@@ -49,6 +57,8 @@ export const VintageList = ({ vintages }: VintageListProps) => {
             key={`vintage-${i}`}
             vintage={vintage}
             rowHeights={rowHeights}
+            shouldShowReliability={shouldShowReliability}
+            isSurvey={isSurvey}
           />
         );
       })}
