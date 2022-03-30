@@ -62,11 +62,11 @@ export const Header = () => {
               w={"100%"}
               h={"100%"}
               color={isOpen ? "teal.600" : "gray.600"}
+              maxWidth={6}
             />
           }
           display={{ base: "flex", md: "none" }}
           onClick={onToggle}
-          backgroundColor={"white"}
           minWidth={6}
           h={4}
           _hover={{
@@ -80,6 +80,11 @@ export const Header = () => {
           }}
           mr={6}
           transform={`scale(${isOpen ? "1.125, 1.0833" : "1, 1"})`}
+          bg="none"
+          borderRadius={0}
+          _active={{
+            bg: "none",
+          }}
         />
         <Drawer
           isOpen={isOpen && isMobile}
