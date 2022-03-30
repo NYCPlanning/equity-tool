@@ -3,10 +3,14 @@ import { IndicatorRecord } from "@schemas/indicatorRecord";
 import { VintageList } from "@components/VintageList";
 
 export interface IndicatorProps {
-  data: IndicatorRecord;
+  indicator: IndicatorRecord;
+  shouldShowReliability: boolean;
 }
 
-export const Indicator = ({ data }: IndicatorProps) => {
+export const Indicator = ({
+  indicator,
+  shouldShowReliability,
+}: IndicatorProps) => {
   return (
     <Box marginBottom="1.5rem">
       <Heading
@@ -17,9 +21,13 @@ export const Indicator = ({ data }: IndicatorProps) => {
         marginBottom={{ base: "0.75rem", md: "1rem" }}
         textTransform={"capitalize"}
       >
-        {data.title}
+        {indicator.title}
       </Heading>
-      <VintageList vintages={data.vintages} />
+      <VintageList
+        vintages={indicator.vintages}
+        shouldShowReliability={shouldShowReliability}
+        isSurvey={indicator.isSurvey}
+      />
     </Box>
   );
 };

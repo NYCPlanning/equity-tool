@@ -246,6 +246,8 @@ const DataExplorerNav = () => {
 };
 
 const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
+  // TODO - Can refactor this flag into a Context so that it doesn't have to be
+  // prop drilled all the way down to VintageTable
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(true);
   const { geography, geoid, category, subgroup } = useDataExplorerState();
@@ -305,7 +307,11 @@ const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
         </FormControl>
         <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
           {indicators.map((indicator, i) => (
-            <Indicator key={`indicator-${i}`} data={indicator} />
+            <Indicator
+              key={`indicator-${i}`}
+              indicator={indicator}
+              shouldShowReliability={shouldShowReliability}
+            />
           ))}
         </Box>
       </Box>
