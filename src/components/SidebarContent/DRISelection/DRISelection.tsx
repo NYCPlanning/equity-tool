@@ -34,7 +34,6 @@ export const DRISelection = () => {
           subindicatorTitle="Vulnerability"
           subindicatorBin={selectedDRIdata?.populationvulnerability_reclass}
         />
-        <Text>{selectedDRIdata?.populationvulnerability_reclass}</Text>
         <DataPoint
           title="Non-white Population"
           value={selectedDRIdata?.percentnotwhite}
