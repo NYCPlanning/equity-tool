@@ -38,7 +38,6 @@ const theme = extendTheme({
           td: {
             borderWidth: "1px",
             borderColor: "gray.300",
-            textTransform: "capitalize",
             textAlign: "left",
             py: "0.75rem",
           },
