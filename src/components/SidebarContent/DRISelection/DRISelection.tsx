@@ -120,6 +120,13 @@ export const DRISelection = () => {
           percentage={false}
           noNumber={true}
         />
+        <Divider borderColor={"#A0AEC0"} />
+        <DataPoint
+          title="Adjacent Neighborhood Pressure"
+          value={selectedDRIdata?.adjacency}
+          percentage={false}
+          noNumber={true}
+        />
       </Box>
     </>
   );
