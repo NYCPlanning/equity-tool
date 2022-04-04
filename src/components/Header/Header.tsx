@@ -16,6 +16,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import * as React from "react";
 import { useRouter } from "next/router";
+import ReactGA from "react-ga4";
 
 export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
@@ -43,6 +44,18 @@ export const Header = () => {
   // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR
   // https://github.com/chakra-ui/chakra-ui/issues/5112
   const isMobile = useWindowWidth() < 768;
+
+  const contactUs = () => {
+    ReactGA.event({
+      category: "Contact",
+      action: "Outbound Click",
+      label: `${router.asPath}`,
+    });
+    if (isMobile) {
+      onClose();
+    }
+  };
+
   return (
     <Flex
       align="center"
@@ -108,7 +121,10 @@ export const Header = () => {
                 <NavLink onClick={onClose} href="/methods">
                   Methods &amp; Sources
                 </NavLink>
-                <NavLink onClick={onClose} href="#">
+                <NavLink
+                  onClick={contactUs}
+                  href="mailto:EDDE@planning.nyc.gov?subject=EDDE Question or Comment"
+                >
                   Contact
                 </NavLink>
               </Flex>
@@ -151,7 +167,12 @@ export const Header = () => {
       >
         <NavLink href="/about">About</NavLink>
         <NavLink href="/methods">Methods &amp; Sources</NavLink>
-        <NavLink href="#">Contact</NavLink>
+        <NavLink
+          href="mailto:EDDE@planning.nyc.gov?subject=EDDE Question or Comment"
+          onClick={contactUs}
+        >
+          Contact
+        </NavLink>
       </Flex>
     </Flex>
   );
