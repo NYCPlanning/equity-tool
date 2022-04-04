@@ -7,7 +7,7 @@ const WelcomeFooter = () => {
 
   if (view === "datatool") {
     return (
-      <Box>
+      <Box fontSize="0.8125rem">
         <Text>
           *Community Districts are approximated using data from Public Use
           Microdata Areas (PUMAs).
@@ -26,7 +26,7 @@ const WelcomeFooter = () => {
 
   if (view === "dri") {
     return (
-      <Box>
+      <Box fontSize="0.8125rem">
         <Text>
           *Approximations of NYC neighborhoods based off of Neighborhood
           Tabulation Areas (NTAs).

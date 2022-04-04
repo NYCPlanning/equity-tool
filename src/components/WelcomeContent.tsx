@@ -46,7 +46,9 @@ const WelcomeContent = () => {
   if (view === "dri") {
     return (
       <>
-        <Heading>Welcome!</Heading>
+        <Heading as="h3" fontSize="1.5625rem">
+          Welcome!
+        </Heading>
         <br />
 
         <Text>You don&apos;t have anything selected yet.</Text>
