@@ -26,7 +26,7 @@ const AboutPage = () => (
           <Heading size="lg" fontSize="2.375rem" pb="0.5em">
             About
           </Heading>
-          <Text fontSize="1.5625rem">
+          <Text fontSize="1.5625rem" lineHeight="2.1875rem">
             The NYC Departments of City Planning (DCP) and Housing Preservation
             and Development (HPD) are introducing a new interactive resource
             that equips New Yorkers with data to navigate challenging
@@ -67,7 +67,7 @@ const AboutPage = () => (
           />
         </Box>
         <Box flex={{ base: "auto", lg: 2 }}>
-          <Heading size="lg" pb="0.5em">
+          <Heading size="lg" pb="0.5em" fontSize="2.125rem">
             Community Data
           </Heading>
           <Text pb="0.5em">
@@ -105,7 +105,7 @@ const AboutPage = () => (
           />
         </Box>
         <Box flex={{ base: "auto", lg: 2 }}>
-          <Heading size="lg" pb="0.5em">
+          <Heading size="lg" pb="0.5em" fontSize="2.125rem">
             Displacement Risk Map
           </Heading>
           <Text pb="0.5em">
