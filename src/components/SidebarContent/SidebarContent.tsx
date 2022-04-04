@@ -36,7 +36,7 @@ export const SidebarContent = () => {
           </Button>
         </Box>
         <Flex direction="row" justifyContent="space-between">
-          <Box padding="0 1rem 1.5rem 1rem">
+          <Box padding="1rem 1rem 1.5rem 1rem">
             <GeographyInfo
               geoid={geoid}
               geography={geography}
