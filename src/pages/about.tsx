@@ -184,7 +184,7 @@ const AboutPage = () => (
     </Center>
 
     <Center py={8} px={{ base: 4, lg: 6 }}>
-      <Divider borderColor={"#A0AEC0"} />
+      <Divider borderColor={"#A0AEC0"} maxW={{ base: "565px", lg: "1024px" }} />
     </Center>
 
     <Center px={{ base: 4, lg: 6 }}>
