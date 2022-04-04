@@ -52,27 +52,39 @@ const WelcomeContent = () => {
         <Text>You don&apos;t have anything selected yet.</Text>
         <br />
         <Text>
-          Select a neighborhood on the map to explore it’s Displacement Risk
-          Index (DRI).
+          This Displacement Risk Map illustrates the level of risk residents
+          face of being unable to remain in their homes or neighborhoods.
         </Text>
         <br />
         <Text>
-          Or switch to the Data Tool and make a selection to to explore data
-          indicators and change over time.
+          Explore the displacement risk map to see the estimated level of
+          displacement risk in neighborhoods citywide as compared to each other.
+          Select a neighborhood to see a breakdown of the factors contributing
+          to displacement risk (population vulnerability, housing conditions,
+          and market pressure) and the data points that comprise them. See maps
+          of each of the individual data points&nbsp;
+          <Link
+            href="https://storymaps.arcgis.com/stories/79237333bb90492ba0de486c0705f9f7"
+            onClick={() => {
+              ReactGA.event({
+                category: "DRI Sidebar",
+                action: "Outbound Click",
+                label: "Storymaps",
+              });
+            }}
+          >
+            here
+          </Link>
+          .
         </Text>
         <br />
-        <Link
-          href="/about"
-          onClick={() => {
-            ReactGA.event({
-              category: "Learn More About the DRI",
-              action: "Click",
-              label: "Learn More About the DRI",
-            });
-          }}
-        >
-          Learn More About the DRI
-        </Link>
+        <Text>
+          Or, switch to Community Data and make a selection to explore how
+          demographic, housing, and quality of life characteristics compare
+          across neighborhoods and demographic groups over the past two decades.
+        </Text>
+
+        <br />
       </>
     );
   }
