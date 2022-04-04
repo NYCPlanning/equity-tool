@@ -221,7 +221,7 @@ const MethodsPage = () => (
             </Text>
             <Divider borderColor={"#A0AEC0"} pb="1rem" />
           </Box>
-          <Box width={["100%"]} pb="1.5rem">
+          <Box width={["100%"]} pt="1rem" pb="1.5rem">
             <Heading size="lg" pb="0.5em" fontSize="2.125rem">
               Explanation of the geographic scale used for Equitable Development
               Data Tool
@@ -244,7 +244,7 @@ const MethodsPage = () => (
             <Divider borderColor={"#A0AEC0"} pb="1rem" />
           </Box>
           <Box width={["100%"]} pb="1.5rem">
-            <Heading size="lg" pb="0.5em" fontSize="2.125rem">
+            <Heading size="lg" pt="1rem" pb="0.5em" fontSize="2.125rem">
               Data Reliability
             </Heading>
             <Text pb="0.5em" lineHeight="1.625rem">
@@ -296,8 +296,8 @@ const MethodsPage = () => (
           </Box>
 
           <Box width={["100%"]}>
-            <Heading size="lg" pb="0.5em" fontSize="2.125rem">
-              Sources
+            <Heading size="lg" pt="1rem" pb="0.5em" fontSize="2.125rem">
+              Data Sources
             </Heading>
             <UnorderedList spacing="2rem" pb="2rem">
               <ListItem>
