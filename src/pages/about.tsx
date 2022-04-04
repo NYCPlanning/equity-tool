@@ -47,7 +47,7 @@ const AboutPage = () => (
       py={20}
       px={{ base: 4, lg: 6 }}
       flexDirection={"column"}
-      gridGap={12}
+      gridGap={7}
     >
       <Flex
         gridGap={{ base: 8, lg: 6, xl: 12 }}
@@ -183,7 +183,7 @@ const AboutPage = () => (
       </Flex>
     </Center>
 
-    <Center py={8} px={{ base: 4, lg: 6 }}>
+    <Center pb={8} px={{ base: 4, lg: 6 }}>
       <Divider borderColor={"#A0AEC0"} maxW={{ base: "565px", lg: "1024px" }} />
     </Center>
 
