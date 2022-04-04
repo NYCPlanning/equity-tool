@@ -2,7 +2,7 @@ import { Box, BoxProps, Heading, Text, Link } from "@chakra-ui/react";
 
 const Feedback = (props: BoxProps) => (
   <Box {...props}>
-    <Heading size="md" as="h3" pb="0.5em">
+    <Heading size="md" as="h3" pb="0.5em" fontSize="1.5625rem">
       Feedback
     </Heading>
     <Text>

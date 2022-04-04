@@ -135,7 +135,7 @@ const AboutPage = () => (
         maxW={{ base: "565px", lg: "1024px" }}
       >
         <Box flex={{ base: "auto", lg: 2 }}>
-          <Heading size="lg" pb="0.5em">
+          <Heading size="lg" pb="0.5em" fontSize="2.125rem">
             Racial Equity Reports
           </Heading>
           <Text pb="0.5em">
@@ -195,7 +195,7 @@ const AboutPage = () => (
         gridGap={{ base: 6, lg: 12 }}
       >
         <Box flex={{ base: "auto", lg: 1 }} py={5} px={[10, 0]}>
-          <Heading size="md" pb="0.5em">
+          <Heading size="md" pb="0.5em" fontSize="1.5625rem">
             Methods and Sources
           </Heading>
           <Text pb="0.5em">
@@ -213,7 +213,7 @@ const AboutPage = () => (
           </Text>
         </Box>
         <Box flex={{ base: "auto", lg: 1 }} py={5} px={[10, 0]}>
-          <Heading size="md" pb="0.5em">
+          <Heading size="md" pb="0.5em" fontSize="1.5625rem">
             Bibliography
           </Heading>
           <Text pb="0.5em">
@@ -235,7 +235,7 @@ const AboutPage = () => (
           </Text>
         </Box>
         <Box flex={{ base: "auto", lg: 1 }} py={5} px={[10, 0]}>
-          <Heading size="md" pb="0.5em">
+          <Heading size="md" pb="0.5em" fontSize="1.5625rem">
             Data Dictionary
           </Heading>
           <Text pb="0.5em">
