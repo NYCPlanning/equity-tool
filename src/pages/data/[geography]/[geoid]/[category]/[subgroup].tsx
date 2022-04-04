@@ -15,6 +15,8 @@ import {
   FormLabel,
   Switch,
   Select,
+  Heading,
+  Link,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { DataDownloadModal } from "@components/DataDownloadModal";
@@ -38,6 +40,7 @@ import { getBoroughName } from "@helpers/getBoroughName";
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
   indicators: IndicatorRecord[];
+  heading: string;
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -92,6 +95,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     context.params
   );
 
+  const headings: Record<Category, string> = {
+    [Category.DEMO]: "Demographic Conditions",
+    [Category.ECON]: "Household Economic Security",
+    [Category.HOPD]: "Housing Production",
+    [Category.HSAQ]: "Housing Security, Affordability, and Quality",
+    [Category.QLAO]: "Quality of Life and Access to Opportunity",
+  };
+
   const dataExplorerService = new DataExplorerService(
     process.env.NEXT_PUBLIC_DO_SPACE_URL
       ? process.env.NEXT_PUBLIC_DO_SPACE_URL
@@ -114,6 +125,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
           hasRacialBreakdown,
           indicators: profile[subgroup],
+          heading: headings[category],
         },
       };
     }
@@ -250,11 +262,15 @@ const DataExplorerNav = () => {
   );
 };
 
-const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
+const DataPage = ({
+  hasRacialBreakdown,
+  indicators,
+  heading,
+}: DataPageProps) => {
   // TODO - Can refactor this flag into a Context so that it doesn't have to be
   // prop drilled all the way down to VintageTable
   const [shouldShowReliability, setShouldShowReliability] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const { geography, geoid, category, subgroup } = useDataExplorerState();
   const router = useRouter();
   const changeSubgroup = (event: any) => {
@@ -284,7 +300,12 @@ const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
         <Box>
           <DataDownloadModal downloadType="datatool" geoid={geoid} />
         </Box>
-        <Box width={{ base: "full", md: "max-content" }} p={"1rem"}>
+        <Box
+          width={{ base: "full", md: "max-content" }}
+          marginBottom={"1rem"}
+          paddingX={{ base: "0.75rem", md: "1rem" }}
+          marginTop={{ base: "1rem", md: "0.75rem" }}
+        >
           <Select
             isDisabled={!hasRacialBreakdown}
             onChange={changeSubgroup}
@@ -298,18 +319,41 @@ const DataPage = ({ hasRacialBreakdown, indicators }: DataPageProps) => {
           </Select>
         </Box>
         <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
-        <FormControl mb={4} display="flex" alignItems="center">
-          <Switch
-            isChecked={shouldShowReliability}
-            onChange={() => {
-              toggleReliability();
-            }}
-            id="show-reliability"
-          />
-          <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
-            Show reliability data
-          </FormLabel>
-        </FormControl>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          paddingX={{ base: "0.75rem", md: "1rem" }}
+          justifyContent={"space-between"}
+          alignItems="start"
+          paddingTop={{ base: "0rem", md: "2.125rem" }}
+          paddingBottom={{ base: "1rem", md: "0.75rem" }}
+          gridGap={"1rem"}
+        >
+          <Box>
+            <Heading as="h3" fontSize="1.5625rem">
+              {heading}
+            </Heading>
+            <Text>
+              Note: Data shown in gray have poor statistical reliability.{" "}
+              <Link href="/methods" textDecoration="underline">
+                Learn more about our data sources.
+              </Link>
+            </Text>
+          </Box>
+          <FormControl width={"auto"} display={"flex"} alignItems="center">
+            <Switch
+              colorScheme="teal"
+              isChecked={shouldShowReliability}
+              onChange={() => {
+                toggleReliability();
+              }}
+              id="show-reliability"
+            />
+            <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
+              Show reliability data
+            </FormLabel>
+          </FormControl>
+        </Flex>
+
         <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
           {indicators.map((indicator, i) => (
             <Indicator
