@@ -1,11 +1,11 @@
-import { Heading, HeadingProps, Box } from "@chakra-ui/react";
+import { Heading, Box, BoxProps } from "@chakra-ui/react";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { fetchNtaInfo } from "@helpers/fetchNtaInfo";
 import { Geography } from "@constants/geography";
 import { useEffect, useState } from "react";
 import { getBoroughName } from "@helpers/getBoroughName";
 
-export interface GeographyInfoProps extends HeadingProps {
+export interface GeographyInfoProps extends BoxProps {
   geography: Geography | null;
   geoid: string;
 }
@@ -13,7 +13,8 @@ export interface GeographyInfoProps extends HeadingProps {
 export const GeographyInfo = ({
   geoid,
   geography,
-  ...headingProps
+  fontSize = "1.5625rem",
+  ...boxProps
 }: GeographyInfoProps) => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
@@ -50,7 +51,7 @@ export const GeographyInfo = ({
   }
 
   return (
-    <Box flex="shrink" title={primaryHeading}>
+    <Box flex="shrink" title={primaryHeading} {...boxProps}>
       {geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
           PUMA {geoid}
@@ -59,9 +60,9 @@ export const GeographyInfo = ({
       <Heading
         as="h1"
         fontWeight={700}
-        padding=".5rem 0"
+        paddingBottom="0.5rem"
         textTransform={"capitalize"}
-        {...headingProps}
+        fontSize={fontSize}
         data-cy="geoInfoPrimaryHeading"
       >
         {primaryHeading}
