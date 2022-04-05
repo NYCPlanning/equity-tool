@@ -196,7 +196,7 @@ const MethodsPage = () => (
               model to other data associated with displacement.
             </Text>
           </Box>
-          <Box width={["100%"]} pb="1.5rem">
+          <Box width={["100%"]} pb="1rem">
             <Heading size="lg" pb="0.5em" fontSize="1.5625rem">
               Displacement Risk Data Point maps:
             </Heading>
@@ -221,7 +221,7 @@ const MethodsPage = () => (
             </Text>
             <Divider borderColor={"#A0AEC0"} pb="1rem" />
           </Box>
-          <Box width={["100%"]} pt="1rem" pb="1.5rem">
+          <Box width={["100%"]} pt="1rem" pb="1rem">
             <Heading size="lg" pb="0.5em" fontSize="2.125rem">
               Explanation of the geographic scale used for Equitable Development
               Data Tool
@@ -235,7 +235,7 @@ const MethodsPage = () => (
               Community Data is also reported at the borough and citywide
               levels.
             </Text>
-            <Text pb="0.5em" lineHeight="1.625rem">
+            <Text pb="1rem" lineHeight="1.625rem">
               The Displacement Risk Map, which is not broken down by race and
               ethnicity, is displayed at a smaller geography, Neighborhood
               Tabulation Areas (NTA). NTAs are groupings of census tracts that
@@ -243,7 +243,7 @@ const MethodsPage = () => (
             </Text>
             <Divider borderColor={"#A0AEC0"} pb="1rem" />
           </Box>
-          <Box width={["100%"]} pb="1.5rem">
+          <Box width={["100%"]} pb="1rem">
             <Heading size="lg" pt="1rem" pb="0.5em" fontSize="2.125rem">
               Data Reliability
             </Heading>
@@ -274,7 +274,7 @@ const MethodsPage = () => (
               font color, indicating that the estimates have poor statistical
               reliability (CVs are greater than or equal to 20%).
             </Text>
-            <Text pb="0.5em" lineHeight="1.625rem">
+            <Text pb="1rem" lineHeight="1.625rem">
               For more information, visit{" "}
               <Link
                 href="https://www1.nyc.gov/site/planning/data-maps/nyc-population/geographic-reference.page"
