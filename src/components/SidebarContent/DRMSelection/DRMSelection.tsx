@@ -12,6 +12,7 @@ export const DRMSelection = () => {
 
   return (
     <>
+      <Divider borderColor="gray.400" pt="1.5rem" />
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Population Vulnerability"
@@ -22,29 +23,30 @@ export const DRMSelection = () => {
           value={selectedDRMdata?.percentnotwhite}
           percentage={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="income below 200% of Federal poverty rate"
           value={selectedDRMdata?.percentbelow2xpovertyrate}
           percentage={true}
           moe={selectedDRMdata?.percentbelow2xpovertyrate_moe}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="limited-English speaking population"
           value={selectedDRMdata?.limitedenglishproficiency}
           percentage={true}
           moe={selectedDRMdata?.limitedenglishproficiency_moe}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="households with severe rent burden"
           value={selectedDRMdata?.percentrentburdenedvscity}
           percentage={false}
           noNumber={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
-
+      </Box>
+      <Divider borderColor="gray.400" />
+      <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Housing Conditions"
           subindicatorBin={selectedDRMdata?.housingconditions_reclass}
@@ -57,29 +59,29 @@ export const DRMSelection = () => {
           percentage={false}
           noNumber={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
-        {/* Is this the correct field? */}
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="Housing NY &amp; NYC Housing Authority (NYCHA)"
           value={selectedDRMdata?.percentunitswithnoincomerestrictions}
           percentage={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="Rent-Stabilized Housing units"
           value={selectedDRMdata?.percentunitswithrentregulationsvscity}
           percentage={false}
           noNumber={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="renter-occupied housing units"
           value={selectedDRMdata?.percentrenters}
           percentage={true}
           moe={selectedDRMdata?.percentrenters_moe}
         />
-        <Divider borderColor={"#A0AEC0"} />
-
+      </Box>
+      <Divider borderColor="gray.400" />
+      <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Pressure"
           subindicatorBin={selectedDRMdata?.marketpressure_reclass}
@@ -90,20 +92,20 @@ export const DRMSelection = () => {
           percentage={false}
           noNumber={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="Price Appreciation"
           value={selectedDRMdata?.salespriceappreciation}
           percentage={false}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="Bachelors degree Or Higher Change"
           value={selectedDRMdata?.changeinpopulationwithbachelorsdegreesvscity}
           percentage={false}
           noNumber={true}
         />
-        <Divider borderColor={"#A0AEC0"} />
+        <Divider borderColor="gray.100" />
         <DataPoint
           title="Adjacent Neighborhood Pressure"
           value={selectedDRMdata?.adjacency}

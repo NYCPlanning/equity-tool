@@ -44,7 +44,11 @@ export const SidebarContent = () => {
           </Box>
         </Flex>
         <Flex direction="row" justifyContent="space-between">
-          <Box padding="1rem 1rem 1.5rem 1rem">
+          <Box
+            padding={
+              view === "drm" ? "1rem 1rem 0.5rem 1rem" : "1rem 1rem 1.5rem 1rem"
+            }
+          >
             <GeographyInfo
               geoid={geoid}
               geography={geography}
@@ -54,13 +58,15 @@ export const SidebarContent = () => {
         </Flex>
         <Box>{view === "drm" && <SubindicatorBin bin={ntaIndex[geoid]} />}</Box>
 
-        <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "drm" && <DRMSelection />}
         {view === "data" && (
-          <CategoryMenu
-            geography={geography ? geography : Geography.CITYWIDE}
-            geoid={geography && geoid ? geoid : NYC}
-          />
+          <>
+            <Divider color={"gray.200"} my={"1.5rem"} />
+            <CategoryMenu
+              geography={geography ? geography : Geography.CITYWIDE}
+              geoid={geography && geoid ? geoid : NYC}
+            />
+          </>
         )}
       </>
     );

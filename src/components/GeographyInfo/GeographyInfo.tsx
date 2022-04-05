@@ -50,14 +50,9 @@ export const GeographyInfo = ({
       break;
   }
 
-  return (
-    <Box flex="shrink" title={primaryHeading} {...boxProps}>
-      {geography === DISTRICT && (
-        <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
-          PUMA {geoid}
-        </Heading>
-      )}
-      {geography === NTA && (
+  if (geography === NTA) {
+    return (
+      <Box flex="shrink" title={primaryHeading} {...boxProps}>
         <Heading
           fontSize=".8125rem"
           fontWeight={500}
@@ -65,6 +60,26 @@ export const GeographyInfo = ({
           pb="0.5rem"
         >
           NTA {geoid}
+        </Heading>
+        <Heading
+          as="h1"
+          fontWeight={700}
+          paddingBottom="0.5rem"
+          textTransform={"capitalize"}
+          fontSize={fontSize}
+          data-cy="geoInfoPrimaryHeading"
+        >
+          {primaryHeading}
+        </Heading>
+      </Box>
+    );
+  }
+
+  return (
+    <Box flex="shrink" title={primaryHeading} {...boxProps}>
+      {geography === DISTRICT && (
+        <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
+          PUMA {geoid}
         </Heading>
       )}
       <Heading
