@@ -59,6 +59,8 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
             <Th
               rowSpan={headers.length + 1}
               display={{ base: "none", md: "table-cell" }}
+              minWidth={"13.5rem"}
+              maxWidth={"13.5rem"}
               borderTopLeftRadius={"0.75rem"}
               border={"none"}
             ></Th>
@@ -76,8 +78,14 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 md: "0rem",
               }}
               px={"1rem"}
-              minWidth={{ base: "calc(100vw - 26px)", md: "auto" }}
-              maxWidth={{ base: "calc(100vw - 26px)", md: "auto" }}
+              minWidth={{
+                base: "calc(100vw - 26px)",
+                md: isSurvey && shouldShowReliability ? "30.5rem" : "15.375rem",
+              }}
+              maxWidth={{
+                base: "calc(100vw - 26px)",
+                md: isSurvey && shouldShowReliability ? "30.5rem" : "15.375rem",
+              }}
             >
               <Flex
                 justifyContent={"center"}
