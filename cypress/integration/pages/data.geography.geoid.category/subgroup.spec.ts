@@ -1,6 +1,6 @@
 describe("data/geography/geoid/category/subgroup page", () => {
   beforeEach(() => {
-    cy.visit("data/borough/1/hopd/tot");
+    cy.visit("data/borough/1/hsaq/tot");
   });
 
   context("desktop", () => {
@@ -18,7 +18,7 @@ describe("data/geography/geoid/category/subgroup page", () => {
 
       cy.url().should("include", "/map/datatool/borough?geoid=1");
 
-      cy.visit("data/borough/1/hopd/tot");
+      cy.visit("data/borough/1/hsaq/tot");
 
       cy.get('[data-test="header-app-logo"]').click();
 
