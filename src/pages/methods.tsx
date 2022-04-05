@@ -296,7 +296,7 @@ const MethodsPage = () => (
           </Box>
 
           <Box width={["100%"]}>
-            <Heading size="lg" pt="1rem" pb="0.5em" fontSize="2.125rem">
+            <Heading size="lg" pt="1rem" pb="1rem" fontSize="2.125rem">
               Data Sources
             </Heading>
             <UnorderedList spacing="2rem" pb="2rem">
@@ -446,12 +446,12 @@ const MethodsPage = () => (
           </Box>
         </Box>
 
-        <Center display={{ base: "block", xl: "none" }} py={8}>
+        <Center display={{ base: "block", xl: "none" }} py="1rem">
           <Divider borderColor={"#A0AEC0"} />
         </Center>
 
         <Box flex={{ base: "auto", xl: 1 }}>
-          <Text fontWeight="bold" pt="0.5em" fontSize="1.25rem">
+          <Text fontWeight="bold" pt="1rem" fontSize="1.25rem">
             Created
           </Text>
           <Text>April 2022</Text>
