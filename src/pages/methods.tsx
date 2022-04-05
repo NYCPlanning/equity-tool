@@ -299,7 +299,7 @@ const MethodsPage = () => (
             <Heading size="lg" pt="1rem" pb="1rem" fontSize="2.125rem">
               Data Sources
             </Heading>
-            <UnorderedList spacing="2rem" pb="2rem">
+            <UnorderedList spacing="2rem" pb="1rem">
               <ListItem>
                 <Text fontWeight="bold">Decennial Census</Text>
                 <Link
