@@ -83,7 +83,7 @@ export const DRMSelection = () => {
       <Divider borderColor="gray.400" />
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
-          subindicatorTitle="Pressure"
+          subindicatorTitle="Market Pressure"
           subindicatorBin={selectedDRMdata?.marketpressure_reclass}
         />
         <DataPoint
@@ -94,7 +94,7 @@ export const DRMSelection = () => {
         />
         <Divider borderColor="gray.100" />
         <DataPoint
-          title="Price Appreciation"
+          title="Residential Property Price Appreciation 2000-2020"
           value={selectedDRMdata?.salespriceappreciation}
           percentage={false}
         />
