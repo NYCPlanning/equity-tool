@@ -61,7 +61,7 @@ const AboutPage = () => (
         >
           <Image
             src="/screenshot.png"
-            alt="NYC Department of City Planning - Equitable Development Data Tool Screenshot"
+            alt="NYC Department of City Planning - Equitable Development Data Explorer Screenshot"
             layout="fill"
             objectFit="contain"
           />
@@ -99,7 +99,7 @@ const AboutPage = () => (
         >
           <Image
             src="/driscreenshot.png"
-            alt="NYC Department of City Planning - Equitable Development Data Tool Screenshot"
+            alt="NYC Department of City Planning - Equitable Development Data Explorer Screenshot"
             layout="fill"
             objectFit="contain"
           />

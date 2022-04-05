@@ -39,10 +39,12 @@ export const PageHeader = () => {
 
   return (
     <Head>
-      <title>{currentPage.title} - NYC Equitable Development Data Tool</title>
+      <title>
+        {currentPage.title} - NYC Equitable Development Data Explorer
+      </title>
       <meta
         name="title"
-        content={`${currentPage.title} - NYC Equitable Development Data Tool`}
+        content={`${currentPage.title} - NYC Equitable Development Data Explorer`}
         key="title"
       />
       <meta
@@ -59,7 +61,7 @@ export const PageHeader = () => {
       />
       <meta
         property="og:title"
-        content="NYC Equitable Development Data Tool"
+        content="NYC Equitable Development Data Explorer"
         key="og:title"
       />
       <meta
@@ -85,7 +87,7 @@ export const PageHeader = () => {
       />
       <meta
         property="twitter:title"
-        content="NYC Equitable Development Data Tool"
+        content="NYC Equitable Development Data Explorer"
         key="twitter:title"
       />
       <meta

@@ -1,4 +1,4 @@
-# Equity Tool (AKA Equitable Development Data Tool)
+# Equity Explorer (AKA Equitable Development Data Explorer)
 
 ### Setup
 1.  Install project
