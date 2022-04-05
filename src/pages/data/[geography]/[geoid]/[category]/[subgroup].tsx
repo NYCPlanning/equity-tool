@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   const boroCodes = ["1", "2", "3", "4", "5"];
   // subset of categories, add to this list when data
   // for a category is uploaded
-  const categories = [Category.HSAQ];
+  const categories = [Category.HSAQ, Category.ECON];
 
   categories.forEach((category) => {
     Object.values(Subgroup).forEach((subgroup) => {
