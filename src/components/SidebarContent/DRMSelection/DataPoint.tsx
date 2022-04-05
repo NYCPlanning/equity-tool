@@ -18,18 +18,25 @@ export const DataPoint = ({
 }: DataPointProps) => {
   return (
     <Box p="1.375rem 0.5rem 1.375rem 0.5rem">
-      <Heading fontSize="0.8125rem" color="teal.600" fontWeight={400}>
+      <Heading
+        fontSize="0.8125rem"
+        color="teal.600"
+        fontWeight={500}
+        lineHeight="1.1875rem"
+      >
         {title.toUpperCase()}
       </Heading>
       <Flex direction="row" justifyContent="space-between">
         <Box>
-          <Text fontSize={noNumber ? "1rem" : "2.25rem"}>
+          <Text fontSize={noNumber ? "1rem" : "1.5rem"}>
             {value}
             {percentage ? "%" : ""}
           </Text>
         </Box>
         <Box alignSelf="end">
-          <Text color="gray.600">{moe ? `${moe}% margin of error` : ""}</Text>
+          <Text fontSize="0.875rem" color="gray.600">
+            {moe ? `${moe}% margin of error` : ""}
+          </Text>
         </Box>
       </Flex>
     </Box>

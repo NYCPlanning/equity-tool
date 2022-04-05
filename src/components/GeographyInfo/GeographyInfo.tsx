@@ -44,7 +44,7 @@ export const GeographyInfo = ({
       primaryHeading = "Citywide";
       break;
     case NTA:
-      primaryHeading = `${ntaInfo?.ntacode} - ${ntaInfo?.ntaname}`;
+      primaryHeading = `${ntaInfo?.ntaname}`;
       break;
     default:
       break;
@@ -55,6 +55,16 @@ export const GeographyInfo = ({
       {geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
           PUMA {geoid}
+        </Heading>
+      )}
+      {geography === NTA && (
+        <Heading
+          fontSize=".8125rem"
+          fontWeight={500}
+          color="#2B797A"
+          pb="0.5rem"
+        >
+          NTA {geoid}
         </Heading>
       )}
       <Heading

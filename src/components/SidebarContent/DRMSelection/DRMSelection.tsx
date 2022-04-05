@@ -1,10 +1,9 @@
 import React from "react";
 import drmData from "@data/DRI_Subindices_Indicators.json";
-import { Box, Divider, Heading, Text, Flex } from "@chakra-ui/react";
+import { Box, Divider } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
-import { DataDownloadModal } from "@components/DataDownloadModal";
 
 export const DRMSelection = () => {
   const { geoid } = useMapSubrouteInfo();
@@ -13,25 +12,9 @@ export const DRMSelection = () => {
 
   return (
     <>
-      <Box p="1rem 0.75rem 1rem 0.75rem" flex="auto">
-        <Flex direction="row" justifyContent="space-between">
-          <Box>
-            <Heading as="h2" fontSize="1.3rem" fontWeight={700}>
-              Displacement Risk Index (DRI) Profile
-            </Heading>
-          </Box>
-          <Box pl="0.5rem">
-            <DataDownloadModal downloadType="drm" geoid={geoid} />
-          </Box>
-        </Flex>
-
-        <Text>Select a DRI indicator to learn more about it.</Text>
-      </Box>
-      <hr />
-
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
-          subindicatorTitle="Vulnerability"
+          subindicatorTitle="Population Vulnerability"
           subindicatorBin={selectedDRMdata?.populationvulnerability_reclass}
         />
         <DataPoint
