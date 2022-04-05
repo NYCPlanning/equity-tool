@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
-import { FaMapMarkerAlt } from "react-icons/fa";
 import {
   Box,
   Flex,
   Text,
-  Divider,
-  IconButton,
-  Spacer,
-  Icon,
-  Center,
-  useDisclosure,
   FormControl,
   FormLabel,
   Switch,
@@ -18,13 +11,13 @@ import {
   Heading,
   Link,
 } from "@chakra-ui/react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { DataDownloadModal } from "@components/DataDownloadModal";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Indicator } from "@components/Indicator";
 import { CategoryMenu } from "@components/CategoryMenu";
+import { DataDownloadModal } from "@components/DataDownloadModal";
 import { GeographyInfo } from "@components/GeographyInfo";
+import { ExplorerSideNav } from "@components/ExplorerSideNav";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
-import { Geography } from "@constants/geography";
 import { Category } from "@constants/Category";
 import pumas from "@data/pumas.json";
 import { DataExplorerService } from "@services/DataExplorerService";
@@ -35,8 +28,6 @@ import ReactGA from "react-ga4";
 import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
-import { getBoroughName } from "@helpers/getBoroughName";
-
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
   indicators: IndicatorRecord[];
@@ -138,125 +129,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const DataExplorerNav = () => {
-  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
-  const { geography, geoid, category } = useDataExplorerState();
-
-  const toggleSidebar = () => {
-    ReactGA.event({
-      category: "Toggle Sidebar Open",
-      action: "Click",
-      label: (!isOpen).toString(),
-    });
-    onToggle();
-  };
-
-  return (
-    <Flex
-      flexShrink={"0"}
-      direction={"column"}
-      height={{ base: "auto", md: "full" }}
-      width={{
-        base: "full",
-        md: isOpen ? "19.25rem" : "4.25rem",
-      }}
-      overflowX={"hidden"}
-      pt={{ base: "1.5rem", md: "4rem" }}
-      background={{ base: "white", md: "gray.100" }}
-      transition="width 0.5s ease"
-    >
-      <Box width={{ base: "full", md: "19.25rem" }}>
-        {/* "Back to map" button can go here for screen sizes < md */}
-        <Flex
-          mx={{ base: "0.75rem", md: "0rem" }}
-          align={"start"}
-          pb={{ base: "0.5rem", md: "0rem" }}
-          mb={{
-            base: "0.5rem",
-            md: geography === Geography.DISTRICT ? "1.5rem" : "2.5rem",
-          }}
-          borderBottom={{ base: "1px solid", md: "none" }}
-          borderBottomColor={"gray.200"}
-        >
-          <Flex
-            width={"4.25rem"}
-            minWidth={"4.25rem"}
-            direction={"column"}
-            display={{ base: "none", md: "flex" }}
-            align={"center"}
-            gridGap={2}
-          >
-            <Center
-              display={{ base: "none", md: "flex" }}
-              borderRadius={"0.625rem"}
-              background={"gray.200"}
-              width="2.5rem"
-              height="2.5rem"
-            >
-              <Icon as={FaMapMarkerAlt} w={"0.875rem"} height={"1.875rem"} />
-            </Center>
-            <Text
-              fontSize={"0.5rem"}
-              color={geography === Geography.DISTRICT ? "#2B797A" : "gray.700"}
-              fontWeight={geography === Geography.DISTRICT ? "500" : "700"}
-              display={isOpen ? "none" : "block"}
-              textTransform={"capitalize"}
-            >
-              {geography === Geography.DISTRICT && `PUMA ${geoid}`}
-              {geography === Geography.BOROUGH && getBoroughName(geoid)}
-              {geography === Geography.CITYWIDE && "Citywide"}
-            </Text>
-          </Flex>
-          <Box pr={"1rem"}>
-            <GeographyInfo
-              geoid={geoid}
-              geography={geography}
-              fontSize={{ base: "1.6525rem", md: "1.25rem " }}
-            />
-          </Box>
-        </Flex>
-
-        <CategoryMenu
-          geography={geography}
-          geoid={geoid}
-          currentCategory={category}
-          justify={{ base: "space-between", md: "start" }}
-        />
-      </Box>
-      <Spacer />
-      <IconButton
-        px={"0.75rem"}
-        background={"gray.200"}
-        display={{ base: "none", md: "flex" }}
-        borderRadius={"0rem"}
-        width={"full"}
-        justifyContent={"end"}
-        onClick={toggleSidebar}
-        aria-label="Show Categories"
-        icon={
-          isOpen ? (
-            <ChevronLeftIcon
-              mr={"0.875rem"}
-              color="gray.500"
-              _hover={{ color: "gray.500" }}
-              w={"2.5rem"}
-              h={"2.5rem"}
-            />
-          ) : (
-            <ChevronRightIcon
-              mr={"0.875rem"}
-              color="gray.500"
-              _hover={{ color: "gray.500" }}
-              w={"2.5rem"}
-              h={"2.5rem"}
-            />
-          )
-        }
-      />
-    </Flex>
-  );
-};
-
 const DataPage = ({
   hasRacialBreakdown,
   indicators,
@@ -290,30 +162,64 @@ const DataPage = ({
       direction={{ base: "column", md: "row" }}
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
-      <DataExplorerNav />
+      <ExplorerSideNav />
       <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
-        <Box>
-          <DataDownloadModal downloadType="datatool" geoid={geoid} />
-        </Box>
         <Box
-          width={{ base: "full", md: "max-content" }}
-          marginBottom={"1rem"}
-          paddingX={{ base: "0.75rem", md: "1rem" }}
-          marginTop={{ base: "1rem", md: "0.75rem" }}
+          marginTop={"0.75rem"}
+          paddingBottom={"1rem"}
+          borderBottomColor={"gray.300"}
+          borderBottomWidth={{ base: 0, md: "1px" }}
         >
-          <Select
-            isDisabled={!hasRacialBreakdown}
-            onChange={changeSubgroup}
-            defaultValue={subgroup}
+          <Flex
+            direction={"row"}
+            justifyContent={"space-between"}
+            paddingX={{ base: "0.75rem", md: "1rem" }}
           >
-            <option value="tot">Total Population</option>
-            <option value="wnh">White Non-hispanic</option>
-            <option value="bnh">Black Non-hispanic</option>
-            <option value="anh">Asian Non-hispanic</option>
-            <option value="hsp">Hispanic</option>
-          </Select>
+            <Box
+              as="a"
+              href={`/map/datatool/${geography}?geoid=${geoid}`}
+              color={"gray.600"}
+              fontSize={"0.875rem"}
+            >
+              <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
+              back to map
+            </Box>
+            <DataDownloadModal downloadType={"datatool"} geoid={geoid} />
+          </Flex>
+          <GeographyInfo
+            geoid={geoid}
+            geography={geography}
+            marginX={{ base: "0.75rem", md: "1rem" }}
+            paddingBottom={"1rem"}
+            borderBottom={{ base: "gray.200", md: "none" }}
+            borderBottomWidth={{ base: "1px", md: "unset" }}
+          />
+          <CategoryMenu
+            geography={geography}
+            geoid={geoid}
+            currentCategory={category}
+            display={{ base: "flex", md: "none" }}
+            justify={"start"}
+            marginTop={"0.5rem"}
+            marginBottom={"1rem"}
+          />
+          <Box
+            width={{ base: "full", md: "max-content" }}
+            paddingX={{ base: "0.75rem", md: "1rem" }}
+          >
+            <Select
+              isDisabled={!hasRacialBreakdown}
+              onChange={changeSubgroup}
+              defaultValue={subgroup}
+            >
+              <option value="tot">Total Population</option>
+              <option value="wnh">White Non-hispanic</option>
+              <option value="bnh">Black Non-hispanic</option>
+              <option value="anh">Asian Non-hispanic</option>
+              <option value="hsp">Hispanic</option>
+            </Select>
+          </Box>
         </Box>
-        <Divider display={{ base: "none", md: "block" }} color={"gray.300"} />
         <Flex
           direction={{ base: "column", md: "row" }}
           paddingX={{ base: "0.75rem", md: "1rem" }}
