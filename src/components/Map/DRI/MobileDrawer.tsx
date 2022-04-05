@@ -46,7 +46,7 @@ export const DriMobileDrawer = () => {
           zIndex="999"
           justifyContent="space-between"
           flexDirection="row"
-          bg="rgba(0,0,0,0)"
+          bg="white"
         >
           <Button
             padding="1.5rem 1rem"
