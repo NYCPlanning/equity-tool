@@ -8,7 +8,7 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 
-export const DataToolMobileDrawer = () => {
+export const CommunityDataMobileDrawer = () => {
   const { geoid, geography } = useMapSubrouteInfo();
 
   const clearSelection = useClearSelection();
@@ -27,7 +27,7 @@ export const DataToolMobileDrawer = () => {
       zIndex="900"
       bg="white"
       borderRadius="1rem 1rem 0 0"
-      data-cy="mobileDrawer-datatool"
+      data-cy="mobileDrawer-communityData"
     >
       <Flex direction="column" height="100%" position="relative">
         <Box
@@ -46,7 +46,7 @@ export const DataToolMobileDrawer = () => {
             color="gray.500"
             leftIcon={<ArrowBackIcon />}
             aria-label="Exit Data Tool Selection"
-            data-cy="exitDataToolSelection-mobile"
+            data-cy="exitCommunityDataSelection-mobile"
             onClick={clearSelection}
           >
             back

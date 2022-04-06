@@ -13,7 +13,7 @@ const pages = [
     image: "https://equitytool.planning.nyc.gov/methods.png",
   },
   {
-    path: "/map/datatool",
+    path: "/map/data",
     title: "Map",
     image: "https://equitytool.planning.nyc.gov/screenshot.png",
   },

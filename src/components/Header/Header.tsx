@@ -29,7 +29,7 @@ export const Header = () => {
   };
 
   // fallback for About/Source pages or in case router.asPath is undefined
-  let logoUrl = "/map/datatool/district";
+  let logoUrl = "/map/data/district";
 
   // Logo links to current route on map page
   if (router.pathname.startsWith("/map/") && router.asPath) {
@@ -38,7 +38,7 @@ export const Header = () => {
 
   // Logo links to map page with current geography re-selected
   if (router.pathname.startsWith("/data/") && geography && geoid) {
-    logoUrl = `/map/datatool/${geography}?geoid=${geoid}`;
+    logoUrl = `/map/data/${geography}?geoid=${geoid}`;
   }
 
   // Prefer to implement this with Chakra's useMediaQuery hook but there is a bug with it when doing SSR

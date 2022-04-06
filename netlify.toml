@@ -5,15 +5,15 @@
 
 [[redirects]]
   from = "/"
-  to = "/map/datatool/district"
+  to = "/map/data/district"
 
 [[redirects]]
   from = "/map"
-  to = "/map/datatool/district"
+  to = "/map/data/district"
 
 [[redirects]]
-  from = "/map/datatool"
-  to = "/map/datatool/district"
+  from = "/map/data"
+  to = "/map/data/district"
 
 [[redirects]]
   from = "/map/dri"

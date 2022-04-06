@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useLayers } from "@hooks/useLayers";
 import { Map, ViewToggle, WelcomeMobileDrawer } from "@components/Map";
-import { DataToolMobileDrawer } from "@components/Map/DataTool";
+import { CommunityDataMobileDrawer } from "@components/Map/CommunityData";
 import { DriMobileDrawer } from "@components/Map/DRI";
-import { GeographySelect as DataToolGeographySelect } from "@components/Map/DataTool";
+import { GeographySelect as CommunityDataGeographySelect } from "@components/Map/CommunityData";
 import { DRIMapLegend } from "@components/Map/DRI";
 import { SidebarContent } from "@components/SidebarContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
@@ -47,19 +47,19 @@ export const getStaticPaths: GetStaticPaths = () => {
   const paths = [
     {
       params: {
-        view: "datatool",
+        view: "data",
         geography: "district",
       },
     },
     {
       params: {
-        view: "datatool",
+        view: "data",
         geography: "borough",
       },
     },
     {
       params: {
-        view: "datatool",
+        view: "data",
         geography: "citywide",
       },
     },
@@ -80,7 +80,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   /Map route
 
   Subroutes:
-    /map/datatool/:geography
+    /map/data/:geography
     /map/dri/:geography?geoid=:geoid
 */
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
@@ -97,11 +97,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
-  const [lastDataToolGeography, setLastDataToolGeography] =
+  const [lastCommunityDataGeography, setLastCommunityDataGeography] =
     useState<Geography | null>(null);
-  const [lastDataToolGeoid, setLastDataToolGeoid] = useState<string | null>(
-    null
-  );
+  const [lastCommunityDataGeoid, setLastCommunityDataGeoid] = useState<
+    string | null
+  >(null);
   const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
 
   const [lastDistrictGeoid, setLastDistrictGeoid] = useState<string | null>(
@@ -111,8 +111,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
 
   const onDriClick = () => {
-    setLastDataToolGeography(geography);
-    setLastDataToolGeoid(geoid);
+    setLastCommunityDataGeography(geography);
+    setLastCommunityDataGeoid(geoid);
 
     ReactGA.event({
       category: "Toggle Tool",
@@ -130,7 +130,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     router.push(driPath);
   };
 
-  const onDataToolClick = () => {
+  const onCommunityDataClick = () => {
     setLastDriGeoid(geoid);
 
     ReactGA.event({
@@ -139,14 +139,14 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       label: "Data Tool",
     });
 
-    let dataToolPath = "/map/datatool";
+    let dataToolPath = "/map/data";
 
-    if (lastDataToolGeography) {
-      dataToolPath += `/${lastDataToolGeography}`;
+    if (lastCommunityDataGeography) {
+      dataToolPath += `/${lastCommunityDataGeography}`;
 
-      if (lastDataToolGeoid) {
+      if (lastCommunityDataGeoid) {
         // TODO: revisit this if more query params will exist on Map view
-        dataToolPath += `?geoid=${lastDataToolGeoid}`;
+        dataToolPath += `?geoid=${lastCommunityDataGeoid}`;
       }
     } else {
       dataToolPath += `/${DISTRICT}`;
@@ -155,7 +155,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     router.push(dataToolPath);
   };
 
-  const onDataToolGeographyChange = (targetGeography: Geography) => {
+  const onCommunityDataGeographyChange = (targetGeography: Geography) => {
     if (geography === targetGeography) return;
 
     ReactGA.event({
@@ -164,7 +164,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       label: `${targetGeography}`,
     });
 
-    const targetUrl = `/map/datatool/${targetGeography}`;
+    const targetUrl = `/map/data/${targetGeography}`;
 
     if (geography === DISTRICT) setLastDistrictGeoid(geoid);
     if (geography === BOROUGH) setLastBoroughGeoid(geoid);
@@ -216,19 +216,19 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
       {!geoid && <WelcomeMobileDrawer />}
 
-      {view === "datatool" && geoid && <DataToolMobileDrawer />}
+      {view === "data" && geoid && <CommunityDataMobileDrawer />}
 
       {view === "dri" && geoid && <DriMobileDrawer />}
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
-            onDataToolClick={onDataToolClick}
+            onCommunityDataClick={onCommunityDataClick}
             onDriClick={onDriClick}
           />
 
-          {view === "datatool" && (
-            <DataToolGeographySelect
+          {view === "data" && (
+            <CommunityDataGeographySelect
               position="absolute"
               top={{
                 base: "1rem",
@@ -237,7 +237,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               left="2.1875rem"
               zIndex={100}
               boxShadow="lg"
-              onGeographySelect={onDataToolGeographyChange}
+              onGeographySelect={onCommunityDataGeographyChange}
             />
           )}
 

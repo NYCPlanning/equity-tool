@@ -5,7 +5,7 @@ import ReactGA from "react-ga4";
 const WelcomeContent = () => {
   const { view } = useMapSubrouteInfo();
 
-  if (view === "datatool") {
+  if (view === "data") {
     return (
       <>
         <Heading as="h3" fontSize="1.5625rem">

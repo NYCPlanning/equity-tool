@@ -55,7 +55,7 @@ export const DriMobileDrawer = () => {
             color="gray.500"
             leftIcon={<ArrowBackIcon />}
             aria-label="Exit Data Tool Selection"
-            data-cy="exitDataToolSelection-mobile"
+            data-cy="exitCommunityDataSelection-mobile"
             onClick={clearSelection}
           >
             back

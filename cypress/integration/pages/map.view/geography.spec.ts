@@ -1,6 +1,6 @@
 describe("Map catch-all page", () => {
   beforeEach(() => {
-    cy.visit("/map/datatool/district");
+    cy.visit("/map/data/district");
   });
 
   context("desktop", () => {
@@ -14,23 +14,23 @@ describe("Map catch-all page", () => {
     });
 
     it("should switch geography when user uses Geography Select toolbar on Desktop size", () => {
-      cy.url().should("include", "/map/datatool");
+      cy.url().should("include", "/map/data");
 
       cy.contains("Community District*").click();
 
-      cy.url().should("include", "/map/datatool/district");
+      cy.url().should("include", "/map/data/district");
 
       cy.contains("Borough").click();
 
-      cy.url().should("include", "/map/datatool/borough");
+      cy.url().should("include", "/map/data/borough");
 
-      cy.visit("/map/datatool/district");
+      cy.visit("/map/data/district");
 
       cy.contains("Community District*").should("have.attr", "data-active");
     });
 
     it("should switch view when user uses ViewToggle toolbar", () => {
-      cy.url().should("include", "/map/datatool");
+      cy.url().should("include", "/map/data");
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
@@ -38,11 +38,11 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/datatool");
+      cy.url().should("include", "/map/data");
     });
 
     it("ViewToggle should preserve previous view geo and geoid", () => {
-      cy.visit("/map/datatool/district");
+      cy.visit("/map/data/district");
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
@@ -50,9 +50,9 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/datatool/district");
+      cy.url().should("include", "/map/data/district");
 
-      cy.visit("/map/datatool/borough?geoid=BK0202");
+      cy.visit("/map/data/borough?geoid=BK0202");
 
       cy.get('[data-cy="driBtn-desktop"]').click();
 
@@ -60,11 +60,11 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/datatool/borough?geoid=BK0202");
+      cy.url().should("include", "/map/data/borough?geoid=BK0202");
     });
 
     it("should display correct content in Sidebar depending on view (Data Tool or DRI)", () => {
-      cy.visit("/map/datatool/district");
+      cy.visit("/map/data/district");
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
@@ -80,7 +80,7 @@ describe("Map catch-all page", () => {
     });
 
     it("should display correct content in Sidebar depending on if a geography is selected", () => {
-      cy.visit("/map/datatool/district");
+      cy.visit("/map/data/district");
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
@@ -92,7 +92,7 @@ describe("Map catch-all page", () => {
         "Sunnyside & Woodside"
       );
 
-      cy.visit("/map/datatool/district?geoid=4109");
+      cy.visit("/map/data/district?geoid=4109");
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "not.contain",
@@ -106,18 +106,18 @@ describe("Map catch-all page", () => {
     });
 
     it("should render correct geography information for each geography type", () => {
-      cy.visit("/map/datatool/district?geoid=4108");
+      cy.visit("/map/data/district?geoid=4108");
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
         "contain",
         "Forest Hills & Rego Park"
       );
 
-      cy.visit("/map/datatool/borough?geoid=4");
+      cy.visit("/map/data/borough?geoid=4");
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Queens");
 
-      cy.visit("/map/datatool/citywide?geoid=nyc");
+      cy.visit("/map/data/citywide?geoid=nyc");
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Citywide");
 
@@ -130,7 +130,7 @@ describe("Map catch-all page", () => {
     });
 
     it("should clear selection when user hits 'back' button", () => {
-      cy.visit("/map/datatool/district?geoid=4108");
+      cy.visit("/map/data/district?geoid=4108");
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
@@ -142,7 +142,7 @@ describe("Map catch-all page", () => {
         "Or switch to the Displacement Risk Index"
       );
 
-      cy.get('[data-cy="exitDataToolSelection-desktop"]').click();
+      cy.get('[data-cy="exitCommunityDataSelection-desktop"]').click();
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "not.contain",
@@ -156,7 +156,7 @@ describe("Map catch-all page", () => {
     });
 
     it("GeographySelect should remember previously selected District", () => {
-      cy.visit("/map/datatool/district?geoid=4108");
+      cy.visit("/map/data/district?geoid=4108");
 
       cy.get('[data-cy="boroughButton"]').click();
 
@@ -168,7 +168,7 @@ describe("Map catch-all page", () => {
     });
 
     it("GeographySelect should remember previously selected Borough", () => {
-      cy.visit("/map/datatool/borough?geoid=BK0202");
+      cy.visit("/map/data/borough?geoid=BK0202");
 
       cy.get('[data-cy="districtButton"]').click();
 
@@ -199,7 +199,7 @@ describe("Map catch-all page", () => {
     });
 
     it("should switch view when user uses ViewToggle toolbar", () => {
-      cy.url().should("include", "/map/datatool");
+      cy.url().should("include", "/map/data");
 
       cy.get('[data-cy="driBtn-mobile"]').click();
 
@@ -207,7 +207,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="dataToolBtn-mobile"]').click();
 
-      cy.url().should("include", "/map/datatool");
+      cy.url().should("include", "/map/data");
     });
 
     // Switching to Borough suddenly exceeded 4000ms... perhaps due to some MVT errors
@@ -217,24 +217,24 @@ describe("Map catch-all page", () => {
         defaultCommandTimeout: 4000,
       },
       () => {
-        cy.url().should("include", "/map/datatool");
+        cy.url().should("include", "/map/data");
 
         cy.get('[data-cy="districtButton"]').click();
 
-        cy.url().should("include", "/map/datatool/district");
+        cy.url().should("include", "/map/data/district");
 
         cy.get('[data-cy="boroughButton"]').click();
 
-        cy.url().should("include", "/map/datatool/borough");
+        cy.url().should("include", "/map/data/borough");
 
-        cy.visit("/map/datatool/district");
+        cy.visit("/map/data/district");
 
         cy.contains("Community District*").should("have.attr", "data-active");
       }
     );
 
     it("should display correct content in Drawer depending on view (Data Tool or DRI)", () => {
-      cy.visit("/map/datatool/district");
+      cy.visit("/map/data/district");
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
@@ -250,7 +250,7 @@ describe("Map catch-all page", () => {
     });
 
     it("should display correct content in Sidebar depending on if a geography is selected", () => {
-      cy.visit("/map/datatool/district");
+      cy.visit("/map/data/district");
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
@@ -262,7 +262,7 @@ describe("Map catch-all page", () => {
         "Sunnyside & Woodside"
       );
 
-      cy.visit("/map/datatool/district?geoid=4109");
+      cy.visit("/map/data/district?geoid=4109");
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "not.contain",
@@ -276,18 +276,18 @@ describe("Map catch-all page", () => {
     });
 
     it("should clear selection when user hits 'back' button", () => {
-      cy.visit("/map/datatool/district?geoid=4108");
+      cy.visit("/map/data/district?geoid=4108");
 
-      cy.get('[data-cy="mobileDrawer-datatool"]').should(
+      cy.get('[data-cy="mobileDrawer-communityData"]').should(
         "contain",
         "Forest Hills & Rego Park"
       );
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should("not.exist");
 
-      cy.get('[data-cy="exitDataToolSelection-mobile"]').click();
+      cy.get('[data-cy="exitCommunityDataSelection-mobile"]').click();
 
-      cy.get('[data-cy="mobileDrawer-datatool"]').should("not.exist");
+      cy.get('[data-cy="mobileDrawer-communityData"]').should("not.exist");
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should("exist");
     });

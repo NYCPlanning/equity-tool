@@ -5,7 +5,7 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 const WelcomeFooter = () => {
   const { view } = useMapSubrouteInfo();
 
-  if (view === "datatool") {
+  if (view === "data") {
     return (
       <Box fontSize="0.8125rem">
         <Text>
