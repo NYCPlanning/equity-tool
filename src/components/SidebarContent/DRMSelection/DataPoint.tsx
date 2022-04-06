@@ -17,7 +17,7 @@ export const DataPoint = ({
   moe,
 }: DataPointProps) => {
   return (
-    <Box p="1.375rem 0.5rem 1.375rem 0.5rem">
+    <Box p="1rem 0.5rem 1rem 0.5rem">
       <Heading
         fontSize="0.8125rem"
         color="teal.600"
