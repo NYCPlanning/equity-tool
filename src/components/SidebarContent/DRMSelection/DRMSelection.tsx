@@ -25,7 +25,7 @@ export const DRMSelection = () => {
         />
         <Divider borderColor="gray.100" />
         <DataPoint
-          title="income below 200% of Federal poverty rate"
+          title="Population with income below 200% of Federal poverty rate"
           value={selectedDRMdata?.percentbelow2xpovertyrate}
           percentage={true}
           moe={selectedDRMdata?.percentbelow2xpovertyrate_moe}
