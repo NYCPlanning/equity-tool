@@ -15,12 +15,13 @@ const pages = [
   {
     path: "/map/datatool",
     title: "Map",
-    image: "https://equitytool.planning.nyc.gov/screenshot.png",
+    image:
+      "https://equitytool.planning.nyc.gov/community-data-landing-page.png",
   },
   {
     path: "/map/dri",
     title: "Displacement Risk Index",
-    image: "https://equitytool.planning.nyc.gov/driscreenshot.png",
+    image: "https://equitytool.planning.nyc.gov/drm-landing-page.png",
   },
   {
     path: "/data",
@@ -34,7 +35,8 @@ export const PageHeader = () => {
 
   const currentPage = pages.find((page) => path.startsWith(page.path)) || {
     title: "",
-    image: "https://equitytool.planning.nyc.gov/screenshot.png",
+    image:
+      "https://equitytool.planning.nyc.gov/community-data-landing-page.png",
   };
 
   return (
