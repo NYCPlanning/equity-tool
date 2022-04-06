@@ -1,2 +1,2 @@
 export * from "./SidebarContent";
-export * from "./DRISelection";
+export * from "./DRMSelection";

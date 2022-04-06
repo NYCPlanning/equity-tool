@@ -6,12 +6,12 @@ import {
   ChevronDownIcon,
 } from "@chakra-ui/icons";
 import { useClearSelection } from "@helpers/useClearSelection";
-import { DRISelection } from "@components/SidebarContent/DRISelection";
+import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { NYC } from "@constants/geoid";
 
-export const DriMobileDrawer = () => {
+export const DrmMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { geoid, geography } = useMapSubrouteInfo();
@@ -34,7 +34,7 @@ export const DriMobileDrawer = () => {
       zIndex="900"
       bg="white"
       borderRadius="1rem 1rem 0 0"
-      data-cy="mobileDrawer-dri"
+      data-cy="mobileDrawer-drm"
     >
       <Flex direction="column" height="100%" position="relative">
         <Flex
@@ -113,7 +113,7 @@ export const DriMobileDrawer = () => {
 
           <Divider color={"gray.200"} />
 
-          <DRISelection />
+          <DRMSelection />
         </Box>
       </Flex>
     </Box>

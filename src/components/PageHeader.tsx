@@ -21,7 +21,7 @@ const pages = [
       "https://equitableexplorer.planning.nyc.gov/community-data-landing-page.png",
   },
   {
-    path: "/map/dri",
+    path: "/map/drm",
     title: "Displacement Risk Index",
     image: "https://equitableexplorer.planning.nyc.gov/drm-landing-page.png",
   },

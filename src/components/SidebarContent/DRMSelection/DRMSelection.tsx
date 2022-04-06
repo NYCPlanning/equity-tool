@@ -1,15 +1,15 @@
 import React from "react";
-import dridata from "@data/DRI_Subindices_Indicators.json";
+import drmData from "@data/DRI_Subindices_Indicators.json";
 import { Box, Divider, Heading, Text, Flex } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 
-export const DRISelection = () => {
+export const DRMSelection = () => {
   const { geoid } = useMapSubrouteInfo();
 
-  const selectedDRIdata = dridata.find((nta: any) => nta.ntacode === geoid);
+  const selectedDRMdata = drmData.find((nta: any) => nta.ntacode === geoid);
 
   return (
     <>
@@ -21,7 +21,7 @@ export const DRISelection = () => {
             </Heading>
           </Box>
           <Box pl="0.5rem">
-            <DataDownloadModal downloadType="dri" geoid={geoid} />
+            <DataDownloadModal downloadType="drm" geoid={geoid} />
           </Box>
         </Flex>
 
@@ -32,31 +32,31 @@ export const DRISelection = () => {
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Vulnerability"
-          subindicatorBin={selectedDRIdata?.populationvulnerability_reclass}
+          subindicatorBin={selectedDRMdata?.populationvulnerability_reclass}
         />
         <DataPoint
           title="Non-white Population"
-          value={selectedDRIdata?.percentnotwhite}
+          value={selectedDRMdata?.percentnotwhite}
           percentage={true}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="income below 200% of Federal poverty rate"
-          value={selectedDRIdata?.percentbelow2xpovertyrate}
+          value={selectedDRMdata?.percentbelow2xpovertyrate}
           percentage={true}
-          moe={selectedDRIdata?.percentbelow2xpovertyrate_moe}
+          moe={selectedDRMdata?.percentbelow2xpovertyrate_moe}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="limited-English speaking population"
-          value={selectedDRIdata?.limitedenglishproficiency}
+          value={selectedDRMdata?.limitedenglishproficiency}
           percentage={true}
-          moe={selectedDRIdata?.limitedenglishproficiency_moe}
+          moe={selectedDRMdata?.limitedenglishproficiency_moe}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="households with severe rent burden"
-          value={selectedDRIdata?.percentrentburdenedvscity}
+          value={selectedDRMdata?.percentrentburdenedvscity}
           percentage={false}
           noNumber={true}
         />
@@ -64,12 +64,12 @@ export const DRISelection = () => {
 
         <Subindicator
           subindicatorTitle="Housing Conditions"
-          subindicatorBin={selectedDRIdata?.housingconditions_reclass}
+          subindicatorBin={selectedDRMdata?.housingconditions_reclass}
         />
         <DataPoint
           title="housing with 3+ maintenance deficiencies"
           value={
-            selectedDRIdata?.percentunitswith3plusmaintenancedeficienciesvscity
+            selectedDRMdata?.percentunitswith3plusmaintenancedeficienciesvscity
           }
           percentage={false}
           noNumber={true}
@@ -78,52 +78,52 @@ export const DRISelection = () => {
         {/* Is this the correct field? */}
         <DataPoint
           title="Housing NY &amp; NYC Housing Authority (NYCHA)"
-          value={selectedDRIdata?.percentunitswithnoincomerestrictions}
+          value={selectedDRMdata?.percentunitswithnoincomerestrictions}
           percentage={true}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="Rent-Stabilized Housing units"
-          value={selectedDRIdata?.percentunitswithrentregulationsvscity}
+          value={selectedDRMdata?.percentunitswithrentregulationsvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="renter-occupied housing units"
-          value={selectedDRIdata?.percentrenters}
+          value={selectedDRMdata?.percentrenters}
           percentage={true}
-          moe={selectedDRIdata?.percentrenters_moe}
+          moe={selectedDRMdata?.percentrenters_moe}
         />
         <Divider borderColor={"#A0AEC0"} />
 
         <Subindicator
           subindicatorTitle="Pressure"
-          subindicatorBin={selectedDRIdata?.marketpressure_reclass}
+          subindicatorBin={selectedDRMdata?.marketpressure_reclass}
         />
         <DataPoint
           title="Rent Change Vs. City"
-          value={selectedDRIdata?.changeinrentsvscity}
+          value={selectedDRMdata?.changeinrentsvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="Price Appreciation"
-          value={selectedDRIdata?.salespriceappreciation}
+          value={selectedDRMdata?.salespriceappreciation}
           percentage={false}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="Bachelors degree Or Higher Change"
-          value={selectedDRIdata?.changeinpopulationwithbachelorsdegreesvscity}
+          value={selectedDRMdata?.changeinpopulationwithbachelorsdegreesvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor={"#A0AEC0"} />
         <DataPoint
           title="Adjacent Neighborhood Pressure"
-          value={selectedDRIdata?.adjacency}
+          value={selectedDRMdata?.adjacency}
           percentage={false}
           noNumber={true}
         />

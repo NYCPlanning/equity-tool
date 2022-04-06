@@ -16,5 +16,5 @@
   to = "/map/data/district"
 
 [[redirects]]
-  from = "/map/dri"
-  to = "/map/dri/nta"
+  from = "/map/drm"
+  to = "/map/drm/nta"

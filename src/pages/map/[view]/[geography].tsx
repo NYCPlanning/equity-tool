@@ -5,9 +5,9 @@ import { Box, Flex } from "@chakra-ui/react";
 import { useLayers } from "@hooks/useLayers";
 import { Map, ViewToggle, WelcomeMobileDrawer } from "@components/Map";
 import { CommunityDataMobileDrawer } from "@components/Map/CommunityData";
-import { DriMobileDrawer } from "@components/Map/DRI";
+import { DrmMobileDrawer } from "@components/Map/DRM";
 import { GeographySelect as CommunityDataGeographySelect } from "@components/Map/CommunityData";
-import { DRIMapLegend } from "@components/Map/DRI";
+import { DRMMapLegend } from "@components/Map/DRM";
 import { SidebarContent } from "@components/SidebarContent";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { Geography } from "@constants/geography";
@@ -65,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = () => {
     },
     {
       params: {
-        view: "dri",
+        view: "drm",
         geography: "nta",
       },
     },
@@ -81,7 +81,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 
   Subroutes:
     /map/data/:geography
-    /map/dri/:geography?geoid=:geoid
+    /map/drm/:geography?geoid=:geoid
 */
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
@@ -102,7 +102,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const [lastCommunityDataGeoid, setLastCommunityDataGeoid] = useState<
     string | null
   >(null);
-  const [lastDriGeoid, setLastDriGeoid] = useState((): string | null => null);
+  const [lastDrmGeoid, setLastDrmGeoid] = useState((): string | null => null);
 
   const [lastDistrictGeoid, setLastDistrictGeoid] = useState<string | null>(
     null
@@ -110,7 +110,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
 
-  const onDriClick = () => {
+  const onDrmClick = () => {
     setLastCommunityDataGeography(geography);
     setLastCommunityDataGeoid(geoid);
 
@@ -120,18 +120,18 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       label: "Displacement Risk Index",
     });
 
-    let driPath = `/map/dri/${NTA}`;
+    let drmPath = `/map/drm/${NTA}`;
 
-    if (lastDriGeoid) {
+    if (lastDrmGeoid) {
       // TODO: revisit this if more query params will exist on Map view
-      driPath += `?geoid=${lastDriGeoid}`;
+      drmPath += `?geoid=${lastDrmGeoid}`;
     }
 
-    router.push(driPath);
+    router.push(drmPath);
   };
 
   const onCommunityDataClick = () => {
-    setLastDriGeoid(geoid);
+    setLastDrmGeoid(geoid);
 
     ReactGA.event({
       category: "Toggle Tool",
@@ -218,13 +218,13 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
       {view === "data" && geoid && <CommunityDataMobileDrawer />}
 
-      {view === "dri" && geoid && <DriMobileDrawer />}
+      {view === "drm" && geoid && <DrmMobileDrawer />}
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
-            onDriClick={onDriClick}
+            onDrmClick={onDrmClick}
           />
 
           {view === "data" && (
@@ -245,7 +245,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             />
           )}
 
-          {view === "dri" && <DRIMapLegend />}
+          {view === "drm" && <DRMMapLegend />}
 
           <Map
             layers={layers ? layers : undefined}

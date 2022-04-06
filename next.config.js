@@ -25,8 +25,8 @@ const moduleExports = {
         permanent: true,
       },
       {
-        source: "/map/dri",
-        destination: "/map/dri/nta",
+        source: "/map/drm",
+        destination: "/map/drm/nta",
         permanent: true,
       },
     ];

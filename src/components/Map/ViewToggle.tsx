@@ -4,12 +4,12 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 interface ViewToggleProps extends BoxProps {
   onCommunityDataClick: () => void;
-  onDriClick: () => void;
+  onDrmClick: () => void;
 }
 
 export const ViewToggle = ({
   onCommunityDataClick,
-  onDriClick,
+  onDrmClick,
 }: ViewToggleProps) => {
   const { view, geoid } = useMapSubrouteInfo();
 
@@ -58,10 +58,10 @@ export const ViewToggle = ({
               color: "teal",
               border: "1px solid teal",
             }}
-            onClick={onDriClick}
-            isActive={view === "dri"}
+            onClick={onDrmClick}
+            isActive={view === "drm"}
             isFullWidth
-            data-cy="driBtn-mobile"
+            data-cy="drmBtn-mobile"
           >
             Displacement Risk Index
           </Button>
@@ -88,10 +88,10 @@ export const ViewToggle = ({
           Data Tool
         </Button>
         <Button
-          onClick={onDriClick}
-          isActive={view === "dri"}
+          onClick={onDrmClick}
+          isActive={view === "drm"}
           variant="toggle"
-          data-cy="driBtn-desktop"
+          data-cy="drmBtn-desktop"
         >
           Displacement Risk Index
         </Button>

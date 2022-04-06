@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { Geography } from "@constants/geography";
 
-type ViewValue = "dri" | "data" | null;
+type ViewValue = "drm" | "data" | null;
 
 interface SubrouteInfo {
   view: ViewValue;
@@ -15,7 +15,7 @@ export const useMapSubrouteInfo = (): SubrouteInfo => {
 
   const { view, geography, geoid } = router.query;
 
-  const viewParam: ViewValue = view === "dri" || view === "data" ? view : null;
+  const viewParam: ViewValue = view === "drm" || view === "data" ? view : null;
 
   const geographyParam: Geography | null =
     Array.isArray(geography) || geography === undefined
