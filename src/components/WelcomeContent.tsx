@@ -16,13 +16,19 @@ const WelcomeContent = () => {
         <Text>You don&apos;t have anything selected yet.</Text>
         <br />
         <Text>
-          Make a selection on the map to explore data indicators and change over
-          time in the Data Tool.
+          Make a selection on the map to explore how demographic, housing, and
+          quality of life characteristics compare across neighborhoods and
+          demographic groups over the past two decades.
         </Text>
         <br />
         <Text>
-          Or switch to the Displacement Risk Index (DRI) and select a
-          neighborhood to see its’ DRI Profile.
+          Make your selection by community district*, borough, or city.
+        </Text>
+        <br />
+        <Text>
+          Or, switch to the Displacement Risk Map and select a neighborhood to
+          see the level of risk residents face of being unable to remain in
+          their homes or neighborhoods.
         </Text>
 
         <br />

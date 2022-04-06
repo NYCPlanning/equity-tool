@@ -14,9 +14,9 @@ const WelcomeFooter = () => {
         </Text>
         <br />
         <Text>
-          The Equitable Development Reporting web tool is a partnership between
-          the New York City Department of Housing Preservation and Development
-          (HPD) and the Department of City Planning (DCP).
+          The Equitable Development Data Explorer is a partnership between the
+          New York City Department of Housing Preservation and Development (HPD)
+          and the Department of City Planning (DCP).
         </Text>
         <br />
         <StaticPageFooter />
