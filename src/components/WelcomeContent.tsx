@@ -30,21 +30,6 @@ const WelcomeContent = () => {
           see the level of risk residents face of being unable to remain in
           their homes or neighborhoods.
         </Text>
-
-        <br />
-
-        <Link
-          href="/about"
-          onClick={() => {
-            ReactGA.event({
-              category: "Learn More About the Data Tool",
-              action: "Click",
-              label: "Learn More About the Data Tool",
-            });
-          }}
-        >
-          Learn More About the Data Tool
-        </Link>
       </>
     );
   }
