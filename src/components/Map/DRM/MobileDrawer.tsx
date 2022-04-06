@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Divider, IconButton, Flex } from "@chakra-ui/react";
+import { Box, Button, IconButton, Flex } from "@chakra-ui/react";
 import {
   ArrowBackIcon,
   ChevronUpIcon,
@@ -39,7 +39,7 @@ export const DrmMobileDrawer = () => {
       left="0"
       zIndex="900"
       bg="white"
-      borderRadius="1rem 1rem 0 0"
+      borderRadius="0.625rem 0.625rem 0 0"
       data-cy="mobileDrawer-drm"
     >
       <Flex direction="column" height="100%" position="relative">
@@ -54,6 +54,7 @@ export const DrmMobileDrawer = () => {
           flexDirection="row"
           bg="white"
           pt={isOpen ? "1rem" : "0rem"}
+          borderRadius="0.625rem 0.625rem 0 0"
         >
           <Button
             padding="1.5rem 1rem"
@@ -125,7 +126,6 @@ export const DrmMobileDrawer = () => {
             />
           </Box>
 
-          <Divider color={"gray.200"} />
           <Box>
             {view === "drm" && <SubindicatorBin bin={ntaIndex[geoidIndex]} />}
           </Box>
