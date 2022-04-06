@@ -47,7 +47,11 @@ export const Map = ({ layers, parent }: MapProps) => {
           base: view === "datatool" ? "4.5rem" : "1.3rem",
           md: "8rem",
         }}
-        left="2.1875rem"
+        left={{
+          base: "2vmin",
+          sm: "4vmin",
+          md: "2.1875rem",
+        }}
       >
         <NavigationControl />
       </Box>
