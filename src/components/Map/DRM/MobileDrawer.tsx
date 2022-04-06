@@ -18,7 +18,6 @@ export const DrmMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { view, geoid, geography } = useMapSubrouteInfo();
-  const geoidIndex = geoid ? geoid : "";
 
   const clearSelection = useClearSelection();
 
@@ -127,7 +126,9 @@ export const DrmMobileDrawer = () => {
           </Box>
 
           <Box>
-            {view === "drm" && <SubindicatorBin bin={ntaIndex[geoidIndex]} />}
+            {view === "drm" && (
+              <SubindicatorBin bin={ntaIndex[geoid ? geoid : ""]} />
+            )}
           </Box>
           <DRMSelection />
         </Box>
