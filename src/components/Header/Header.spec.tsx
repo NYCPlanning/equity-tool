@@ -12,7 +12,7 @@ describe("Header", () => {
   it("has the correct site header text", () => {
     render(<Header />);
     expect(screen.getByRole("heading")).toHaveTextContent(
-      "Equitable Development Data Tool"
+      "Equitable Development Data Explorer"
     );
   });
 

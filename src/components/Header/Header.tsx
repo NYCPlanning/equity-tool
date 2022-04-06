@@ -153,7 +153,7 @@ export const Header = () => {
             cursor="pointer"
             data-test="header-app-title"
           >
-            Equitable Development Data Tool
+            Equitable Development Data Explorer
           </Heading>
         </NextLink>
       </Flex>

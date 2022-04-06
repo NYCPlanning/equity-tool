@@ -224,7 +224,7 @@ const MethodsPage = () => (
           <Box width={["100%"]} pt="1rem" pb="1rem">
             <Heading size="lg" pb="0.5em" fontSize="2.125rem">
               Explanation of the geographic scale used for Equitable Development
-              Data Tool
+              Data Explorer
             </Heading>
             <Text pb="0.5em" lineHeight="1.625rem">
               The data that makes up Community Data is displayed at the Public
