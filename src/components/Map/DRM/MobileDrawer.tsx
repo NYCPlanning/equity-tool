@@ -10,13 +10,19 @@ import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { NYC } from "@constants/geoid";
+import { SubindicatorBin } from "@components/SidebarContent";
+import { DataDownloadModal } from "@components/DataDownloadModal";
+import ntaIndexes from "@data/ntaIndexes.json";
 
 export const DrmMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { geoid, geography } = useMapSubrouteInfo();
+  const { view, geoid, geography } = useMapSubrouteInfo();
+  const geoidIndex = geoid ? geoid : "";
 
   const clearSelection = useClearSelection();
+
+  const ntaIndex: { [index: string]: any } = ntaIndexes;
 
   return (
     <Box
@@ -47,6 +53,7 @@ export const DrmMobileDrawer = () => {
           justifyContent="space-between"
           flexDirection="row"
           bg="white"
+          pt={isOpen ? "1rem" : "0rem"}
         >
           <Button
             padding="1.5rem 1rem"
@@ -68,18 +75,21 @@ export const DrmMobileDrawer = () => {
             }}
           >
             {isOpen ? (
-              <IconButton
-                variant="ghost"
-                size="lg"
-                fontSize="1.25rem"
-                bg="rgba(0,0,0,0)"
-                icon={<ChevronDownIcon />}
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-                aria-label="Toggle Drawer"
-                data-cy="closeMobileDrawer"
-              />
+              <>
+                <DataDownloadModal downloadType="dri" geoid={geoid} />
+                <IconButton
+                  variant="ghost"
+                  size="lg"
+                  fontSize="1.25rem"
+                  bg="rgba(0,0,0,0)"
+                  icon={<ChevronDownIcon />}
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                  }}
+                  aria-label="Toggle Drawer"
+                  data-cy="closeMobileDrawer"
+                />
+              </>
             ) : (
               <IconButton
                 variant="ghost"
@@ -103,7 +113,11 @@ export const DrmMobileDrawer = () => {
             },
           }}
         >
-          <Box padding="2.5rem 1rem">
+          <Box
+            padding={
+              isOpen ? "4.5rem 1rem 0.5rem 1rem" : "3.5rem 1rem 0.5rem 1rem"
+            }
+          >
             <GeographyInfo
               geoid={geography && geoid ? geoid : NYC}
               geography={geography}
@@ -112,7 +126,9 @@ export const DrmMobileDrawer = () => {
           </Box>
 
           <Divider color={"gray.200"} />
-
+          <Box>
+            {view === "drm" && <SubindicatorBin bin={ntaIndex[geoidIndex]} />}
+          </Box>
           <DRMSelection />
         </Box>
       </Flex>
