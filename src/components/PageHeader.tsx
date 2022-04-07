@@ -5,30 +5,27 @@ const pages = [
   {
     path: "/about",
     title: "About",
-    image:
-      "https://equitableexplorer.planning.nyc.gov/edde-logo-for-social.png",
+    image: `https://${process.env.DOMAIN}/edde-logo-for-social.png`,
   },
   {
     path: "/methods",
     title: "Methods & Sources",
-    image:
-      "https://equitableexplorer.planning.nyc.gov/edde-logo-for-social.png",
+    image: `https://${process.env.DOMAIN}/edde-logo-for-social.png`,
   },
   {
     path: "/map/data",
     title: "Map",
-    image:
-      "https://equitableexplorer.planning.nyc.gov/community-data-landing-page.png",
+    image: `https://${process.env.DOMAIN}/community-data-landing-page.png`,
   },
   {
     path: "/map/drm",
     title: "Displacement Risk Map",
-    image: "https://equitableexplorer.planning.nyc.gov/drm-landing-page.png",
+    image: `https://${process.env.DOMAIN}/drm-landing-page.png`,
   },
   {
     path: "/data",
     title: "Data Tables",
-    image: "https://equitableexplorer.planning.nyc.gov/data-tables.png",
+    image: `https://${process.env.DOMAIN}/data-tables.png`,
   },
 ];
 
@@ -37,8 +34,7 @@ export const PageHeader = () => {
 
   const currentPage = pages.find((page) => path.startsWith(page.path)) || {
     title: "",
-    image:
-      "https://equitableexplorer.planning.nyc.gov/community-data-landing-page.png",
+    image: `https://${process.env.DOMAIN}/community-data-landing-page.png`,
   };
 
   return (
@@ -60,7 +56,7 @@ export const PageHeader = () => {
       <meta property="og:type" content="website" key="og:type" />
       <meta
         property="og:url"
-        content="https://equitableexplorer.planning.nyc.gov/"
+        content={`https://${process.env.DOMAIN}`}
         key="og:url"
       />
       <meta
@@ -86,7 +82,7 @@ export const PageHeader = () => {
       />
       <meta
         property="twitter:url"
-        content="https://equitableexplorer.planning.nyc.gov/"
+        content={`https://${process.env.DOMAIN}`}
         key="twitter:url"
       />
       <meta
