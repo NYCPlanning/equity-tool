@@ -136,7 +136,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     ReactGA.event({
       category: "Toggle Tool",
       action: "Click",
-      label: "Data Tool",
+      label: "Community Data",
     });
 
     let dataToolPath = "/map/data";

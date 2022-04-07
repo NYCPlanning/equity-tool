@@ -45,7 +45,7 @@ export const ViewToggle = ({
             isFullWidth
             data-cy="dataToolBtn-mobile"
           >
-            Data Tool
+            Community Data
           </Button>
           <Button
             flex="1"
@@ -85,7 +85,7 @@ export const ViewToggle = ({
           variant="toggle"
           data-cy="dataToolBtn-desktop"
         >
-          Data Tool
+          Community Data
         </Button>
         <Button
           onClick={onDrmClick}

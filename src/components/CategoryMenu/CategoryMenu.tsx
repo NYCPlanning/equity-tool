@@ -36,7 +36,7 @@ export const CategoryMenu = ({
       isActive={currentCategory === Category.DEMO}
       onClick={() => {
         ReactGA.event({
-          category: "Select Data Tool Profile",
+          category: "Select Community Data Profile",
           action: "Demographic Conditions",
           label: `${geoid}`,
         });
@@ -50,7 +50,7 @@ export const CategoryMenu = ({
       isActive={currentCategory === Category.ECON}
       onClick={() => {
         ReactGA.event({
-          category: "Select Data Tool Profile",
+          category: "Select Community Data Profile",
           action: "Household Economic Security",
           label: `${geoid}`,
         });
@@ -64,7 +64,7 @@ export const CategoryMenu = ({
       isActive={currentCategory === Category.HSAQ}
       onClick={() => {
         ReactGA.event({
-          category: "Select Data Tool Profile",
+          category: "Select Community Data Profile",
           action: "Housing Security, Affordability and Quality",
           label: `${geoid}`,
         });
@@ -78,7 +78,7 @@ export const CategoryMenu = ({
       isActive={currentCategory === Category.HOPD}
       onClick={() => {
         ReactGA.event({
-          category: "Select Data Tool Profile",
+          category: "Select Community Data Profile",
           action: "Housing Production",
           label: `${geoid}`,
         });
@@ -92,7 +92,7 @@ export const CategoryMenu = ({
       isActive={currentCategory === Category.QLAO}
       onClick={() => {
         ReactGA.event({
-          category: "Select Data Tool Profile",
+          category: "Select Community Data Profile",
           action: "Quality of Life and Access to Opportunity",
           label: `${geoid}`,
         });
