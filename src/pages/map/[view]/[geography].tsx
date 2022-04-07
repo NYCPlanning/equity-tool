@@ -117,7 +117,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     ReactGA.event({
       category: "Toggle Tool",
       action: "Click",
-      label: "Displacement Risk Index",
+      label: "Displacement Risk Map",
     });
 
     let drmPath = `/map/drm/${NTA}`;

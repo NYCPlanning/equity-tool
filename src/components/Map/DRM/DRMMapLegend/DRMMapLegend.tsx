@@ -42,7 +42,7 @@ export const DRMMapLegend = () => {
           md: "block",
         }}
       >
-        <Text fontWeight={700}>Displacement Risk Index</Text>
+        <Text fontWeight={700}>Displacement Risk Map</Text>
         <HStack direction="row" alignItems="center" spacing="8px">
           <Square size="16px" bg="#772F7A" borderRadius="4px" />
           <Text>Highest</Text>
@@ -94,7 +94,7 @@ export const DRMMapLegend = () => {
         display={displayFullLegend}
       >
         <Flex>
-          <Text fontWeight={700}>Displacement Risk Index</Text>
+          <Text fontWeight={700}>Displacement Risk Map</Text>
           <Spacer minW="10px" />
           <InfoIcon
             fontSize="0.875rem"

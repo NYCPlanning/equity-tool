@@ -45,7 +45,7 @@ export const DataDownloadModal = ({
       ReactGA.event({
         category: "Download XLS",
         action: "Click",
-        label: "Displacement Risk Index",
+        label: "Displacement Risk Map",
       });
       onClose();
     }

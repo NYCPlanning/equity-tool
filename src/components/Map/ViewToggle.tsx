@@ -63,7 +63,7 @@ export const ViewToggle = ({
             isFullWidth
             data-cy="drmBtn-mobile"
           >
-            Displacement Risk Index
+            Displacement Risk Map
           </Button>
         </Flex>
       )}
@@ -93,7 +93,7 @@ export const ViewToggle = ({
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
-          Displacement Risk Index
+          Displacement Risk Map
         </Button>
       </ToggleButtonGroup>
     </>
