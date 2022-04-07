@@ -34,7 +34,7 @@ const WelcomeContent = () => {
     );
   }
 
-  if (view === "dri") {
+  if (view === "drm") {
     return (
       <>
         <Heading as="h3" fontSize="1.5625rem">
@@ -60,7 +60,7 @@ const WelcomeContent = () => {
             href="https://storymaps.arcgis.com/stories/79237333bb90492ba0de486c0705f9f7"
             onClick={() => {
               ReactGA.event({
-                category: "DRI Sidebar",
+                category: "DRM Sidebar",
                 action: "Outbound Click",
                 label: "Storymaps",
               });

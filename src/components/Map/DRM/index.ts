@@ -1,2 +1,2 @@
-export * from "./DRIMapLegend";
+export * from "./DRMMapLegend";
 export * from "./MobileDrawer";

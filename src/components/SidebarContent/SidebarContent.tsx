@@ -4,7 +4,7 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
-import { DRISelection } from "@components/SidebarContent/DRISelection";
+import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { NYC } from "@constants/geoid";
@@ -44,12 +44,12 @@ export const SidebarContent = () => {
             />
           </Box>
           <Box pr="1rem">
-            {view === "dri" && <SubindicatorBin bin={ntaIndex[geoid]} />}
+            {view === "drm" && <SubindicatorBin bin={ntaIndex[geoid]} />}
           </Box>
         </Flex>
 
         <Divider color={"gray.200"} my={"1.5rem"} />
-        {view === "dri" && <DRISelection />}
+        {view === "drm" && <DRMSelection />}
         {view === "data" && (
           <CategoryMenu
             geography={geography ? geography : Geography.CITYWIDE}

@@ -123,7 +123,7 @@ const AboutPage = () => (
           </Text>
           <Text color="black">
             Go to the{" "}
-            <Link href="/map/dri" color="teal" textDecoration="underline">
+            <Link href="/map/drm" color="teal" textDecoration="underline">
               Displacement Risk Map
             </Link>
           </Text>

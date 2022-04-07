@@ -2,7 +2,7 @@ import { Box, HStack, Text, Square, Flex, Spacer } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
-export const DRIMapLegend = () => {
+export const DRMMapLegend = () => {
   const [displayMinimizedLegend, setDisplayMinimizedLegend] = useState({
     base: "block",
     md: "none",

@@ -3,7 +3,7 @@ import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
 import { PathStyleExtension } from "@deck.gl/extensions";
 import { Geography } from "@constants/geography";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
-import dridata from "@data/DRI_Subindices_Indicators.json";
+import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
 
 export const useLayers = (): CartoLayer<any, any>[] | null => {
@@ -145,10 +145,10 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
-        const singleDRI = dridata.find(
+        const singleDRM = drmData.find(
           (nta: any) => nta.ntacode === feature?.properties?.ntacode
         );
-        switch (singleDRI?.displacementriskindex_reclass) {
+        switch (singleDRM?.displacementriskindex_reclass) {
           case "Highest":
             return [119, 47, 122, 178];
           case "Higher":

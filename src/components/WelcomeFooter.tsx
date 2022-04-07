@@ -24,7 +24,7 @@ const WelcomeFooter = () => {
     );
   }
 
-  if (view === "dri") {
+  if (view === "drm") {
     return (
       <Box fontSize="0.8125rem">
         <Text>

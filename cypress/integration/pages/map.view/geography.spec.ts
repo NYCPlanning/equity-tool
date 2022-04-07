@@ -32,9 +32,9 @@ describe("Map catch-all page", () => {
     it("should switch view when user uses ViewToggle toolbar", () => {
       cy.url().should("include", "/map/data");
 
-      cy.get('[data-cy="driBtn-desktop"]').click();
+      cy.get('[data-cy="drmBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/dri/nta");
+      cy.url().should("include", "/map/drm/nta");
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
@@ -44,9 +44,9 @@ describe("Map catch-all page", () => {
     it("ViewToggle should preserve previous view geo and geoid", () => {
       cy.visit("/map/data/district");
 
-      cy.get('[data-cy="driBtn-desktop"]').click();
+      cy.get('[data-cy="drmBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/dri/nta");
+      cy.url().should("include", "/map/drm/nta");
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
@@ -54,16 +54,16 @@ describe("Map catch-all page", () => {
 
       cy.visit("/map/data/borough?geoid=BK0202");
 
-      cy.get('[data-cy="driBtn-desktop"]').click();
+      cy.get('[data-cy="drmBtn-desktop"]').click();
 
-      cy.url().should("include", "/map/dri/nta");
+      cy.url().should("include", "/map/drm/nta");
 
       cy.get('[data-cy="dataToolBtn-desktop"]').click();
 
       cy.url().should("include", "/map/data/borough?geoid=BK0202");
     });
 
-    it("should display correct content in Sidebar depending on view (Data Tool or DRI)", () => {
+    it("should display correct content in Sidebar depending on view (Community Data or DRM)", () => {
       cy.visit("/map/data/district");
 
       cy.get('[data-cy="desktopSidebar"]').should(
@@ -71,7 +71,7 @@ describe("Map catch-all page", () => {
         "Or switch to the Displacement Risk Index"
       );
 
-      cy.get('[data-cy="driBtn-desktop"]').click();
+      cy.get('[data-cy="drmBtn-desktop"]').click();
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
@@ -121,7 +121,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should("contain", "Citywide");
 
-      cy.visit("/map/dri/nta?geoid=BK76");
+      cy.visit("/map/drm/nta?geoid=BK76");
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
         "contain",
@@ -201,9 +201,9 @@ describe("Map catch-all page", () => {
     it("should switch view when user uses ViewToggle toolbar", () => {
       cy.url().should("include", "/map/data");
 
-      cy.get('[data-cy="driBtn-mobile"]').click();
+      cy.get('[data-cy="drmBtn-mobile"]').click();
 
-      cy.url().should("include", "/map/dri/nta");
+      cy.url().should("include", "/map/drm/nta");
 
       cy.get('[data-cy="dataToolBtn-mobile"]').click();
 
@@ -233,7 +233,7 @@ describe("Map catch-all page", () => {
       }
     );
 
-    it("should display correct content in Drawer depending on view (Data Tool or DRI)", () => {
+    it("should display correct content in Drawer depending on view (Data Tool or DRM)", () => {
       cy.visit("/map/data/district");
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should(
@@ -241,7 +241,7 @@ describe("Map catch-all page", () => {
         "Or switch to the Displacement Risk Index"
       );
 
-      cy.get('[data-cy="driBtn-mobile"]').click();
+      cy.get('[data-cy="drmBtn-mobile"]').click();
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",

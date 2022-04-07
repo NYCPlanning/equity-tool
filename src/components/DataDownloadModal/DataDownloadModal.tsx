@@ -23,7 +23,7 @@ import { usePumaInfo } from "@hooks/usePumaInfo";
 import ReactGA from "react-ga4";
 
 export interface DataDownloadModalProps {
-  downloadType: "data" | "dri" | null;
+  downloadType: "data" | "drm" | null;
   geoid: string | null;
 }
 
@@ -41,7 +41,7 @@ export const DataDownloadModal = ({
   };
 
   const submit = () => {
-    if (downloadType === "dri") {
+    if (downloadType === "drm") {
       ReactGA.event({
         category: "Download XLS",
         action: "Click",
@@ -85,7 +85,7 @@ export const DataDownloadModal = ({
     pumaInfo?.districts.indexOf(" CD")
   )}, Citywide`;
 
-  if (downloadType === "dri") {
+  if (downloadType === "drm") {
     return (
       <>
         <Button
