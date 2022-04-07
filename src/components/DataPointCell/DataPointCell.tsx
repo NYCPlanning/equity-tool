@@ -10,14 +10,15 @@ export const DataPointCell = ({
   dataPoint,
   isReliable,
 }: DataPointCellProps) => {
-  const { value, measure } = dataPoint;
+  const { value, measure, variance } = dataPoint;
+  const roundTo = measure === "PERCENT" || variance === "CV" ? 1 : 0;
   let formattedValue = "";
   if (value === null) {
-    formattedValue = measure === "PERCENT" ? "0.0%" : "-";
+    formattedValue = "-";
   } else {
     formattedValue = value.toLocaleString(undefined, {
-      maximumFractionDigits: 1,
-      minimumFractionDigits: 0,
+      maximumFractionDigits: roundTo,
+      minimumFractionDigits: roundTo,
     });
     if (measure === "PERCENT") {
       formattedValue = formattedValue + "%";
