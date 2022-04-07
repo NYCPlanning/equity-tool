@@ -12,6 +12,7 @@ import { Geography } from "@constants/geography";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { SubindicatorBin } from "@components/SidebarContent";
 import ntaIndexes from "@data/ntaIndexes.json";
+import { DataDownloadModal } from "@components/DataDownloadModal";
 
 export const SidebarContent = () => {
   const { view, geoid, geography } = useMapSubrouteInfo();
@@ -21,40 +22,51 @@ export const SidebarContent = () => {
   if (geoid != null) {
     return (
       <>
-        <Box>
-          <Button
-            padding="1.5rem 1rem"
-            variant="ghost"
-            bg="rgba(0,0,0,0)"
-            color="gray.500"
-            leftIcon={<ArrowBackIcon />}
-            aria-label="Exit Data Tool Selection"
-            data-cy="exitCommunityDataSelection-desktop"
-            onClick={clearSelection}
-          >
-            back
-          </Button>
-        </Box>
         <Flex direction="row" justifyContent="space-between">
-          <Box padding="1rem 1rem 1.5rem 1rem">
+          <Box>
+            <Button
+              padding="1.5rem 1rem"
+              variant="ghost"
+              bg="rgba(0,0,0,0)"
+              color="gray.500"
+              leftIcon={<ArrowBackIcon />}
+              aria-label="Exit Data Tool Selection"
+              data-cy="exitDataToolSelection-desktop"
+              onClick={clearSelection}
+            >
+              back
+            </Button>
+          </Box>
+          <Box pr="1rem">
+            {view === "drm" && (
+              <DataDownloadModal downloadType="drm" geoid={geoid} />
+            )}
+          </Box>
+        </Flex>
+        <Flex direction="row" justifyContent="space-between">
+          <Box
+            padding={
+              view === "drm" ? "1rem 1rem 0.5rem 1rem" : "1rem 1rem 1.5rem 1rem"
+            }
+          >
             <GeographyInfo
               geoid={geoid}
               geography={geography}
               fontSize="1.5625rem"
             />
           </Box>
-          <Box pr="1rem">
-            {view === "drm" && <SubindicatorBin bin={ntaIndex[geoid]} />}
-          </Box>
         </Flex>
+        <Box>{view === "drm" && <SubindicatorBin bin={ntaIndex[geoid]} />}</Box>
 
-        <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "drm" && <DRMSelection />}
         {view === "data" && (
-          <CategoryMenu
-            geography={geography ? geography : Geography.CITYWIDE}
-            geoid={geography && geoid ? geoid : NYC}
-          />
+          <>
+            <Divider color={"gray.200"} my={"1.5rem"} />
+            <CategoryMenu
+              geography={geography ? geography : Geography.CITYWIDE}
+              geoid={geography && geoid ? geoid : NYC}
+            />
+          </>
         )}
       </>
     );

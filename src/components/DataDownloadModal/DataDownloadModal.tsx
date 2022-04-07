@@ -94,6 +94,9 @@ export const DataDownloadModal = ({
           onClick={openDownloadModal}
         >
           <FaDownload />
+          <Text display={{ base: "none", md: "flex" }}>
+            &nbsp;Download data
+          </Text>
         </Button>
 
         <Modal isOpen={isOpen} onClose={closeDownloadModal} isCentered={true}>
