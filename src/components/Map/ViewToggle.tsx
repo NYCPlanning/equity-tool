@@ -43,7 +43,7 @@ export const ViewToggle = ({
             onClick={onCommunityDataClick}
             isActive={view === "data"}
             isFullWidth
-            data-cy="dataToolBtn-mobile"
+            data-cy="communityDataBtn-mobile"
           >
             Community Data
           </Button>
@@ -83,7 +83,7 @@ export const ViewToggle = ({
           onClick={onCommunityDataClick}
           isActive={view === "data"}
           variant="toggle"
-          data-cy="dataToolBtn-desktop"
+          data-cy="communityDataBtn-desktop"
         >
           Community Data
         </Button>

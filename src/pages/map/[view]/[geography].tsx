@@ -139,20 +139,20 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       label: "Community Data",
     });
 
-    let dataToolPath = "/map/data";
+    let communityDataPath = "/map/data";
 
     if (lastCommunityDataGeography) {
-      dataToolPath += `/${lastCommunityDataGeography}`;
+      communityDataPath += `/${lastCommunityDataGeography}`;
 
       if (lastCommunityDataGeoid) {
         // TODO: revisit this if more query params will exist on Map view
-        dataToolPath += `?geoid=${lastCommunityDataGeoid}`;
+        communityDataPath += `?geoid=${lastCommunityDataGeoid}`;
       }
     } else {
-      dataToolPath += `/${DISTRICT}`;
+      communityDataPath += `/${DISTRICT}`;
     }
 
-    router.push(dataToolPath);
+    router.push(communityDataPath);
   };
 
   const onCommunityDataGeographyChange = (targetGeography: Geography) => {

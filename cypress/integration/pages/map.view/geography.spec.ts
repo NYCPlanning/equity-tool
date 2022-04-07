@@ -36,7 +36,7 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/drm/nta");
 
-      cy.get('[data-cy="dataToolBtn-desktop"]').click();
+      cy.get('[data-cy="communityDataBtn-desktop"]').click();
 
       cy.url().should("include", "/map/data");
     });
@@ -48,7 +48,7 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/drm/nta");
 
-      cy.get('[data-cy="dataToolBtn-desktop"]').click();
+      cy.get('[data-cy="communityDataBtn-desktop"]').click();
 
       cy.url().should("include", "/map/data/district");
 
@@ -58,7 +58,7 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/drm/nta");
 
-      cy.get('[data-cy="dataToolBtn-desktop"]').click();
+      cy.get('[data-cy="communityDataBtn-desktop"]').click();
 
       cy.url().should("include", "/map/data/borough?geoid=BK0202");
     });
@@ -205,7 +205,7 @@ describe("Map catch-all page", () => {
 
       cy.url().should("include", "/map/drm/nta");
 
-      cy.get('[data-cy="dataToolBtn-mobile"]').click();
+      cy.get('[data-cy="communityDataBtn-mobile"]').click();
 
       cy.url().should("include", "/map/data");
     });
