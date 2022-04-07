@@ -45,7 +45,7 @@ export const CommunityDataMobileDrawer = () => {
             bg="rgba(0,0,0,0)"
             color="gray.500"
             leftIcon={<ArrowBackIcon />}
-            aria-label="Exit Data Tool Selection"
+            aria-label="Exit Community Data Selection"
             data-cy="exitCommunityDataSelection-mobile"
             onClick={clearSelection}
           >

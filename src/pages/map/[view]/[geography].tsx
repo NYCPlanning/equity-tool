@@ -117,7 +117,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     ReactGA.event({
       category: "Toggle Tool",
       action: "Click",
-      label: "Displacement Risk Index",
+      label: "Displacement Risk Map",
     });
 
     let drmPath = `/map/drm/${NTA}`;
@@ -136,23 +136,23 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     ReactGA.event({
       category: "Toggle Tool",
       action: "Click",
-      label: "Data Tool",
+      label: "Community Data",
     });
 
-    let dataToolPath = "/map/data";
+    let communityDataPath = "/map/data";
 
     if (lastCommunityDataGeography) {
-      dataToolPath += `/${lastCommunityDataGeography}`;
+      communityDataPath += `/${lastCommunityDataGeography}`;
 
       if (lastCommunityDataGeoid) {
         // TODO: revisit this if more query params will exist on Map view
-        dataToolPath += `?geoid=${lastCommunityDataGeoid}`;
+        communityDataPath += `?geoid=${lastCommunityDataGeoid}`;
       }
     } else {
-      dataToolPath += `/${DISTRICT}`;
+      communityDataPath += `/${DISTRICT}`;
     }
 
-    router.push(dataToolPath);
+    router.push(communityDataPath);
   };
 
   const onCommunityDataGeographyChange = (targetGeography: Geography) => {

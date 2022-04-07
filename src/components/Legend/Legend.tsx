@@ -2,7 +2,7 @@ import { Box, BoxProps, Text, HStack } from "@chakra-ui/react";
 
 export const Legend = (props: BoxProps) => (
   <Box background="#fff" p={4} {...props}>
-    <Text>Displacement Risk Index</Text>
+    <Text>Displacement Risk Map</Text>
     <Box
       mt={2}
       mb={2}

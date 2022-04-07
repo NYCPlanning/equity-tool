@@ -43,9 +43,9 @@ export const ViewToggle = ({
             onClick={onCommunityDataClick}
             isActive={view === "data"}
             isFullWidth
-            data-cy="dataToolBtn-mobile"
+            data-cy="communityDataBtn-mobile"
           >
-            Data Tool
+            Community Data
           </Button>
           <Button
             flex="1"
@@ -63,7 +63,7 @@ export const ViewToggle = ({
             isFullWidth
             data-cy="drmBtn-mobile"
           >
-            Displacement Risk Index
+            Displacement Risk Map
           </Button>
         </Flex>
       )}
@@ -83,9 +83,9 @@ export const ViewToggle = ({
           onClick={onCommunityDataClick}
           isActive={view === "data"}
           variant="toggle"
-          data-cy="dataToolBtn-desktop"
+          data-cy="communityDataBtn-desktop"
         >
-          Data Tool
+          Community Data
         </Button>
         <Button
           onClick={onDrmClick}
@@ -93,7 +93,7 @@ export const ViewToggle = ({
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
-          Displacement Risk Index
+          Displacement Risk Map
         </Button>
       </ToggleButtonGroup>
     </>

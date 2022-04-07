@@ -30,8 +30,8 @@ export const SidebarContent = () => {
               bg="rgba(0,0,0,0)"
               color="gray.500"
               leftIcon={<ArrowBackIcon />}
-              aria-label="Exit Data Tool Selection"
-              data-cy="exitDataToolSelection-desktop"
+              aria-label="Exit Community Data Selection"
+              data-cy="exitCommunityDataSelection-desktop"
               onClick={clearSelection}
             >
               back
