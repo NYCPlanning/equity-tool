@@ -5,27 +5,30 @@ const pages = [
   {
     path: "/about",
     title: "About",
-    image: "https://equitytool.planning.nyc.gov/about.png",
+    image:
+      "https://equitableexplorer.planning.nyc.gov/edde-logo-for-social.png",
   },
   {
     path: "/methods",
     title: "Methods & Sources",
-    image: "https://equitytool.planning.nyc.gov/methods.png",
+    image:
+      "https://equitableexplorer.planning.nyc.gov/edde-logo-for-social.png",
   },
   {
     path: "/map/datatool",
     title: "Map",
-    image: "https://equitytool.planning.nyc.gov/screenshot.png",
+    image:
+      "https://equitableexplorer.planning.nyc.gov/community-data-landing-page.png",
   },
   {
     path: "/map/dri",
     title: "Displacement Risk Index",
-    image: "https://equitytool.planning.nyc.gov/driscreenshot.png",
+    image: "https://equitableexplorer.planning.nyc.gov/drm-landing-page.png",
   },
   {
     path: "/data",
     title: "Data Tables",
-    image: "https://equitytool.planning.nyc.gov/datatables.png",
+    image: "https://equitableexplorer.planning.nyc.gov/data-tables.png",
   },
 ];
 
@@ -34,7 +37,8 @@ export const PageHeader = () => {
 
   const currentPage = pages.find((page) => path.startsWith(page.path)) || {
     title: "",
-    image: "https://equitytool.planning.nyc.gov/screenshot.png",
+    image:
+      "https://equitableexplorer.planning.nyc.gov/community-data-landing-page.png",
   };
 
   return (
@@ -56,7 +60,7 @@ export const PageHeader = () => {
       <meta property="og:type" content="website" key="og:type" />
       <meta
         property="og:url"
-        content="https://equitytool.planning.nyc.gov/"
+        content="https://equitableexplorer.planning.nyc.gov/"
         key="og:url"
       />
       <meta
@@ -82,7 +86,7 @@ export const PageHeader = () => {
       />
       <meta
         property="twitter:url"
-        content="https://equitytool.planning.nyc.gov/"
+        content="https://equitableexplorer.planning.nyc.gov/"
         key="twitter:url"
       />
       <meta

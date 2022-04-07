@@ -60,7 +60,7 @@ const AboutPage = () => (
           minH={{ base: "200px", md: "300px", lg: "unset" }}
         >
           <Image
-            src="/screenshot.png"
+            src="/community-data-landing-page.png"
             alt="NYC Department of City Planning - Equitable Development Data Explorer Screenshot"
             layout="fill"
             objectFit="contain"
@@ -98,7 +98,7 @@ const AboutPage = () => (
           minH={{ base: "200px", md: "300px", lg: "unset" }}
         >
           <Image
-            src="/driscreenshot.png"
+            src="/drm-landing-page.png"
             alt="NYC Department of City Planning - Equitable Development Data Explorer Screenshot"
             layout="fill"
             objectFit="contain"
