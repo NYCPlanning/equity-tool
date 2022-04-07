@@ -127,7 +127,7 @@ export const DataDownloadModal = ({
                 fontWeight={700}
                 pb="0.5rem"
               >
-                DRI SUBINDICATORS
+                CATEGORIES
               </Heading>
               <Text pb="1rem">All</Text>
               <Heading

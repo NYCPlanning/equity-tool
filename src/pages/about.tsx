@@ -141,7 +141,7 @@ const AboutPage = () => (
           <Text pb="0.5em">
             As of June 1, 2020,{" "}
             <Link
-              href="https://nyco365.sharepoint.com/:b:/r/sites/NYCPLANNING/civic-engagement-studio/Shared%20Documents/03.%20Working%20Materials/03.%20%20Equity%20and%20Displacement%20Vulnerability/07.%20%20Key%20Presentations/UITF/Handout%20on%20Racial%20Equity%20Report%20applicability%20clean.pdf?csf=1&web=1&e=AD6tWT"
+              href="https://www1.nyc.gov//assets/planning/download/pdf/data-maps/edde/racial-equity-report-applicability-chart.pdf"
               color="teal"
               textDecoration="underline"
             >
@@ -171,7 +171,7 @@ const AboutPage = () => (
             , and project specific data about anticipated housing units and
             jobs. See additional information about the Reports{" "}
             <Link
-              href="/map/data/district"
+              href="https://www1.nyc.gov/site/planning/data-maps/edde/edde-overview.page"
               color="teal"
               textDecoration="underline"
             >
