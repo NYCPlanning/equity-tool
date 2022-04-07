@@ -117,7 +117,7 @@ jobs:
   version-deploy:
     name: 🚀 Version and Deploy
     needs:
-      - e2e
+      - lint
     runs-on: ubuntu-latest
     environment: production
     env:

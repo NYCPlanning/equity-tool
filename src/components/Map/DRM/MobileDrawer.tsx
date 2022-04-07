@@ -76,7 +76,7 @@ export const DrmMobileDrawer = () => {
           >
             {isOpen ? (
               <>
-                <DataDownloadModal downloadType="dri" geoid={geoid} />
+                <DataDownloadModal downloadType="drm" geoid={geoid} />
                 <IconButton
                   variant="ghost"
                   size="lg"
