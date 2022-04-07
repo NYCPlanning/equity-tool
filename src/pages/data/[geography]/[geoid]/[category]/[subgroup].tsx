@@ -216,7 +216,7 @@ const DataPage = ({
             <Select
               isDisabled={!hasRacialBreakdown}
               onChange={changeSubgroup}
-              defaultValue={subgroup}
+              value={subgroup}
             >
               <option value="tot">Total Population</option>
               <option value="anh">Asian Non-hispanic</option>
