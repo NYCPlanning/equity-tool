@@ -29,7 +29,7 @@ export const SidebarContent = () => {
             color="gray.500"
             leftIcon={<ArrowBackIcon />}
             aria-label="Exit Data Tool Selection"
-            data-cy="exitDataToolSelection-desktop"
+            data-cy="exitCommunityDataSelection-desktop"
             onClick={clearSelection}
           >
             back
@@ -50,7 +50,7 @@ export const SidebarContent = () => {
 
         <Divider color={"gray.200"} my={"1.5rem"} />
         {view === "dri" && <DRISelection />}
-        {view === "datatool" && (
+        {view === "data" && (
           <CategoryMenu
             geography={geography ? geography : Geography.CITYWIDE}
             geoid={geography && geoid ? geoid : NYC}

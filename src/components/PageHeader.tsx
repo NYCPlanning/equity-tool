@@ -15,7 +15,7 @@ const pages = [
       "https://equitableexplorer.planning.nyc.gov/edde-logo-for-social.png",
   },
   {
-    path: "/map/datatool",
+    path: "/map/data",
     title: "Map",
     image:
       "https://equitableexplorer.planning.nyc.gov/community-data-landing-page.png",

@@ -11,17 +11,17 @@ const moduleExports = {
     return [
       {
         source: "/",
-        destination: "/map/datatool/district",
+        destination: "/map/data/district",
         permanent: true,
       },
       {
         source: "/map",
-        destination: "/map/datatool/district",
+        destination: "/map/data/district",
         permanent: true,
       },
       {
-        source: "/map/datatool",
-        destination: "/map/datatool/district",
+        source: "/map/data",
+        destination: "/map/data/district",
         permanent: true,
       },
       {

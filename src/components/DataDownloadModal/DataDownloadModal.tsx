@@ -23,7 +23,7 @@ import { usePumaInfo } from "@hooks/usePumaInfo";
 import ReactGA from "react-ga4";
 
 export interface DataDownloadModalProps {
-  downloadType: "datatool" | "dri" | null;
+  downloadType: "data" | "dri" | null;
   geoid: string | null;
 }
 

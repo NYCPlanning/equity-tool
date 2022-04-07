@@ -3,12 +3,12 @@ import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 
 interface ViewToggleProps extends BoxProps {
-  onDataToolClick: () => void;
+  onCommunityDataClick: () => void;
   onDriClick: () => void;
 }
 
 export const ViewToggle = ({
-  onDataToolClick,
+  onCommunityDataClick,
   onDriClick,
 }: ViewToggleProps) => {
   const { view, geoid } = useMapSubrouteInfo();
@@ -40,8 +40,8 @@ export const ViewToggle = ({
               color: "teal",
               border: "1px solid teal",
             }}
-            onClick={onDataToolClick}
-            isActive={view === "datatool"}
+            onClick={onCommunityDataClick}
+            isActive={view === "data"}
             isFullWidth
             data-cy="dataToolBtn-mobile"
           >
@@ -80,8 +80,8 @@ export const ViewToggle = ({
         }}
       >
         <Button
-          onClick={onDataToolClick}
-          isActive={view === "datatool"}
+          onClick={onCommunityDataClick}
+          isActive={view === "data"}
           variant="toggle"
           data-cy="dataToolBtn-desktop"
         >

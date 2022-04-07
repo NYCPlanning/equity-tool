@@ -171,7 +171,7 @@ const AboutPage = () => (
             , and project specific data about anticipated housing units and
             jobs. See additional information about the Reports{" "}
             <Link
-              href="/map/datatool/district"
+              href="/map/data/district"
               color="teal"
               textDecoration="underline"
             >

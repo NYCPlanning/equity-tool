@@ -183,14 +183,14 @@ const DataPage = ({
           >
             <Box
               as="a"
-              href={`/map/datatool/${geography}?geoid=${geoid}`}
+              href={`/map/data/${geography}?geoid=${geoid}`}
               color={"gray.600"}
               fontSize={"0.875rem"}
             >
               <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
               back to map
             </Box>
-            <DataDownloadModal downloadType={"datatool"} geoid={geoid} />
+            <DataDownloadModal downloadType={"data"} geoid={geoid} />
           </Flex>
           <GeographyInfo
             geoid={geoid}

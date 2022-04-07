@@ -44,7 +44,7 @@ export const Map = ({ layers, parent }: MapProps) => {
       <Box
         position="absolute"
         top={{
-          base: view === "datatool" ? "4.5rem" : "1.3rem",
+          base: view === "data" ? "4.5rem" : "1.3rem",
           md: "8rem",
         }}
         left={{
