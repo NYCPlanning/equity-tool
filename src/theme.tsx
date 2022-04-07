@@ -65,6 +65,7 @@ const theme = extendTheme({
           group: {
             backgroundColor: "white",
             borderRadius: 50,
+            whiteSpace: "nowrap",
           },
         },
       },

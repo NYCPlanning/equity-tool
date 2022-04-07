@@ -234,7 +234,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
                 base: "1rem",
                 md: "4.5rem",
               }}
-              left="2.1875rem"
+              left={{
+                base: "2vmin",
+                sm: "4vmin",
+                md: "2.1875rem",
+              }}
               zIndex={100}
               boxShadow="lg"
               onGeographySelect={onDataToolGeographyChange}
