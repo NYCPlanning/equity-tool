@@ -1,5 +1,6 @@
-import { Heading, Text, Link } from "@chakra-ui/react";
+import { Heading, Text, Link, Box } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import WelcomeFooter from "./WelcomeFooter";
 import ReactGA from "react-ga4";
 
 const WelcomeContent = () => {
@@ -30,6 +31,9 @@ const WelcomeContent = () => {
           see the level of risk residents face of being unable to remain in
           their homes or neighborhoods.
         </Text>
+        <Box paddingTop="2rem" display={{ base: "none", md: "block" }}>
+          <WelcomeFooter />
+        </Box>
       </>
     );
   }
@@ -78,6 +82,9 @@ const WelcomeContent = () => {
         </Text>
 
         <br />
+        <Box paddingTop="2rem" display={{ base: "none", md: "block" }}>
+          <WelcomeFooter />
+        </Box>
       </>
     );
   }

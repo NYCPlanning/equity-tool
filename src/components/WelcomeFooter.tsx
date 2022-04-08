@@ -7,7 +7,7 @@ const WelcomeFooter = () => {
 
   if (view === "data") {
     return (
-      <Box fontSize="0.8125rem">
+      <Box fontSize="0.8125rem" paddingBottom={{ base: "1rem", md: "unset" }}>
         <Text>
           *Community Districts are approximated using data from Public Use
           Microdata Areas (PUMAs).
