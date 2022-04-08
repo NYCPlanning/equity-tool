@@ -14,7 +14,6 @@ import {
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Indicator } from "@components/Indicator";
 import { CategoryMenu } from "@components/CategoryMenu";
-import { DataDownloadModal } from "@components/DataDownloadModal";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { ExplorerSideNav } from "@components/ExplorerSideNav";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
@@ -180,6 +179,7 @@ const DataPage = ({
             direction={"row"}
             justifyContent={"space-between"}
             paddingX={{ base: "0.75rem", md: "1rem" }}
+            marginBottom={"1rem"}
           >
             <Box
               as="a"
@@ -190,7 +190,6 @@ const DataPage = ({
               <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
               back to map
             </Box>
-            <DataDownloadModal downloadType={"data"} geoid={geoid} />
           </Flex>
           <GeographyInfo
             geoid={geoid}
