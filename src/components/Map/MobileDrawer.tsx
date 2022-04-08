@@ -23,11 +23,11 @@ export const WelcomeMobileDrawer = () => {
         base: "block",
         md: "none",
       }}
-      height="100vh"
+      height="500px"
       width="100%"
       position="fixed"
-      top={isOpen ? "6rem" : "100vh"}
-      marginTop={isOpen ? "auto" : "-9rem"}
+      bottom="0px"
+      marginBottom={isOpen ? "-20px" : "-370px"}
       paddingBottom="6rem"
       left="0"
       zIndex="900"
