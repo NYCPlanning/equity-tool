@@ -248,21 +248,26 @@ const DataPage = ({
               <Link href="/methods" textDecoration="underline">
                 Learn more about our data sources.
               </Link>
+              <br />
+              {category === Category.HOPD &&
+                "Data not available by race/ethnicity."}
             </Text>
           </Box>
-          <FormControl width={"auto"} display={"flex"} alignItems="center">
-            <Switch
-              colorScheme="teal"
-              isChecked={shouldShowReliability}
-              onChange={() => {
-                toggleReliability();
-              }}
-              id="show-reliability"
-            />
-            <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
-              Show reliability data
-            </FormLabel>
-          </FormControl>
+          {category !== Category.HOPD && (
+            <FormControl width={"auto"} display={"flex"} alignItems="center">
+              <Switch
+                colorScheme="teal"
+                isChecked={shouldShowReliability}
+                onChange={() => {
+                  toggleReliability();
+                }}
+                id="show-reliability"
+              />
+              <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
+                Show reliability data
+              </FormLabel>
+            </FormControl>
+          )}
         </Flex>
 
         <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
