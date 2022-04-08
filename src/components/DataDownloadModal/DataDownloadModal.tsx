@@ -20,24 +20,53 @@ import {
 } from "@chakra-ui/react";
 import { FaDownload } from "react-icons/fa";
 import { usePumaInfo } from "@hooks/usePumaInfo";
+import { Geography } from "@constants/geography";
+import { getBoroughAbbreviation } from "@helpers/getBoroughAbbreviation";
 import ReactGA from "react-ga4";
 
 export interface DataDownloadModalProps {
   downloadType: "data" | "drm" | null;
   geoid: string | null;
+  geography: Geography | null;
 }
 
 export const DataDownloadModal = ({
   downloadType,
   geoid,
+  geography,
 }: DataDownloadModalProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [formSubmitDisabled, setFormSubmitDisabled] = useState(true);
   const [filetype, setFiletype] = useState("");
   const updateFiletype = (ft: string) => {
-    console.log(downloadType, "to pass linting");
     setFiletype(ft);
     setFormSubmitDisabled(false);
+  };
+
+  const baseUrl = "https://equity-tool-data.nyc3.digitaloceanspaces.com";
+
+  const getUrl = () => {
+    if (downloadType === "drm") {
+      return `${baseUrl}/DRI_Subindices_Indicators.xls`;
+    }
+
+    if (geoid === null) {
+      return "#";
+    }
+
+    const typeString = filetype === "xls" ? "xlsx" : "pdf";
+
+    if (geography === Geography.CITYWIDE) {
+      return `${baseUrl}/downloads/citywide_${typeString}.zip`;
+    }
+
+    if (geography === Geography.BOROUGH) {
+      return `${baseUrl}/downloads/${getBoroughAbbreviation(
+        geoid
+      )}_${typeString}.zip`;
+    }
+
+    return `${baseUrl}/downloads/${geoid}_${typeString}.zip`;
   };
 
   const submit = () => {
@@ -141,11 +170,7 @@ export const DataDownloadModal = ({
               <Text pb="1rem">Data set (.xls)</Text>
             </ModalBody>
             <ModalFooter w="100%" p="0">
-              <Link
-                href="https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls"
-                isExternal={true}
-                w="100%"
-              >
+              <Link href={getUrl()} isExternal={true} w="100%">
                 <Button
                   w="100%"
                   h="100%"
@@ -180,7 +205,7 @@ export const DataDownloadModal = ({
           <ModalCloseButton />
           <ModalHeader p="1rem 1rem 1rem 1rem">
             <Text fontWeight={700} fontSize="1.25rem">
-              Data Download Summary
+              Data Download
             </Text>
           </ModalHeader>
           <Divider color={"gray.200"} />
@@ -191,6 +216,7 @@ export const DataDownloadModal = ({
               color="teal.600"
               fontWeight={700}
               pb="0.5rem"
+              pt="1rem"
             >
               GEOGRAPHY
             </Heading>
@@ -218,25 +244,29 @@ export const DataDownloadModal = ({
             <FormControl isRequired p="0rem 1rem 2.5rem">
               <RadioGroup onChange={updateFiletype} value={filetype}>
                 <Stack direction="column">
-                  <Radio value="pdf">Community Profile (.pdf)</Radio>
+                  <Radio isDisabled={true} value="pdf">
+                    Community Profile (.pdf) (coming soon)
+                  </Radio>
                   <Radio value="xls">Data set (.xls)</Radio>
                 </Stack>
               </RadioGroup>
             </FormControl>
 
             <ModalFooter w="100%" p="0">
-              <Button
-                w="100%"
-                h="100%"
-                p="1rem 0rem"
-                borderTopRadius={0}
-                onClick={submit}
-                variant="download"
-                colorScheme="teal"
-                isDisabled={formSubmitDisabled}
-              >
-                <FaDownload /> &nbsp;Download data
-              </Button>
+              <Link href={getUrl()} isExternal={true} w="100%">
+                <Button
+                  w="100%"
+                  h="100%"
+                  p="1rem 0rem"
+                  borderTopRadius={0}
+                  onClick={submit}
+                  variant="download"
+                  colorScheme="teal"
+                  isDisabled={formSubmitDisabled}
+                >
+                  <FaDownload /> &nbsp;Download data
+                </Button>
+              </Link>
             </ModalFooter>
           </form>
         </ModalContent>
