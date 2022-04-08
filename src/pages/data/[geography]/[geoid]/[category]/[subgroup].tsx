@@ -219,10 +219,10 @@ const DataPage = ({
               value={subgroup}
             >
               <option value="tot">Total Population</option>
-              <option value="anh">Asian Non-hispanic</option>
-              <option value="bnh">Black Non-hispanic</option>
+              <option value="anh">Asian Non-Hispanic</option>
+              <option value="bnh">Black Non-Hispanic</option>
               <option value="hsp">Hispanic</option>
-              <option value="wnh">White Non-hispanic</option>
+              <option value="wnh">White Non-Hispanic</option>
             </Select>
           </Box>
         </Box>
