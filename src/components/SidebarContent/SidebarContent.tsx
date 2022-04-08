@@ -3,7 +3,6 @@ import { Box, Divider, Button, Flex } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
-import WelcomeFooter from "@components/WelcomeFooter";
 import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { useClearSelection } from "@helpers/useClearSelection";
@@ -76,14 +75,12 @@ export const SidebarContent = () => {
     <>
       <Box
         height="100%"
+        overflowY="auto"
         justify="space-between"
         padding="2rem 1rem"
         paddingBottom="0rem"
       >
         <WelcomeContent />
-      </Box>
-      <Box padding="2rem 1rem" paddingTop="0rem">
-        <WelcomeFooter />
       </Box>
     </>
   );
