@@ -39,7 +39,11 @@ export const SidebarContent = () => {
           </Box>
           <Box pr="1rem">
             {view === "drm" && (
-              <DataDownloadModal downloadType="drm" geoid={geoid} />
+              <DataDownloadModal
+                downloadType="drm"
+                geoid={geoid}
+                geography={geography}
+              />
             )}
           </Box>
         </Flex>
