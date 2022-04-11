@@ -50,7 +50,7 @@ export const Map = ({ layers, parent }: MapProps) => {
         left={{
           base: "2vmin",
           sm: "4vmin",
-          md: "2.1875rem",
+          md: "1rem",
         }}
       >
         <NavigationControl />
