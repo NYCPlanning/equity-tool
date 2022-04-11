@@ -10,7 +10,7 @@ import ReactGA from "react-ga4";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  ReactGA.initialize("G-DEJNY15B0G");
+  ReactGA.initialize("G-DEJNY15B0G", { gaOptions: { cookieFlags: "Secure" } });
 
   const router = useRouter();
 
