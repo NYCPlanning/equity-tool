@@ -23,7 +23,7 @@ export const WelcomeMobileDrawer = () => {
         base: "block",
         md: "none",
       }}
-      height="100%"
+      minHeight={"-webkit-fill-available"}
       width="100%"
       position="absolute"
       bottom={isOpen ? "-100px" : "calc(-100% + 130px)"}
