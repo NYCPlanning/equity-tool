@@ -22,6 +22,7 @@ import { FaDownload } from "react-icons/fa";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { Geography } from "@constants/geography";
 import { getBoroughAbbreviation } from "@helpers/getBoroughAbbreviation";
+import { getBoroughName } from "@helpers/getBoroughName";
 import ReactGA from "react-ga4";
 
 export interface DataDownloadModalProps {
@@ -44,6 +45,7 @@ export const DataDownloadModal = ({
   };
 
   const baseUrl = "https://equity-tool-data.nyc3.digitaloceanspaces.com";
+  const pumaInfo = usePumaInfo(geoid);
 
   const getUrl = () => {
     if (downloadType === "drm") {
@@ -69,6 +71,27 @@ export const DataDownloadModal = ({
     return `${baseUrl}/downloads/${geoid}_${typeString}.zip`;
   };
 
+  const getLabel = () => {
+    if (downloadType === "drm") {
+      return "Neighborhood Tabulation Areas: All";
+    }
+
+    if (geography === Geography.DISTRICT) {
+      return `PUMA ${pumaInfo?.id}: ${
+        pumaInfo?.neighborhoods
+      }, ${pumaInfo?.districts.slice(
+        8,
+        pumaInfo?.districts.indexOf(" CD")
+      )}, Citywide`;
+    }
+
+    if (geography === Geography.BOROUGH) {
+      return `${getBoroughName(geoid === null ? "" : geoid)}, Citywide`;
+    }
+
+    return "Citywide";
+  };
+
   const submit = () => {
     if (downloadType === "drm") {
       ReactGA.event({
@@ -76,15 +99,15 @@ export const DataDownloadModal = ({
         action: "Click",
         label: "Displacement Risk Map",
       });
-      onClose();
+      return onClose();
     }
-    if (!formSubmitDisabled) {
+    if (!formSubmitDisabled && downloadType === "data") {
       ReactGA.event({
         category: `Download ${filetype.toUpperCase()}`,
         action: "Click",
         label: `${geoid}`,
       });
-      onClose();
+      return onClose();
     }
   };
 
@@ -106,97 +129,11 @@ export const DataDownloadModal = ({
     onClose();
   };
 
-  const pumaInfo = usePumaInfo(geoid);
-  const geolabel = `PUMA ${pumaInfo?.id}: ${
-    pumaInfo?.neighborhoods
-  }, ${pumaInfo?.districts.slice(
-    8,
-    pumaInfo?.districts.indexOf(" CD")
-  )}, Citywide`;
-
-  if (downloadType === "drm") {
-    return (
-      <>
-        <Button
-          variant="download"
-          colorScheme="teal"
-          onClick={openDownloadModal}
-        >
-          <FaDownload />
-          <Text display={{ base: "none", md: "flex" }}>
-            &nbsp;Download data
-          </Text>
-        </Button>
-
-        <Modal isOpen={isOpen} onClose={closeDownloadModal} isCentered={true}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalCloseButton />
-            <ModalHeader p="1rem 1rem 1rem 1rem">
-              <Text fontWeight={700} fontSize="1.25rem">
-                Data Download
-              </Text>
-            </ModalHeader>
-            <Divider color={"gray.200"} />
-
-            <ModalBody p="0rem 1rem">
-              <Heading
-                fontSize="0.8125rem"
-                color="teal.600"
-                fontWeight={700}
-                pb="0.5rem"
-                pt="1rem"
-              >
-                GEOGRAPHY
-              </Heading>
-              <Text pb="1rem">NTA: All</Text>
-              <Heading
-                fontSize="0.8125rem"
-                color="teal.600"
-                fontWeight={700}
-                pb="0.5rem"
-              >
-                CATEGORIES
-              </Heading>
-              <Text pb="1rem">All</Text>
-              <Heading
-                fontSize="0.8125rem"
-                color="teal.600"
-                fontWeight={700}
-                pb="0.5rem"
-              >
-                REPORT TYPE
-              </Heading>
-              <Text pb="1rem">Data set (.xls)</Text>
-            </ModalBody>
-            <ModalFooter w="100%" p="0">
-              <Link href={getUrl()} isExternal={true} w="100%">
-                <Button
-                  w="100%"
-                  h="100%"
-                  p="1rem 0rem"
-                  borderTopRadius={0}
-                  onClick={submit}
-                  variant="download"
-                  colorScheme="teal"
-                >
-                  <FaDownload /> &nbsp;Download data
-                </Button>
-              </Link>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </>
-    );
-  }
-
   return (
     <>
       <Button variant="download" colorScheme="teal" onClick={openDownloadModal}>
-        <Text display={{ base: "none", md: "inherit" }}>
-          Download Data&nbsp;
-        </Text>
         <FaDownload />
+        <Text display={{ base: "none", md: "flex" }}>&nbsp;Download data</Text>
       </Button>
 
       <Modal isOpen={isOpen} onClose={closeDownloadModal} isCentered={true}>
@@ -210,17 +147,16 @@ export const DataDownloadModal = ({
           </ModalHeader>
           <Divider color={"gray.200"} />
 
-          <ModalBody p="0rem 1rem">
+          <ModalBody p="1rem 1rem 2.5rem">
             <Heading
               fontSize="0.8125rem"
               color="teal.600"
               fontWeight={700}
               pb="0.5rem"
-              pt="1rem"
             >
               GEOGRAPHY
             </Heading>
-            <Text pb="1rem">{geolabel}</Text>
+            <Text pb="1rem">{getLabel()}</Text>
             <Heading
               fontSize="0.8125rem"
               color="teal.600"
@@ -238,37 +174,44 @@ export const DataDownloadModal = ({
             >
               REPORT TYPE
             </Heading>
+            {downloadType === "drm" ? (
+              <Text>Data set (.xls)</Text>
+            ) : (
+              <FormControl isRequired p="0rem">
+                <RadioGroup onChange={updateFiletype} value={filetype}>
+                  <Stack direction="column">
+                    <Radio isDisabled={true} value="pdf">
+                      Community Profile (.pdf) (coming soon)
+                    </Radio>
+                    <Radio value="xls">Data set (.xls)</Radio>
+                  </Stack>
+                </RadioGroup>
+              </FormControl>
+            )}
           </ModalBody>
-
-          <form>
-            <FormControl isRequired p="0rem 1rem 2.5rem">
-              <RadioGroup onChange={updateFiletype} value={filetype}>
-                <Stack direction="column">
-                  <Radio isDisabled={true} value="pdf">
-                    Community Profile (.pdf) (coming soon)
-                  </Radio>
-                  <Radio value="xls">Data set (.xls)</Radio>
-                </Stack>
-              </RadioGroup>
-            </FormControl>
-
-            <ModalFooter w="100%" p="0">
-              <Link href={getUrl()} isExternal={true} w="100%">
-                <Button
-                  w="100%"
-                  h="100%"
-                  p="1rem 0rem"
-                  borderTopRadius={0}
-                  onClick={submit}
-                  variant="download"
-                  colorScheme="teal"
-                  isDisabled={formSubmitDisabled}
-                >
-                  <FaDownload /> &nbsp;Download data
-                </Button>
-              </Link>
-            </ModalFooter>
-          </form>
+          <ModalFooter w="100%" p="0">
+            <Link
+              _hover={{ textDecoration: "none" }}
+              textDecoration="none"
+              href={getUrl()}
+              isExternal={true}
+              w="100%"
+            >
+              <Button
+                width="100%"
+                height="100%"
+                padding="1rem 0rem"
+                borderTopRadius={0}
+                fontSize={"1.5rem"}
+                onClick={submit}
+                variant="download"
+                colorScheme="teal"
+                isDisabled={downloadType === "drm" ? false : formSubmitDisabled}
+              >
+                <FaDownload /> &nbsp;Download data
+              </Button>
+            </Link>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
