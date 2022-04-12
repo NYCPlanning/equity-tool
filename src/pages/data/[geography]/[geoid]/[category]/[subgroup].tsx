@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import {
   Box,
+  Button,
   Flex,
   Text,
   FormControl,
@@ -10,6 +11,7 @@ import {
   Select,
   Heading,
   Link,
+  HStack,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Indicator } from "@components/Indicator";
@@ -28,6 +30,8 @@ import ReactGA from "react-ga4";
 import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
+import TablesIsOpenContext from "@contexts/TablesIsOpenContext";
+
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
   indicators: IndicatorRecord[];
@@ -146,6 +150,15 @@ const DataPage = ({
     useState<boolean>(false);
   const { geography, geoid, category, subgroup } = useDataExplorerState();
   const router = useRouter();
+
+  const tablesSetIsOpens: React.Dispatch<boolean>[] = [];
+
+  const defaultTablesIsOpenContext = {
+    addSetIsOpen: (setIsOpen: React.Dispatch<boolean>) => {
+      tablesSetIsOpens.push(setIsOpen);
+    },
+  };
+
   const changeSubgroup = (event: any) => {
     router.push(
       `/data/${geography}/${geoid}/${category}/${event.target.value}`
@@ -271,15 +284,50 @@ const DataPage = ({
             </FormControl>
           )}
         </Flex>
+        <HStack
+          width="100%"
+          paddingX={{ base: "0.75rem", md: "1rem" }}
+          paddingTop={{ base: "0rem" }}
+          paddingBottom={{ base: "1rem", md: "0.75rem" }}
+          display={{
+            base: "auto",
+            md: "none",
+          }}
+        >
+          <Button
+            variant="outline"
+            fontWeight="400"
+            onClick={() => {
+              tablesSetIsOpens.forEach((setIsOpen) => {
+                setIsOpen(false);
+              });
+            }}
+          >
+            Collapse All Tables
+          </Button>
+          <Button
+            variant="outline"
+            fontWeight="400"
+            onClick={() => {
+              tablesSetIsOpens.forEach((setIsOpen) => {
+                setIsOpen(true);
+              });
+            }}
+          >
+            Expand All Tables
+          </Button>
+        </HStack>
 
         <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
-          {indicators.map((indicator, i) => (
-            <Indicator
-              key={`indicator-${i}`}
-              indicator={indicator}
-              shouldShowReliability={shouldShowReliability}
-            />
-          ))}
+          <TablesIsOpenContext.Provider value={defaultTablesIsOpenContext}>
+            {indicators.map((indicator, i) => (
+              <Indicator
+                key={`indicator-${i}`}
+                indicator={indicator}
+                shouldShowReliability={shouldShowReliability}
+              />
+            ))}
+          </TablesIsOpenContext.Provider>
         </Box>
       </Box>
     </Flex>

@@ -30,7 +30,8 @@
       "@helpers/*": ["helpers/*"],
       "@constants/*": ["constants/*"],
       "@services/*": ["services/*"],
-      "@schemas/*": ["schemas/*"]
+      "@schemas/*": ["schemas/*"],
+      "@contexts/*": ["contexts/*"]
     }
   },
   "include": [
