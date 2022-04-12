@@ -244,10 +244,12 @@ const DataPage = ({
               {heading}
             </Heading>
             <Text>
-              Note: Data shown in gray have poor statistical reliability.{" "}
+              Note: Data shown in gray have poor statistical reliability. Learn
+              more about our{" "}
               <Link href="/methods" textDecoration="underline">
-                Learn more about our data sources.
+                data sources
               </Link>
+              .
               <br />
               {category === Category.HOPD &&
                 "Data not available by race/ethnicity."}
