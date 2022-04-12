@@ -209,6 +209,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             display: "none",
           },
         }}
+        justify="space-between"
         data-cy="desktopSidebar"
       >
         <SidebarContent />
