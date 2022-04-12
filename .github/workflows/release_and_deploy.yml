@@ -93,6 +93,7 @@ jobs:
       NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
       NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      WAIT_ON_TIMEOUT: 900000
     steps:
       - uses: actions/checkout@v2
         with:
