@@ -61,13 +61,13 @@ export const DRMSelection = () => {
         />
         <Divider borderColor="gray.100" />
         <DataPoint
-          title="Housing NY &amp; NYC Housing Authority (NYCHA)"
+          title="Housing that is not Income-Restricted"
           value={selectedDRMdata?.percentunitswithnoincomerestrictions}
           percentage={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
-          title="Rent-Stabilized Housing units"
+          title="Housing that is not Rent-Stabilized"
           value={selectedDRMdata?.percentunitswithrentregulationsvscity}
           percentage={false}
           noNumber={true}
