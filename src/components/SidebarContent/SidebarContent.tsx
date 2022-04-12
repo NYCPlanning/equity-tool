@@ -78,12 +78,7 @@ export const SidebarContent = () => {
 
   return (
     <>
-      <Box
-        height="100%"
-        justify="space-between"
-        padding="2rem 1rem"
-        paddingBottom="0rem"
-      >
+      <Box padding="2rem 1rem" paddingBottom="0rem">
         <WelcomeContent />
       </Box>
       <Box padding="2rem 1rem" paddingTop="0rem">
