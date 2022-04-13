@@ -76,8 +76,6 @@ const WelcomeContent = () => {
           demographic, housing, and quality of life characteristics compare
           across neighborhoods and demographic groups over the past two decades.
         </Text>
-
-        <br />
       </>
     );
   }

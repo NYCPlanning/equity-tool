@@ -77,13 +77,13 @@ export const SidebarContent = () => {
   }
 
   return (
-    <>
-      <Box padding="2rem 1rem" paddingBottom="0rem">
+    <Flex height="100%" direction="column" justify="space-between">
+      <Box padding="2rem 1rem">
         <WelcomeContent />
       </Box>
-      <Box padding="2rem 1rem" paddingTop="0rem">
+      <Box padding="0 1rem 2rem 1rem">
         <WelcomeFooter />
       </Box>
-    </>
+    </Flex>
   );
 };
