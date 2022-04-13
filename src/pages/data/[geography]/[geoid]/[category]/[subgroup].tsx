@@ -30,7 +30,7 @@ import ReactGA from "react-ga4";
 import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
-import TablesIsOpenContext from "@contexts/TablesIsOpenContext";
+import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
 
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
@@ -152,12 +152,6 @@ const DataPage = ({
   const router = useRouter();
 
   const tablesSetIsOpens: React.Dispatch<boolean>[] = [];
-
-  const defaultTablesIsOpenContext = {
-    addSetIsOpen: (setIsOpen: React.Dispatch<boolean>) => {
-      tablesSetIsOpens.push(setIsOpen);
-    },
-  };
 
   const changeSubgroup = (event: any) => {
     router.push(
@@ -319,7 +313,7 @@ const DataPage = ({
         </HStack>
 
         <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
-          <TablesIsOpenContext.Provider value={defaultTablesIsOpenContext}>
+          <TablesIsOpenProvider tablesSetIsOpens={tablesSetIsOpens}>
             {indicators.map((indicator, i) => (
               <Indicator
                 key={`indicator-${i}`}
@@ -327,7 +321,7 @@ const DataPage = ({
                 shouldShowReliability={shouldShowReliability}
               />
             ))}
-          </TablesIsOpenContext.Provider>
+          </TablesIsOpenProvider>
         </Box>
       </Box>
     </Flex>

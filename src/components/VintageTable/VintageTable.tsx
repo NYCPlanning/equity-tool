@@ -1,9 +1,9 @@
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useState } from "react";
 import { Flex, Box, Text, Table, Thead, Tbody, Th, Tr } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { DataPointRow } from "@components/DataPointRow";
 import { Vintage } from "@schemas/vintage";
-import TablesIsOpenContext from "@contexts/TablesIsOpenContext";
+import { useTablesIsOpen } from "@contexts/TablesIsOpenContext";
 export interface VintageTableProps {
   vintage: Vintage;
   rowHeights: number[];
@@ -16,7 +16,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
     const { rows, headers, label } = vintage;
     const [isOpen, setIsOpen] = useState(true);
 
-    const { addSetIsOpen } = useContext(TablesIsOpenContext);
+    const { addSetIsOpen } = useTablesIsOpen();
 
     addSetIsOpen(setIsOpen);
 
