@@ -197,6 +197,10 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           base: "none",
           md: "flex",
         }}
+        maxWidth={{
+          base: "none",
+          md: "403px",
+        }}
         direction="column"
         flex="1"
         height="calc(100vh - 4.375rem)" // workaround to ensure Sidebar vertically fills container
