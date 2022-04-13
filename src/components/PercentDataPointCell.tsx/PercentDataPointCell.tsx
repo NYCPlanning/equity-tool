@@ -1,26 +1,25 @@
 import { Td } from "@chakra-ui/react";
 import { DataPoint } from "@schemas/dataPoint";
 
-export interface DataPointCellProps {
+export interface PercentDataPointCellProps {
   dataPoint: DataPoint;
   isReliable: boolean;
 }
 
-export const DataPointCell = ({
+export const PercentDataPointCell = ({
   dataPoint,
   isReliable,
-}: DataPointCellProps) => {
-  const { value, variance } = dataPoint;
-
+}: PercentDataPointCellProps) => {
+  const { value } = dataPoint;
   let formattedValue = "";
   if (value === null) {
-    formattedValue = variance === "NONE" ? "-" : "";
+    formattedValue = "";
   } else {
-    const roundTo = variance === "CV" ? 1 : 0;
-    formattedValue = value.toLocaleString(undefined, {
-      maximumFractionDigits: roundTo,
-      minimumFractionDigits: roundTo,
-    });
+    formattedValue =
+      value.toLocaleString(undefined, {
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 1,
+      }) + "%";
   }
   return (
     <Td

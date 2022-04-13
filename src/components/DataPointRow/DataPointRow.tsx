@@ -1,6 +1,7 @@
 import { Tr, Td, TableRowProps } from "@chakra-ui/react";
 import { Row } from "@schemas/row";
 import { DataPointCell } from "@components/DataPointCell";
+import { PercentDataPointCell } from "@components/PercentDataPointCell.tsx";
 
 export interface DataPointRowProps extends TableRowProps {
   row: Row;
@@ -56,7 +57,7 @@ export const DataPointRow = ({
   }
 
   const cv = cells.find((dataPoint) => dataPoint.variance === "CV");
-  const isReliable = cv && cv.value !== null && cv.value >= 20 ? false : true;
+  const isReliable = cv && (cv.value === null || cv.value >= 20) ? false : true;
   return (
     <Tr
       {...props}
@@ -94,13 +95,21 @@ export const DataPointRow = ({
           // Otherwise, only show those with variance of "NONE"
           return dataPoint.variance === "NONE";
         })
-        .map((dataPoint, j) => (
-          <DataPointCell
-            key={`data-point-cell-${j}`}
-            dataPoint={dataPoint}
-            isReliable={isReliable}
-          />
-        ))}
+        .map((dataPoint, j) =>
+          dataPoint.measure === "PERCENT" ? (
+            <PercentDataPointCell
+              key={`data-point-cell-${j}`}
+              dataPoint={dataPoint}
+              isReliable={isReliable}
+            />
+          ) : (
+            <DataPointCell
+              key={`data-point-cell-${j}`}
+              dataPoint={dataPoint}
+              isReliable={isReliable}
+            />
+          )
+        )}
     </Tr>
   );
 };
