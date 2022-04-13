@@ -296,6 +296,7 @@ const DataPage = ({
                 setIsOpen(false);
               });
             }}
+            data-cy="collapseAllTables"
           >
             Collapse All Tables
           </Button>
@@ -307,6 +308,7 @@ const DataPage = ({
                 setIsOpen(true);
               });
             }}
+            data-cy="expandAllTables"
           >
             Expand All Tables
           </Button>
