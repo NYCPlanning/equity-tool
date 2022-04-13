@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { forwardRef, useContext, useState } from "react";
 import { Flex, Box, Text, Table, Thead, Tbody, Th, Tr } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -12,7 +11,7 @@ export interface VintageTableProps {
   isSurvey: boolean;
 }
 
-export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
+const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
   ({ vintage, rowHeights, shouldShowReliability, isSurvey }, ref) => {
     const { rows, headers, label } = vintage;
     const [isOpen, setIsOpen] = useState(true);
@@ -219,3 +218,7 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
     );
   }
 );
+
+VintageTable.displayName = "VintageTable";
+
+export { VintageTable };
