@@ -45,7 +45,7 @@ export const Map = ({ layers, parent }: MapProps) => {
         position="absolute"
         top={{
           base: view === "data" ? "4.5rem" : "1.3rem",
-          md: "8rem",
+          md: view === "data" ? "8rem" : "4.5rem",
         }}
         left={{
           base: "2vmin",
