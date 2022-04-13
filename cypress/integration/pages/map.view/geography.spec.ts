@@ -68,14 +68,14 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="drmBtn-desktop"]').click();
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
-        "Or switch to Community Data"
+        "Or, switch to Community Data"
       );
     });
 
@@ -84,7 +84,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="desktopSidebar"]').should(
@@ -96,7 +96,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "not.contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="desktopSidebar"]').should(
@@ -125,7 +125,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="geoInfoPrimaryHeading"]').should(
         "contain",
-        "BK76 - Greenpoint"
+        "Greenpoint"
       );
     });
 
@@ -139,7 +139,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "not.contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="exitCommunityDataSelection-desktop"]').click();
@@ -151,7 +151,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
     });
 
@@ -238,14 +238,14 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="drmBtn-mobile"]').click();
 
       cy.get('[data-cy="mobileDrawer-welcome"]').should(
         "contain",
-        "Or switch to Community Data"
+        "Or, switch to Community Data"
       );
     });
 
@@ -254,7 +254,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="desktopSidebar"]').should(
@@ -266,7 +266,7 @@ describe("Map catch-all page", () => {
 
       cy.get('[data-cy="desktopSidebar"]').should(
         "not.contain",
-        "Or switch to the Displacement Risk Map"
+        "Or, switch to the Displacement Risk Map"
       );
 
       cy.get('[data-cy="desktopSidebar"]').should(
