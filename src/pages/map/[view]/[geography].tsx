@@ -111,48 +111,52 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
 
   const onDrmClick = () => {
-    setLastCommunityDataGeography(geography);
-    setLastCommunityDataGeoid(geoid);
+    if (view === "data") {
+      setLastCommunityDataGeography(geography);
+      setLastCommunityDataGeoid(geoid);
 
-    ReactGA.event({
-      category: "Toggle Tool",
-      action: "Click",
-      label: "Displacement Risk Map",
-    });
+      ReactGA.event({
+        category: "Toggle Tool",
+        action: "Click",
+        label: "Displacement Risk Map",
+      });
 
-    let drmPath = `/map/drm/${NTA}`;
+      let drmPath = `/map/drm/${NTA}`;
 
-    if (lastDrmGeoid) {
-      // TODO: revisit this if more query params will exist on Map view
-      drmPath += `?geoid=${lastDrmGeoid}`;
+      if (lastDrmGeoid) {
+        // TODO: revisit this if more query params will exist on Map view
+        drmPath += `?geoid=${lastDrmGeoid}`;
+      }
+
+      router.push(drmPath);
     }
-
-    router.push(drmPath);
   };
 
   const onCommunityDataClick = () => {
-    setLastDrmGeoid(geoid);
+    if (view === "drm") {
+      setLastDrmGeoid(geoid);
 
-    ReactGA.event({
-      category: "Toggle Tool",
-      action: "Click",
-      label: "Community Data",
-    });
+      ReactGA.event({
+        category: "Toggle Tool",
+        action: "Click",
+        label: "Community Data",
+      });
 
-    let communityDataPath = "/map/data";
+      let communityDataPath = "/map/data";
 
-    if (lastCommunityDataGeography) {
-      communityDataPath += `/${lastCommunityDataGeography}`;
+      if (lastCommunityDataGeography) {
+        communityDataPath += `/${lastCommunityDataGeography}`;
 
-      if (lastCommunityDataGeoid) {
-        // TODO: revisit this if more query params will exist on Map view
-        communityDataPath += `?geoid=${lastCommunityDataGeoid}`;
+        if (lastCommunityDataGeoid) {
+          // TODO: revisit this if more query params will exist on Map view
+          communityDataPath += `?geoid=${lastCommunityDataGeoid}`;
+        }
+      } else {
+        communityDataPath += `/${DISTRICT}`;
       }
-    } else {
-      communityDataPath += `/${DISTRICT}`;
-    }
 
-    router.push(communityDataPath);
+      router.push(communityDataPath);
+    }
   };
 
   const onCommunityDataGeographyChange = (targetGeography: Geography) => {

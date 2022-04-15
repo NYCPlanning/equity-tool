@@ -82,6 +82,7 @@ const theme = extendTheme({
         _active: {
           backgroundColor: "teal.50",
           color: "teal",
+          cursor: "default",
         },
         _disabled: {
           backgroundColor: "white",
@@ -104,6 +105,7 @@ const theme = extendTheme({
           borderRadius: 50,
           _active: {
             border: "1px solid teal",
+            cursor: "default",
           },
         },
         download: {
