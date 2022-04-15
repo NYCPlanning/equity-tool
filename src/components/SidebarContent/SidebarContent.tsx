@@ -33,6 +33,9 @@ export const SidebarContent = () => {
               aria-label="Exit Community Data Selection"
               data-cy="exitCommunityDataSelection-desktop"
               onClick={clearSelection}
+              visibility={
+                geography === Geography.CITYWIDE ? "hidden" : "visible"
+              }
             >
               back
             </Button>
