@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('clickGeo', (geoid) => {
+    cy.visit(`http://localhost:3000/map/data/district?geoid=${geoid}`)
+})
+
+Cypress.Commands.add('tableTesting', (district, geoid, category, subGroup) => {
+    cy.visit(`http://localhost:3000/data/${district}/${geoid}/${category}/${subGroup}`)     
+    
+})
