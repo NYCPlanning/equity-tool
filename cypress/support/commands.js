@@ -31,5 +31,6 @@ Cypress.Commands.add('clickGeo', (geoid) => {
 
 Cypress.Commands.add('tableTesting', (district, geoid, category, subGroup) => {
     cy.visit(`http://localhost:3000/data/${district}/${geoid}/${category}/${subGroup}`)     
-    
 })
+
+require('cy-verify-downloads').addCustomCommand();

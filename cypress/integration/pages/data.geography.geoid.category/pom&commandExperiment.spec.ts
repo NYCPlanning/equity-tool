@@ -1,5 +1,9 @@
 import communityDataMap from '../pageObjectModel/communityDataMap.js'
 import communityDataMapDrawer from '../pageObjectModel/communityDataMapDrawer.js'
+import subGroupDropDown from '../pageObjectModel/subGroupDropDown.js'
+import download from '../pageObjectModel/download.js'
+import dataExplorerDrawer from '../pageObjectModel/dataExplorerDrawer.js'
+
 
 
 
@@ -22,7 +26,7 @@ describe("Experimenting with POM, custom commands, and configuration", () => {
       communityDataMapDrawer.welcomeText.should('exist'); // assert that welcome text exist 
     });
 
-    it.only('Tables should exist for Housing Security, Affordability, and Quality for all subgroups', () => {
+    it('Tables should exist for Housing Security, Affordability, and Quality for all subgroups', () => {
       cy.tableTesting('district', '4001', 'hsaq', 'tot'); // goes to the url 
       
       let tableHeader = [
@@ -43,6 +47,39 @@ describe("Experimenting with POM, custom commands, and configuration", () => {
       };
 
     })
+
+    it('should select from drop down menu', () => {
+
+      cy.tableTesting('district', '4001', 'hsaq', 'tot');
+
+      subGroupDropDown.anh.should('have.value', 'anh');
+
+      cy.url().should('include', '/anh');
+  
+    });
+
+    it('should download file', () => {
+
+      cy.tableTesting('district', '4001', 'hsaq', 'tot');
+
+      download.downloadDataBtn.click(); // clicks on 'Download Data', download data Modal should pop up
+
+      download.xls; // selects .xls file type 
+
+      download.downloadDataModalBtn.click(); // clicks on 'Download Data' from Modal 
+
+      cy.verifyDownload('4001_xlsx.zip', {timeout:5000}); // assert that the correct file is downloaded
+      
+    });
+
+    it.only('should click on drawer content', () => {
+      //cy.tableTesting('district', '4001', 'hsaq', 'tot');
+      cy.clickGeo('4001')
+      communityDataMapDrawer.demo.click()
+      dataExplorerDrawer.demo.should('have.attr', 'data-active')
+    })
+
+
 
   });
 

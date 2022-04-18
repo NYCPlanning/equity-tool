@@ -1,16 +1,8 @@
-class communityDataMapDrawer {
+class dataExplorerDrawer {
 
     get geoInfoName() {
         return cy.get('[data-cy="geoInfoPrimaryHeading"]');
     };
-
-    get back() {
-        return cy.get('[data-cy="exitCommunityDataSelection-desktop')
-    }
-
-    get welcomeText() {
-        return cy.contains('Welcome')
-    }
 
     get demo() {
         return cy.contains('Demographic Conditions')
@@ -24,9 +16,13 @@ class communityDataMapDrawer {
         return cy.contains('Housing Security, Affordability and Quality')
     }
 
-    get hopd () {
+    get hopd() {
         return cy.contains('Quality of Life and Access to Opportunity')
+    }
+
+    get collapseBtn() {
+        return cy.get('.css-1ra321f').click()
     }
 }
 
-export default new communityDataMapDrawer
+export default new dataExplorerDrawer
