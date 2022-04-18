@@ -199,7 +199,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         }}
         maxWidth={{
           base: "none",
-          md: "403px",
+          sm: "403px",
         }}
         direction="column"
         flex="1"
