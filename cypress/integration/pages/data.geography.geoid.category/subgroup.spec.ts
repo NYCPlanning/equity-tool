@@ -25,6 +25,26 @@ describe("data/geography/geoid/category/subgroup page", () => {
       cy.url().should("include", "/map/data/borough?geoid=1");
     });
   });
+
+  context("mobile", () => {
+    beforeEach(() => {
+      cy.viewport(600, 2000);
+    });
+
+    it("users can expand and collapse all tables", () => {
+      cy.visit("data/district/4107/econ/tot");
+
+      cy.get("tbody").should("be.visible");
+
+      cy.get('[data-cy="collapseAllTables"]').click();
+
+      cy.get("tbody").should("not.be.visible");
+
+      cy.get('[data-cy="expandAllTables"]').click();
+
+      cy.get("tbody").should("be.visible");
+    });
+  });
 });
 
 export {};

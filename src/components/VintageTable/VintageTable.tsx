@@ -1,19 +1,9 @@
-import { forwardRef } from "react";
-import {
-  Flex,
-  Box,
-  Text,
-  Table,
-  Thead,
-  Tbody,
-  Th,
-  Tr,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { forwardRef, useState } from "react";
+import { Flex, Box, Text, Table, Thead, Tbody, Th, Tr } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { DataPointRow } from "@components/DataPointRow";
 import { Vintage } from "@schemas/vintage";
-
+import { useTablesIsOpen } from "@contexts/TablesIsOpenContext";
 export interface VintageTableProps {
   vintage: Vintage;
   rowHeights: number[];
@@ -21,12 +11,14 @@ export interface VintageTableProps {
   isSurvey: boolean;
 }
 
-export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
+const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
   ({ vintage, rowHeights, shouldShowReliability, isSurvey }, ref) => {
     const { rows, headers, label } = vintage;
-    const { isOpen, onToggle } = useDisclosure({
-      defaultIsOpen: true,
-    });
+    const [isOpen, setIsOpen] = useState(true);
+
+    const { addSetIsOpen } = useTablesIsOpen();
+
+    addSetIsOpen(setIsOpen);
 
     return (
       <Table
@@ -65,7 +57,9 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
               border={"none"}
             ></Th>
             <Th
-              onClick={onToggle}
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
               colSpan={6}
               borderTopLeftRadius={{ base: "0.75rem", md: "0rem" }}
               borderTopRightRadius={{ base: "0.75rem", md: "0rem" }}
@@ -112,10 +106,13 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
             </Th>
           </Tr>
           {/* If indicator data is a survey and shouldShowReliability is false,
-          just render first row of headers with colspan of 1 */}
+                just render first row of headers with colspan of 1 */}
           {isSurvey && !shouldShowReliability ? (
             <Tr
-              display={{ base: isOpen ? "table-row" : "none", md: "table-row" }}
+              display={{
+                base: isOpen ? "table-row" : "none",
+                md: "table-row",
+              }}
             >
               <Th
                 rowSpan={headers.length}
@@ -123,8 +120,14 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 position={"sticky"}
                 left={"0"}
                 zIndex={"100"}
-                minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
-                maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                minWidth={{
+                  base: "calc((100vw - 26px) / 3)",
+                  md: "unset",
+                }}
+                maxWidth={{
+                  base: "calc((100vw - 26px) / 3)",
+                  md: "unset",
+                }}
               >
                 data
               </Th>
@@ -132,8 +135,14 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
               {headers[0].map((headerCell, j) => (
                 <Th
                   colSpan={1}
-                  minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
-                  maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                  minWidth={{
+                    base: "calc((100vw - 26px) / 3)",
+                    md: "unset",
+                  }}
+                  maxWidth={{
+                    base: "calc((100vw - 26px) / 3)",
+                    md: "unset",
+                  }}
                   key={`header-cell-${j}`}
                 >
                   {headerCell.label}
@@ -157,8 +166,14 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                     position={"sticky"}
                     left={"0"}
                     zIndex={"100"}
-                    minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
-                    maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                    minWidth={{
+                      base: "calc((100vw - 26px) / 3)",
+                      md: "unset",
+                    }}
+                    maxWidth={{
+                      base: "calc((100vw - 26px) / 3)",
+                      md: "unset",
+                    }}
                   >
                     data
                   </Th>
@@ -167,8 +182,14 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 {headerRow.map((headerCell, j) => (
                   <Th
                     colSpan={headerCell.colspan}
-                    minWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
-                    maxWidth={{ base: "calc((100vw - 26px) / 3)", md: "unset" }}
+                    minWidth={{
+                      base: "calc((100vw - 26px) / 3)",
+                      md: "unset",
+                    }}
+                    maxWidth={{
+                      base: "calc((100vw - 26px) / 3)",
+                      md: "unset",
+                    }}
                     key={`header-cell-${j}`}
                   >
                     {headerCell.label}
@@ -197,3 +218,7 @@ export const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
     );
   }
 );
+
+VintageTable.displayName = "VintageTable";
+
+export { VintageTable };
