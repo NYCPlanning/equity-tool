@@ -56,8 +56,6 @@ export const DataPointRow = ({
     );
   }
 
-  const cv = cells.find((dataPoint) => dataPoint.variance === "CV");
-  const isReliable = cv && (cv.value === null || cv.value >= 20) ? false : true;
   return (
     <Tr
       {...props}
@@ -96,18 +94,13 @@ export const DataPointRow = ({
           return dataPoint.variance === "NONE";
         })
         .map((dataPoint, j) =>
-          dataPoint.measure === "PERCENT" ? (
+          ["PERCENT", "PERCENTAGE_POINT"].includes(dataPoint.measure) ? (
             <PercentDataPointCell
               key={`data-point-cell-${j}`}
               dataPoint={dataPoint}
-              isReliable={isReliable}
             />
           ) : (
-            <DataPointCell
-              key={`data-point-cell-${j}`}
-              dataPoint={dataPoint}
-              isReliable={isReliable}
-            />
+            <DataPointCell key={`data-point-cell-${j}`} dataPoint={dataPoint} />
           )
         )}
     </Tr>

@@ -13,7 +13,7 @@ export interface VintageTableProps {
 
 const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
   ({ vintage, rowHeights, shouldShowReliability, isSurvey }, ref) => {
-    const { rows, headers, label } = vintage;
+    const { rows, headers, label, isChange } = vintage;
     const [isOpen, setIsOpen] = useState(true);
 
     const { addSetIsOpen } = useTablesIsOpen();
@@ -74,11 +74,21 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
               px={"1rem"}
               minWidth={{
                 base: "calc(100vw - 26px)",
-                md: isSurvey && shouldShowReliability ? "30.5rem" : "15.375rem",
+                md:
+                  isSurvey && shouldShowReliability
+                    ? "30.5rem"
+                    : isChange
+                    ? "29.25rem"
+                    : "15.375rem",
               }}
               maxWidth={{
                 base: "calc(100vw - 26px)",
-                md: isSurvey && shouldShowReliability ? "30.5rem" : "15.375rem",
+                md:
+                  isSurvey && shouldShowReliability
+                    ? "30.5rem"
+                    : isChange
+                    ? "29.25rem"
+                    : "15.375rem",
               }}
             >
               <Flex

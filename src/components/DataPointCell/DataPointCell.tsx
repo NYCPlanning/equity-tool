@@ -3,24 +3,32 @@ import { DataPoint } from "@schemas/dataPoint";
 
 export interface DataPointCellProps {
   dataPoint: DataPoint;
-  isReliable: boolean;
 }
 
-export const DataPointCell = ({
-  dataPoint,
-  isReliable,
-}: DataPointCellProps) => {
-  const { value, variance } = dataPoint;
+export const DataPointCell = ({ dataPoint }: DataPointCellProps) => {
+  const { value, variance, isReliable = true } = dataPoint;
 
   let formattedValue = "";
   if (value === null) {
     formattedValue = variance === "NONE" ? "-" : "";
   } else {
-    const roundTo = variance === "CV" ? 1 : 0;
+    let scale = 0;
+    if (variance === "CV") {
+      scale = 1;
+    } else if (typeof dataPoint.scale !== "undefined") {
+      scale = dataPoint.scale;
+    }
+    // const roundTo = variance === "CV" ? 1 : 0;
     formattedValue = value.toLocaleString(undefined, {
-      maximumFractionDigits: roundTo,
-      minimumFractionDigits: roundTo,
+      maximumFractionDigits: scale,
+      minimumFractionDigits: scale,
     });
+
+    if (dataPoint?.coding === "TOP") {
+      formattedValue = `${formattedValue}+`;
+    } else if (dataPoint?.coding === "BOTTOM") {
+      formattedValue = `${formattedValue}-`;
+    }
   }
   return (
     <Td
