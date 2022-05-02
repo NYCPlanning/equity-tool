@@ -3,23 +3,23 @@ import { DataPoint } from "@schemas/dataPoint";
 
 export interface PercentDataPointCellProps {
   dataPoint: DataPoint;
-  isReliable: boolean;
 }
 
 export const PercentDataPointCell = ({
   dataPoint,
-  isReliable,
 }: PercentDataPointCellProps) => {
-  const { value } = dataPoint;
+  const { value, measure, isReliable = true } = dataPoint;
   let formattedValue = "";
   if (value === null) {
     formattedValue = "";
   } else {
-    formattedValue =
-      value.toLocaleString(undefined, {
-        maximumFractionDigits: 1,
-        minimumFractionDigits: 1,
-      }) + "%";
+    formattedValue = value.toLocaleString(undefined, {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    });
+    if (measure === "PERCENT") {
+      formattedValue = `${formattedValue}%`;
+    }
   }
   return (
     <Td
