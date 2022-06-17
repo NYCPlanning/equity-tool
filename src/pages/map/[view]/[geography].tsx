@@ -124,7 +124,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
     if (lastDrmGeoid) {
       // TODO: revisit this if more query params will exist on Map view
-      drmPath += `?geoid=${lastDrmGeoid}`;
+
+      // reset the params if geoid=nyc
+      !lastDrmGeoid.includes("nyc")
+        ? (drmPath += `?geoid=${lastDrmGeoid}`)
+        : (drmPath += "");
     }
 
     router.push(drmPath);
