@@ -26,9 +26,10 @@ export const GeographyInfo = ({
   });
 
   useEffect(() => {
-    fetchNtaInfo(geoid, (ntaInfo: any) => {
-      setNtaInfo(ntaInfo);
-    });
+    geography === Geography.NTA &&
+      fetchNtaInfo(geoid, (ntaInfo: any) => {
+        setNtaInfo(ntaInfo);
+      });
   }, [geoid]);
 
   let primaryHeading = "";
