@@ -42,6 +42,7 @@ export const ViewToggle = ({
             }}
             onClick={onCommunityDataClick}
             isActive={view === "data"}
+            isDisabled={view === "data"}
             isFullWidth
             data-cy="communityDataBtn-mobile"
           >
@@ -60,6 +61,7 @@ export const ViewToggle = ({
             }}
             onClick={onDrmClick}
             isActive={view === "drm"}
+            isDisabled={view === "drm"}
             isFullWidth
             data-cy="drmBtn-mobile"
           >
@@ -81,6 +83,7 @@ export const ViewToggle = ({
       >
         <Button
           onClick={onCommunityDataClick}
+          isDisabled={view === "data"}
           isActive={view === "data"}
           variant="toggle"
           data-cy="communityDataBtn-desktop"
@@ -90,6 +93,7 @@ export const ViewToggle = ({
         <Button
           onClick={onDrmClick}
           isActive={view === "drm"}
+          isDisabled={view === "drm"}
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
