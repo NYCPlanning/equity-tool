@@ -42,6 +42,7 @@ export const PageHeader = () => {
       <title>
         {currentPage.title} - NYC Equitable Development Data Explorer
       </title>
+      <link rel="icon" type="image/x-icon" href="/favicon.svg" />
       <meta
         name="title"
         content={`${currentPage.title} - NYC Equitable Development Data Explorer`}
