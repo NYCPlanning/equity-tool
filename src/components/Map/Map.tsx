@@ -9,6 +9,7 @@ import baseMap from "@data/basemap.json";
 
 import { Box } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useWindowWidth } from "@react-hook/window-size";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -21,13 +22,23 @@ type MapProps = Pick<DeckGLProps, "layers" | "parent">;
 export const Map = ({ layers, parent }: MapProps) => {
   const { view } = useMapSubrouteInfo();
 
-  const INITIAL_VIEW_STATE = {
-    longitude: -74.0008,
-    latitude: 40.7018,
-    zoom: 9.7,
-    pitch: 0,
-    bearing: 0,
-  };
+  const isMobile = useWindowWidth() < 768;
+
+  const INITIAL_VIEW_STATE = !isMobile
+    ? {
+        longitude: -74.0008,
+        latitude: 40.7018,
+        zoom: 9.7,
+        pitch: 0,
+        bearing: 0,
+      }
+    : {
+        longitude: -73.99,
+        latitude: 40.55,
+        zoom: 8.8,
+        pitch: 0,
+        bearing: 0,
+      };
 
   // MapContext is necessary for navigation controls to work.
   // Likely because it holds the view state, and keeps Deck and
