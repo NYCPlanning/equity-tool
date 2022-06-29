@@ -23,8 +23,8 @@ export const Map = ({ layers, parent }: MapProps) => {
 
   const INITIAL_VIEW_STATE = {
     longitude: -74.0008,
-    latitude: 40.6838,
-    zoom: 10.8,
+    latitude: 40.7018,
+    zoom: 9.7,
     pitch: 0,
     bearing: 0,
   };
