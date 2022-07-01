@@ -30,9 +30,38 @@ describe("DataPointCell", () => {
       value: null,
       measure: "COUNT",
       variance: "NONE",
+      isReliable: undefined,
+      scale: undefined,
+      coding: undefined,
     };
-    renderInTable(<DataPointCell dataPoint={dataPoint} isReliable={true} />);
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
     expect(screen.getByText("-")).toBeInTheDocument();
+  });
+
+  it("shows a plus sign after value when value is not null, coding is TOP, and variance is NONE", () => {
+    const dataPoint: DataPoint = {
+      value: 1500,
+      measure: "COUNT",
+      variance: "NONE",
+      isReliable: false,
+      scale: undefined,
+      coding: "TOP",
+    };
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
+    expect(screen.getByText("1,500+")).toBeInTheDocument();
+  });
+
+  it("shows a minus sign after value when value is not null, coding is BOTTOM, and variance is NONE", () => {
+    const dataPoint: DataPoint = {
+      value: 1500,
+      measure: "COUNT",
+      variance: "NONE",
+      isReliable: false,
+      scale: undefined,
+      coding: "BOTTOM",
+    };
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
+    expect(screen.getByText("1,500-")).toBeInTheDocument();
   });
 
   it("does not show hyphen when value is null and variance is not NONE", () => {
@@ -40,8 +69,11 @@ describe("DataPointCell", () => {
       value: null,
       measure: "COUNT",
       variance: "MOE",
+      isReliable: undefined,
+      scale: undefined,
+      coding: undefined,
     };
-    renderInTable(<DataPointCell dataPoint={dataPoint} isReliable={true} />);
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
     expect(screen.queryByText("-")).toBeNull();
   });
 
@@ -50,8 +82,11 @@ describe("DataPointCell", () => {
       value: 1005.2,
       measure: "COUNT",
       variance: "MOE",
+      isReliable: undefined,
+      scale: undefined,
+      coding: undefined,
     };
-    renderInTable(<DataPointCell dataPoint={dataPoint} isReliable={true} />);
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
     expect(screen.getByText("1,005")).toBeInTheDocument();
   });
 
@@ -60,8 +95,11 @@ describe("DataPointCell", () => {
       value: 102.9,
       measure: "COUNT",
       variance: "CV",
+      isReliable: undefined,
+      scale: undefined,
+      coding: undefined,
     };
-    renderInTable(<DataPointCell dataPoint={dataPoint} isReliable={true} />);
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
     expect(screen.queryByText("102.9")).toBeInTheDocument();
   });
 
@@ -70,8 +108,11 @@ describe("DataPointCell", () => {
       value: 105,
       measure: "COUNT",
       variance: "NONE",
+      isReliable: false,
+      scale: undefined,
+      coding: undefined,
     };
-    renderInTable(<DataPointCell dataPoint={dataPoint} isReliable={false} />);
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
     expect(screen.getByText("105")).toHaveStyle(
       "color: var(--chakra-colors-gray-400)"
     );
