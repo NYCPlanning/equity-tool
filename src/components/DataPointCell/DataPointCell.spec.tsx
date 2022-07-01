@@ -51,6 +51,19 @@ describe("DataPointCell", () => {
     expect(screen.getByText("1,500+")).toBeInTheDocument();
   });
 
+  it("shows number with correct digits after decimal when given scale value", () => {
+    const dataPoint: DataPoint = {
+      value: 1500,
+      measure: "COUNT",
+      variance: "NONE",
+      isReliable: false,
+      scale: 1,
+      coding: undefined,
+    };
+    renderInTable(<DataPointCell dataPoint={dataPoint} />);
+    expect(screen.getByText("1,500.0")).toBeInTheDocument();
+  });
+
   it("shows a minus sign after value when value is not null, coding is BOTTOM, and variance is NONE", () => {
     const dataPoint: DataPoint = {
       value: 1500,
