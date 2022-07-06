@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     [Category.DEMO]: "Demographic Conditions",
     [Category.ECON]: "Household Economic Security",
     [Category.HOPD]: "Housing Production",
-    [Category.HSAQ]: "Housing Security, Affordability, and Quality",
+    [Category.HSAQ]: "Housing Affordability, Quality, and Security",
     [Category.QLAO]: "Quality of Life and Access to Opportunity",
   };
 

@@ -70,7 +70,7 @@ export const CategoryMenu = ({
         });
       }}
     >
-      Housing Security, Affordability and Quality
+      Housing Affordability, Quality, and Security
     </CategoryMenuLink>
     <CategoryMenuLink
       icon={<BuildingHouseIcon />}
