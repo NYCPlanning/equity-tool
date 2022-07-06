@@ -111,7 +111,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
 
   const onDrmClick = () => {
-    setLastCommunityDataGeography(geography);
+    setLastCommunityDataGeography(null);
     setLastCommunityDataGeoid(geoid);
 
     ReactGA.event({
