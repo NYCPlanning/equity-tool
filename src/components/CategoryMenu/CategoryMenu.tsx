@@ -31,7 +31,7 @@ export const CategoryMenu = ({
     {...flexProps}
   >
     <CategoryMenuLink
-      icon={<FontAwesomeIcon icon={faUserGroup} />}
+      icon={<FontAwesomeIcon icon={faUserGroup} width="1.5rem" />}
       href={`/data/${geography}/${geoid}/${Category.DEMO}/tot`}
       isActive={currentCategory === Category.DEMO}
       onClick={() => {
@@ -45,7 +45,7 @@ export const CategoryMenu = ({
       Demographic Conditions
     </CategoryMenuLink>
     <CategoryMenuLink
-      icon={<FontAwesomeIcon icon={faUmbrella} />}
+      icon={<FontAwesomeIcon icon={faUmbrella} width="1.5rem" />}
       href={`/data/${geography}/${geoid}/${Category.ECON}/tot`}
       isActive={currentCategory === Category.ECON}
       onClick={() => {
@@ -59,7 +59,7 @@ export const CategoryMenu = ({
       Household Economic Security
     </CategoryMenuLink>
     <CategoryMenuLink
-      icon={<FontAwesomeIcon icon={faHouseUser} />}
+      icon={<FontAwesomeIcon icon={faHouseUser} width="1.5rem" />}
       href={`/data/${geography}/${geoid}/${Category.HSAQ}/tot`}
       isActive={currentCategory === Category.HSAQ}
       onClick={() => {
