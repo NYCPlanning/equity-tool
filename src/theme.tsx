@@ -74,7 +74,6 @@ const theme = extendTheme({
       baseStyle: {
         backgroundColor: "white",
         color: "gray.600",
-
         _hover: {
           backgroundColor: "teal.50",
           color: "teal",
@@ -107,6 +106,7 @@ const theme = extendTheme({
           _active: {
             border: "1px solid teal",
             cursor: "default",
+            opacity: "1 !important",
           },
         },
         download: {
@@ -119,6 +119,15 @@ const theme = extendTheme({
           _disabled: {
             backgroundColor: "white",
             color: "teal",
+          },
+        },
+        mobileButton: {
+          opacity: "1 !important",
+          borderRadius: 50,
+          _active: {
+            border: "1px solid teal",
+            cursor: "default",
+            opacity: "1 !important",
           },
         },
       },
