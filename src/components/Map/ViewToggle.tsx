@@ -31,7 +31,6 @@ export const ViewToggle = ({
         >
           <Button
             flex="1"
-            variant="toggle"
             backgroundColor="gray.50"
             height="100%"
             borderRadius=".5rem 0 0 0"
@@ -43,14 +42,15 @@ export const ViewToggle = ({
             onClick={onCommunityDataClick}
             isActive={view === "data"}
             isDisabled={view === "data"}
+            _hover={{ _disabled: { bg: "teal.50" } }}
             isFullWidth
             data-cy="communityDataBtn-mobile"
+            variant="mobileButton"
           >
             Community Data
           </Button>
           <Button
             flex="1"
-            variant="toggle"
             backgroundColor="gray.50"
             height="100%"
             borderRadius="0 .5rem 0 0"
@@ -62,8 +62,10 @@ export const ViewToggle = ({
             onClick={onDrmClick}
             isActive={view === "drm"}
             isDisabled={view === "drm"}
+            _hover={{ _disabled: { bg: "teal.50" } }}
             isFullWidth
             data-cy="drmBtn-mobile"
+            variant="mobileButton"
           >
             Displacement Risk Map
           </Button>
