@@ -1,6 +1,4 @@
-import { Box, Button, Divider, Flex } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
-import { useClearSelection } from "@helpers/useClearSelection";
+import { Box, Divider, Flex } from "@chakra-ui/react";
 import { GeographyInfo } from "@components/GeographyInfo";
 
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
@@ -10,8 +8,6 @@ import { NYC } from "@constants/geoid";
 
 export const CommunityDataMobileDrawer = () => {
   const { geoid, geography } = useMapSubrouteInfo();
-
-  const clearSelection = useClearSelection();
 
   return (
     <Box
@@ -31,29 +27,6 @@ export const CommunityDataMobileDrawer = () => {
     >
       <Flex direction="column" height="100%" position="relative">
         <Box
-          position="absolute"
-          width="100%"
-          top={0}
-          cursor="pointer"
-          zIndex="999"
-          align="left"
-          bg="rgba(0,0,0,0)"
-        >
-          <Button
-            padding="1.5rem 1rem"
-            variant="ghost"
-            bg="rgba(0,0,0,0)"
-            color="gray.500"
-            leftIcon={<ArrowBackIcon />}
-            aria-label="Exit Community Data Selection"
-            data-cy="exitCommunityDataSelection-mobile"
-            onClick={clearSelection}
-          >
-            back
-          </Button>
-        </Box>
-
-        <Box
           flex="auto"
           overflow="scroll"
           paddingTop="1rem"
@@ -63,7 +36,7 @@ export const CommunityDataMobileDrawer = () => {
             },
           }}
         >
-          <Box padding="2.5rem 1rem 1.5rem 1rem">
+          <Box padding="0.5rem 1rem 0.5rem 1rem">
             <GeographyInfo
               geoid={geography && geoid ? geoid : NYC}
               geography={geography}
