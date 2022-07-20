@@ -274,23 +274,6 @@ describe("Map catch-all page", () => {
         "Sunnyside & Woodside"
       );
     });
-
-    it("should clear selection when user hits 'back' button", () => {
-      cy.visit("/map/data/district?geoid=4108");
-
-      cy.get('[data-cy="mobileDrawer-communityData"]').should(
-        "contain",
-        "Forest Hills & Rego Park"
-      );
-
-      cy.get('[data-cy="mobileDrawer-welcome"]').should("not.exist");
-
-      cy.get('[data-cy="exitCommunityDataSelection-mobile"]').click();
-
-      cy.get('[data-cy="mobileDrawer-communityData"]').should("not.exist");
-
-      cy.get('[data-cy="mobileDrawer-welcome"]').should("exist");
-    });
   });
 });
 
