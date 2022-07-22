@@ -180,9 +180,14 @@ export const DataDownloadModal = ({
               <FormControl isRequired p="0rem">
                 <RadioGroup onChange={updateFiletype} value={filetype}>
                   <Stack direction="column">
-                    <Radio isDisabled={true} value="pdf">
-                      Community Profile (.pdf) (coming soon)
-                    </Radio>
+                    {geography === Geography.DISTRICT ? (
+                      <Radio value="pdf">Community Profile (.pdf)</Radio>
+                    ) : (
+                      <Radio isDisabled={true} value="pdf">
+                        Community Profile (.pdf) (only avaialable on district
+                        level)
+                      </Radio>
+                    )}
                     <Radio value="xls">Data set (.xls)</Radio>
                   </Stack>
                 </RadioGroup>
