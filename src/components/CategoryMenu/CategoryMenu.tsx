@@ -15,12 +15,14 @@ export interface CategoryMenuProps extends FlexProps {
   currentCategory?: Category;
   geography: Geography;
   geoid: string;
+  shouldDisableTooltips?: boolean;
 }
 
 export const CategoryMenu = ({
   geography,
   geoid,
   currentCategory,
+  shouldDisableTooltips = true,
   ...flexProps
 }: CategoryMenuProps) => (
   <Flex
@@ -34,6 +36,7 @@ export const CategoryMenu = ({
       icon={<FontAwesomeIcon icon={faUserGroup} width="1.5rem" />}
       href={`/data/${geography}/${geoid}/${Category.DEMO}/tot`}
       isActive={currentCategory === Category.DEMO}
+      isTooltipDisabled={shouldDisableTooltips}
       onClick={() => {
         ReactGA.event({
           category: "Select Community Data Profile",
@@ -48,6 +51,7 @@ export const CategoryMenu = ({
       icon={<FontAwesomeIcon icon={faUmbrella} width="1.5rem" />}
       href={`/data/${geography}/${geoid}/${Category.ECON}/tot`}
       isActive={currentCategory === Category.ECON}
+      isTooltipDisabled={shouldDisableTooltips}
       onClick={() => {
         ReactGA.event({
           category: "Select Community Data Profile",
@@ -62,6 +66,7 @@ export const CategoryMenu = ({
       icon={<FontAwesomeIcon icon={faHouseUser} width="1.5rem" />}
       href={`/data/${geography}/${geoid}/${Category.HSAQ}/tot`}
       isActive={currentCategory === Category.HSAQ}
+      isTooltipDisabled={shouldDisableTooltips}
       onClick={() => {
         ReactGA.event({
           category: "Select Community Data Profile",
@@ -76,6 +81,7 @@ export const CategoryMenu = ({
       icon={<BuildingHouseIcon />}
       href={`/data/${geography}/${geoid}/${Category.HOPD}/tot`}
       isActive={currentCategory === Category.HOPD}
+      isTooltipDisabled={shouldDisableTooltips}
       onClick={() => {
         ReactGA.event({
           category: "Select Community Data Profile",
@@ -90,6 +96,7 @@ export const CategoryMenu = ({
       icon={<MentalHealthIcon />}
       href={`/data/${geography}/${geoid}/${Category.QLAO}/tot`}
       isActive={currentCategory === Category.QLAO}
+      isTooltipDisabled={shouldDisableTooltips}
       onClick={() => {
         ReactGA.event({
           category: "Select Community Data Profile",

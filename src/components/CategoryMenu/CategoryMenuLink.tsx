@@ -5,11 +5,13 @@ import {
   ButtonProps,
   Icon as ChakraIcon,
   Center,
+  Tooltip,
 } from "@chakra-ui/react";
 
 interface CategoryMenuLinkProps extends ButtonProps {
   href: string;
   icon: ReactNode;
+  isTooltipDisabled?: boolean;
 }
 
 export const CategoryMenuLink = ({
@@ -17,19 +19,28 @@ export const CategoryMenuLink = ({
   href,
   icon,
   isActive,
+  isTooltipDisabled = true,
   ...buttonProps
 }: CategoryMenuLinkProps): JSX.Element => {
   const Icon = () => (
-    <Center
-      boxSize={"2.25rem"}
-      borderRadius="50%"
-      background={"teal.600"}
-      color={"gray.200"}
-      my={"0.625rem"}
-      fontSize={"1.125rem"}
+    <Tooltip
+      label={children}
+      isDisabled={isTooltipDisabled}
+      hasArrow
+      placement="right"
     >
-      {icon}
-    </Center>
+      <Center
+        boxSize={"2.25rem"}
+        borderRadius="50%"
+        background={"teal.600"}
+        color={"gray.200"}
+        my={"0.625rem"}
+        fontSize={"1.125rem"}
+        role="button"
+      >
+        {icon}
+      </Center>
+    </Tooltip>
   );
 
   return (
