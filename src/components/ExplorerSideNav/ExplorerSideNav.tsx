@@ -89,6 +89,7 @@ export const ExplorerSideNav = () => {
           geography={geography}
           geoid={geoid}
           currentCategory={category}
+          shouldDisableTooltips={isOpen}
           justify={"start"}
         />
       </Box>
