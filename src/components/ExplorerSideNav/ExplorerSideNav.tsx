@@ -12,14 +12,20 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
-import { useDataExplorerState } from "@hooks/useDataExplorerState";
+import { useGeography } from "@hooks/useGeography";
+import { useCategory } from "@hooks/useCategory";
 import { Geography } from "@constants/geography";
 import ReactGA from "react-ga4";
 import { getBoroughName } from "@helpers/getBoroughName";
 
-export const ExplorerSideNav = () => {
+export interface ExplorerSideNavProps {
+  geoid: string;
+}
+
+export const ExplorerSideNav = ({ geoid }: ExplorerSideNavProps) => {
   const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true });
-  const { geography, geoid, category } = useDataExplorerState();
+  const geography = useGeography();
+  const category = useCategory();
 
   const toggleSidebar = () => {
     ReactGA.event({
