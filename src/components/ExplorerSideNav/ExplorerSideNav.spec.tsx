@@ -5,12 +5,24 @@ import { Category } from "@constants/Category";
 import { Geography } from "@constants/geography";
 import { Subgroup } from "@constants/Subgroup";
 import { NYC } from "@constants/geoid";
-import { useDataExplorerState } from "@hooks/useDataExplorerState";
+import { useGeography } from "@hooks/useGeography";
+import { useSubgroup } from "@hooks/useSubgroup";
+import { useCategory } from "@hooks/useCategory";
 import { getBoroughName } from "@helpers/getBoroughName";
 
-jest.mock("@hooks/useDataExplorerState");
-const mockedUseDataExplorerState = useDataExplorerState as jest.MockedFunction<
-  typeof useDataExplorerState
+jest.mock("@hooks/useGeography");
+const mockedUseGeography = useGeography as jest.MockedFunction<
+  typeof useGeography
+>;
+
+jest.mock("@hooks/useSubgroup");
+const mockedUseSubgroup = useSubgroup as jest.MockedFunction<
+  typeof useSubgroup
+>;
+
+jest.mock("@hooks/useCategory");
+const mockedUseCategory = useCategory as jest.MockedFunction<
+  typeof useCategory
 >;
 
 jest.mock("@helpers/getBoroughName");
@@ -25,27 +37,21 @@ describe("ExplorerSideNav", () => {
     });
 
     it("should display the correct information for citywide", () => {
-      mockedUseDataExplorerState.mockReturnValueOnce({
-        geography: Geography.CITYWIDE,
-        geoid: NYC,
-        category: Category.DEMO,
-        subgroup: Subgroup.TOT,
-      });
-      render(<ExplorerSideNav />);
+      mockedUseGeography.mockReturnValueOnce(Geography.CITYWIDE);
+      mockedUseSubgroup.mockReturnValueOnce(Subgroup.TOT);
+      mockedUseCategory.mockReturnValueOnce(Category.DEMO);
+      render(<ExplorerSideNav geoid={NYC} />);
       const textNodes = screen.getAllByText("Citywide");
       expect(textNodes).toHaveLength(2);
       expect(textNodes[0]).not.toBeVisible();
     });
 
     it("should display the correct information for borough", () => {
-      mockedUseDataExplorerState.mockReturnValueOnce({
-        geography: Geography.BOROUGH,
-        geoid: "3",
-        category: Category.DEMO,
-        subgroup: Subgroup.TOT,
-      });
+      mockedUseGeography.mockReturnValueOnce(Geography.BOROUGH);
+      mockedUseSubgroup.mockReturnValueOnce(Subgroup.TOT);
+      mockedUseCategory.mockReturnValueOnce(Category.DEMO);
       mockedGetBoroughName.mockReturnValue("Brooklyn");
-      render(<ExplorerSideNav />);
+      render(<ExplorerSideNav geoid={"3"} />);
       const textNodes = screen.getAllByText("Brooklyn");
       expect(mockedGetBoroughName).toBeCalledWith("3");
       expect(textNodes).toHaveLength(2);
@@ -53,13 +59,10 @@ describe("ExplorerSideNav", () => {
     });
 
     it("should display the correct information for pumas", () => {
-      mockedUseDataExplorerState.mockReturnValueOnce({
-        geography: Geography.DISTRICT,
-        geoid: "4006",
-        category: Category.DEMO,
-        subgroup: Subgroup.TOT,
-      });
-      render(<ExplorerSideNav />);
+      mockedUseGeography.mockReturnValueOnce(Geography.DISTRICT);
+      mockedUseSubgroup.mockReturnValueOnce(Subgroup.TOT);
+      mockedUseCategory.mockReturnValueOnce(Category.DEMO);
+      render(<ExplorerSideNav geoid={"4006"} />);
       const textNodes = screen.getAllByText("PUMA 4006");
       expect(textNodes).toHaveLength(2);
       expect(textNodes[0]).not.toBeVisible();
@@ -72,17 +75,16 @@ describe("ExplorerSideNav", () => {
     });
 
     it("shows the geography label under pin icon only after being collapsed", async () => {
-      mockedUseDataExplorerState.mockReturnValue({
-        geography: Geography.DISTRICT,
-        geoid: "4006",
-        category: Category.DEMO,
-        subgroup: Subgroup.TOT,
-      });
+      mockedUseGeography.mockReturnValueOnce(Geography.BOROUGH);
+      mockedUseSubgroup.mockReturnValueOnce(Subgroup.TOT);
+      mockedUseCategory.mockReturnValueOnce(Category.DEMO);
+      mockedGetBoroughName.mockReturnValue("Brooklyn");
       const user = userEvent.setup();
-      render(<ExplorerSideNav />);
-      expect(screen.getAllByText("PUMA 4006")[0]).not.toBeVisible();
+      render(<ExplorerSideNav geoid={"3"} />);
+      const labels = screen.getAllByText("Brooklyn");
+      expect(labels[0]).not.toBeVisible();
       await user.click(screen.getByLabelText("Show Categories"));
-      expect(screen.getAllByText("PUMA 4006")[0]).toBeVisible();
+      expect(labels[0]).toBeVisible();
     });
   });
 });

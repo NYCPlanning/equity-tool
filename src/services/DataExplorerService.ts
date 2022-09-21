@@ -1,6 +1,4 @@
 import axios, { AxiosInstance } from "axios";
-import { Geography } from "@constants/geography";
-import { Category } from "@constants/Category";
 import { CategoryProfile } from "@schemas/categoryProfile";
 
 export class DataExplorerService {
@@ -12,7 +10,7 @@ export class DataExplorerService {
     });
   }
 
-  async get(geography: Geography, geoid: string, category: Category) {
+  async get(geography: string, geoid: string, category: string) {
     const path = `${geography}_${geoid}_${category}.json`;
     return this.client.get<CategoryProfile>(path);
   }
