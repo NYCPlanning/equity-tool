@@ -30,7 +30,6 @@ import { categoryProfileSchema } from "@schemas/categoryProfile";
 import { IndicatorRecord } from "@schemas/indicatorRecord";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
-// import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
 import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
@@ -90,9 +89,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       notFound: true,
     };
   }
-  // const { subgroup, geography, geoid, category } = parseDataExplorerSelection(
-  //   context.params
-  // );
+
   const { subgroup, geography, geoid, category } = context.params;
   if (
     typeof subgroup !== "string" ||
