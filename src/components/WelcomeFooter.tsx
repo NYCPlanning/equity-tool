@@ -1,9 +1,9 @@
 import { Box, Text } from "@chakra-ui/react";
 import StaticPageFooter from "@components/StaticPageFooter";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
 
 const WelcomeFooter = () => {
-  const { view } = useMapSubrouteInfo();
+  const view = useView();
 
   if (view === "data") {
     return (

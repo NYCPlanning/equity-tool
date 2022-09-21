@@ -1,6 +1,7 @@
 import { Flex, BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
+import { useGeoid } from "@hooks/useGeoid";
 
 interface ViewToggleProps extends BoxProps {
   onCommunityDataClick: () => void;
@@ -11,7 +12,8 @@ export const ViewToggle = ({
   onCommunityDataClick,
   onDrmClick,
 }: ViewToggleProps) => {
-  const { view, geoid } = useMapSubrouteInfo();
+  const view = useView();
+  const geoid = useGeoid();
 
   return (
     <>
