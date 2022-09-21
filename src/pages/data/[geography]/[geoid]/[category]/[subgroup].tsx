@@ -21,6 +21,7 @@ import { DataDownloadModal } from "@components/DataDownloadModal";
 import { ExplorerSideNav } from "@components/ExplorerSideNav";
 import { useDataExplorerState } from "@hooks/useDataExplorerState";
 import { Category } from "@constants/Category";
+import { categoryLabels } from "@constants/CategoryLabels";
 import pumas from "@data/pumas.json";
 import { DataExplorerService } from "@services/DataExplorerService";
 import { categoryProfileSchema } from "@schemas/categoryProfile";
@@ -91,14 +92,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     context.params
   );
 
-  const headings: Record<Category, string> = {
-    [Category.DEMO]: "Demographic Conditions",
-    [Category.ECON]: "Household Economic Security",
-    [Category.HOPD]: "Housing Production",
-    [Category.HSAQ]: "Housing Affordability, Quality, and Security",
-    [Category.QLAO]: "Quality of Life and Access to Opportunity",
-  };
-
   const dataExplorerService = new DataExplorerService(
     process.env.NEXT_PUBLIC_DO_SPACE_URL
       ? process.env.NEXT_PUBLIC_DO_SPACE_URL
@@ -121,7 +114,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
           hasRacialBreakdown,
           indicators: profile[subgroup],
-          heading: headings[category],
+          heading: categoryLabels[category],
         },
       };
     }
