@@ -1,6 +1,6 @@
 import { BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useGeography } from "@hooks/useGeography";
 import { Geography } from "@constants/geography";
 
 export interface GeographySelectInterface extends BoxProps {
@@ -11,7 +11,7 @@ export const GeographySelect = ({
   onGeographySelect,
   ...boxProps
 }: GeographySelectInterface) => {
-  const { geography } = useMapSubrouteInfo();
+  const geography = useGeography();
   const { DISTRICT, BOROUGH, CITYWIDE } = Geography;
 
   return (

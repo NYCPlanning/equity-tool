@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export const useGeography = (): string | null => {
+export const useGeoid = (): string | null => {
   const router = useRouter();
 
   const { geoid } = router.query;

@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
+import { useGeography } from "@hooks/useGeography";
 
 export function useClearSelection() {
   const router = useRouter();
-  const { view, geography } = useMapSubrouteInfo();
+  const view = useView();
+  const geography = useGeography();
 
   return () => {
     router.push(`/map/${view}/${geography}/`);

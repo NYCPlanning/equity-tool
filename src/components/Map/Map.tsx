@@ -6,9 +6,8 @@ import ReactMapGL, {
 } from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
-
 import { Box } from "@chakra-ui/react";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
 
 setDefaultCredentials({
@@ -20,7 +19,7 @@ setDefaultCredentials({
 type MapProps = Pick<DeckGLProps, "layers" | "parent">;
 
 export const Map = ({ layers, parent }: MapProps) => {
-  const { view } = useMapSubrouteInfo();
+  const view = useView();
 
   const isMobile = useWindowWidth() < 768;
 

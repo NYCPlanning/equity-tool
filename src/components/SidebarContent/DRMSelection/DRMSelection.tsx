@@ -1,12 +1,12 @@
 import React from "react";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import { Box, Divider } from "@chakra-ui/react";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useGeoid } from "@hooks/useGeoid";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
 
 export const DRMSelection = () => {
-  const { geoid } = useMapSubrouteInfo();
+  const geoid = useGeoid();
 
   const selectedDRMdata = drmData.find((nta: any) => nta.ntacode === geoid);
 

@@ -2,14 +2,15 @@ import { Box, Button, Divider, Flex } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { GeographyInfo } from "@components/GeographyInfo";
-
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useGeoid } from "@hooks/useGeoid";
+import { useGeography } from "@hooks/useGeography";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 
 export const CommunityDataMobileDrawer = () => {
-  const { geoid, geography } = useMapSubrouteInfo();
+  const geoid = useGeoid();
+  const geography = useGeography();
 
   const clearSelection = useClearSelection();
 

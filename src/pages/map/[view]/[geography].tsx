@@ -9,7 +9,9 @@ import { DrmMobileDrawer } from "@components/Map/DRM";
 import { GeographySelect as CommunityDataGeographySelect } from "@components/Map/CommunityData";
 import { DRMMapLegend } from "@components/Map/DRM";
 import { SidebarContent } from "@components/SidebarContent";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
+import { useGeoid } from "@hooks/useGeoid";
+import { useGeography } from "@hooks/useGeography";
 import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 import ReactGA from "react-ga4";
@@ -91,7 +93,9 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const router = useRouter();
 
   // acquire subroute info, if any
-  const { view, geography, geoid } = useMapSubrouteInfo();
+  const view = useView();
+  const geoid = useGeoid();
+  const geography = useGeography();
 
   const layers = useLayers();
 

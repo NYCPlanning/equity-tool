@@ -1,9 +1,9 @@
 import { Heading, Text, Link } from "@chakra-ui/react";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
 import ReactGA from "react-ga4";
 
 const WelcomeContent = () => {
-  const { view } = useMapSubrouteInfo();
+  const view = useView();
 
   if (view === "data") {
     return (
