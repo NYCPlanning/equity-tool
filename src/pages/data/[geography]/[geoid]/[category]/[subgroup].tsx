@@ -19,15 +19,17 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { GeographyInfo } from "@components/GeographyInfo";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 import { ExplorerSideNav } from "@components/ExplorerSideNav";
-import { useDataExplorerState } from "@hooks/useDataExplorerState";
+import { useGeography } from "@hooks/useGeography";
+import { useCategory } from "@hooks/useCategory";
+import { useSubgroup } from "@hooks/useSubgroup";
 import { Category } from "@constants/Category";
+import { categoryLabels } from "@constants/CategoryLabels";
 import pumas from "@data/pumas.json";
 import { DataExplorerService } from "@services/DataExplorerService";
 import { categoryProfileSchema } from "@schemas/categoryProfile";
 import { IndicatorRecord } from "@schemas/indicatorRecord";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
-import { parseDataExplorerSelection } from "@helpers/parseDataExplorerSelection";
 import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
 import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
@@ -35,7 +37,7 @@ import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
 export interface DataPageProps {
   hasRacialBreakdown: boolean;
   indicators: IndicatorRecord[];
-  heading: string;
+  geoid: string;
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -87,17 +89,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
       notFound: true,
     };
   }
-  const { subgroup, geography, geoid, category } = parseDataExplorerSelection(
-    context.params
-  );
 
-  const headings: Record<Category, string> = {
-    [Category.DEMO]: "Demographic Conditions",
-    [Category.ECON]: "Household Economic Security",
-    [Category.HOPD]: "Housing Production",
-    [Category.HSAQ]: "Housing Affordability, Quality, and Security",
-    [Category.QLAO]: "Quality of Life and Access to Opportunity",
-  };
+  const { subgroup, geography, geoid, category } = context.params;
+  if (
+    typeof subgroup !== "string" ||
+    typeof geography !== "string" ||
+    typeof geoid !== "string" ||
+    typeof category !== "string"
+  ) {
+    return {
+      notFound: true,
+    };
+  }
 
   const dataExplorerService = new DataExplorerService(
     process.env.NEXT_PUBLIC_DO_SPACE_URL
@@ -121,7 +124,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
           hasRacialBreakdown,
           indicators: profile[subgroup],
-          heading: headings[category],
+          geoid,
         },
       };
     }
@@ -139,16 +142,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const DataPage = ({
-  hasRacialBreakdown,
-  indicators,
-  heading,
-}: DataPageProps) => {
+const DataPage = ({ hasRacialBreakdown, indicators, geoid }: DataPageProps) => {
   // TODO - Can refactor this flag into a Context so that it doesn't have to be
   // prop drilled all the way down to VintageTable
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
-  const { geography, geoid, category, subgroup } = useDataExplorerState();
+  const geography = useGeography();
+  const category = useCategory();
+  const subgroup = useSubgroup();
   const router = useRouter();
 
   const tablesSetIsOpens: React.Dispatch<boolean>[] = [];
@@ -175,7 +176,7 @@ const DataPage = ({
       direction={{ base: "column", md: "row" }}
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
-      <ExplorerSideNav />
+      <ExplorerSideNav geoid={geoid} />
       <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
         <Box
           marginTop={"0.75rem"}
@@ -248,7 +249,7 @@ const DataPage = ({
         >
           <Box>
             <Heading as="h3" fontSize="1.5625rem">
-              {heading}
+              {categoryLabels[category]}
             </Heading>
             <Text>
               Note: Data shown in gray have poor statistical reliability. Learn

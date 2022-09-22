@@ -8,7 +8,9 @@ import {
 import { useClearSelection } from "@helpers/useClearSelection";
 import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { GeographyInfo } from "@components/GeographyInfo";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
+import { useGeoid } from "@hooks/useGeoid";
+import { useGeography } from "@hooks/useGeography";
 import { NYC } from "@constants/geoid";
 import { SubindicatorBin } from "@components/SidebarContent";
 import { DataDownloadModal } from "@components/DataDownloadModal";
@@ -17,7 +19,9 @@ import ntaIndexes from "@data/ntaIndexes.json";
 export const DrmMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { view, geoid, geography } = useMapSubrouteInfo();
+  const view = useView();
+  const geoid = useGeoid();
+  const geography = useGeography();
 
   const clearSelection = useClearSelection();
 

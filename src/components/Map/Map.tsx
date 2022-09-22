@@ -6,11 +6,11 @@ import ReactMapGL, {
 } from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
 import baseMap from "@data/basemap.json";
-
 import { Box } from "@chakra-ui/react";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
 import { usePumaInfo } from "@hooks/usePumaInfo";
+import { useGeography } from "@hooks/useGeography";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -25,7 +25,8 @@ interface MapProps extends DeckProps {
 }
 
 export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
-  const { view, geography } = useMapSubrouteInfo();
+  const view = useView();
+  const geography = useGeography();
   const isMobile = useWindowWidth() < 768;
 
   const INITIAL_VIEW_STATE = !isMobile

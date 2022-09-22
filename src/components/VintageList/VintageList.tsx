@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { Flex } from "@chakra-ui/react";
 import { Vintage } from "@schemas/vintage";
 import { VintageTable } from "@components/VintageTable";
-import { useDataExplorerState } from "@hooks/useDataExplorerState";
+import { useCategory } from "@hooks/useCategory";
+import { useSubgroup } from "@hooks/useSubgroup";
 
 export interface VintageListProps {
   vintages: Vintage[];
@@ -23,7 +24,8 @@ export const VintageList = ({
   // to populate rowHeights so that row heights for all
   // vintages have the same heights as the corresponding row in the first vintage
   const ref = useRef<HTMLTableElement>(null);
-  const { category, subgroup } = useDataExplorerState();
+  const category = useCategory();
+  const subgroup = useSubgroup();
 
   // Update row heights whenever category or subgroup changes
   useEffect(() => {

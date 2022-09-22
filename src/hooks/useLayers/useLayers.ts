@@ -2,14 +2,18 @@ import { useRouter } from "next/router";
 import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
 import { PathStyleExtension } from "@deck.gl/extensions";
 import { Geography } from "@constants/geography";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
+import { useGeoid } from "@hooks/useGeoid";
+import { useGeography } from "@hooks/useGeography";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
 
 export const useLayers = (setTooltip: any): CartoLayer<any, any>[] | null => {
   const router = useRouter();
 
-  const { view, geography, geoid } = useMapSubrouteInfo();
+  const view = useView();
+  const geoid = useGeoid();
+  const geography = useGeography();
 
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 

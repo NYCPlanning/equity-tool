@@ -5,7 +5,9 @@ import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
 import WelcomeFooter from "@components/WelcomeFooter";
 import { DRMSelection } from "@components/SidebarContent/DRMSelection";
-import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
+import { useView } from "@hooks/useView";
+import { useGeoid } from "@hooks/useGeoid";
+import { useGeography } from "@hooks/useGeography";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { NYC } from "@constants/geoid";
 import { Geography } from "@constants/geography";
@@ -15,7 +17,9 @@ import ntaIndexes from "@data/ntaIndexes.json";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 
 export const SidebarContent = () => {
-  const { view, geoid, geography } = useMapSubrouteInfo();
+  const view = useView();
+  const geoid = useGeoid();
+  const geography = useGeography();
   const clearSelection = useClearSelection();
   const ntaIndex: { [index: string]: any } = ntaIndexes;
 
