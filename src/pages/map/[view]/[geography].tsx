@@ -93,7 +93,10 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   // acquire subroute info, if any
   const { view, geography, geoid } = useMapSubrouteInfo();
 
-  const layers = useLayers();
+  const [hoverInfo, setHoverInfo] = useState<any | null>(null);
+
+  const layers = useLayers(setHoverInfo);
+  console.log("layers", layers);
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -254,6 +257,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           <Map
             layers={layers ? layers : undefined}
             parent={mapContainer?.current ? mapContainer.current : undefined}
+            hoverInfo={hoverInfo}
           />
         </Box>
       </Box>

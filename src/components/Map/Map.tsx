@@ -10,6 +10,7 @@ import baseMap from "@data/basemap.json";
 import { Box } from "@chakra-ui/react";
 import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import { useWindowWidth } from "@react-hook/window-size";
+import { usePumaInfo } from "@hooks/usePumaInfo";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -17,11 +18,14 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type MapProps = Pick<DeckGLProps, "layers" | "parent">;
+type DeckProps = Pick<DeckGLProps, "layers" | "parent">;
 
-export const Map = ({ layers, parent }: MapProps) => {
-  const { view } = useMapSubrouteInfo();
+interface MapProps extends DeckProps {
+  hoverInfo: any | null;
+}
 
+export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
+  const { view, geography } = useMapSubrouteInfo();
   const isMobile = useWindowWidth() < 768;
 
   const INITIAL_VIEW_STATE = !isMobile
@@ -40,6 +44,21 @@ export const Map = ({ layers, parent }: MapProps) => {
         bearing: 0,
       };
 
+  let tooltipText = usePumaInfo(
+    hoverInfo?.object?.properties.puma
+  )?.neighborhoods;
+
+  switch (geography) {
+    case "borough":
+      tooltipText = hoverInfo?.object?.properties.boroname;
+      break;
+    case "nta":
+      tooltipText = hoverInfo?.object?.properties.ntaname;
+      break;
+    default:
+      break;
+  }
+
   // MapContext is necessary for navigation controls to work.
   // Likely because it holds the view state, and keeps Deck and
   // MapGL in sync with that singular state.
@@ -52,6 +71,19 @@ export const Map = ({ layers, parent }: MapProps) => {
       parent={parent}
       ContextProvider={MapContext.Provider}
     >
+      {tooltipText && (
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 1,
+            pointerEvents: "none",
+            left: hoverInfo.x + 5,
+            top: hoverInfo.y + 5,
+          }}
+        >
+          {tooltipText}
+        </div>
+      )}
       <Box
         position="absolute"
         top={{

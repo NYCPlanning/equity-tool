@@ -6,7 +6,7 @@ import { useMapSubrouteInfo } from "@hooks/useMapSubrouteInfo";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
 
-export const useLayers = (): CartoLayer<any, any>[] | null => {
+export const useLayers = (setTooltip: any): CartoLayer<any, any>[] | null => {
   const router = useRouter();
 
   const { view, geography, geoid } = useMapSubrouteInfo();
@@ -67,6 +67,9 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
       pickable: true,
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
+      onHover: (info: any) => {
+        if (info.object) setTooltip(info);
+      },
       onClick: (info: any) => {
         const id: any = info?.object?.properties?.puma
           ? info.object.properties.puma
@@ -119,6 +122,9 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         if (typeof id === "number") {
           toggleGeoSelect(id.toString());
         }
+      },
+      onHover: (info: any) => {
+        if (info.object) setTooltip(info);
       },
     }),
     new CartoLayer({
@@ -186,6 +192,9 @@ export const useLayers = (): CartoLayer<any, any>[] | null => {
         if (typeof id === "string") {
           toggleGeoSelect(id);
         }
+      },
+      onHover: (info: any) => {
+        if (info.object) setTooltip(info);
       },
     }),
   ];
