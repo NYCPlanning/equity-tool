@@ -72,14 +72,26 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
       parent={parent}
       ContextProvider={MapContext.Provider}
     >
-      {tooltipText && (
+      {tooltipText && !tooltipText.includes("etc") && (
         <div
           style={{
             position: "absolute",
             zIndex: 1,
             pointerEvents: "none",
             left: hoverInfo.x + 5,
-            top: hoverInfo.y + 5,
+            top: hoverInfo.y + 10,
+            width: "fit-content",
+            height: "fit-content",
+            borderRadius: "4px",
+            padding: "8px",
+            gap: "10px",
+            backgroundColor: "#171923",
+            font: "Helvetica Neue",
+            fontWeight: "400",
+            fontSize: "14px",
+            lineHeight: "20px",
+            alignItems: "center",
+            color: "white",
           }}
         >
           {tooltipText}
