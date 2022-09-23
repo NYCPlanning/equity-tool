@@ -72,6 +72,25 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
       parent={parent}
       ContextProvider={MapContext.Provider}
     >
+      <Box
+        position="absolute"
+        top={{
+          base: view === "data" ? "4.5rem" : "1.3rem",
+          md: view === "data" ? "8rem" : "4.5rem",
+        }}
+        left={{
+          base: "2vmin",
+          sm: "4vmin",
+          md: "1rem",
+        }}
+      >
+        <NavigationControl />
+      </Box>
+
+      <ReactMapGL
+        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        mapStyle={baseMap}
+      ></ReactMapGL>
       {tooltipText && !tooltipText.includes("etc") && (
         <div
           style={{
@@ -97,25 +116,6 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
           {tooltipText}
         </div>
       )}
-      <Box
-        position="absolute"
-        top={{
-          base: view === "data" ? "4.5rem" : "1.3rem",
-          md: view === "data" ? "8rem" : "4.5rem",
-        }}
-        left={{
-          base: "2vmin",
-          sm: "4vmin",
-          md: "1rem",
-        }}
-      >
-        <NavigationControl />
-      </Box>
-
-      <ReactMapGL
-        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-        mapStyle={baseMap}
-      ></ReactMapGL>
     </DeckGL>
   );
 

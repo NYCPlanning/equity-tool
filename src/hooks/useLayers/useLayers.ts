@@ -72,7 +72,7 @@ export const useLayers = (setTooltip: any): CartoLayer<any, any>[] | null => {
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
       onHover: (info: any) => {
-        if (info.object) setTooltip(info);
+        info.layer?.props.visible ? setTooltip(info) : setTooltip({});
       },
       onClick: (info: any) => {
         const id: any = info?.object?.properties?.puma
@@ -128,7 +128,7 @@ export const useLayers = (setTooltip: any): CartoLayer<any, any>[] | null => {
         }
       },
       onHover: (info: any) => {
-        if (info.object) setTooltip(info);
+        info.layer?.props.visible ? setTooltip(info) : setTooltip({});
       },
     }),
     new CartoLayer({
@@ -198,7 +198,7 @@ export const useLayers = (setTooltip: any): CartoLayer<any, any>[] | null => {
         }
       },
       onHover: (info: any) => {
-        if (info.object) setTooltip(info);
+        info.layer?.props.visible ? setTooltip(info) : setTooltip({});
       },
     }),
   ];
