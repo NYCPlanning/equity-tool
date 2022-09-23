@@ -45,18 +45,23 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
         bearing: 0,
       };
 
-  let tooltipText = usePumaInfo(
-    hoverInfo?.object?.properties.puma
-  )?.neighborhoods;
+  const pumaInfo = usePumaInfo(hoverInfo?.object?.properties.puma);
+
+  let tooltipText:
+    | string
+    | undefined = `PUMA ${hoverInfo?.object?.properties.puma}: ${pumaInfo?.neighborhoods} (${pumaInfo?.districts})`;
 
   switch (geography) {
     case "borough":
       tooltipText = hoverInfo?.object?.properties.boroname;
       break;
     case "nta":
-      tooltipText = hoverInfo?.object?.properties.ntaname;
+      hoverInfo?.object
+        ? (tooltipText = `NTA ${hoverInfo?.object?.properties.ntacode}: ${hoverInfo?.object?.properties.ntaname}`)
+        : (tooltipText = undefined);
       break;
     default:
+      if (!hoverInfo?.object) tooltipText = undefined;
       break;
   }
 
@@ -99,7 +104,7 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
             pointerEvents: "none",
             left: hoverInfo.x + 5,
             top: hoverInfo.y + 10,
-            width: "fit-content",
+            maxWidth: "320px",
             height: "fit-content",
             borderRadius: "4px",
             padding: "8px",
@@ -109,7 +114,7 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
             fontWeight: "400",
             fontSize: "14px",
             lineHeight: "20px",
-            alignItems: "center",
+            textAlign: "center",
             color: "white",
           }}
         >
