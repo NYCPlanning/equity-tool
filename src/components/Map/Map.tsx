@@ -9,7 +9,7 @@ import baseMap from "@data/basemap.json";
 import { Box } from "@chakra-ui/react";
 import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
-import { usePumaInfo } from "@hooks/usePumaInfo";
+import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
 
 setDefaultCredentials({
@@ -20,8 +20,25 @@ setDefaultCredentials({
 
 type DeckProps = Pick<DeckGLProps, "layers" | "parent">;
 
+interface HoverType {
+  x: number;
+  y: number;
+  object: {
+    properties: {
+      cartodb_id: number;
+      layerName: string;
+      puma: string | null;
+      shape_area: number;
+      shape_leng: number;
+      ntacode?: string | undefined | null;
+      boroname?: string | undefined | null;
+      ntaname?: string | undefined | null;
+    };
+  };
+}
+
 interface MapProps extends DeckProps {
-  hoverInfo: any | null;
+  hoverInfo: HoverType | null;
 }
 
 export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
@@ -45,11 +62,16 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
         bearing: 0,
       };
 
-  const pumaInfo = usePumaInfo(hoverInfo?.object?.properties.puma);
+  const hoverInfoPuma = hoverInfo?.object?.properties
+    ? hoverInfo.object.properties.puma
+    : null;
+
+  const pumaInfo: pumaInfo | null = usePumaInfo(hoverInfoPuma);
 
   let tooltipText:
     | string
-    | undefined = `PUMA ${hoverInfo?.object?.properties.puma}: ${pumaInfo?.neighborhoods} (${pumaInfo?.districts})`;
+    | null
+    | undefined = `PUMA ${hoverInfoPuma}: ${pumaInfo?.neighborhoods} (${pumaInfo?.districts})`;
 
   switch (geography) {
     case "borough":
@@ -96,7 +118,7 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle={baseMap}
       ></ReactMapGL>
-      {tooltipText && !tooltipText.includes("etc") && (
+      {tooltipText && !tooltipText.includes("etc") && hoverInfo && (
         <div
           style={{
             position: "absolute",
