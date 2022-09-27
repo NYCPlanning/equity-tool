@@ -1,0 +1,39 @@
+{
+  "features": [
+    {
+      "coordinates": [
+        -73.866505,
+        40.852642
+      ],
+      "label": "Bronx"
+    },
+    {
+      "coordinates": [
+        -73.96717,
+        40.777265
+      ],
+      "label": "Manhattan"
+    },
+    {
+      "coordinates": [
+        -74.153374,
+        40.580844
+      ],
+      "label": "Staten Island"
+    },
+    {
+      "coordinates": [
+        -73.947847,
+        40.644762
+      ],
+      "label": "Brooklyn"
+    },
+    {
+      "coordinates": [
+        -73.818569,
+        40.707696
+      ],
+      "label": "Queens"
+    }
+  ]
+}
