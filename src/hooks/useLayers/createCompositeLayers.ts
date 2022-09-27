@@ -2,7 +2,7 @@ import { CartoLayer } from "@deck.gl/carto";
 import { CompositeLayer } from "@deck.gl/core";
 import { TextLayer } from "@deck.gl/layers";
 import pumaLabels from "@data/dcp_puma_2010_centers.json";
-import ntaLabels from "@data/dcp_nta_2020_centers.json";
+import ntaLabels from "@data/dcp_nta_2010_centers.json";
 
 export const defaultProps = {
   // Inherit all of CartoLayer's props
