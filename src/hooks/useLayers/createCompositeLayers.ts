@@ -3,6 +3,7 @@ import { CompositeLayer } from "@deck.gl/core";
 import { TextLayer } from "@deck.gl/layers";
 import pumaLabels from "@data/dcp_puma_2010_centers.json";
 import ntaLabels from "@data/dcp_nta_2010_centers.json";
+import boroLabels from "@data/dcp_boro_2020_centers.json";
 
 export const defaultProps = {
   // Inherit all of CartoLayer's props
@@ -83,6 +84,28 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
           sizeUnits: "meters",
         }
       ),
+      new TextLayer(
+        {},
+        {
+          visible: this.props.visible,
+          data: boroLabels.features,
+          id: `${this.props.passedId}_borotextlayer`,
+          uniqueIdProperty: "id",
+          getPosition: (x: any) => x.coordinates,
+          getText: (x: any) => x.label.toUpperCase(),
+          getSize: 14,
+          billboard: true,
+          getColor: [74, 85, 104, 255],
+          fontFamily: "Helvetica Neue",
+          fontSettings: {
+            sdf: true,
+          },
+          outlineWidth: 1,
+          outlineColor: [255, 255, 255, 255],
+          maxWidth: 2800,
+          sizeUnits: "pixels",
+        }
+      ),
     ];
   }
 
@@ -92,6 +115,8 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
       return 10.5 < viewport.zoom && viewport.zoom < 13;
     } else if (layer.id.slice(-13) === "_ntatextlayer") {
       return 12 < viewport.zoom && viewport.zoom < 15;
+    } else if (layer.id.slice(-14) === "_borotextlayer") {
+      return viewport.zoom < 12;
     }
     return true;
   }
