@@ -43,6 +43,28 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         {},
         {
           visible: this.props.visible,
+          data: ntaLabels.features,
+          id: `${this.props.passedId}_ntatextlayer`,
+          uniqueIdProperty: "id",
+          getPosition: (x: any) => x.coordinates,
+          getText: (x: any) => x.label.toUpperCase(),
+          getSize: 125,
+          billboard: true,
+          getColor: [74, 85, 104, 200],
+          fontFamily: "Helvetica Neue",
+          fontSettings: {
+            sdf: true,
+          },
+          outlineWidth: 1,
+          outlineColor: [255, 255, 255, 255],
+          maxWidth: 800,
+          sizeUnits: "meters",
+        }
+      ),
+      new TextLayer(
+        {},
+        {
+          visible: this.props.visible,
           data: pumaLabels.features,
           id: `${this.props.passedId}_pumatextlayer`,
           uniqueIdProperty: "id",
@@ -57,29 +79,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
           },
           outlineWidth: 1,
           outlineColor: [255, 255, 255, 255],
-          maxWidth: 1000,
-          sizeUnits: "meters",
-        }
-      ),
-      new TextLayer(
-        {},
-        {
-          visible: this.props.visible,
-          data: ntaLabels.features,
-          id: `${this.props.passedId}_ntatextlayer`,
-          uniqueIdProperty: "id",
-          getPosition: (x: any) => x.coordinates,
-          getText: (x: any) => x.label.toUpperCase(),
-          getSize: 150,
-          billboard: true,
-          getColor: [74, 85, 104, 255],
-          fontFamily: "Helvetica Neue",
-          fontSettings: {
-            sdf: true,
-          },
-          outlineWidth: 1,
-          outlineColor: [255, 255, 255, 255],
-          maxWidth: 1000,
+          maxWidth: 800,
           sizeUnits: "meters",
         }
       ),
@@ -89,9 +89,9 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
   //https://deck.gl/docs/api-reference/core/composite-layer
   filterSubLayer({ layer, viewport }: { layer: any; viewport: any }) {
     if (layer.id.slice(-14) === "_pumatextlayer") {
-      return 12 < viewport.zoom && viewport.zoom < 15;
+      return 10.5 < viewport.zoom && viewport.zoom < 13;
     } else if (layer.id.slice(-13) === "_ntatextlayer") {
-      return 13 < viewport.zoom && viewport.zoom < 15;
+      return 12 < viewport.zoom && viewport.zoom < 15;
     }
     return true;
   }
