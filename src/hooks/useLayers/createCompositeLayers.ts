@@ -4,6 +4,7 @@ import { TextLayer } from "@deck.gl/layers";
 import pumaLabels from "@data/dcp_puma_2010_centers.json";
 import ntaLabels from "@data/dcp_nta_2010_centers.json";
 import boroLabels from "@data/dcp_boro_2020_centers.json";
+import { Geography } from "@constants/geography";
 
 export const defaultProps = {
   // Inherit all of CartoLayer's props
@@ -30,7 +31,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
     return changeFlags.somethingChanged;
   }
   renderLayers() {
-    console.log("zoom", this.context.viewport.zoom);
+    const { NTA } = Geography;
 
     return [
       new CartoLayer(
@@ -65,7 +66,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
       new TextLayer(
         {},
         {
-          visible: this.props.visible,
+          visible: this.props.visible && this.props.passedId !== NTA,
           data: pumaLabels.features,
           id: `${this.props.passedId}_pumatextlayer`,
           uniqueIdProperty: "id",
