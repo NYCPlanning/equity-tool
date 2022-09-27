@@ -1,10 +1,12 @@
 import pumas from "@data/pumas.json";
+import { useGeoid } from "@hooks/useGeoid";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
 
 export type pumaInfo = typeof pumas["3701"];
 
-export const usePumaInfo = (pumaId: string | null): pumaInfo | null => {
-  if (!pumaId || !hasOwnProperty(pumas, pumaId)) return null;
+export const usePumaInfo = (): pumaInfo | null => {
+  const geoid = useGeoid();
+  if (!geoid || !hasOwnProperty(pumas, geoid)) return null;
 
-  return pumas[pumaId];
+  return pumas[geoid];
 };

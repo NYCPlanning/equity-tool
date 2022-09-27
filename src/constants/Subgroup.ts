@@ -1,7 +1,7 @@
 export enum Subgroup {
   TOT = "tot",
-  WNH = "wnh",
-  BNH = "bnh",
   ANH = "anh",
+  BNH = "bnh",
   HSP = "hsp",
+  WNH = "wnh",
 }
