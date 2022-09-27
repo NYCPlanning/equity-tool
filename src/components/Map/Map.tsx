@@ -11,6 +11,7 @@ import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
 import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
+import { useLayoutEffect, useRef, useState } from "react";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -62,6 +63,8 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
         bearing: 0,
       };
 
+  const tooltipRef = useRef<HTMLDivElement>(null);
+
   const hoverInfoPuma = hoverInfo?.object?.properties
     ? hoverInfo.object.properties.puma
     : null;
@@ -72,6 +75,13 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
     | string
     | null
     | undefined = `PUMA ${hoverInfoPuma}: ${pumaInfo?.neighborhoods} (${pumaInfo?.districts})`;
+
+  const [tooltipWidth, setTooltipWidth] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    if (tooltipRef?.current?.offsetWidth)
+      setTooltipWidth(tooltipRef.current.offsetWidth / 2);
+  }, [hoverInfo?.x, hoverInfo?.y, tooltipWidth]);
 
   switch (geography) {
     case "borough":
@@ -120,12 +130,13 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
       ></ReactMapGL>
       {tooltipText && !tooltipText.includes("etc") && hoverInfo && (
         <div
+          ref={tooltipRef}
           style={{
             position: "absolute",
             zIndex: 1,
             pointerEvents: "none",
-            left: hoverInfo.x + 5,
-            top: hoverInfo.y + 10,
+            left: hoverInfo.x - tooltipWidth,
+            top: hoverInfo.y + 15,
             maxWidth: "320px",
             height: "fit-content",
             borderRadius: "4px",
