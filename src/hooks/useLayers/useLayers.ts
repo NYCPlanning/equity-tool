@@ -7,6 +7,7 @@ import { useGeoid } from "@hooks/useGeoid";
 import { useGeography } from "@hooks/useGeography";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
+import { useState } from "react";
 
 export const useLayers = (
   setTooltip: (string: string) => void
@@ -16,6 +17,8 @@ export const useLayers = (
   const view = useView();
   const geoid = useGeoid();
   const geography = useGeography();
+
+  const [currentGeo, setCurrentGeo] = useState<string | undefined>(undefined);
 
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
@@ -46,8 +49,14 @@ export const useLayers = (
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
+          setCurrentGeo(undefined);
           return [42, 67, 101, 255];
         }
+        if (
+          feature?.properties?.puma?.trim() === currentGeo?.trim() &&
+          currentGeo !== geoid
+        )
+          return [250, 255, 0];
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
@@ -60,13 +69,15 @@ export const useLayers = (
       getLineWidth: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
           return 2.5;
+        } else if (feature?.properties?.puma?.trim() === currentGeo?.trim()) {
+          return 3;
         }
         return 0;
       },
       updateTriggers: {
-        getLineColor: [geoid],
-        getFillColor: [geoid],
-        getLineWidth: [geoid],
+        getLineColor: [currentGeo],
+        getFillColor: [currentGeo],
+        getLineWidth: [currentGeo],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
@@ -74,6 +85,9 @@ export const useLayers = (
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
       onHover: (info: any) => {
+        if (info.object && currentGeo !== geoid)
+          setCurrentGeo(info.object.properties.puma);
+        else setCurrentGeo(undefined);
         setTooltip(info);
       },
       onClick: (info: any) => {
