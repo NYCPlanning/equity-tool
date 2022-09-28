@@ -2,9 +2,6 @@
   command = "npm run build"
   publish = ".next"
 
-[build.environment]
-NETLIFY_NEXT_PLUGIN_SKIP = "true"
-
 [[redirects]]
   from = "/"
   to = "/map/data/district"
