@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-npm
       - name: Install dependencies if cache invalid
         if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --include=dev
 
   lint:
     name: 🔎 Lint
