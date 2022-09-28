@@ -37,11 +37,11 @@ export const PageHeader = () => {
     image: `https://${process.env.DOMAIN}/community-data-landing-page.png`,
   };
 
+  const title = `${currentPage.title} - NYC Equitable Development Data Explorer`;
+
   return (
     <Head>
-      <title>
-        {currentPage.title} - NYC Equitable Development Data Explorer
-      </title>
+      <title>{title}</title>
       <link rel="icon" type="image/x-icon" href="/favicon.svg" />
       <meta
         name="title"
