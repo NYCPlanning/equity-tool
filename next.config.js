@@ -36,7 +36,6 @@ const moduleExports = {
     BOROUGH_LAYER: "dcp_borough_boundary",
     DOMAIN: "equitableexplorer.planninglabs.nyc",
   },
-  target: "serverless",
 };
 
 const sentryWebpackPluginOptions = {
