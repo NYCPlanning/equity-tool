@@ -145,5 +145,4 @@ jobs:
       - name: Deploy Preview
         run: |
           DEPLOY_ALIAS=${GITHUB_SHA:0:6}
-          netlify build
-          netlify deploy --alias $DEPLOY_ALIAS
+          netlify deploy --build --alias $DEPLOY_ALIAS
