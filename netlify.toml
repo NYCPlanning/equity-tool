@@ -1,5 +1,5 @@
 [build]
-  command = "echo $NODE_ENV && npm run build"
+  command = "npm run build"
   publish = "out"
 
 [build.environment]

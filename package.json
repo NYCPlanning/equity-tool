@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
+    "build": "NODE_ENV=production next build && next export",
     "start": "next build && next start",
     "lint": "run-s lint:tsc lint:eslint",
     "lint:eslint": "eslint '**/*.{js,jsx,ts,tsx}' '*.js'",
