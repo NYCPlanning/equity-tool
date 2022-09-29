@@ -145,4 +145,5 @@ jobs:
       - name: Deploy Preview
         run: |
           DEPLOY_ALIAS=${GITHUB_SHA:0:6}
-          echo $(eval "netlify deploy --build --alias $DEPLOY_ALIAS")
+          netlify build
+          netlify deploy --alias $DEPLOY_ALIAS
