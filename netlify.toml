@@ -1,7 +1,6 @@
 [build]
-  command = "npm run build"
+  command = "echo $NODE_ENV && npm run build"
   publish = "out"
-  environment = { NODE_ENV="development" }
 
 [build.environment]
 NETLIFY_NEXT_PLUGIN_SKIP = "true"
