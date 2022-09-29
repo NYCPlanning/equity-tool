@@ -41,7 +41,7 @@ export const WelcomeMobileDrawer = () => {
           top={0}
           cursor="pointer"
           zIndex="999"
-          align="right"
+          textAlign="right"
           bg="rgba(0,0,0,0)"
           onClick={toggleMobileDrawer}
         >

@@ -62,7 +62,6 @@ const AboutPage = () => (
           <Image
             src="/community-data-landing-page.png"
             alt="NYC Department of City Planning - Equitable Development Data Explorer Screenshot"
-            layout="fill"
             objectFit="contain"
           />
         </Box>
@@ -100,7 +99,6 @@ const AboutPage = () => (
           <Image
             src="/drm-landing-page.png"
             alt="NYC Department of City Planning - Equitable Development Data Explorer Screenshot"
-            layout="fill"
             objectFit="contain"
           />
         </Box>

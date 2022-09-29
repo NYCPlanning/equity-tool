@@ -38,7 +38,7 @@ export const CommunityDataMobileDrawer = () => {
             top={0}
             cursor="pointer"
             zIndex="999"
-            align="left"
+            textAlign="left"
             bg="rgba(0,0,0,0)"
           >
             <Button
@@ -71,7 +71,7 @@ export const CommunityDataMobileDrawer = () => {
               geoid={geography && geoid ? geoid : NYC}
               geography={geography}
               fontSize="1.5625rem"
-              isTruncated
+              noOfLines={1}
             />
           </Box>
 
