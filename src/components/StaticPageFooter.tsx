@@ -6,7 +6,7 @@ const StaticPageFooter = (props: StaticPageFooterProps) => {
   return (
     <Flex direction="row" width="100%" wrap="nowrap" {...props}>
       <Image src="/logo.png" alt="NYC Logo" height={22} width={66} />
-      <Box maxW="90px" lineHeight="1" mx="10px" wrap="wrap">
+      <Box maxW="90px" lineHeight="1" mx="10px" flexWrap="wrap">
         <Text fontSize="xs" fontWeight="bold">
           Department of City Planning
         </Text>
@@ -17,7 +17,7 @@ const StaticPageFooter = (props: StaticPageFooterProps) => {
         borderColor={"black"}
         mr="10px"
       />
-      <Box maxW="150px" lineHeight="1" wrap="wrap">
+      <Box maxW="150px" lineHeight="1" flexWrap="wrap">
         <Text fontSize="xs" fontWeight="bold">
           Housing Preservation &amp; Development
         </Text>

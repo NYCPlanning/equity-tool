@@ -73,7 +73,7 @@ export const DrmMobileDrawer = () => {
           </Button>
           <Box
             flex="auto"
-            align="right"
+            textAlign="right"
             onClick={() => {
               setIsOpen(!isOpen);
             }}

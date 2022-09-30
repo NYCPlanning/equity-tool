@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-npm
       - name: Install dependencies if cache invalid
         if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --include=dev
 
   lint:
     name: 🔎 Lint
@@ -143,4 +143,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm
       - name: Deploy Preview
-        run: netlify deploy --build --alias staging
+        run: npx netlify-cli deploy --build --alias staging

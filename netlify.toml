@@ -1,7 +1,8 @@
 [build]
   command = "npm run build"
   publish = "out"
-  environment = { NODE_ENV="staging" }
+  environment = { NODE_ENV="staging", NETLIFY_NEXT_PLUGIN_SKIP = "true" }
+  ignore = "if [ $CACHED_COMMIT_REF == $COMMIT_REF ]; then (exit 1); else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../..; fi;"
 
 [[redirects]]
   from = "/"

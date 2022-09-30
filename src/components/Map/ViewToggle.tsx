@@ -45,7 +45,7 @@ export const ViewToggle = ({
             isActive={view === "data"}
             isDisabled={view === "data"}
             _hover={{ _disabled: { bg: "teal.50" } }}
-            isFullWidth
+            width={"100%"}
             data-cy="communityDataBtn-mobile"
             variant="mobileButton"
           >
@@ -65,7 +65,7 @@ export const ViewToggle = ({
             isActive={view === "drm"}
             isDisabled={view === "drm"}
             _hover={{ _disabled: { bg: "teal.50" } }}
-            isFullWidth
+            width={"100%"}
             data-cy="drmBtn-mobile"
             variant="mobileButton"
           >

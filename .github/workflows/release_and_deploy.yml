@@ -25,7 +25,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --include=dev
 
   lint:
     name: 🔎 Lint
@@ -158,4 +158,4 @@ jobs:
           npm version patch -m "version %s" --commit-hooks false
           git push https://${{ secrets.SERVICE_ACCOUNT_NAME }}:${{ secrets.SERVICE_ACCOUNT_PAT }}@github.com/${{ github.repository }}.git HEAD:main --follow-tags
       - name: Deploy to Production
-        run: netlify deploy --prod --build
+        run: npx netlify-cli deploy --prod --build
