@@ -41,7 +41,7 @@ export const SidebarContent = () => {
                 geography === Geography.CITYWIDE ? "hidden" : "visible"
               }
             >
-              back
+              back this way
             </Button>
           </Box>
           <Box pr="1rem">
@@ -65,6 +65,7 @@ export const SidebarContent = () => {
               geography={geography}
               fontSize="1.5625rem"
             />
+            heloooo there <br />
           </Box>
         </Flex>
         <Box>{view === "drm" && <SubindicatorBin bin={ntaIndex[geoid]} />}</Box>

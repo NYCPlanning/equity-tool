@@ -1,4 +1,5 @@
 import { DeckGL } from "@deck.gl/react";
+import {TextLayer} from '@deck.gl/layers';
 import { DeckGLProps } from "@deck.gl/react/deckgl";
 import ReactMapGL, {
   _MapContext as MapContext,
@@ -9,6 +10,7 @@ import baseMap from "@data/basemap.json";
 import { Box } from "@chakra-ui/react";
 import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
+import { AdditionalMapLayers } from '@components/AdditionalMapLayers';
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -38,7 +40,12 @@ export const Map = ({ layers, parent }: MapProps) => {
         pitch: 0,
         bearing: 0,
       };
+      console.log('layers', layers);
+      const cd = layers[0];
+      const nta = layers[3];
 
+      console.log('cd', cd);
+      console.log('nta', nta);
   // MapContext is necessary for navigation controls to work.
   // Likely because it holds the view state, and keeps Deck and
   // MapGL in sync with that singular state.
@@ -62,8 +69,10 @@ export const Map = ({ layers, parent }: MapProps) => {
           sm: "4vmin",
           md: "1rem",
         }}
+        className="wrappingDiv"
       >
         <NavigationControl />
+        <AdditionalMapLayers />
       </Box>
 
       <ReactMapGL

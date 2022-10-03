@@ -92,7 +92,7 @@ export const ViewToggle = ({
           variant="toggle"
           data-cy="communityDataBtn-desktop"
         >
-          Community Data
+          Community Data ???
         </Button>
         <Button
           onClick={onDrmClick}
@@ -101,7 +101,7 @@ export const ViewToggle = ({
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
-          Displacement Risk Map
+          Displacement Risk Map ???
         </Button>
       </ToggleButtonGroup>
     </>
