@@ -31,8 +31,15 @@ export const AdditionalMapLayers = ({
   onNtaClick,
   onCdClick,
 }: AdditionalLayerProps) => {
+  const view = useView();
   const geography = useGeography();
   const layers = useLayers();
+
+  const [AdditionalLayerSelected, setAdditionalLayer] = useState<Boolean>(false);
+
+  useEffect(() => {
+    console.log("I didnt break anything as yet");
+  })
 
   return (
     <Popover>
@@ -103,9 +110,11 @@ export const AdditionalMapLayers = ({
               _focus={{
                 boxShadow: "0 0 0 3px #e2e8f0"
               }}
-              // isChecked={}
+              // isChecked={setAdditionalLayer(true)}
+              defaultChecked={false}
               onChange={() => {
                 console.log("nothing to see yet")
+                setAdditionalLayer(true)
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
@@ -126,9 +135,11 @@ export const AdditionalMapLayers = ({
               _focus={{
                 boxShadow: "0 0 0 3px #e2e8f0"
               }}
-              // isChecked={}
+              // isChecked={setAdditionalLayer(true)}
+              defaultChecked={false}
               onChange={() => {
                 console.log("nothing to see yet")
+                setAdditionalLayer(true)
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
