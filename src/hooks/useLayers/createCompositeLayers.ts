@@ -120,7 +120,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
       }
       return 12 < viewport.zoom && viewport.zoom < 15;
     } else if (layer.id.slice(-14) === "_borotextlayer") {
-      return viewport.zoom < 12;
+      return viewport.zoom < 11;
     }
     return true;
   }
