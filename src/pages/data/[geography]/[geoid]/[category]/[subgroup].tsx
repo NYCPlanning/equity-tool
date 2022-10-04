@@ -167,45 +167,36 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
       <ExplorerSideNav geoid={geoid} />
-      <Box flexGrow={1} overflowX={{ base: "visible", md: "hidden" }}>
-        <Box
-          paddingTop={"1rem"}
-          borderBottomColor={"gray.300"}
-          borderBottomWidth={"1px"}
-          position={{ base: "relative", md: "sticky" }}
-          top={{ base: "initial", md: "0" }}
+      <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
+        <Flex
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          paddingTop={"0.75rem"}
+          marginRight={"1rem"}
+          paddingLeft={{ base: "0.75rem", md: "1rem" }}
           background={"white"}
+          position={{ base: "relative", md: "sticky" }}
+          top={{ base: "unset", md: "0" }}
           zIndex={"200"}
         >
-          <Flex
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            marginBottom={"0.75rem"}
-            marginRight={"1rem"}
-            paddingLeft={{ base: "0.75rem", md: "1rem" }}
-            position={{ base: "sticky", md: "sticky" }}
-            top={{ base: "0", md: "0" }}
-            background={"white"}
-            zIndex={"300"}
+          <Box
+            as="a"
+            href={`/map/data/${geography}?geoid=${geoid}`}
+            color={"gray.600"}
+            fontSize={"0.875rem"}
           >
-            <Box
-              as="a"
-              href={`/map/data/${geography}?geoid=${geoid}`}
-              color={"gray.600"}
-              fontSize={"0.875rem"}
-            >
-              <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
-              back to map
-            </Box>
-            <DataDownloadModal
-              downloadType={"data"}
-              geoid={geoid}
-              geography={geography}
-            />
-          </Flex>
+            <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
+            back to map
+          </Box>
+          <DataDownloadModal
+            downloadType={"data"}
+            geoid={geoid}
+            geography={geography}
+          />
+        </Flex>
+        <Box display={{ base: "block", md: "none" }} marginTop={"0.75rem"}>
           <Text
-            display={{ base: "block", md: "none" }}
             width={"100%"}
             color={"gray.600"}
             textAlign="center"
@@ -226,98 +217,97 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
             geography={geography}
             geoid={geoid}
             currentCategory={category}
-            display={{ base: "flex", md: "none" }}
             justify={"start"}
             marginTop={"0.5rem"}
             marginBottom={"1rem"}
             paddingLeft={{ base: "0.75rem", md: "1rem" }}
           />
+        </Box>
+        <Box
+          paddingTop={"1rem"}
+          position={"sticky"}
+          top={{ base: "0px", md: "52px" }} // Match height of "back to map" <Flex>
+          background={"white"}
+          zIndex={"200"}
+        >
           <Box
-            // position={{ base: "sticky", md: "relative" }}
-            // top={{ base: "0", md: "initial" }}
-            // background={"white"}
-            // position={{ base: "sticky", md: "sticky" }}
-            // top={{ base: "0", md: "0" }}
-            // background={"white"}
-            // zIndex={"220"}
-            id="foo"
+            paddingBottom={{ base: "1rem", md: "1.5rem" }}
+            paddingLeft={{ base: "0.75rem", md: "1rem" }}
           >
-            <Box
-              paddingBottom="1.5rem"
-              paddingLeft={{ base: "0.75rem", md: "1rem" }}
+            <Heading
+              as="h1"
+              fontWeight={700}
+              textTransform={"capitalize"}
+              fontSize={"1.5625rem"}
+              data-cy="geoInfoPrimaryHeading"
             >
-              <Heading
-                as="h1"
-                fontWeight={700}
-                textTransform={"capitalize"}
-                fontSize={"1.5625rem"}
-                data-cy="geoInfoPrimaryHeading"
+              {categoryLabels[category]}: {geoidDescription.label}
+            </Heading>
+            {category === Category.HOPD && (
+              <Text
+                fontStyle={"italic"}
+                color={"gray.400"}
+                marginTop="0.25rem"
+                fontSize={"0.8125rem"}
+                lineHeight={"2"}
               >
-                {categoryLabels[category]}: {geoidDescription.label}
-              </Heading>
-              {category === Category.HOPD && (
-                <Text
-                  fontStyle={"italic"}
-                  color={"gray.400"}
-                  marginTop="0.25rem"
-                  fontSize={"0.8125rem"}
-                  lineHeight={"2"}
-                >
-                  *Racial breakdowns are not available for Housing Production.
-                </Text>
-              )}
-            </Box>
-            <Flex
-              direction={"row"}
-              justify={"space-between"}
-              flexWrap={"wrap-reverse"}
-            >
-              <SubgroupMenu />
-              {category !== Category.HOPD && (
-                <FormControl
-                  width={"auto"}
-                  display={"flex"}
-                  alignItems="center"
-                  marginRight={"1rem"}
-                  paddingLeft={{ base: "0.75rem", md: "1rem" }}
-                >
-                  <Switch
-                    colorScheme="gray"
-                    isChecked={shouldShowReliability}
-                    onChange={() => {
-                      toggleReliability();
-                    }}
-                    id="show-reliability"
-                  />
-                  <FormLabel
-                    htmlFor="show-reliability"
-                    mb="0"
-                    marginX={"0.375rem"}
-                    color={"gray.700"}
-                    whiteSpace={"nowrap"}
-                  >
-                    Show reliability data
-                  </FormLabel>
-                  <Tooltip
-                    hasArrow
-                    placement="top-end"
-                    label={
-                      <Text>
-                        Note: Data shown in gray have poor statistical
-                        reliability. Learn more about our{" "}
-                        <Link href="/methods" color={"#fff"}>
-                          data sources
-                        </Link>
-                        .
-                      </Text>
-                    }
-                  >
-                    <InfoIcon color="gray.400" />
-                  </Tooltip>
-                </FormControl>
-              )}
-            </Flex>
+                *Racial breakdowns are not available for Housing Production.
+              </Text>
+            )}
           </Box>
+          <Flex
+            direction={"row"}
+            justify={"space-between"}
+            flexWrap={"wrap-reverse"}
+            gap={{ base: "1rem", md: "1.5rem" }}
+            borderBottomColor={"gray.300"}
+            borderBottomWidth={"1px"}
+          >
+            <SubgroupMenu />
+            {category !== Category.HOPD && (
+              <FormControl
+                width={"auto"}
+                display={"flex"}
+                alignItems="center"
+                marginRight={"1rem"}
+                paddingLeft={{ base: "0.75rem", md: "1rem" }}
+              >
+                <Switch
+                  colorScheme="gray"
+                  isChecked={shouldShowReliability}
+                  onChange={() => {
+                    toggleReliability();
+                  }}
+                  id="show-reliability"
+                />
+                <FormLabel
+                  htmlFor="show-reliability"
+                  mb="0"
+                  marginX={"0.375rem"}
+                  color={"gray.700"}
+                  whiteSpace={"nowrap"}
+                >
+                  Show reliability data
+                </FormLabel>
+                <Tooltip
+                  hasArrow
+                  placement="top-end"
+                  label={
+                    <Text>
+                      Note: Data shown in gray have poor statistical
+                      reliability. Learn more about our{" "}
+                      <Link href="/methods" color={"#fff"}>
+                        data sources
+                      </Link>
+                      .
+                    </Text>
+                  }
+                >
+                  <InfoIcon color="gray.400" />
+                </Tooltip>
+              </FormControl>
+            )}
+          </Flex>
         </Box>
         <HStack
           width="100%"
