@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { Flex, Button } from "@chakra-ui/react";
 import { Subgroup } from "@constants/Subgroup";
 import { useSubgroup } from "@hooks/useSubgroup";
@@ -15,6 +16,7 @@ export const SubgroupMenu = () => {
     [Subgroup.WNH]: "White Non-Hispanic",
   };
 
+  const router = useRouter();
   const currentSubgroup = useSubgroup();
   const geoid = useGeoid();
   const geography = useGeography();
@@ -40,8 +42,8 @@ export const SubgroupMenu = () => {
           py={"0.625rem"}
           justifyContent={"center"}
           isDisabled={category === Category.HOPD && subgroup !== Subgroup.TOT}
-          aria-current={subgroup === currentSubgroup ? "page" : false}
-          _activeLink={{
+          isActive={subgroup === currentSubgroup}
+          _active={{
             boxShadow: "inset 0 -4px 0 0 #2C7A7B",
             fontWeight: "bold",
             color: "teal.600",
@@ -67,10 +69,11 @@ export const SubgroupMenu = () => {
               boxShadow: "unset",
             },
           }}
-          as="a"
-          href={`/data/${geography}/${
-            geoid ? geoid : ""
-          }/${category}/${subgroup}`}
+          onClick={() => {
+            router.push(
+              `/data/${geography}/${geoid ? geoid : ""}/${category}/${subgroup}`
+            );
+          }}
           flex={"0 0 auto"}
         >
           {subgroupLabels[subgroup]}
