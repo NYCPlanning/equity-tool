@@ -241,7 +241,10 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
               fontSize={"1.5625rem"}
               data-cy="geoInfoPrimaryHeading"
             >
-              {categoryLabels[category]}: {geoidDescription.label}
+              {categoryLabels[category]}:{" "}
+              <Text as="span" fontWeight={400}>
+                {geoidDescription.label}
+              </Text>
             </Heading>
             {category === Category.HOPD && (
               <Text
