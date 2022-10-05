@@ -28,17 +28,18 @@ interface AdditionalLayerProps extends BoxProps {
 }
 
 export const AdditionalMapLayers = ({
-  onNtaClick,
-  onCdClick,
+  onNtaClick,  // need to make a function to apply add'l layer but where?
+  onCdClick,  // need to make a function to apply add'l layer but where?
 }: AdditionalLayerProps) => {
   const view = useView();
   const geography = useGeography();
   const layers = useLayers();
+  const [nta, cd] = layers;
 
   const [AdditionalLayerSelected, setAdditionalLayer] = useState<Boolean>(false);
 
   useEffect(() => {
-    console.log("I didnt break anything as yet");
+    console.log('layers', layers);
   })
 
   return (
@@ -110,11 +111,11 @@ export const AdditionalMapLayers = ({
               _focus={{
                 boxShadow: "0 0 0 3px #e2e8f0"
               }}
-              // isChecked={setAdditionalLayer(true)}
+          // onClick={onNtaClick}
               defaultChecked={false}
               onChange={() => {
-                console.log("nothing to see yet")
-                setAdditionalLayer(true)
+                // layers.layerOutlines.nta = !layers.layerOutlines.nta;
+                console.log("nta selected", nta);
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
@@ -135,11 +136,11 @@ export const AdditionalMapLayers = ({
               _focus={{
                 boxShadow: "0 0 0 3px #e2e8f0"
               }}
-              // isChecked={setAdditionalLayer(true)}
+              // onClick={onCdClick}
               defaultChecked={false}
               onChange={() => {
-                console.log("nothing to see yet")
-                setAdditionalLayer(true)
+                // layers.layerOutlines.district = !layers.layerOutlines.district;
+                console.log("cd selected", cd, cd.props.visible)
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>

@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { MAP_TYPES } from "@deck.gl/carto";
+import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
 import { PathStyleExtension } from "@deck.gl/extensions";
 import { Geography } from "@constants/geography";
 import { useView } from "@hooks/useView";
@@ -10,7 +11,7 @@ import ReactGA from "react-ga4";
 import {
   defaultProps,
   LabeledCartoLayer,
-} from "../../helpers/LabeledCartoLayer";
+} from "@helpers/LabeledCartoLayer";
 
 export const useLayers = (): LabeledCartoLayer[] | null => {
   LabeledCartoLayer.layerName = "LabeledCartoLayer";
@@ -23,6 +24,13 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
   const geography = useGeography();
 
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
+
+  const [isToggled, toggle] = useState(false);
+
+  const displayAdditionalLayer = {
+    nta: isToggled,
+    district: isToggled,
+  }
 
   const toggleGeoSelect = (newGeoid: string) => {
     if (newGeoid.toString().trim() === geoid?.trim()) {
@@ -43,6 +51,45 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
   };
 
   return [
+    new LabeledCartoLayer({
+      visible: displayAdditionalLayer.nta,
+      type: MAP_TYPES.QUERY,
+      id: "unique_id_nta_outline",
+      data: `SELECT * FROM ${process.env.NTA_LAYER}`,
+      uniqueIdProperty: "id",
+      getLineColor: [0, 0, 255, 255],
+      getFillColor: [0, 0, 0, 0],
+      lineWidthUnits: "pixels",
+      getLineWidth: 2.5,
+      updateTriggers: {
+        getLineColor: [geoid],
+        getLineWidth: [geoid],
+      },
+      lineWidthMinPixels: 0.5,
+      stroked: true,
+      extensions: [new PathStyleExtension({ offset: true })],
+      getOffset: 0.5,
+    }),
+    new LabeledCartoLayer({
+      visible: displayAdditionalLayer.district,
+      type: MAP_TYPES.QUERY,
+      id: "unique_id_district_outline",
+      data: `SELECT * FROM dcp_puma_2010`,
+      uniqueIdProperty: "id",
+      getLineColor: [0, 255, 0, 255],
+      getFillColor: [0, 0, 0, 0],
+      lineWidthUnits: "pixels",
+      getLineWidth: 2.5,
+      updateTriggers: {
+        getLineColor: [geoid],
+        getFillColor: [geoid],
+        getLineWidth: [geoid],
+      },
+      lineWidthMinPixels: 0.5,
+      stroked: true,
+      extensions: [new PathStyleExtension({ offset: true })],
+      getOffset: 0.5,
+    }),
     new LabeledCartoLayer({
       passedId: DISTRICT,
       visible: geography === DISTRICT,
