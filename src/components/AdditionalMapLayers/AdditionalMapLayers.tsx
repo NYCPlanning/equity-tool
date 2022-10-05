@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
-  extendTheme,
   FormControl,
   FormLabel,
   FormHelperText,
@@ -14,33 +13,19 @@ import {
   Switch,
 } from "@chakra-ui/react";
 import { MapLayersIcon } from "@components/Icons";
-import { useView } from "@hooks/useView";
-import { useGeoid } from "@hooks/useGeoid";
-import { useGeography } from "@hooks/useGeography";
-import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
-import { fetchNtaInfo } from "@helpers/fetchNtaInfo";
-import { Geography } from "@constants/geography";
-import { useLayers } from "@hooks/useLayers";
-
-interface AdditionalLayerProps extends BoxProps {
-  onNtaClick: () => void;
-  onCdClick: () => void;
-}
 
 export const AdditionalMapLayers = ({
-  onNtaClick,  // need to make a function to apply add'l layer but where?
-  onCdClick,  // need to make a function to apply add'l layer but where?
-}: AdditionalLayerProps) => {
-  const view = useView();
-  const geography = useGeography();
-  const layers = useLayers();
-  const [nta, cd] = layers;
+  setNtaOutlineLayer,
+  setDistrictOutlineLayer,
+  }) => {
 
-  const [AdditionalLayerSelected, setAdditionalLayer] = useState<Boolean>(false);
+  const toggleNtaAdditionalLayer = () => {
+    setNtaOutlineLayer(current => !current);
+  }
 
-  useEffect(() => {
-    console.log('layers', layers);
-  })
+  const toggleDistrictAdditionalLayer = () => {
+    setDistrictOutlineLayer(current => !current);
+  }
 
   return (
     <Popover>
@@ -111,11 +96,9 @@ export const AdditionalMapLayers = ({
               _focus={{
                 boxShadow: "0 0 0 3px #e2e8f0"
               }}
-          // onClick={onNtaClick}
               defaultChecked={false}
               onChange={() => {
-                // layers.layerOutlines.nta = !layers.layerOutlines.nta;
-                console.log("nta selected", nta);
+                toggleNtaAdditionalLayer()
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
@@ -123,11 +106,11 @@ export const AdditionalMapLayers = ({
             </FormLabel>
           </FormControl>
           <FormControl
-          className="cd-wrapper"
-          mt={"10px"}
-          display={"flex"}
-          alignItems={"top"}
-          gridGap={".5rem"}
+            className="cd-wrapper"
+            mt={"10px"}
+            display={"flex"}
+            alignItems={"top"}
+            gridGap={".5rem"}
           >
             <Switch
               className="cd-switch"
@@ -136,11 +119,9 @@ export const AdditionalMapLayers = ({
               _focus={{
                 boxShadow: "0 0 0 3px #e2e8f0"
               }}
-              // onClick={onCdClick}
               defaultChecked={false}
               onChange={() => {
-                // layers.layerOutlines.district = !layers.layerOutlines.district;
-                console.log("cd selected", cd, cd.props.visible)
+                toggleDistrictAdditionalLayer();
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
@@ -154,7 +135,6 @@ export const AdditionalMapLayers = ({
       </PopoverContent>
     </Popover>
   );
-
 };
 
 

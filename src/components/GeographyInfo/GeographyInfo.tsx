@@ -56,7 +56,7 @@ export const GeographyInfo = ({
     <Box flex="shrink" title={primaryHeading} {...boxProps}>
       {geography === DISTRICT && (
         <Heading fontSize=".8125rem" fontWeight={500} color="#2B797A">
-          this?? PUMA {geoid}
+          PUMA {geoid}
         </Heading>
       )}
       {geography === NTA && (
@@ -67,7 +67,7 @@ export const GeographyInfo = ({
           pb="0.5rem"
           noOfLines={noOfLines}
         >
-          this?? NTA {geoid}
+          NTA {geoid}
         </Heading>
       )}
 
@@ -80,7 +80,7 @@ export const GeographyInfo = ({
         data-cy="geoInfoPrimaryHeading"
         noOfLines={noOfLines}
       >
-        is it this? {primaryHeading}
+        {primaryHeading}
       </Heading>
       {pumaInfo?.districts && (
         <Heading as="h3" fontSize=".8125rem" fontWeight={400}>

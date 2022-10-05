@@ -13,7 +13,7 @@ import {
   LabeledCartoLayer,
 } from "@helpers/LabeledCartoLayer";
 
-export const useLayers = (): LabeledCartoLayer[] | null => {
+export const useLayers = (ntaOutlineLayer: boolean, districtOutlineLayer: boolean): LabeledCartoLayer[] | null => {
   LabeledCartoLayer.layerName = "LabeledCartoLayer";
   LabeledCartoLayer.defaultProps = defaultProps;
 
@@ -24,13 +24,6 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
   const geography = useGeography();
 
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
-
-  const [isToggled, toggle] = useState(false);
-
-  const displayAdditionalLayer = {
-    nta: isToggled,
-    district: isToggled,
-  }
 
   const toggleGeoSelect = (newGeoid: string) => {
     if (newGeoid.toString().trim() === geoid?.trim()) {
@@ -51,8 +44,8 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
   };
 
   return [
-    new LabeledCartoLayer({
-      visible: displayAdditionalLayer.nta,
+    new CartoLayer({
+      visible: ntaOutlineLayer,
       type: MAP_TYPES.QUERY,
       id: "unique_id_nta_outline",
       data: `SELECT * FROM ${process.env.NTA_LAYER}`,
@@ -70,8 +63,8 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
     }),
-    new LabeledCartoLayer({
-      visible: displayAdditionalLayer.district,
+    new CartoLayer({
+      visible: districtOutlineLayer,
       type: MAP_TYPES.QUERY,
       id: "unique_id_district_outline",
       data: `SELECT * FROM dcp_puma_2010`,

@@ -24,7 +24,7 @@ export const GeographySelect = ({
         variant="leftCap"
         data-cy="districtButton"
       >
-        Community District* xxx
+        Community District*
       </Button>
       <Button
         onClick={() => {
@@ -34,7 +34,7 @@ export const GeographySelect = ({
         variant="middle"
         data-cy="boroughButton"
       >
-        Borough xxx
+        Borough
       </Button>
       <Button
         onClick={() => {
@@ -44,7 +44,7 @@ export const GeographySelect = ({
         variant="rightCap"
         data-cy="citywideButton"
       >
-        Citywide xxx
+        Citywide
       </Button>
     </ToggleButtonGroup>
   );

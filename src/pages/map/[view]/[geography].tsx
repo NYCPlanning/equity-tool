@@ -88,6 +88,10 @@ export const getStaticPaths: GetStaticPaths = () => {
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
 
+  const [ntaOutlineLayer, setNtaOutlineLayer] = useState<Boolean>(false);
+  const [districtOutlineLayer, setDistrictOutlineLayer] = useState(false);
+
+
   const { BOROUGH, CITYWIDE, DISTRICT, NTA } = Geography;
 
   const router = useRouter();
@@ -97,7 +101,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const geoid = useGeoid();
   const geography = useGeography();
 
-  const layers = useLayers();
+  const layers = useLayers(ntaOutlineLayer, districtOutlineLayer);
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -258,6 +262,10 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           <Map
             layers={layers ? layers : undefined}
             parent={mapContainer?.current ? mapContainer.current : undefined}
+            setNtaOutlineLayer={setNtaOutlineLayer}
+            setDistrictOutlineLayer={setDistrictOutlineLayer}
+            ntaOutlineLayer={ntaOutlineLayer}
+            districtOutlineLayer={districtOutlineLayer}
           />
         </Box>
       </Box>
