@@ -9,6 +9,7 @@ import baseMap from "@data/basemap.json";
 import { Box } from "@chakra-ui/react";
 import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
+import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -64,6 +65,7 @@ export const Map = ({ layers, parent }: MapProps) => {
         }}
       >
         <NavigationControl />
+        <AdditionalMapLayers />
       </Box>
 
       <ReactMapGL
