@@ -1,0 +1,1369 @@
+{
+  "features": [
+    {
+      "coordinates": [
+        -73.823588,
+        40.823332
+      ],
+      "label": "Schuylerville-Throgs Neck-Edgewater Park"
+    },
+    {
+      "coordinates": [
+        -73.899751,
+        40.638042
+      ],
+      "label": "Canarsie"
+    },
+    {
+      "coordinates": [
+        -73.856188,
+        40.818055
+      ],
+      "label": "Soundview-Castle Hill-Clason Point-Harding Park"
+    },
+    {
+      "coordinates": [
+        -73.739455,
+        40.657841
+      ],
+      "label": "Rosedale"
+    },
+    {
+      "coordinates": [
+        -73.936797,
+        40.715369
+      ],
+      "label": "East Williamsburg"
+    },
+    {
+      "coordinates": [
+        -74.010245,
+        40.708007
+      ],
+      "label": "Battery Park City-Lower Manhattan"
+    },
+    {
+      "coordinates": [
+        -74.011236,
+        40.65238
+      ],
+      "label": "Sunset Park West"
+    },
+    {
+      "coordinates": [
+        -74.233554,
+        40.525527
+      ],
+      "label": "Charleston-Richmond Valley-Tottenville"
+    },
+    {
+      "coordinates": [
+        -74.187734,
+        40.528645
+      ],
+      "label": "Annadale-Huguenot-Prince's Bay-Eltingville"
+    },
+    {
+      "coordinates": [
+        -74.15089,
+        40.55186
+      ],
+      "label": "Great Kills"
+    },
+    {
+      "coordinates": [
+        -73.842806,
+        40.780923
+      ],
+      "label": "College Point"
+    },
+    {
+      "coordinates": [
+        -73.798616,
+        40.664611
+      ],
+      "label": "Airport"
+    },
+    {
+      "coordinates": [
+        -73.915246,
+        40.61458
+      ],
+      "label": "Georgetown-Marine Park-Bergen Beach-Mill Basin"
+    },
+    {
+      "coordinates": [
+        -74.128351,
+        40.545779
+      ],
+      "label": "park-cemetery-etc-Staten Island"
+    },
+    {
+      "coordinates": [
+        -73.9548,
+        40.787943
+      ],
+      "label": "park-cemetery-etc-Manhattan"
+    },
+    {
+      "coordinates": [
+        -73.832763,
+        40.690302
+      ],
+      "label": "park-cemetery-etc-Queens"
+    },
+    {
+      "coordinates": [
+        -73.919588,
+        40.623095
+      ],
+      "label": "park-cemetery-etc-Brooklyn"
+    },
+    {
+      "coordinates": [
+        -73.876474,
+        40.571485
+      ],
+      "label": "Breezy Point-Belle Harbor-Rockaway Park-Broad Channel"
+    },
+    {
+      "coordinates": [
+        -73.783716,
+        40.734894
+      ],
+      "label": "Fresh Meadows-Utopia"
+    },
+    {
+      "coordinates": [
+        -73.815643,
+        40.788191
+      ],
+      "label": "Whitestone"
+    },
+    {
+      "coordinates": [
+        -73.806493,
+        40.846597
+      ],
+      "label": "Pelham Bay-Country Club-City Island"
+    },
+    {
+      "coordinates": [
+        -73.984054,
+        40.736824
+      ],
+      "label": "Gramercy"
+    },
+    {
+      "coordinates": [
+        -73.787949,
+        40.751036
+      ],
+      "label": "Auburndale"
+    },
+    {
+      "coordinates": [
+        -73.953822,
+        40.818023
+      ],
+      "label": "Manhattanville"
+    },
+    {
+      "coordinates": [
+        -73.967586,
+        40.677642
+      ],
+      "label": "Prospect Heights"
+    },
+    {
+      "coordinates": [
+        -73.789621,
+        40.59406
+      ],
+      "label": "Hammels-Arverne-Edgemere"
+    },
+    {
+      "coordinates": [
+        -73.962363,
+        40.687967
+      ],
+      "label": "Clinton Hill"
+    },
+    {
+      "coordinates": [
+        -73.895622,
+        40.876513
+      ],
+      "label": "Van Cortlandt Village"
+    },
+    {
+      "coordinates": [
+        -73.926159,
+        40.837826
+      ],
+      "label": "Highbridge"
+    },
+    {
+      "coordinates": [
+        -73.863339,
+        40.726155
+      ],
+      "label": "Rego Park"
+    },
+    {
+      "coordinates": [
+        -73.882413,
+        40.647526
+      ],
+      "label": "Starrett City"
+    },
+    {
+      "coordinates": [
+        -73.958597,
+        40.703917
+      ],
+      "label": "Williamsburg"
+    },
+    {
+      "coordinates": [
+        -73.948136,
+        40.604914
+      ],
+      "label": "Madison"
+    },
+    {
+      "coordinates": [
+        -73.951623,
+        40.646112
+      ],
+      "label": "Erasmus"
+    },
+    {
+      "coordinates": [
+        -73.905406,
+        40.777417
+      ],
+      "label": "Steinway"
+    },
+    {
+      "coordinates": [
+        -73.947442,
+        40.658744
+      ],
+      "label": "Prospect Lefferts Gardens-Wingate"
+    },
+    {
+      "coordinates": [
+        -73.948703,
+        40.777316
+      ],
+      "label": "Yorkville"
+    },
+    {
+      "coordinates": [
+        -73.917662,
+        40.867883
+      ],
+      "label": "Marble Hill-Inwood"
+    },
+    {
+      "coordinates": [
+        -73.736938,
+        40.763728
+      ],
+      "label": "Douglas Manor-Douglaston-Little Neck"
+    },
+    {
+      "coordinates": [
+        -73.735554,
+        40.694341
+      ],
+      "label": "Cambria Heights"
+    },
+    {
+      "coordinates": [
+        -73.948776,
+        40.666536
+      ],
+      "label": "Crown Heights South"
+    },
+    {
+      "coordinates": [
+        -73.922251,
+        40.652365
+      ],
+      "label": "Rugby-Remsen Village"
+    },
+    {
+      "coordinates": [
+        -73.930097,
+        40.626273
+      ],
+      "label": "Flatlands"
+    },
+    {
+      "coordinates": [
+        -73.847049,
+        40.675599
+      ],
+      "label": "Ozone Park"
+    },
+    {
+      "coordinates": [
+        -74.004748,
+        40.720766
+      ],
+      "label": "SoHo-TriBeCa-Civic Center-Little Italy"
+    },
+    {
+      "coordinates": [
+        -73.941511,
+        40.5883
+      ],
+      "label": "Sheepshead Bay-Gerritsen Beach-Manhattan Beach"
+    },
+    {
+      "coordinates": [
+        -73.991234,
+        40.576481
+      ],
+      "label": "Seagate-Coney Island"
+    },
+    {
+      "coordinates": [
+        -74.167371,
+        40.631307
+      ],
+      "label": "Mariner's Harbor-Arlington-Port Ivory-Graniteville"
+    },
+    {
+      "coordinates": [
+        -74.125353,
+        40.616884
+      ],
+      "label": "Westerleigh"
+    },
+    {
+      "coordinates": [
+        -74.10231,
+        40.638971
+      ],
+      "label": "West New Brighton-New Brighton-St. George"
+    },
+    {
+      "coordinates": [
+        -73.847998,
+        40.872461
+      ],
+      "label": "park-cemetery-etc-Bronx"
+    },
+    {
+      "coordinates": [
+        -73.876839,
+        40.660946
+      ],
+      "label": "East New York"
+    },
+    {
+      "coordinates": [
+        -73.844887,
+        40.658173
+      ],
+      "label": "Lindenwood-Howard Beach"
+    },
+    {
+      "coordinates": [
+        -73.931212,
+        40.739772
+      ],
+      "label": "Hunters Point-Sunnyside-West Maspeth"
+    },
+    {
+      "coordinates": [
+        -73.848643,
+        40.8321
+      ],
+      "label": "Westchester-Unionport"
+    },
+    {
+      "coordinates": [
+        -74.176365,
+        40.595865
+      ],
+      "label": "New Springville-Bloomfield-Travis"
+    },
+    {
+      "coordinates": [
+        -74.132975,
+        40.58656
+      ],
+      "label": "Todt Hill-Emerson Hill-Heartland Village-Lighthouse Hill"
+    },
+    {
+      "coordinates": [
+        -73.988661,
+        40.63095
+      ],
+      "label": "Borough Park"
+    },
+    {
+      "coordinates": [
+        -73.983503,
+        40.755734
+      ],
+      "label": "Midtown-Midtown South"
+    },
+    {
+      "coordinates": [
+        -73.809546,
+        40.768352
+      ],
+      "label": "Murray Hill"
+    },
+    {
+      "coordinates": [
+        -73.868396,
+        40.763352
+      ],
+      "label": "East Elmhurst"
+    },
+    {
+      "coordinates": [
+        -73.763146,
+        40.691202
+      ],
+      "label": "St. Albans"
+    },
+    {
+      "coordinates": [
+        -73.981431,
+        40.588403
+      ],
+      "label": "Gravesend"
+    },
+    {
+      "coordinates": [
+        -73.970326,
+        40.617315
+      ],
+      "label": "Ocean Parkway South"
+    },
+    {
+      "coordinates": [
+        -73.869682,
+        40.8279
+      ],
+      "label": "Soundview-Bruckner"
+    },
+    {
+      "coordinates": [
+        -73.875748,
+        40.703535
+      ],
+      "label": "Glendale"
+    },
+    {
+      "coordinates": [
+        -73.880053,
+        40.718338
+      ],
+      "label": "Middle Village"
+    },
+    {
+      "coordinates": [
+        -73.976199,
+        40.64059
+      ],
+      "label": "Kensington-Ocean Parkway"
+    },
+    {
+      "coordinates": [
+        -73.819459,
+        40.676155
+      ],
+      "label": "South Ozone Park"
+    },
+    {
+      "coordinates": [
+        -73.977983,
+        40.653612
+      ],
+      "label": "Windsor Terrace"
+    },
+    {
+      "coordinates": [
+        -73.879021,
+        40.877142
+      ],
+      "label": "Norwood"
+    },
+    {
+      "coordinates": [
+        -74.207828,
+        40.540334
+      ],
+      "label": "Rossville-Woodrow"
+    },
+    {
+      "coordinates": [
+        -73.973908,
+        40.79038
+      ],
+      "label": "Upper West Side"
+    },
+    {
+      "coordinates": [
+        -73.890184,
+        40.867682
+      ],
+      "label": "Bedford Park-Fordham North"
+    },
+    {
+      "coordinates": [
+        -73.905122,
+        40.849058
+      ],
+      "label": "Mount Hope"
+    },
+    {
+      "coordinates": [
+        -74.004646,
+        40.641889
+      ],
+      "label": "Sunset Park East"
+    },
+    {
+      "coordinates": [
+        -73.858949,
+        40.882156
+      ],
+      "label": "Williamsbridge-Olinville"
+    },
+    {
+      "coordinates": [
+        -73.754615,
+        40.742676
+      ],
+      "label": "Oakland Gardens"
+    },
+    {
+      "coordinates": [
+        -73.863036,
+        40.75258
+      ],
+      "label": "North Corona"
+    },
+    {
+      "coordinates": [
+        -73.973391,
+        40.579089
+      ],
+      "label": "West Brighton"
+    },
+    {
+      "coordinates": [
+        -73.903731,
+        40.749278
+      ],
+      "label": "Woodside"
+    },
+    {
+      "coordinates": [
+        -73.808711,
+        40.711595
+      ],
+      "label": "Briarwood-Jamaica Hills"
+    },
+    {
+      "coordinates": [
+        -73.764489,
+        40.662188
+      ],
+      "label": "Springfield Gardens South-Brookville"
+    },
+    {
+      "coordinates": [
+        -73.773038,
+        40.67209
+      ],
+      "label": "Springfield Gardens North"
+    },
+    {
+      "coordinates": [
+        -73.744525,
+        40.675917
+      ],
+      "label": "Laurelton"
+    },
+    {
+      "coordinates": [
+        -73.974881,
+        40.690795
+      ],
+      "label": "Fort Greene"
+    },
+    {
+      "coordinates": [
+        -73.898957,
+        40.819675
+      ],
+      "label": "Longwood"
+    },
+    {
+      "coordinates": [
+        -73.913648,
+        40.676638
+      ],
+      "label": "Ocean Hill"
+    },
+    {
+      "coordinates": [
+        -73.949905,
+        40.691507
+      ],
+      "label": "Bedford"
+    },
+    {
+      "coordinates": [
+        -73.91285,
+        40.81826
+      ],
+      "label": "Melrose South-Mott Haven North"
+    },
+    {
+      "coordinates": [
+        -73.905911,
+        40.865266
+      ],
+      "label": "Kingsbridge Heights"
+    },
+    {
+      "coordinates": [
+        -73.790964,
+        40.694427
+      ],
+      "label": "South Jamaica"
+    },
+    {
+      "coordinates": [
+        -73.819641,
+        40.743085
+      ],
+      "label": "Queensboro Hill"
+    },
+    {
+      "coordinates": [
+        -73.902352,
+        40.827512
+      ],
+      "label": "Morrisania-Melrose"
+    },
+    {
+      "coordinates": [
+        -73.885897,
+        40.833996
+      ],
+      "label": "Crotona Park East"
+    },
+    {
+      "coordinates": [
+        -73.818668,
+        40.726399
+      ],
+      "label": "Kew Gardens Hills"
+    },
+    {
+      "coordinates": [
+        -73.802445,
+        40.728333
+      ],
+      "label": "Pomonok-Flushing Heights-Hillcrest"
+    },
+    {
+      "coordinates": [
+        -73.807294,
+        40.754109
+      ],
+      "label": "East Flushing"
+    },
+    {
+      "coordinates": [
+        -73.872287,
+        40.834165
+      ],
+      "label": "West Farms-Bronx River"
+    },
+    {
+      "coordinates": [
+        -73.915974,
+        40.852522
+      ],
+      "label": "University Heights-Morris Heights"
+    },
+    {
+      "coordinates": [
+        -73.906985,
+        40.899535
+      ],
+      "label": "North Riverdale-Fieldston-Riverdale"
+    },
+    {
+      "coordinates": [
+        -73.741532,
+        40.715455
+      ],
+      "label": "Queens Village"
+    },
+    {
+      "coordinates": [
+        -74.087839,
+        40.617973
+      ],
+      "label": "Grymes Hill-Clifton-Fox Hills"
+    },
+    {
+      "coordinates": [
+        -73.790987,
+        40.678953
+      ],
+      "label": "Baisley Park"
+    },
+    {
+      "coordinates": [
+        -73.761137,
+        40.710639
+      ],
+      "label": "Hollis"
+    },
+    {
+      "coordinates": [
+        -73.919697,
+        40.761494
+      ],
+      "label": "Astoria"
+    },
+    {
+      "coordinates": [
+        -73.910667,
+        40.882406
+      ],
+      "label": "Spuyten Duyvil-Kingsbridge"
+    },
+    {
+      "coordinates": [
+        -73.830926,
+        40.694541
+      ],
+      "label": "Richmond Hill"
+    },
+    {
+      "coordinates": [
+        -73.882655,
+        40.79113
+      ],
+      "label": "Rikers Island"
+    },
+    {
+      "coordinates": [
+        -73.776101,
+        40.720655
+      ],
+      "label": "Jamaica Estates-Holliswood"
+    },
+    {
+      "coordinates": [
+        -73.917766,
+        40.700561
+      ],
+      "label": "Bushwick North"
+    },
+    {
+      "coordinates": [
+        -73.79398,
+        40.704369
+      ],
+      "label": "Jamaica"
+    },
+    {
+      "coordinates": [
+        -73.858371,
+        40.742349
+      ],
+      "label": "Corona"
+    },
+    {
+      "coordinates": [
+        -73.901715,
+        40.706531
+      ],
+      "label": "Ridgewood"
+    },
+    {
+      "coordinates": [
+        -73.90233,
+        40.723995
+      ],
+      "label": "Maspeth"
+    },
+    {
+      "coordinates": [
+        -73.877118,
+        40.739495
+      ],
+      "label": "Elmhurst"
+    },
+    {
+      "coordinates": [
+        -73.892173,
+        40.738316
+      ],
+      "label": "Elmhurst-Maspeth"
+    },
+    {
+      "coordinates": [
+        -73.931888,
+        40.688168
+      ],
+      "label": "Stuyvesant Heights"
+    },
+    {
+      "coordinates": [
+        -73.885867,
+        40.857781
+      ],
+      "label": "Belmont"
+    },
+    {
+      "coordinates": [
+        -73.885524,
+        40.844967
+      ],
+      "label": "East Tremont"
+    },
+    {
+      "coordinates": [
+        -73.900318,
+        40.842747
+      ],
+      "label": "Claremont-Bathgate"
+    },
+    {
+      "coordinates": [
+        -73.899537,
+        40.858154
+      ],
+      "label": "Fordham South"
+    },
+    {
+      "coordinates": [
+        -73.992399,
+        40.764165
+      ],
+      "label": "Clinton"
+    },
+    {
+      "coordinates": [
+        -73.932833,
+        40.857106
+      ],
+      "label": "Washington Heights North"
+    },
+    {
+      "coordinates": [
+        -73.99902,
+        40.747581
+      ],
+      "label": "Hudson Yards-Chelsea-Flatiron-Union Square"
+    },
+    {
+      "coordinates": [
+        -73.951294,
+        40.804333
+      ],
+      "label": "Central Harlem South"
+    },
+    {
+      "coordinates": [
+        -73.785962,
+        40.78333
+      ],
+      "label": "Ft. Totten-Bay Terrace-Clearview"
+    },
+    {
+      "coordinates": [
+        -73.925115,
+        40.696459
+      ],
+      "label": "Bushwick South"
+    },
+    {
+      "coordinates": [
+        -73.962544,
+        40.807886
+      ],
+      "label": "Morningside Heights"
+    },
+    {
+      "coordinates": [
+        -74.073706,
+        40.618729
+      ],
+      "label": "Stapleton-Rosebank"
+    },
+    {
+      "coordinates": [
+        -73.937346,
+        40.801168
+      ],
+      "label": "East Harlem North"
+    },
+    {
+      "coordinates": [
+        -73.99487,
+        40.695468
+      ],
+      "label": "Brooklyn Heights-Cobble Hill"
+    },
+    {
+      "coordinates": [
+        -73.828866,
+        40.761093
+      ],
+      "label": "Flushing"
+    },
+    {
+      "coordinates": [
+        -73.847673,
+        40.721431
+      ],
+      "label": "Forest Hills"
+    },
+    {
+      "coordinates": [
+        -74.102861,
+        40.63005
+      ],
+      "label": "New Brighton-Silver Lake"
+    },
+    {
+      "coordinates": [
+        -73.726656,
+        40.73549
+      ],
+      "label": "Bellerose"
+    },
+    {
+      "coordinates": [
+        -73.773424,
+        40.762733
+      ],
+      "label": "Bayside-Bayside Hills"
+    },
+    {
+      "coordinates": [
+        -73.928333,
+        40.77157
+      ],
+      "label": "Old Astoria"
+    },
+    {
+      "coordinates": [
+        -73.711025,
+        40.745993
+      ],
+      "label": "Glen Oaks-Floral Park-New Hyde Park"
+    },
+    {
+      "coordinates": [
+        -73.939291,
+        40.674469
+      ],
+      "label": "Crown Heights North"
+    },
+    {
+      "coordinates": [
+        -73.910255,
+        40.664002
+      ],
+      "label": "Brownsville"
+    },
+    {
+      "coordinates": [
+        -73.885321,
+        40.757312
+      ],
+      "label": "Jackson Heights"
+    },
+    {
+      "coordinates": [
+        -73.99463,
+        40.715607
+      ],
+      "label": "Chinatown"
+    },
+    {
+      "coordinates": [
+        -73.956825,
+        40.620924
+      ],
+      "label": "Midwood"
+    },
+    {
+      "coordinates": [
+        -73.93793,
+        40.643947
+      ],
+      "label": "East Flatbush-Farragut"
+    },
+    {
+      "coordinates": [
+        -73.895364,
+        40.666559
+      ],
+      "label": "East New York (Pennsylvania Ave)"
+    },
+    {
+      "coordinates": [
+        -73.857989,
+        40.837747
+      ],
+      "label": "Parkchester"
+    },
+    {
+      "coordinates": [
+        -73.977515,
+        40.744221
+      ],
+      "label": "Murray Hill-Kips Bay"
+    },
+    {
+      "coordinates": [
+        -73.976563,
+        40.731811
+      ],
+      "label": "Stuyvesant Town-Cooper Village"
+    },
+    {
+      "coordinates": [
+        -73.985987,
+        40.692927
+      ],
+      "label": "DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill"
+    },
+    {
+      "coordinates": [
+        -73.945751,
+        40.790011
+      ],
+      "label": "East Harlem South"
+    },
+    {
+      "coordinates": [
+        -73.958623,
+        40.714915
+      ],
+      "label": "North Side-South Side"
+    },
+    {
+      "coordinates": [
+        -73.980911,
+        40.717841
+      ],
+      "label": "Lower East Side"
+    },
+    {
+      "coordinates": [
+        -73.955088,
+        40.764964
+      ],
+      "label": "Lenox Hill-Roosevelt Island"
+    },
+    {
+      "coordinates": [
+        -73.93875,
+        40.75756
+      ],
+      "label": "Queensbridge-Ravenswood-Long Island City"
+    },
+    {
+      "coordinates": [
+        -74.085513,
+        40.586792
+      ],
+      "label": "Old Town-Dongan Hills-South Beach"
+    },
+    {
+      "coordinates": [
+        -74.071775,
+        40.600321
+      ],
+      "label": "Grasmere-Arrochar-Ft. Wadsworth"
+    },
+    {
+      "coordinates": [
+        -74.105008,
+        40.571766
+      ],
+      "label": "New Dorp-Midland Beach"
+    },
+    {
+      "coordinates": [
+        -73.755312,
+        40.602446
+      ],
+      "label": "Far Rockaway-Bayswater"
+    },
+    {
+      "coordinates": [
+        -74.188483,
+        40.552659
+      ],
+      "label": "Arden Heights"
+    },
+    {
+      "coordinates": [
+        -74.007483,
+        40.60426
+      ],
+      "label": "Bath Beach"
+    },
+    {
+      "coordinates": [
+        -73.99526,
+        40.612222
+      ],
+      "label": "Bensonhurst West"
+    },
+    {
+      "coordinates": [
+        -73.983544,
+        40.601425
+      ],
+      "label": "Bensonhurst East"
+    },
+    {
+      "coordinates": [
+        -74.12259,
+        40.561996
+      ],
+      "label": "Oakwood-Oakwood Beach"
+    },
+    {
+      "coordinates": [
+        -73.8287,
+        40.708057
+      ],
+      "label": "Kew Gardens"
+    },
+    {
+      "coordinates": [
+        -73.984699,
+        40.774847
+      ],
+      "label": "Lincoln Square"
+    },
+    {
+      "coordinates": [
+        -74.012095,
+        40.622439
+      ],
+      "label": "Dyker Heights"
+    },
+    {
+      "coordinates": [
+        -73.885547,
+        40.812089
+      ],
+      "label": "Hunts Point"
+    },
+    {
+      "coordinates": [
+        -73.916821,
+        40.807347
+      ],
+      "label": "Mott Haven-Port Morris"
+    },
+    {
+      "coordinates": [
+        -73.864902,
+        40.864005
+      ],
+      "label": "Bronxdale"
+    },
+    {
+      "coordinates": [
+        -74.029887,
+        40.624855
+      ],
+      "label": "Bay Ridge"
+    },
+    {
+      "coordinates": [
+        -73.855764,
+        40.688731
+      ],
+      "label": "Woodhaven"
+    },
+    {
+      "coordinates": [
+        -74.0039,
+        40.678772
+      ],
+      "label": "Carroll Gardens-Columbia Street-Red Hook"
+    },
+    {
+      "coordinates": [
+        -73.983903,
+        40.671228
+      ],
+      "label": "Park Slope-Gowanus"
+    },
+    {
+      "coordinates": [
+        -73.961216,
+        40.580923
+      ],
+      "label": "Brighton Beach"
+    },
+    {
+      "coordinates": [
+        -73.964334,
+        40.599954
+      ],
+      "label": "Homecrest"
+    },
+    {
+      "coordinates": [
+        -74.140787,
+        40.628167
+      ],
+      "label": "Port Richmond"
+    },
+    {
+      "coordinates": [
+        -73.961174,
+        40.77473
+      ],
+      "label": "Upper East Side-Carnegie Hill"
+    },
+    {
+      "coordinates": [
+        -73.852216,
+        40.897931
+      ],
+      "label": "Woodlawn-Wakefield"
+    },
+    {
+      "coordinates": [
+        -73.84743,
+        40.864473
+      ],
+      "label": "Allerton-Pelham Gardens"
+    },
+    {
+      "coordinates": [
+        -73.949517,
+        40.7295
+      ],
+      "label": "Greenpoint"
+    },
+    {
+      "coordinates": [
+        -73.9414,
+        40.841707
+      ],
+      "label": "Washington Heights South"
+    },
+    {
+      "coordinates": [
+        -73.854393,
+        40.854404
+      ],
+      "label": "Pelham Parkway"
+    },
+    {
+      "coordinates": [
+        -73.969018,
+        40.754313
+      ],
+      "label": "Turtle Bay-East Midtown"
+    },
+    {
+      "coordinates": [
+        -73.850664,
+        40.846785
+      ],
+      "label": "Van Nest-Morris Park-Westchester Square"
+    },
+    {
+      "coordinates": [
+        -73.836641,
+        40.880937
+      ],
+      "label": "Eastchester-Edenwald-Baychester"
+    },
+    {
+      "coordinates": [
+        -73.828279,
+        40.87398
+      ],
+      "label": "Co-op City"
+    },
+    {
+      "coordinates": [
+        -73.940772,
+        40.818257
+      ],
+      "label": "Central Harlem North-Polo Grounds"
+    },
+    {
+      "coordinates": [
+        -73.948467,
+        40.827034
+      ],
+      "label": "Hamilton Heights"
+    },
+    {
+      "coordinates": [
+        -73.878334,
+        40.682178
+      ],
+      "label": "Cypress Hills-City Line"
+    },
+    {
+      "coordinates": [
+        -73.96097,
+        40.6379
+      ],
+      "label": "Flatbush"
+    },
+    {
+      "coordinates": [
+        -73.985935,
+        40.72762
+      ],
+      "label": "East Village"
+    },
+    {
+      "coordinates": [
+        -74.001547,
+        40.733045
+      ],
+      "label": "West Village"
+    },
+    {
+      "coordinates": [
+        -73.915789,
+        40.830511
+      ],
+      "label": "East Concourse-Concourse Village"
+    },
+    {
+      "coordinates": [
+        -73.924399,
+        40.828997
+      ],
+      "label": "West Concourse"
+    }
+  ]
+}

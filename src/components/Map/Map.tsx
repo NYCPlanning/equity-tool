@@ -9,6 +9,7 @@ import baseMap from "@data/basemap.json";
 import { Box } from "@chakra-ui/react";
 import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
+import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -16,9 +17,11 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type MapProps = Pick<DeckGLProps, "layers" | "parent">;
+interface MapProps extends Pick<DeckGLProps, "layers" | "parent"> {
+  onToggleNtaLayer: () => void;
+}
 
-export const Map = ({ layers, parent }: MapProps) => {
+export const Map = ({ layers, parent, onToggleNtaLayer }: MapProps) => {
   const view = useView();
 
   const isMobile = useWindowWidth() < 768;
@@ -38,7 +41,6 @@ export const Map = ({ layers, parent }: MapProps) => {
         pitch: 0,
         bearing: 0,
       };
-
   // MapContext is necessary for navigation controls to work.
   // Likely because it holds the view state, and keeps Deck and
   // MapGL in sync with that singular state.
@@ -64,6 +66,7 @@ export const Map = ({ layers, parent }: MapProps) => {
         }}
       >
         <NavigationControl />
+        <AdditionalMapLayers onToggleNtaLayer={onToggleNtaLayer} />
       </Box>
 
       <ReactMapGL
