@@ -7,7 +7,10 @@ import { useGeoid } from "@hooks/useGeoid";
 import { useGeography } from "@hooks/useGeography";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
-import { defaultProps, LabeledCartoLayer } from "./createCompositeLayers";
+import {
+  defaultProps,
+  LabeledCartoLayer,
+} from "../../helpers/LabeledCartoLayer";
 
 export const useLayers = (): LabeledCartoLayer[] | null => {
   LabeledCartoLayer.layerName = "LabeledCartoLayer";
@@ -90,7 +93,6 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
       passedId: BOROUGH,
       visible: geography === BOROUGH,
       type: MAP_TYPES.QUERY,
-      // id: BOROUGH,
       id: "unique_id_borough",
       data: `SELECT * FROM dcp_borough_boundary`,
       uniqueIdProperty: "id",
