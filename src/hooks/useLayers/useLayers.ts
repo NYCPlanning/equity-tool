@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { MAP_TYPES } from "@deck.gl/carto";
+import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
 import { PathStyleExtension } from "@deck.gl/extensions";
 import { Geography } from "@constants/geography";
 import { useView } from "@hooks/useView";
@@ -8,13 +8,12 @@ import { useGeography } from "@hooks/useGeography";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
 import { useState } from "react";
-import {
-  defaultProps,
-  LabeledCartoLayer,
-} from "../../helpers/LabeledCartoLayer";
+import { defaultProps, LabeledCartoLayer } from "@helpers/LabeledCartoLayer";
 
 export const useLayers = (
-  setTooltip: (string: string) => void
+  setTooltip: (string: string) => void,
+  ntaOutlineLayer: boolean,
+  districtOutlineLayer: boolean
 ): LabeledCartoLayer[] | undefined => {
   LabeledCartoLayer.layerName = "LabeledCartoLayer";
   LabeledCartoLayer.defaultProps = defaultProps;
@@ -256,6 +255,45 @@ export const useLayers = (
         }
         setTooltip(info);
       },
+    }),
+    new CartoLayer({
+      visible: ntaOutlineLayer,
+      type: MAP_TYPES.QUERY,
+      id: "unique_id_nta_outline",
+      data: `SELECT * FROM ${process.env.NTA_LAYER}`,
+      uniqueIdProperty: "id",
+      getLineColor: [114, 138, 238, 192],
+      getFillColor: [0, 0, 0, 0],
+      lineWidthUnits: "pixels",
+      getLineWidth: 3,
+      updateTriggers: {
+        getLineColor: [geoid],
+        getLineWidth: [geoid],
+      },
+      lineWidthMinPixels: 0.5,
+      stroked: true,
+      extensions: [new PathStyleExtension({ offset: false })],
+      getOffset: 0.5,
+    }),
+    new CartoLayer({
+      visible: districtOutlineLayer,
+      type: MAP_TYPES.QUERY,
+      id: "unique_id_district_outline",
+      data: `SELECT * FROM dcp_puma_2010`,
+      uniqueIdProperty: "id",
+      getLineColor: [202, 240, 140, 192],
+      getFillColor: [0, 0, 0, 0],
+      lineWidthUnits: "pixels",
+      getLineWidth: 3,
+      updateTriggers: {
+        getLineColor: [geoid],
+        getFillColor: [geoid],
+        getLineWidth: [geoid],
+      },
+      lineWidthMinPixels: 0.5,
+      stroked: true,
+      extensions: [new PathStyleExtension({ offset: false })],
+      getOffset: 0.5,
     }),
   ];
 };

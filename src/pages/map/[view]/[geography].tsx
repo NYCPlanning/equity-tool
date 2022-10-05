@@ -14,9 +14,12 @@ import { useGeography } from "@hooks/useGeography";
 import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 import ReactGA from "react-ga4";
+import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
 
 export interface MapPageProps {
   initialRouteParams: string;
+  onToggleNtaLayer: () => void;
+  onToggleDistrictLayer: () => void;
 }
 
 export const getStaticProps: GetStaticProps = (context) => {
@@ -87,6 +90,11 @@ export const getStaticPaths: GetStaticPaths = () => {
 const MapPage = ({ initialRouteParams }: MapPageProps) => {
   console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
 
+  const [ntaOutlineLayer, setNtaOutlineLayer] = useState<boolean>(false);
+
+  const [districtOutlineLayer, setDistrictOutlineLayer] =
+    useState<boolean>(false);
+
   const { BOROUGH, CITYWIDE, DISTRICT, NTA } = Geography;
 
   const router = useRouter();
@@ -104,11 +112,9 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     string | null
   >(null);
   const [lastDrmGeoid, setLastDrmGeoid] = useState((): string | null => null);
-
   const [lastDistrictGeoid, setLastDistrictGeoid] = useState<string | null>(
     null
   );
-
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
 
   const onDrmClick = () => {
@@ -229,11 +235,20 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
       {view === "drm" && geoid && <DrmMobileDrawer />}
 
-      <Box flex="2" height="100%">
+      <Box flex="2" height="100%" className="thisAndThat">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
             onDrmClick={onDrmClick}
+          />
+
+          <AdditionalMapLayers
+            onToggleNtaLayer={() => {
+              setNtaOutlineLayer(!ntaOutlineLayer);
+            }}
+            onToggleDistrictLayer={() => {
+              setDistrictOutlineLayer(!districtOutlineLayer);
+            }}
           />
 
           {view === "data" && (
@@ -257,6 +272,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           {view === "drm" && <DRMMapLegend />}
 
           <Map
+            ntaOutlineLayer={ntaOutlineLayer}
+            districtOutlineLayer={districtOutlineLayer}
             parent={mapContainer?.current ? mapContainer.current : undefined}
           />
         </Box>
