@@ -3,10 +3,10 @@
     {
       "puma_id": 3701,
       "coordinates": [
-        -73.90488,
+        -73.90888,
         40.889442
       ],
-      "label": "Riverdale, Fieldston & Kingsbridge"
+      "label": "Riverdale,\nFieldston & Kingsbridge"
     },
     {
       "puma_id": 3702,
@@ -22,31 +22,31 @@
         -73.815881,
         40.851031
       ],
-      "label": "Co-op City, Pelham Bay & Schuylerville"
+      "label": "Co-op City,\nPelham Bay & Schuylerville"
     },
     {
       "puma_id": 3704,
       "coordinates": [
         -73.852544,
-        40.856178
+        40.858178
       ],
       "label": "Pelham Parkway, Morris Park & Laconia"
     },
     {
       "puma_id": 3705,
       "coordinates": [
-        -73.887646,
-        40.845401
+        -73.884646,
+        40.848401
       ],
       "label": "Belmont, Crotona Park East & East Tremont"
     },
     {
       "puma_id": 3706,
       "coordinates": [
-        -73.8909,
-        40.870347
+        -73.8809,
+        40.873347
       ],
-      "label": "Bedford Park, Fordham North & Norwood"
+      "label": "Bedford Park, Fordham North\n& Norwood"
     },
     {
       "puma_id": 3707,
@@ -62,13 +62,13 @@
         -73.921554,
         40.832466
       ],
-      "label": "Concourse, Highbridge & Mount Eden"
+      "label": "Concourse, Highbridge\n& Mount Eden"
     },
     {
       "puma_id": 3709,
       "coordinates": [
         -73.859526,
-        40.825372
+        40.824372
       ],
       "label": "Castle Hill, Clason Point & Parkchester"
     },
@@ -76,7 +76,7 @@
       "puma_id": 3710,
       "coordinates": [
         -73.899146,
-        40.809249
+        40.811249
       ],
       "label": "Hunts Point, Longwood & Melrose"
     },
@@ -84,7 +84,7 @@
       "puma_id": 3801,
       "coordinates": [
         -73.930672,
-        40.855952
+        40.857952
       ],
       "label": "Washington Heights, Inwood & Marble Hill"
     },
@@ -100,7 +100,7 @@
       "puma_id": 3803,
       "coordinates": [
         -73.944585,
-        40.813211
+        40.812211
       ],
       "label": "Central Harlem"
     },
@@ -147,7 +147,7 @@
     {
       "puma_id": 3809,
       "coordinates": [
-        -73.98612,
+        -73.98312,
         40.719364
       ],
       "label": "Chinatown & Lower East Side"
@@ -188,7 +188,7 @@
       "puma_id": 4001,
       "coordinates": [
         -73.948388,
-        40.718444
+        40.719444
       ],
       "label": "Greenpoint & Williamsburg"
     },
@@ -220,7 +220,7 @@
       "puma_id": 4005,
       "coordinates": [
         -73.988105,
-        40.671871
+        40.673871
       ],
       "label": "Park Slope, Carroll Gardens & Red Hook"
     },
@@ -236,23 +236,23 @@
       "puma_id": 4007,
       "coordinates": [
         -73.907199,
-        40.668205
+        40.670205
       ],
-      "label": "Brownsville & Ocean Hill"
+      "label": "Brownsville &\nOcean Hill"
     },
     {
       "puma_id": 4008,
       "coordinates": [
         -73.877526,
-        40.664975
+        40.669975
       ],
       "label": "East New York & Starrett City"
     },
     {
       "puma_id": 4009,
       "coordinates": [
-        -73.903848,
-        40.61554
+        -73.909848,
+        40.61954
       ],
       "label": "Canarsie & Flatlands"
     },
@@ -267,8 +267,8 @@
     {
       "puma_id": 4011,
       "coordinates": [
-        -73.947889,
-        40.661359
+        -73.945889,
+        40.662359
       ],
       "label": "Crown Heights South, Prospect Lefferts & Wingate"
     },
@@ -294,7 +294,7 @@
         -73.982684,
         40.629933
       ],
-      "label": "Borough Park, Kensington & Ocean Parkway"
+      "label": "Borough Park, Kensington\n& Ocean Parkway"
     },
     {
       "puma_id": 4015,
@@ -302,7 +302,7 @@
         -73.959139,
         40.630403
       ],
-      "label": "Flatbush & Midwood"
+      "label": "Flatbush &\nMidwood"
     },
     {
       "puma_id": 4016,
@@ -324,7 +324,7 @@
       "puma_id": 4018,
       "coordinates": [
         -73.981037,
-        40.581403
+        40.582403
       ],
       "label": "Brighton Beach & Coney Island"
     },
@@ -340,7 +340,7 @@
       "puma_id": 4102,
       "coordinates": [
         -73.87589,
-        40.7622
+        40.7602
       ],
       "label": "Jackson Heights & North Corona"
     },
@@ -348,7 +348,7 @@
       "puma_id": 4103,
       "coordinates": [
         -73.815889,
-        40.77147
+        40.77347
       ],
       "label": "Flushing, Murray Hill & Whitestone"
     },
@@ -363,8 +363,8 @@
     {
       "puma_id": 4105,
       "coordinates": [
-        -73.755026,
-        40.680476
+        -73.745026,
+        40.665476
       ],
       "label": "Queens Village, Cambria Heights & Rosedale"
     },
@@ -372,7 +372,7 @@
       "puma_id": 4106,
       "coordinates": [
         -73.796165,
-        40.725836
+        40.724836
       ],
       "label": "Briarwood, Fresh Meadows & Hillcrest"
     },
@@ -396,7 +396,7 @@
       "puma_id": 4109,
       "coordinates": [
         -73.919724,
-        40.740719
+        40.736719
       ],
       "label": "Sunnyside & Woodside"
     },
@@ -412,7 +412,7 @@
       "puma_id": 4111,
       "coordinates": [
         -73.841612,
-        40.696367
+        40.697367
       ],
       "label": "Richmond Hill & Woodhaven"
     },
@@ -422,7 +422,7 @@
         -73.778651,
         40.691642
       ],
-      "label": "Jamaica, Hollis & St. Albans"
+      "label": "Jamaica, Hollis\n& St. Albans"
     },
     {
       "puma_id": 4113,

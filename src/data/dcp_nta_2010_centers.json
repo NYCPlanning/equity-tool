@@ -5,7 +5,7 @@
         -73.823588,
         40.823332
       ],
-      "label": "Schuylerville-Throgs Neck-Edgewater Park"
+      "label": "Schuylerville-\nThrogs Neck-\nEdgewater Park"
     },
     {
       "coordinates": [
@@ -61,7 +61,7 @@
         -74.187734,
         40.528645
       ],
-      "label": "Annadale-Huguenot-Prince's Bay-Eltingville"
+      "label": "Annadale-Huguenot-\nPrince's Bay-Eltingville"
     },
     {
       "coordinates": [
@@ -96,28 +96,28 @@
         -74.128351,
         40.545779
       ],
-      "label": "park-cemetery-etc-Staten Island"
+      "label": "park-cemetery-etc\nStaten Island"
     },
     {
       "coordinates": [
-        -73.9548,
+        -73.9598,
         40.787943
       ],
-      "label": "park-cemetery-etc-Manhattan"
+      "label": "park-cemetery-etc\nManhattan"
     },
     {
       "coordinates": [
         -73.832763,
         40.690302
       ],
-      "label": "park-cemetery-etc-Queens"
+      "label": "park-cemetery-etc\nQueens"
     },
     {
       "coordinates": [
         -73.919588,
         40.623095
       ],
-      "label": "park-cemetery-etc-Brooklyn"
+      "label": "park-cemetery-etc\nBrooklyn"
     },
     {
       "coordinates": [
@@ -142,10 +142,10 @@
     },
     {
       "coordinates": [
-        -73.806493,
+        -73.801493,
         40.846597
       ],
-      "label": "Pelham Bay-Country Club-City Island"
+      "label": "Pelham Bay-\nCountry Club\n-City Island"
     },
     {
       "coordinates": [
@@ -163,14 +163,14 @@
     },
     {
       "coordinates": [
-        -73.953822,
-        40.818023
+        -73.957822,
+        40.821023
       ],
       "label": "Manhattanville"
     },
     {
       "coordinates": [
-        -73.967586,
+        -73.965586,
         40.677642
       ],
       "label": "Prospect Heights"
@@ -185,7 +185,7 @@
     {
       "coordinates": [
         -73.962363,
-        40.687967
+        40.685967
       ],
       "label": "Clinton Hill"
     },
@@ -194,12 +194,12 @@
         -73.895622,
         40.876513
       ],
-      "label": "Van Cortlandt Village"
+      "label": "Van Cortlandt\nVillage"
     },
     {
       "coordinates": [
         -73.926159,
-        40.837826
+        40.836826
       ],
       "label": "Highbridge"
     },
@@ -248,7 +248,7 @@
     {
       "coordinates": [
         -73.947442,
-        40.658744
+        40.657744
       ],
       "label": "Prospect Lefferts Gardens-Wingate"
     },
@@ -261,7 +261,7 @@
     },
     {
       "coordinates": [
-        -73.917662,
+        -73.919662,
         40.867883
       ],
       "label": "Marble Hill-Inwood"
@@ -311,7 +311,7 @@
     {
       "coordinates": [
         -74.004748,
-        40.720766
+        40.722766
       ],
       "label": "SoHo-TriBeCa-Civic Center-Little Italy"
     },
@@ -334,7 +334,7 @@
         -74.167371,
         40.631307
       ],
-      "label": "Mariner's Harbor-Arlington-Port Ivory-Graniteville"
+      "label": "Mariner's Harbor-Arlington-\nPort Ivory-Graniteville"
     },
     {
       "coordinates": [
@@ -355,7 +355,7 @@
         -73.847998,
         40.872461
       ],
-      "label": "park-cemetery-etc-Bronx"
+      "label": "park-cemetery-etc-\nBronx"
     },
     {
       "coordinates": [
@@ -383,33 +383,33 @@
         -73.848643,
         40.8321
       ],
-      "label": "Westchester-Unionport"
+      "label": "Westchester-\nUnionport"
     },
     {
       "coordinates": [
         -74.176365,
         40.595865
       ],
-      "label": "New Springville-Bloomfield-Travis"
+      "label": "New Springville-\nBloomfield-Travis"
     },
     {
       "coordinates": [
-        -74.132975,
-        40.58656
+        -74.133975,
+        40.58356
       ],
       "label": "Todt Hill-Emerson Hill-Heartland Village-Lighthouse Hill"
     },
     {
       "coordinates": [
         -73.988661,
-        40.63095
+        40.63395
       ],
       "label": "Borough Park"
     },
     {
       "coordinates": [
         -73.983503,
-        40.755734
+        40.758734
       ],
       "label": "Midtown-Midtown South"
     },
@@ -446,7 +446,7 @@
         -73.970326,
         40.617315
       ],
-      "label": "Ocean Parkway South"
+      "label": "Ocean Parkway\nSouth"
     },
     {
       "coordinates": [
@@ -493,14 +493,14 @@
     {
       "coordinates": [
         -73.879021,
-        40.877142
+        40.880142
       ],
       "label": "Norwood"
     },
     {
       "coordinates": [
         -74.207828,
-        40.540334
+        40.543334
       ],
       "label": "Rossville-Woodrow"
     },
@@ -516,12 +516,12 @@
         -73.890184,
         40.867682
       ],
-      "label": "Bedford Park-Fordham North"
+      "label": "Bedford Park-\nFordham North"
     },
     {
       "coordinates": [
         -73.905122,
-        40.849058
+        40.848058
       ],
       "label": "Mount Hope"
     },
@@ -537,7 +537,7 @@
         -73.858949,
         40.882156
       ],
-      "label": "Williamsbridge-Olinville"
+      "label": "Williamsbridge-\nOlinville"
     },
     {
       "coordinates": [
@@ -572,7 +572,7 @@
         -73.808711,
         40.711595
       ],
-      "label": "Briarwood-Jamaica Hills"
+      "label": "Briarwood\nJamaica Hills"
     },
     {
       "coordinates": [
@@ -598,7 +598,7 @@
     {
       "coordinates": [
         -73.974881,
-        40.690795
+        40.695795
       ],
       "label": "Fort Greene"
     },
@@ -632,7 +632,7 @@
     },
     {
       "coordinates": [
-        -73.905911,
+        -73.902911,
         40.865266
       ],
       "label": "Kingsbridge Heights"
@@ -653,17 +653,17 @@
     },
     {
       "coordinates": [
-        -73.902352,
+        -73.905352,
         40.827512
       ],
-      "label": "Morrisania-Melrose"
+      "label": "Morrisania-\nMelrose"
     },
     {
       "coordinates": [
         -73.885897,
         40.833996
       ],
-      "label": "Crotona Park East"
+      "label": "Crotona Park\nEast"
     },
     {
       "coordinates": [
@@ -691,21 +691,21 @@
         -73.872287,
         40.834165
       ],
-      "label": "West Farms-Bronx River"
+      "label": "West Farms-\nBronx River"
     },
     {
       "coordinates": [
-        -73.915974,
-        40.852522
+        -73.917974,
+        40.847522
       ],
-      "label": "University Heights-Morris Heights"
+      "label": "University Heights\nMorris Heights"
     },
     {
       "coordinates": [
         -73.906985,
         40.899535
       ],
-      "label": "North Riverdale-Fieldston-Riverdale"
+      "label": "North Riverdale-Fieldston\nRiverdale"
     },
     {
       "coordinates": [
@@ -716,8 +716,8 @@
     },
     {
       "coordinates": [
-        -74.087839,
-        40.617973
+        -74.089839,
+        40.615973
       ],
       "label": "Grymes Hill-Clifton-Fox Hills"
     },
@@ -747,7 +747,7 @@
         -73.910667,
         40.882406
       ],
-      "label": "Spuyten Duyvil-Kingsbridge"
+      "label": "Spuyten Duyvil-\nKingsbridge"
     },
     {
       "coordinates": [
@@ -772,7 +772,7 @@
     },
     {
       "coordinates": [
-        -73.917766,
+        -73.919766,
         40.700561
       ],
       "label": "Bushwick North"
@@ -787,7 +787,7 @@
     {
       "coordinates": [
         -73.858371,
-        40.742349
+        40.743349
       ],
       "label": "Corona"
     },
@@ -807,8 +807,8 @@
     },
     {
       "coordinates": [
-        -73.877118,
-        40.739495
+        -73.874118,
+        40.740495
       ],
       "label": "Elmhurst"
     },
@@ -836,16 +836,16 @@
     {
       "coordinates": [
         -73.885524,
-        40.844967
+        40.843967
       ],
       "label": "East Tremont"
     },
     {
       "coordinates": [
-        -73.900318,
+        -73.899318,
         40.842747
       ],
-      "label": "Claremont-Bathgate"
+      "label": "Claremont-\nBathgate"
     },
     {
       "coordinates": [
@@ -864,7 +864,7 @@
     {
       "coordinates": [
         -73.932833,
-        40.857106
+        40.851106
       ],
       "label": "Washington Heights North"
     },
@@ -873,7 +873,7 @@
         -73.99902,
         40.747581
       ],
-      "label": "Hudson Yards-Chelsea-Flatiron-Union Square"
+      "label": "Hudson Yards-Chelsea-\nFlatiron-Union Square"
     },
     {
       "coordinates": [
@@ -891,8 +891,8 @@
     },
     {
       "coordinates": [
-        -73.925115,
-        40.696459
+        -73.922115,
+        40.694459
       ],
       "label": "Bushwick South"
     },
@@ -922,7 +922,7 @@
         -73.99487,
         40.695468
       ],
-      "label": "Brooklyn Heights-Cobble Hill"
+      "label": "Brooklyn Heights-\nCobble Hill"
     },
     {
       "coordinates": [
@@ -934,7 +934,7 @@
     {
       "coordinates": [
         -73.847673,
-        40.721431
+        40.719431
       ],
       "label": "Forest Hills"
     },
@@ -976,7 +976,7 @@
     {
       "coordinates": [
         -73.939291,
-        40.674469
+        40.672469
       ],
       "label": "Crown Heights North"
     },
@@ -996,8 +996,8 @@
     },
     {
       "coordinates": [
-        -73.99463,
-        40.715607
+        -73.99363,
+        40.714607
       ],
       "label": "Chinatown"
     },
@@ -1017,10 +1017,10 @@
     },
     {
       "coordinates": [
-        -73.895364,
-        40.666559
+        -73.896364,
+        40.664559
       ],
-      "label": "East New York (Pennsylvania Ave)"
+      "label": "East New York (Pennsylvania\nAve)"
     },
     {
       "coordinates": [
@@ -1032,7 +1032,7 @@
     {
       "coordinates": [
         -73.977515,
-        40.744221
+        40.741221
       ],
       "label": "Murray Hill-Kips Bay"
     },
@@ -1046,7 +1046,7 @@
     {
       "coordinates": [
         -73.985987,
-        40.692927
+        40.687927
       ],
       "label": "DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill"
     },
@@ -1062,12 +1062,12 @@
         -73.958623,
         40.714915
       ],
-      "label": "North Side-South Side"
+      "label": "North Side-\nSouth Side"
     },
     {
       "coordinates": [
         -73.980911,
-        40.717841
+        40.715841
       ],
       "label": "Lower East Side"
     },
@@ -1083,7 +1083,7 @@
         -73.93875,
         40.75756
       ],
-      "label": "Queensbridge-Ravenswood-Long Island City"
+      "label": "Queensbridge-\nRavenswood-\nLong Island City"
     },
     {
       "coordinates": [
@@ -1097,7 +1097,7 @@
         -74.071775,
         40.600321
       ],
-      "label": "Grasmere-Arrochar-Ft. Wadsworth"
+      "label": "Grasmere-Arrochar-\nFt. Wadsworth"
     },
     {
       "coordinates": [
@@ -1165,7 +1165,7 @@
     {
       "coordinates": [
         -74.012095,
-        40.622439
+        40.620439
       ],
       "label": "Dyker Heights"
     },
@@ -1193,7 +1193,7 @@
     {
       "coordinates": [
         -74.029887,
-        40.624855
+        40.626855
       ],
       "label": "Bay Ridge"
     },
@@ -1258,7 +1258,7 @@
         -73.84743,
         40.864473
       ],
-      "label": "Allerton-Pelham Gardens"
+      "label": "Allerton-\nPelham Gardens"
     },
     {
       "coordinates": [
@@ -1300,7 +1300,7 @@
         -73.836641,
         40.880937
       ],
-      "label": "Eastchester-Edenwald-Baychester"
+      "label": "Eastchester-\nEdenwald-\nBaychester"
     },
     {
       "coordinates": [
@@ -1311,10 +1311,10 @@
     },
     {
       "coordinates": [
-        -73.940772,
-        40.818257
+        -73.938772,
+        40.820257
       ],
-      "label": "Central Harlem North-Polo Grounds"
+      "label": "Central Harlem North-\nPolo Grounds"
     },
     {
       "coordinates": [
@@ -1354,14 +1354,14 @@
     {
       "coordinates": [
         -73.915789,
-        40.830511
+        40.838511
       ],
-      "label": "East Concourse-Concourse Village"
+      "label": "East Concourse-\nConcourse Village"
     },
     {
       "coordinates": [
         -73.924399,
-        40.828997
+        40.827997
       ],
       "label": "West Concourse"
     }
