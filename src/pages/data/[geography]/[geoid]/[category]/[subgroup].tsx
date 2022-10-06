@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import {
   Box,
@@ -11,7 +11,12 @@ import {
   Heading,
   Link,
   HStack,
-  Tooltip,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+  IconButton,
 } from "@chakra-ui/react";
 import { ArrowBackIcon, InfoIcon } from "@chakra-ui/icons";
 import { Indicator } from "@components/Indicator";
@@ -158,6 +163,7 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
   };
 
   const geoidDescription = useGeoidDescription();
+  const initialFocusRef = useRef(null);
 
   return (
     <Flex
@@ -232,13 +238,14 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
         >
           <Box
             paddingBottom={{ base: "1rem", md: "1.5rem" }}
-            paddingLeft={{ base: "0.75rem", md: "1rem" }}
+            paddingX={{ base: "0.75rem", md: "1rem" }}
           >
             <Heading
               as="h1"
               fontWeight={700}
               textTransform={"capitalize"}
               fontSize={"1.5625rem"}
+              color={"gray.600"}
               data-cy="geoInfoPrimaryHeading"
             >
               {categoryLabels[category]}:{" "}
@@ -249,7 +256,7 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
             {category === Category.HOPD && (
               <Text
                 fontStyle={"italic"}
-                color={"gray.400"}
+                color={"gray.600"}
                 marginTop="0.25rem"
                 fontSize={"0.8125rem"}
                 lineHeight={"2"}
@@ -292,22 +299,33 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
                 >
                   Show reliability data
                 </FormLabel>
-                <Tooltip
-                  hasArrow
-                  placement="top-end"
-                  label={
-                    <Text>
+                <Popover placement="top-end" initialFocusRef={initialFocusRef}>
+                  <PopoverTrigger>
+                    <IconButton
+                      icon={<InfoIcon color="gray.400" />}
+                      aria-label="Show data reliability warning"
+                      background={"transparent"}
+                      minWidth={"auto"}
+                      height={"auto"}
+                      _hover={{ background: "transparent" }}
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent backgroundColor={"#000"} width={"320px"}>
+                    <PopoverArrow backgroundColor={"#000"} />
+                    <PopoverBody width={"320px"} color={"#fff"}>
                       Note: Data shown in gray have poor statistical
                       reliability. Learn more about our{" "}
-                      <Link href="/methods" color={"#fff"}>
+                      <Link
+                        ref={initialFocusRef}
+                        href="/methods"
+                        color={"#fff"}
+                      >
                         data sources
                       </Link>
                       .
-                    </Text>
-                  }
-                >
-                  <InfoIcon color="gray.400" />
-                </Tooltip>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Popover>
               </FormControl>
             )}
           </Flex>
