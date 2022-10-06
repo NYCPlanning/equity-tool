@@ -17,9 +17,11 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type MapProps = Pick<DeckGLProps, "layers" | "parent">;
+interface MapProps extends Pick<DeckGLProps, "layers" | "parent"> {
+  onToggleDistrictLayer: () => void;
+}
 
-export const Map = ({ layers, parent }: MapProps) => {
+export const Map = ({ layers, parent, onToggleDistrictLayer }: MapProps) => {
   const view = useView();
 
   const isMobile = useWindowWidth() < 768;
@@ -39,7 +41,6 @@ export const Map = ({ layers, parent }: MapProps) => {
         pitch: 0,
         bearing: 0,
       };
-
   // MapContext is necessary for navigation controls to work.
   // Likely because it holds the view state, and keeps Deck and
   // MapGL in sync with that singular state.
@@ -65,7 +66,7 @@ export const Map = ({ layers, parent }: MapProps) => {
         }}
       >
         <NavigationControl />
-        <AdditionalMapLayers />
+        <AdditionalMapLayers onToggleDistrictLayer={onToggleDistrictLayer} />
       </Box>
 
       <ReactMapGL

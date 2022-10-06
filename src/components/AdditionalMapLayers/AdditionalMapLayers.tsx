@@ -13,7 +13,13 @@ import {
 } from "@chakra-ui/react";
 import { MapLayersIcon } from "@components/Icons";
 
-export const AdditionalMapLayers = () => {
+export interface AdditionalMapLayersProps {
+  onToggleDistrictLayer: () => void;
+}
+
+export const AdditionalMapLayers = ({
+  onToggleDistrictLayer,
+}: AdditionalMapLayersProps) => {
   return (
     <Popover>
       <PopoverTrigger>
@@ -82,7 +88,7 @@ export const AdditionalMapLayers = () => {
               }}
               defaultChecked={false}
               onChange={() => {
-                console.log("nothing to see yet");
+                console.log("nothing to see here yet");
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
@@ -105,7 +111,7 @@ export const AdditionalMapLayers = () => {
               }}
               defaultChecked={false}
               onChange={() => {
-                console.log("nothing to see yet");
+                onToggleDistrictLayer();
               }}
             />
             <FormLabel mb={"0"} fontWeight={"normal"}>
