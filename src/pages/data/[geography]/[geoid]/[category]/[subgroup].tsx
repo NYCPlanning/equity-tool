@@ -245,7 +245,7 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
               fontWeight={700}
               textTransform={"capitalize"}
               fontSize={"1.5625rem"}
-              color={"gray.600"}
+              color={"gray.700"}
               data-cy="geoInfoPrimaryHeading"
             >
               {categoryLabels[category]}:{" "}
