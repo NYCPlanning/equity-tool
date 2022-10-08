@@ -45,6 +45,7 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@v2
         id: npm-cache
+        with:
           path: |
             ~/.npm
             ~/.cache/Cypress
@@ -69,6 +70,7 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@v2
         id: npm-cache
+        with:
           path: |
             ~/.npm
             ~/.cache/Cypress
@@ -104,6 +106,7 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@v2
         id: npm-cache
+        with:
           path: |
             ~/.npm
             ~/.cache/Cypress
@@ -138,6 +141,7 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@v2
         id: npm-cache
+        with:
           path: |
             ~/.npm
             ~/.cache/Cypress
