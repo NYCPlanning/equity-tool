@@ -21,7 +21,7 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.npm
+            node_modules
             ~/.cache/Cypress
             ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -47,7 +47,7 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.npm
+            node_modules
             ~/.cache/Cypress
             ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -72,7 +72,7 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.npm
+            node_modules
             ~/.cache/Cypress
             ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -108,7 +108,7 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.npm
+            node_modules
             ~/.cache/Cypress
             ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -143,7 +143,7 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.npm
+            node_modules
             ~/.cache/Cypress
             ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
