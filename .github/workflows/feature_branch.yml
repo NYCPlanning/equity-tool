@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies if cache invalid
         if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci --include=dev
+        run: npm ci
 
   lint:
     name: 🔎 Lint
@@ -152,4 +152,5 @@ jobs:
       - name: Deploy Preview
         run: |
           DEPLOY_ALIAS=${GITHUB_SHA:0:6}
-          npx netlify-cli deploy --build --alias $DEPLOY_ALIAS
+          npm run build
+          npx netlify-cli deploy --alias $DEPLOY_ALIAS
