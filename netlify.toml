@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
   publish = "out"
-  environment = { NODE_ENV="staging", NETLIFY_NEXT_PLUGIN_SKIP = "true" }
+  environment = { NODE_ENV="staging" }
   ignore = "false"
 
 [[redirects]]
