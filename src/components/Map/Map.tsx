@@ -9,6 +9,9 @@ import baseMap from "@data/basemap.json";
 import { Box } from "@chakra-ui/react";
 import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
+import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
+import { useGeography } from "@hooks/useGeography";
+import { useLayoutEffect, useRef, useState } from "react";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -16,11 +19,32 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type MapProps = Pick<DeckGLProps, "layers" | "parent">;
+type DeckProps = Pick<DeckGLProps, "layers" | "parent">;
 
-export const Map = ({ layers, parent }: MapProps) => {
+interface HoverType {
+  x: number;
+  y: number;
+  object: {
+    properties: {
+      cartodb_id: number;
+      layerName: string;
+      puma: string | null;
+      shape_area: number;
+      shape_leng: number;
+      ntacode?: string | undefined | null;
+      boroname?: string | undefined | null;
+      ntaname?: string | undefined | null;
+    };
+  };
+}
+
+interface MapProps extends DeckProps {
+  hoverInfo: HoverType | null;
+}
+
+export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
   const view = useView();
-
+  const geography = useGeography();
   const isMobile = useWindowWidth() < 768;
 
   const INITIAL_VIEW_STATE = !isMobile
@@ -38,6 +62,40 @@ export const Map = ({ layers, parent }: MapProps) => {
         pitch: 0,
         bearing: 0,
       };
+
+  const tooltipRef = useRef<HTMLDivElement>(null);
+
+  const hoverInfoPuma = hoverInfo?.object?.properties
+    ? hoverInfo.object.properties.puma
+    : null;
+
+  const pumaInfo: pumaInfo | null = usePumaInfo(hoverInfoPuma);
+
+  let tooltipText:
+    | string
+    | null
+    | undefined = `PUMA ${hoverInfoPuma}: ${pumaInfo?.neighborhoods} (${pumaInfo?.districts})`;
+
+  const [tooltipWidth, setTooltipWidth] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    if (tooltipRef?.current?.offsetWidth)
+      setTooltipWidth(tooltipRef.current.offsetWidth / 2);
+  }, [hoverInfo?.x, hoverInfo?.y, tooltipWidth]);
+
+  switch (geography) {
+    case "borough":
+      tooltipText = hoverInfo?.object?.properties.boroname;
+      break;
+    case "nta":
+      hoverInfo?.object
+        ? (tooltipText = `NTA ${hoverInfo?.object?.properties.ntacode}: ${hoverInfo?.object?.properties.ntaname}`)
+        : (tooltipText = undefined);
+      break;
+    default:
+      if (!hoverInfo?.object) tooltipText = undefined;
+      break;
+  }
 
   // MapContext is necessary for navigation controls to work.
   // Likely because it holds the view state, and keeps Deck and
@@ -70,6 +128,32 @@ export const Map = ({ layers, parent }: MapProps) => {
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle={baseMap}
       ></ReactMapGL>
+      {tooltipText && !tooltipText.includes("etc") && hoverInfo && (
+        <div
+          ref={tooltipRef}
+          style={{
+            position: "absolute",
+            zIndex: 1,
+            pointerEvents: "none",
+            left: hoverInfo.x - tooltipWidth,
+            top: hoverInfo.y + 15,
+            maxWidth: "320px",
+            height: "fit-content",
+            borderRadius: "4px",
+            padding: "8px",
+            gap: "10px",
+            backgroundColor: "#171923",
+            font: "Helvetica Neue",
+            fontWeight: "400",
+            fontSize: "14px",
+            lineHeight: "20px",
+            textAlign: "center",
+            color: "white",
+          }}
+        >
+          {tooltipText}
+        </div>
+      )}
     </DeckGL>
   );
 

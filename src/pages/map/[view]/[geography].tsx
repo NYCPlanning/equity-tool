@@ -97,7 +97,9 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const geoid = useGeoid();
   const geography = useGeography();
 
-  const layers = useLayers();
+  const [hoverInfo, setHoverInfo] = useState<any | null>(null);
+
+  const layers = useLayers(setHoverInfo);
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -258,6 +260,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           <Map
             layers={layers ? layers : undefined}
             parent={mapContainer?.current ? mapContainer.current : undefined}
+            hoverInfo={hoverInfo}
           />
         </Box>
       </Box>
