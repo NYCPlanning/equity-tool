@@ -11,7 +11,7 @@ import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
 import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -78,7 +78,7 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
 
   const [tooltipWidth, setTooltipWidth] = useState<number>(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (tooltipRef?.current?.offsetWidth)
       setTooltipWidth(tooltipRef.current.offsetWidth / 2);
   }, [hoverInfo?.x, hoverInfo?.y, tooltipWidth]);
