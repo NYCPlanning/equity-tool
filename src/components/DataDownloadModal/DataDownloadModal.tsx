@@ -45,7 +45,7 @@ export const DataDownloadModal = ({
   };
 
   const baseUrl = "https://equity-tool-data.nyc3.digitaloceanspaces.com";
-  const pumaInfo = usePumaInfo(geoid);
+  const pumaInfo = usePumaInfo();
 
   const getUrl = () => {
     if (downloadType === "drm") {
