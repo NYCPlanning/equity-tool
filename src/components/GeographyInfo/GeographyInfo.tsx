@@ -14,11 +14,12 @@ export const GeographyInfo = ({
   geoid,
   geography,
   fontSize = "1.5625rem",
+  noOfLines,
   ...boxProps
 }: GeographyInfoProps) => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
-  const pumaInfo = usePumaInfo(geoid);
+  const pumaInfo = usePumaInfo();
 
   const [ntaInfo, setNtaInfo] = useState({
     ntaname: "",
@@ -64,6 +65,7 @@ export const GeographyInfo = ({
           fontWeight={500}
           color="#2B797A"
           pb="0.5rem"
+          noOfLines={noOfLines}
         >
           NTA {geoid}
         </Heading>
@@ -76,6 +78,7 @@ export const GeographyInfo = ({
         textTransform={"capitalize"}
         fontSize={fontSize}
         data-cy="geoInfoPrimaryHeading"
+        noOfLines={noOfLines}
       >
         {primaryHeading}
       </Heading>

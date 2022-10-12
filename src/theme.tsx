@@ -84,10 +84,6 @@ const theme = extendTheme({
           cursor: "default",
           opacity: "revert",
         },
-        _disabled: {
-          backgroundColor: "white",
-          color: "teal",
-        },
       },
       variants: {
         leftCap: {

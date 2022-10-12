@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import {
   Box,
@@ -8,34 +8,39 @@ import {
   FormControl,
   FormLabel,
   Switch,
-  Select,
   Heading,
   Link,
   HStack,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+  IconButton,
 } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, InfoIcon } from "@chakra-ui/icons";
 import { Indicator } from "@components/Indicator";
 import { CategoryMenu } from "@components/CategoryMenu";
-import { GeographyInfo } from "@components/GeographyInfo";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 import { ExplorerSideNav } from "@components/ExplorerSideNav";
+import { SubgroupMenu } from "@components/SubgroupMenu";
 import { useGeography } from "@hooks/useGeography";
 import { useCategory } from "@hooks/useCategory";
-import { useSubgroup } from "@hooks/useSubgroup";
+import { useGeoidDescription } from "@hooks/useGeoidDescription";
+import { usePumaInfo } from "@hooks/usePumaInfo";
 import { Category } from "@constants/Category";
+import { Subgroup } from "@constants/Subgroup";
 import { categoryLabels } from "@constants/CategoryLabels";
 import pumas from "@data/pumas.json";
 import { DataExplorerService } from "@services/DataExplorerService";
 import { categoryProfileSchema } from "@schemas/categoryProfile";
 import { IndicatorRecord } from "@schemas/indicatorRecord";
-import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
-import { Subgroup } from "@constants/Subgroup";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
 import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
+import { Geography } from "@constants/geography";
 
 export interface DataPageProps {
-  hasRacialBreakdown: boolean;
   indicators: IndicatorRecord[];
   geoid: string;
 }
@@ -114,15 +119,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // Validate file follows expected schema
     const profile = await categoryProfileSchema.validate(res.data);
 
-    // Enabled subgroup dropdown if category profile has values for each subgroup
-    const hasRacialBreakdown =
-      JSON.stringify(Object.keys(profile).sort()) ===
-      JSON.stringify(Object.values(Subgroup).sort());
     // Return Profile data for given subgroup
     if (hasOwnProperty(profile, subgroup)) {
       return {
         props: {
-          hasRacialBreakdown,
           indicators: profile[subgroup],
           geoid,
         },
@@ -142,23 +142,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const DataPage = ({ hasRacialBreakdown, indicators, geoid }: DataPageProps) => {
+const DataPage = ({ indicators, geoid }: DataPageProps) => {
   // TODO - Can refactor this flag into a Context so that it doesn't have to be
   // prop drilled all the way down to VintageTable
   const [shouldShowReliability, setShouldShowReliability] =
     useState<boolean>(false);
   const geography = useGeography();
   const category = useCategory();
-  const subgroup = useSubgroup();
-  const router = useRouter();
+  const pumaInfo = usePumaInfo();
 
   const tablesSetIsOpens: React.Dispatch<boolean>[] = [];
-
-  const changeSubgroup = (event: any) => {
-    router.push(
-      `/data/${geography}/${geoid}/${category}/${event.target.value}`
-    );
-  };
 
   const toggleReliability = () => {
     ReactGA.event({
@@ -169,6 +162,9 @@ const DataPage = ({ hasRacialBreakdown, indicators, geoid }: DataPageProps) => {
     setShouldShowReliability(!shouldShowReliability);
   };
 
+  const geoidDescription = useGeoidDescription();
+  const initialFocusRef = useRef(null);
+
   return (
     <Flex
       width={"full"}
@@ -178,112 +174,166 @@ const DataPage = ({ hasRacialBreakdown, indicators, geoid }: DataPageProps) => {
     >
       <ExplorerSideNav geoid={geoid} />
       <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
-        <Box
-          marginTop={"0.75rem"}
-          paddingBottom={"1rem"}
-          borderBottomColor={"gray.300"}
-          borderBottomWidth={{ base: 0, md: "1px" }}
+        <Flex
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          paddingTop={"0.75rem"}
+          marginRight={"1rem"}
+          paddingLeft={{ base: "0.75rem", md: "1rem" }}
+          background={"white"}
+          position={{ base: "relative", md: "sticky" }}
+          top={{ base: "unset", md: "0" }}
+          zIndex={"200"}
         >
-          <Flex
-            direction={"row"}
-            justifyContent={"space-between"}
-            paddingX={{ base: "0.75rem", md: "1rem" }}
+          <Box
+            as="a"
+            href={`/map/data/${geography}?geoid=${geoid}`}
+            color={"gray.600"}
+            fontSize={"0.875rem"}
           >
-            <Box
-              as="a"
-              href={`/map/data/${geography}?geoid=${geoid}`}
-              color={"gray.600"}
-              fontSize={"0.875rem"}
-            >
-              <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
-              back to map
-            </Box>
-            <DataDownloadModal
-              downloadType={"data"}
-              geoid={geoid}
-              geography={geography}
-            />
-          </Flex>
-          <GeographyInfo
+            <ArrowBackIcon w={"1.5rem"} h={"1.5rem"} color={"gray.600"} />
+            back to map
+          </Box>
+          <DataDownloadModal
+            downloadType={"data"}
             geoid={geoid}
             geography={geography}
-            marginX={{ base: "0.75rem", md: "1rem" }}
-            paddingBottom={"1rem"}
-            borderBottom={{ base: "gray.200", md: "none" }}
-            borderBottomWidth={{ base: "1px", md: "unset" }}
           />
+        </Flex>
+        <Box display={{ base: "block", md: "none" }} marginTop={"0.75rem"}>
+          <Text
+            width={"100%"}
+            color={"gray.600"}
+            textAlign="center"
+            fontSize={"0.8125rem"}
+            marginBottom={"1rem"}
+          >
+            {geography === Geography.DISTRICT ? (
+              <>
+                {geoidDescription.label}
+                <br />
+                {geoidDescription.id} - {pumaInfo ? pumaInfo.districts : ""}
+              </>
+            ) : (
+              geoidDescription.label
+            )}
+          </Text>
           <CategoryMenu
             geography={geography}
             geoid={geoid}
             currentCategory={category}
-            display={{ base: "flex", md: "none" }}
             justify={"start"}
             marginTop={"0.5rem"}
             marginBottom={"1rem"}
+            paddingLeft={{ base: "0.75rem", md: "1rem" }}
           />
+        </Box>
+        <Box
+          paddingTop={"1rem"}
+          position={"sticky"}
+          top={{ base: "0px", md: "52px" }} // Match height of "back to map" <Flex>
+          background={"white"}
+          zIndex={"200"}
+        >
           <Box
-            width={{ base: "full", md: "max-content" }}
+            paddingBottom={{ base: "1rem", md: "1.5rem" }}
             paddingX={{ base: "0.75rem", md: "1rem" }}
           >
-            <Select
-              isDisabled={!hasRacialBreakdown}
-              onChange={changeSubgroup}
-              value={subgroup}
+            <Heading
+              as="h1"
+              fontWeight={700}
+              textTransform={"capitalize"}
+              fontSize={"1.5625rem"}
+              color={"gray.700"}
+              data-cy="geoInfoPrimaryHeading"
             >
-              <option value="tot">Total Population</option>
-              <option value="anh">Asian Non-Hispanic</option>
-              <option value="bnh">Black Non-Hispanic</option>
-              <option value="hsp">Hispanic</option>
-              <option value="wnh">White Non-Hispanic</option>
-            </Select>
-          </Box>
-        </Box>
-        <Flex
-          direction={{ base: "column", md: "row" }}
-          paddingX={{ base: "0.75rem", md: "1rem" }}
-          justifyContent={"space-between"}
-          alignItems="start"
-          paddingTop={{ base: "0rem", md: "2.125rem" }}
-          paddingBottom={{ base: "1rem", md: "0.75rem" }}
-          gridGap={"1rem"}
-        >
-          <Box>
-            <Heading as="h3" fontSize="1.5625rem">
-              {categoryLabels[category]}
+              {categoryLabels[category]}:{" "}
+              <Text as="span" fontWeight={400}>
+                {geoidDescription.label}
+              </Text>
             </Heading>
-            <Text>
-              Note: Data shown in gray have poor statistical reliability. Learn
-              more about our{" "}
-              <Link href="/methods" textDecoration="underline">
-                data sources
-              </Link>
-              .
-              <br />
-              {category === Category.HOPD &&
-                "Data not available by race/ethnicity."}
-            </Text>
+            {category === Category.HOPD && (
+              <Text
+                fontStyle={"italic"}
+                color={"gray.600"}
+                marginTop="0.25rem"
+                fontSize={"0.8125rem"}
+                lineHeight={"2"}
+              >
+                *Racial breakdowns are not available for Housing Production.
+              </Text>
+            )}
           </Box>
-          {category !== Category.HOPD && (
-            <FormControl width={"auto"} display={"flex"} alignItems="center">
-              <Switch
-                colorScheme="teal"
-                isChecked={shouldShowReliability}
-                onChange={() => {
-                  toggleReliability();
-                }}
-                id="show-reliability"
-              />
-              <FormLabel htmlFor="show-reliability" mb="0" ml={4}>
-                Show reliability data
-              </FormLabel>
-            </FormControl>
-          )}
-        </Flex>
+          <Flex
+            direction={"row"}
+            justify={"space-between"}
+            flexWrap={"wrap-reverse"}
+            gap={{ base: "1rem", md: "1.5rem" }}
+            borderBottomColor={"gray.300"}
+            borderBottomWidth={"1px"}
+          >
+            <SubgroupMenu />
+            {category !== Category.HOPD && (
+              <FormControl
+                width={"auto"}
+                display={"flex"}
+                alignItems="center"
+                marginRight={"1rem"}
+                paddingLeft={{ base: "0.75rem", md: "1rem" }}
+              >
+                <Switch
+                  colorScheme="gray"
+                  isChecked={shouldShowReliability}
+                  onChange={() => {
+                    toggleReliability();
+                  }}
+                  id="show-reliability"
+                />
+                <FormLabel
+                  htmlFor="show-reliability"
+                  mb="0"
+                  marginX={"0.375rem"}
+                  color={"gray.700"}
+                  whiteSpace={"nowrap"}
+                >
+                  Show reliability data
+                </FormLabel>
+                <Popover placement="top-end" initialFocusRef={initialFocusRef}>
+                  <PopoverTrigger>
+                    <IconButton
+                      icon={<InfoIcon color="gray.400" />}
+                      aria-label="Show data reliability warning"
+                      background={"transparent"}
+                      minWidth={"auto"}
+                      height={"auto"}
+                      _hover={{ background: "transparent" }}
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent backgroundColor={"#000"} width={"320px"}>
+                    <PopoverArrow backgroundColor={"#000"} />
+                    <PopoverBody width={"320px"} color={"#fff"}>
+                      Note: Data shown in gray have poor statistical
+                      reliability. Learn more about our{" "}
+                      <Link
+                        ref={initialFocusRef}
+                        href="/methods"
+                        color={"#fff"}
+                      >
+                        data sources
+                      </Link>
+                      .
+                    </PopoverBody>
+                  </PopoverContent>
+                </Popover>
+              </FormControl>
+            )}
+          </Flex>
+        </Box>
         <HStack
           width="100%"
-          paddingX={{ base: "0.75rem", md: "1rem" }}
-          paddingTop={{ base: "0rem" }}
-          paddingBottom={{ base: "1rem", md: "0.75rem" }}
+          paddingTop={"0.75rem"}
+          paddingLeft={{ base: "0.75rem", md: "1rem" }}
           display={{
             base: "auto",
             md: "none",
@@ -315,7 +365,10 @@ const DataPage = ({ hasRacialBreakdown, indicators, geoid }: DataPageProps) => {
           </Button>
         </HStack>
 
-        <Box paddingLeft={{ base: "0.75rem", md: "1rem" }}>
+        <Box
+          marginTop={{ base: "0.75rem", md: "1.5rem" }}
+          paddingLeft={{ base: "0.75rem", md: "1rem" }}
+        >
           <TablesIsOpenProvider tablesSetIsOpens={tablesSetIsOpens}>
             {indicators.map((indicator, i) => (
               <Indicator
