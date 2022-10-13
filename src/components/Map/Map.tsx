@@ -12,6 +12,7 @@ import { useWindowWidth } from "@react-hook/window-size";
 import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
 import { useEffect, useRef, useState } from "react";
+import { useLayers } from "@hooks/useLayers";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -19,30 +20,13 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type DeckProps = Pick<DeckGLProps, "layers" | "parent">;
+type DeckProps = DeckGLProps<"parent">;
 
-interface HoverType {
-  x: number;
-  y: number;
-  object: {
-    properties: {
-      cartodb_id: number;
-      layerName: string;
-      puma: string | null;
-      shape_area: number;
-      shape_leng: number;
-      ntacode?: string | undefined | null;
-      boroname?: string | undefined | null;
-      ntaname?: string | undefined | null;
-    };
-  };
-}
+export const Map = ({ parent }: DeckProps) => {
+  const [hoverInfo, setHoverInfo] = useState<any | null>(null);
 
-interface MapProps extends DeckProps {
-  hoverInfo: HoverType | null;
-}
+  const layers = useLayers(setHoverInfo);
 
-export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
   const view = useView();
   const geography = useGeography();
   const isMobile = useWindowWidth() < 768;

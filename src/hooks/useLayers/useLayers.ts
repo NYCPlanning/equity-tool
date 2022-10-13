@@ -11,7 +11,7 @@ import { useState } from "react";
 
 export const useLayers = (
   setTooltip: (string: string) => void
-): CartoLayer<any, any>[] | null => {
+): CartoLayer<any, any>[] | undefined => {
   const router = useRouter();
 
   const view = useView();
@@ -29,14 +29,16 @@ export const useLayers = (
         action: `${geography}`,
         label: `${newGeoid}`,
       });
-      router.push(`/map/${view}/${geography}/`);
+      router.push(`/map/${view}/${geography}/`, undefined, { shallow: true });
     } else {
       ReactGA.event({
         category: "Select Geo",
         action: `${geography}`,
         label: `${newGeoid}`,
       });
-      router.push(`/map/${view}/${geography}?geoid=${newGeoid}`);
+      router.push(`/map/${view}/${geography}?geoid=${newGeoid}`, undefined, {
+        shallow: true,
+      });
     }
   };
 
@@ -49,11 +51,10 @@ export const useLayers = (
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
-          setCurrentGeo(undefined);
           return [42, 67, 101, 255];
         }
         if (
-          feature?.properties?.puma?.trim() === currentGeo?.trim() &&
+          feature?.properties?.puma?.trim() === currentGeo &&
           currentGeo !== geoid
         )
           return [250, 255, 0];
@@ -69,15 +70,15 @@ export const useLayers = (
       getLineWidth: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
           return 2.5;
-        } else if (feature?.properties?.puma?.trim() === currentGeo?.trim()) {
+        } else if (feature?.properties?.puma?.trim() === currentGeo) {
           return 3;
         }
         return 0;
       },
       updateTriggers: {
-        getLineColor: [currentGeo],
-        getFillColor: [currentGeo],
-        getLineWidth: [currentGeo],
+        getLineColor: [currentGeo, geoid],
+        getFillColor: [geoid],
+        getLineWidth: [currentGeo, geoid],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
@@ -85,9 +86,11 @@ export const useLayers = (
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
       onHover: (info: any) => {
-        if (info.object && currentGeo !== geoid)
-          setCurrentGeo(info.object.properties.puma);
-        else setCurrentGeo(undefined);
+        if (info.picked === false && currentGeo !== undefined) {
+          setCurrentGeo(undefined);
+        } else if (info?.object?.properties?.puma?.toString() !== currentGeo) {
+          setCurrentGeo(info?.object?.properties?.puma);
+        }
         setTooltip(info);
       },
       onClick: (info: any) => {
@@ -108,11 +111,10 @@ export const useLayers = (
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
         if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
-          setCurrentGeo(undefined);
           return [42, 67, 101, 255];
         }
         if (
-          feature?.properties?.borocode?.toString() === currentGeo?.trim() &&
+          feature?.properties?.borocode?.toString() === currentGeo &&
           currentGeo !== geoid
         )
           return [250, 255, 0];
@@ -128,17 +130,15 @@ export const useLayers = (
       getLineWidth: (feature: any) => {
         if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
           return 2.5;
-        } else if (
-          feature?.properties?.borocode?.toString() === currentGeo?.trim()
-        ) {
+        } else if (feature?.properties?.borocode?.toString() === currentGeo) {
           return 3;
         }
         return 0;
       },
       updateTriggers: {
-        getLineColor: [currentGeo],
-        getFillColor: [currentGeo],
-        getLineWidth: [currentGeo],
+        getLineColor: [currentGeo, geoid],
+        getFillColor: [geoid],
+        getLineWidth: [currentGeo, geoid],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
@@ -154,15 +154,13 @@ export const useLayers = (
         }
       },
       onHover: (info: any) => {
-        if (info?.object?.properties?.borocode.toString() === currentGeo)
-          return;
-        else if (
-          info.object &&
-          currentGeo !== geoid &&
-          info.object.properties.borocode.toString() !== currentGeo
-        )
-          setCurrentGeo(info.object.properties.borocode.toString());
-        else setCurrentGeo(undefined);
+        if (info.picked === false && currentGeo !== undefined) {
+          setCurrentGeo(undefined);
+        } else if (
+          info?.object?.properties?.borocode?.toString() !== currentGeo
+        ) {
+          setCurrentGeo(info?.object?.properties?.borocode.toString());
+        }
         setTooltip(info);
       },
     }),
@@ -185,7 +183,6 @@ export const useLayers = (
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
         if (feature?.properties?.ntacode == geoid) {
-          setCurrentGeo(undefined);
           return [42, 67, 101, 255];
         }
         if (feature?.properties?.ntacode === currentGeo && currentGeo !== geoid)
@@ -222,8 +219,8 @@ export const useLayers = (
         return 0;
       },
       updateTriggers: {
-        getLineColor: [currentGeo],
-        getLineWidth: [currentGeo],
+        getLineColor: [currentGeo, geoid],
+        getLineWidth: [currentGeo, geoid],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
@@ -239,9 +236,13 @@ export const useLayers = (
         }
       },
       onHover: (info: any) => {
-        if (info.object && currentGeo !== geoid)
-          setCurrentGeo(info.object.properties.ntacode);
-        else setCurrentGeo(undefined);
+        if (info.picked === false && currentGeo !== undefined) {
+          setCurrentGeo(undefined);
+        } else if (
+          info?.object?.properties?.ntacode?.toString() !== currentGeo
+        ) {
+          setCurrentGeo(info?.object?.properties?.ntacode);
+        }
         setTooltip(info);
       },
     }),
