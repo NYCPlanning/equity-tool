@@ -92,6 +92,9 @@ export const Map = ({ parent }: DeckProps) => {
       layers={layers}
       parent={parent}
       ContextProvider={MapContext.Provider}
+      getCursor={({ isHovering, isDragging }) =>
+        isHovering ? "pointer" : isDragging ? "grabbing" : "grab"
+      }
     >
       <Box
         position="absolute"
@@ -120,7 +123,7 @@ export const Map = ({ parent }: DeckProps) => {
             zIndex: 1,
             pointerEvents: "none",
             left: hoverInfo.x - tooltipWidth,
-            top: hoverInfo.y + 15,
+            top: hoverInfo.y + 20,
             maxWidth: "320px",
             height: "fit-content",
             borderRadius: "4px",
