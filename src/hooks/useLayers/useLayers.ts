@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { CartoLayer, MAP_TYPES } from "@deck.gl/carto";
+import { MAP_TYPES } from "@deck.gl/carto";
 import { PathStyleExtension } from "@deck.gl/extensions";
 import { Geography } from "@constants/geography";
 import { useView } from "@hooks/useView";
@@ -8,10 +8,17 @@ import { useGeography } from "@hooks/useGeography";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
 import { useState } from "react";
+import {
+  defaultProps,
+  LabeledCartoLayer,
+} from "../../helpers/LabeledCartoLayer";
 
 export const useLayers = (
   setTooltip: (string: string) => void
-): CartoLayer<any, any>[] | undefined => {
+): LabeledCartoLayer[] | undefined => {
+  LabeledCartoLayer.layerName = "LabeledCartoLayer";
+  LabeledCartoLayer.defaultProps = defaultProps;
+
   const router = useRouter();
 
   const view = useView();
@@ -43,10 +50,11 @@ export const useLayers = (
   };
 
   return [
-    new CartoLayer({
+    new LabeledCartoLayer({
+      passedId: DISTRICT,
       visible: geography === DISTRICT,
       type: MAP_TYPES.QUERY,
-      id: DISTRICT,
+      id: "unique_id_district",
       data: `SELECT * FROM dcp_puma_2010`,
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
@@ -103,10 +111,11 @@ export const useLayers = (
         }
       },
     }),
-    new CartoLayer({
+    new LabeledCartoLayer({
+      passedId: BOROUGH,
       visible: geography === BOROUGH,
       type: MAP_TYPES.QUERY,
-      id: BOROUGH,
+      id: "unique_id_borough",
       data: `SELECT * FROM dcp_borough_boundary`,
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
@@ -164,10 +173,11 @@ export const useLayers = (
         setTooltip(info);
       },
     }),
-    new CartoLayer({
+    new LabeledCartoLayer({
+      passedId: CITYWIDE,
       visible: geography === CITYWIDE,
       type: MAP_TYPES.QUERY,
-      id: CITYWIDE,
+      id: "unique_id_citywide",
       data: `SELECT * FROM pff_2020_city_21c`,
       uniqueIdProperty: "id",
       getLineColor: [42, 67, 101, 255],
@@ -175,10 +185,11 @@ export const useLayers = (
       lineWidthMinPixels: 3,
       stroked: true,
     }),
-    new CartoLayer({
+    new LabeledCartoLayer({
+      passedId: NTA,
       visible: geography === NTA,
       type: MAP_TYPES.QUERY,
-      id: NTA,
+      id: "unique_id_nta",
       data: `SELECT * FROM ${process.env.NTA_LAYER}`,
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
