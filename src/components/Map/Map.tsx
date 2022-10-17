@@ -20,9 +20,9 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type DeckProps = DeckGLProps<"parent">;
+type MapProps = DeckGLProps<"parent">;
 
-export const Map = ({ parent }: DeckProps) => {
+export const Map = ({ parent }: MapProps) => {
   const [hoverInfo, setHoverInfo] = useState<any | null>(null);
 
   const layers = useLayers(setHoverInfo);
