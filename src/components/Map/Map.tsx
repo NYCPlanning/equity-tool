@@ -11,7 +11,8 @@ import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
 import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLayers } from "@hooks/useLayers";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -19,30 +20,13 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type DeckProps = Pick<DeckGLProps, "layers" | "parent">;
+type MapProps = DeckGLProps<"parent">;
 
-interface HoverType {
-  x: number;
-  y: number;
-  object: {
-    properties: {
-      cartodb_id: number;
-      layerName: string;
-      puma: string | null;
-      shape_area: number;
-      shape_leng: number;
-      ntacode?: string | undefined | null;
-      boroname?: string | undefined | null;
-      ntaname?: string | undefined | null;
-    };
-  };
-}
+export const Map = ({ parent }: MapProps) => {
+  const [hoverInfo, setHoverInfo] = useState<any | null>(null);
 
-interface MapProps extends DeckProps {
-  hoverInfo: HoverType | null;
-}
+  const layers = useLayers(setHoverInfo);
 
-export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
   const view = useView();
   const geography = useGeography();
   const isMobile = useWindowWidth() < 768;
@@ -78,7 +62,7 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
 
   const [tooltipWidth, setTooltipWidth] = useState<number>(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (tooltipRef?.current?.offsetWidth)
       setTooltipWidth(tooltipRef.current.offsetWidth / 2);
   }, [hoverInfo?.x, hoverInfo?.y, tooltipWidth]);
@@ -108,6 +92,9 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
       layers={layers}
       parent={parent}
       ContextProvider={MapContext.Provider}
+      getCursor={({ isHovering, isDragging }) =>
+        isHovering ? "pointer" : isDragging ? "grabbing" : "grab"
+      }
     >
       <Box
         position="absolute"
@@ -136,7 +123,7 @@ export const Map = ({ layers, parent, hoverInfo }: MapProps) => {
             zIndex: 1,
             pointerEvents: "none",
             left: hoverInfo.x - tooltipWidth,
-            top: hoverInfo.y + 15,
+            top: hoverInfo.y + 20,
             maxWidth: "320px",
             height: "fit-content",
             borderRadius: "4px",
