@@ -19,7 +19,7 @@ export const GeographyInfo = ({
 }: GeographyInfoProps) => {
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
-  const pumaInfo = usePumaInfo(geoid);
+  const pumaInfo = usePumaInfo();
 
   const [ntaInfo, setNtaInfo] = useState({
     ntaname: "",

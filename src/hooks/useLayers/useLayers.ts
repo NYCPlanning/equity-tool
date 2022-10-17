@@ -22,6 +22,8 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
   const geoid = useGeoid();
   const geography = useGeography();
 
+  const [currentGeo, setCurrentGeo] = useState<string | undefined>(undefined);
+
   const { DISTRICT, BOROUGH, CITYWIDE, NTA } = Geography;
 
   const toggleGeoSelect = (newGeoid: string) => {
@@ -31,14 +33,16 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         action: `${geography}`,
         label: `${newGeoid}`,
       });
-      router.push(`/map/${view}/${geography}/`);
+      router.push(`/map/${view}/${geography}/`, undefined, { shallow: true });
     } else {
       ReactGA.event({
         category: "Select Geo",
         action: `${geography}`,
         label: `${newGeoid}`,
       });
-      router.push(`/map/${view}/${geography}?geoid=${newGeoid}`);
+      router.push(`/map/${view}/${geography}?geoid=${newGeoid}`, undefined, {
+        shallow: true,
+      });
     }
   };
 
@@ -54,6 +58,11 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
           return [42, 67, 101, 255];
         }
+        if (
+          feature?.properties?.puma?.trim() === currentGeo &&
+          currentGeo !== geoid
+        )
+          return [250, 255, 0];
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
@@ -66,19 +75,29 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
       getLineWidth: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
           return 2.5;
+        } else if (feature?.properties?.puma?.trim() === currentGeo) {
+          return 3;
         }
         return 0;
       },
       updateTriggers: {
-        getLineColor: [geoid],
+        getLineColor: [currentGeo, geoid],
         getFillColor: [geoid],
-        getLineWidth: [geoid],
+        getLineWidth: [currentGeo, geoid],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
       pickable: true,
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
+      onHover: (info: any) => {
+        if (info.picked === false && currentGeo !== undefined) {
+          setCurrentGeo(undefined);
+        } else if (info?.object?.properties?.puma?.toString() !== currentGeo) {
+          setCurrentGeo(info?.object?.properties?.puma);
+        }
+        setTooltip(info);
+      },
       onClick: (info: any) => {
         const id: any = info?.object?.properties?.puma
           ? info.object.properties.puma
@@ -100,6 +119,11 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
           return [42, 67, 101, 255];
         }
+        if (
+          feature?.properties?.borocode?.toString() === currentGeo &&
+          currentGeo !== geoid
+        )
+          return [250, 255, 0];
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
@@ -112,13 +136,15 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
       getLineWidth: (feature: any) => {
         if (feature?.properties?.borocode?.toString() === geoid?.trim()) {
           return 2.5;
+        } else if (feature?.properties?.borocode?.toString() === currentGeo) {
+          return 3;
         }
         return 0;
       },
       updateTriggers: {
-        getLineColor: [geoid],
+        getLineColor: [currentGeo, geoid],
         getFillColor: [geoid],
-        getLineWidth: [geoid],
+        getLineWidth: [currentGeo, geoid],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
@@ -132,6 +158,16 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         if (typeof id === "number") {
           toggleGeoSelect(id.toString());
         }
+      },
+      onHover: (info: any) => {
+        if (info.picked === false && currentGeo !== undefined) {
+          setCurrentGeo(undefined);
+        } else if (
+          info?.object?.properties?.borocode?.toString() !== currentGeo
+        ) {
+          setCurrentGeo(info?.object?.properties?.borocode.toString());
+        }
+        setTooltip(info);
       },
     }),
     new LabeledCartoLayer({
@@ -157,6 +193,8 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         if (feature?.properties?.ntacode == geoid) {
           return [42, 67, 101, 255];
         }
+        if (feature?.properties?.ntacode === currentGeo && currentGeo !== geoid)
+          return [250, 255, 0];
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
@@ -183,11 +221,14 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         if (feature?.properties?.ntacode == geoid) {
           return 2.5;
         }
+        if (feature?.properties?.ntacode === currentGeo) {
+          return 3;
+        }
         return 0;
       },
       updateTriggers: {
-        getLineColor: [geoid],
-        getLineWidth: [geoid],
+        getLineColor: [currentGeo, geoid],
+        getLineWidth: [currentGeo, geoid],
       },
       lineWidthMinPixels: 0.5,
       stroked: true,
@@ -201,6 +242,16 @@ export const useLayers = (): LabeledCartoLayer[] | null => {
         if (typeof id === "string") {
           toggleGeoSelect(id);
         }
+      },
+      onHover: (info: any) => {
+        if (info.picked === false && currentGeo !== undefined) {
+          setCurrentGeo(undefined);
+        } else if (
+          info?.object?.properties?.ntacode?.toString() !== currentGeo
+        ) {
+          setCurrentGeo(info?.object?.properties?.ntacode);
+        }
+        setTooltip(info);
       },
     }),
   ];

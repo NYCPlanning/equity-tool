@@ -19,13 +19,15 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            ~/.cache/Cypress
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
-        run: npm ci --include=dev
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
 
   lint:
     name: 🔎 Lint
@@ -45,11 +47,12 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            ~/.cache/Cypress
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Run lint
         run: npm run lint
 
@@ -71,11 +74,12 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            ~/.cache/Cypress
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Run tests
         run: npm run test
 
@@ -107,11 +111,12 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            ~/.cache/Cypress
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Run e2e test
         run: npm run e2e:test
 
@@ -143,11 +148,12 @@ jobs:
         id: npm-cache
         with:
           path: |
-            ~/.cache/Cypress
             node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+            ~/.cache/Cypress
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-npm
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Version NPM Package
         env:
           SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
@@ -158,4 +164,6 @@ jobs:
           npm version patch -m "version %s" --commit-hooks false
           git push https://${{ secrets.SERVICE_ACCOUNT_NAME }}:${{ secrets.SERVICE_ACCOUNT_PAT }}@github.com/${{ github.repository }}.git HEAD:main --follow-tags
       - name: Deploy to Production
-        run: npx netlify-cli deploy --prod --build
+        run: |
+          npm run build
+          npx netlify-cli deploy --prod

@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { useLayers } from "@hooks/useLayers";
 import { Map, ViewToggle, WelcomeMobileDrawer } from "@components/Map";
 import { CommunityDataMobileDrawer } from "@components/Map/CommunityData";
 import { DrmMobileDrawer } from "@components/Map/DRM";
@@ -97,8 +96,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const geoid = useGeoid();
   const geography = useGeography();
 
-  const layers = useLayers();
-
   const mapContainer = useRef<HTMLDivElement>(null);
 
   const [lastCommunityDataGeography, setLastCommunityDataGeography] =
@@ -174,24 +171,28 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     if (geography === BOROUGH) setLastBoroughGeoid(geoid);
 
     if (targetGeography === CITYWIDE) {
-      router.push(`${targetUrl}?geoid=${NYC}`);
+      router.push(`${targetUrl}?geoid=${NYC}`, undefined, { shallow: true });
 
       return;
     }
 
     if (targetGeography === DISTRICT && lastDistrictGeoid) {
-      router.push(`${targetUrl}?geoid=${lastDistrictGeoid}`);
+      router.push(`${targetUrl}?geoid=${lastDistrictGeoid}`, undefined, {
+        shallow: true,
+      });
 
       return;
     }
 
     if (targetGeography === BOROUGH && lastBoroughGeoid) {
-      router.push(`${targetUrl}?geoid=${lastBoroughGeoid}`);
+      router.push(`${targetUrl}?geoid=${lastBoroughGeoid}`, undefined, {
+        shallow: true,
+      });
 
       return;
     }
 
-    router.push(`${targetUrl}`);
+    router.push(`${targetUrl}`, undefined, { shallow: true });
   };
 
   return (
@@ -256,7 +257,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           {view === "drm" && <DRMMapLegend />}
 
           <Map
-            layers={layers ? layers : undefined}
             parent={mapContainer?.current ? mapContainer.current : undefined}
           />
         </Box>

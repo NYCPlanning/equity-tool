@@ -8,6 +8,6 @@ export function useClearSelection() {
   const geography = useGeography();
 
   return () => {
-    router.push(`/map/${view}/${geography}/`);
+    router.push(`/map/${view}/${geography}/`, undefined, { shallow: true });
   };
 }
