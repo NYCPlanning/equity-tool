@@ -38,7 +38,7 @@
         -73.884646,
         40.848401
       ],
-      "label": "Belmont, Crotona Park East & East Tremont"
+      "label": "Belmont,\nCrotona Park East\n& East Tremont"
     },
     {
       "puma_id": 3706,
@@ -70,7 +70,7 @@
         -73.859526,
         40.824372
       ],
-      "label": "Castle Hill, Clason Point & Parkchester"
+      "label": "Castle Hill,\nClason Point\n& Parkchester"
     },
     {
       "puma_id": 3710,
@@ -150,7 +150,7 @@
         -73.98312,
         40.719364
       ],
-      "label": "Chinatown & Lower East Side"
+      "label": "Chinatown &\nLower East Side"
     },
     {
       "puma_id": 3810,
@@ -182,7 +182,7 @@
         -74.120453,
         40.626675
       ],
-      "label": "Port Richmond, Stapleton & Mariner's Harbor"
+      "label": "Port Richmond,\nStapleton &\nMariner's Harbor"
     },
     {
       "puma_id": 4001,
@@ -222,7 +222,7 @@
         -73.988105,
         40.673871
       ],
-      "label": "Park Slope, Carroll Gardens & Red Hook"
+      "label": "Park Slope,\nCarroll Gardens\n& Red Hook"
     },
     {
       "puma_id": 4006,
@@ -286,12 +286,12 @@
         -74.023898,
         40.622906
       ],
-      "label": "Bay Ridge & Dyker Heights"
+      "label": "Bay Ridge &\nDyker Heights"
     },
     {
       "puma_id": 4014,
       "coordinates": [
-        -73.982684,
+        -73.987984,
         40.629933
       ],
       "label": "Borough Park, Kensington\n& Ocean Parkway"
@@ -318,7 +318,7 @@
         -73.993629,
         40.60688
       ],
-      "label": "Bensonhurst & Bath Beach"
+      "label": "Bensonhurst &\nBath Beach"
     },
     {
       "puma_id": 4018,
@@ -334,7 +334,7 @@
         -73.917999,
         40.767922
       ],
-      "label": "Astoria & Long Island City"
+      "label": "Astoria &\nLong Island City"
     },
     {
       "puma_id": 4102,
@@ -374,7 +374,7 @@
         -73.796165,
         40.724836
       ],
-      "label": "Briarwood, Fresh Meadows & Hillcrest"
+      "label": "Briarwood,\nFresh Meadows\n& Hillcrest"
     },
     {
       "puma_id": 4107,
@@ -382,7 +382,7 @@
         -73.85508,
         40.740578
       ],
-      "label": "Elmhurst & South Corona"
+      "label": "Elmhurst &\nSouth Corona"
     },
     {
       "puma_id": 4108,
@@ -390,7 +390,7 @@
         -73.85169,
         40.722642
       ],
-      "label": "Forest Hills & Rego Park"
+      "label": "Forest Hills\n& Rego Park"
     },
     {
       "puma_id": 4109,
@@ -438,7 +438,7 @@
         -73.824526,
         40.591025
       ],
-      "label": "Far Rockaway, Breezy Point & Broad Channel"
+      "label": "Far Rockaway,\nBreezy Point &\nBroad Channel"
     }
   ]
 }
