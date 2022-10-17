@@ -7,12 +7,15 @@ import { useGeoid } from "@hooks/useGeoid";
 import { useGeography } from "@hooks/useGeography";
 import drmData from "@data/DRI_Subindices_Indicators.json";
 import ReactGA from "react-ga4";
+import { useState } from "react";
 import {
   defaultProps,
   LabeledCartoLayer,
 } from "../../helpers/LabeledCartoLayer";
 
-export const useLayers = (): LabeledCartoLayer[] | null => {
+export const useLayers = (
+  setTooltip: (string: string) => void
+): LabeledCartoLayer[] | undefined => {
   LabeledCartoLayer.layerName = "LabeledCartoLayer";
   LabeledCartoLayer.defaultProps = defaultProps;
 
