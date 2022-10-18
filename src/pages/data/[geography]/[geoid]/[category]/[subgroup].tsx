@@ -174,7 +174,6 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
       height={"full"}
       direction={{ base: "column", md: "row" }}
       gridGap={{ base: "1.5rem", md: "0rem" }}
-      id="data-top"
     >
       <ExplorerSideNav geoid={geoid} />
 

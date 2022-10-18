@@ -25,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Box
           height="calc(100vh - 4.375rem)"
           overflow={isMapRoute ? "hidden" : "auto"}
+          id="back-to-top"
         >
           <Flex direction="row" height="100%" position="relative">
             <Component {...pageProps} />
