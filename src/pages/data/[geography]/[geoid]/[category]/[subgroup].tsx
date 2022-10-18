@@ -24,6 +24,7 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 import { ExplorerSideNav } from "@components/ExplorerSideNav";
 import { SubgroupMenu } from "@components/SubgroupMenu";
+import { BackToTop } from "@components/BackToTop";
 import { useGeography } from "@hooks/useGeography";
 import { useCategory } from "@hooks/useCategory";
 import { useGeoidDescription } from "@hooks/useGeoidDescription";
@@ -39,6 +40,7 @@ import ReactGA from "react-ga4";
 import { hasOwnProperty } from "@helpers/hasOwnProperty";
 import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
 import { Geography } from "@constants/geography";
+import { useWindowWidth } from "@react-hook/window-size";
 
 export interface DataPageProps {
   indicators: IndicatorRecord[];
@@ -150,6 +152,7 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
   const geography = useGeography();
   const category = useCategory();
   const pumaInfo = usePumaInfo();
+  const isMobile = useWindowWidth() < 768;
 
   const tablesSetIsOpens: React.Dispatch<boolean>[] = [];
 
@@ -173,7 +176,10 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
       gridGap={{ base: "1.5rem", md: "0rem" }}
     >
       <ExplorerSideNav geoid={geoid} />
+
       <Box flexGrow={1} overflowX={{ base: "initial", md: "hidden" }}>
+        {isMobile && <BackToTop />}
+
         <Flex
           direction={"row"}
           justifyContent={"space-between"}
