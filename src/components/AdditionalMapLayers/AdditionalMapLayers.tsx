@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   Button,
@@ -31,25 +30,10 @@ export const AdditionalMapLayers = ({
 }: AdditionalMapLayersProps) => {
   const view = useView();
 
-  const [additionalLayerButtonSelected, setAdditionalLayerButtonSelected] =
-    useState<boolean>(false);
-
-  const [additionaLayerToggleSelected, setAdditionaLayerToggleSelected] =
-    useState<boolean>(false);
-
-  const handleLayerButtonClick = () => {
-    setAdditionalLayerButtonSelected((current) => !current);
-  };
-
-  const handleLayerToggleClick = () => {
-    setAdditionaLayerToggleSelected((current) => !current);
-  };
-
   return (
     <Popover>
       <PopoverTrigger>
         <Box
-          className="popoverWrapper"
           gridGap={"0.5rem"}
           position={"absolute"}
           top={{
@@ -63,7 +47,6 @@ export const AdditionalMapLayers = ({
           zIndex={"99"}
         >
           <Button
-            className="outerButton"
             leftIcon={<MapLayersIcon />}
             minWidth={"auto"}
             padding={"0"}
@@ -76,7 +59,6 @@ export const AdditionalMapLayers = ({
               md: "initial",
             }}
             _hover={{ color: "currentColor" }}
-            onClick={handleLayerButtonClick}
           ></Button>
         </Box>
       </PopoverTrigger>
@@ -96,7 +78,6 @@ export const AdditionalMapLayers = ({
         }}
       >
         <PopoverHeader
-          className="popoverHeaderWrapper"
           display={"flex"}
           flexDirection={"row"}
           gridGap={"0.5rem"}
@@ -110,7 +91,6 @@ export const AdditionalMapLayers = ({
           fontSize={"1.25rem"}
         >
           <Button
-            className="innerButton"
             leftIcon={<MapLayersIcon />}
             minWidth={"auto"}
             padding={"0"}
@@ -120,18 +100,11 @@ export const AdditionalMapLayers = ({
             height={"1.875rem"}
             variant={"outline"}
             _hover={{ color: "currentColor" }}
-            visibility={"hidden"}
-            style={{
-              visibility: additionalLayerButtonSelected ? "visible" : "hidden",
-            }}
           ></Button>
-          <Text className="addLayerOptions" flexGrow={"2"}>
-            Additional Layers
-          </Text>
+          <Text flexGrow={"2"}>Additional Layers</Text>
         </PopoverHeader>
         <PopoverBody>
           <FormControl
-            className="nta-wrapper"
             display={"flex"}
             alignItems={"center"}
             gridGap={".5rem"}
@@ -141,18 +114,16 @@ export const AdditionalMapLayers = ({
             }}
           >
             <Switch
-              className="nta-switch"
               _focus={{
                 boxShadow: "0 0 0 1px #e2e8f0",
               }}
               _focusVisible={{
                 boxShadow: "0 0 0 1px #4A5568 !important",
               }}
+              colorScheme={"gray"}
               defaultChecked={false}
-              colorScheme={additionaLayerToggleSelected ? "gray" : "gray"}
               onChange={() => {
                 onToggleNtaLayer();
-                handleLayerToggleClick();
               }}
             />
             <FormLabel marginBottom={"0"} fontWeight={"normal"}>
@@ -166,7 +137,6 @@ export const AdditionalMapLayers = ({
                 alignItems={"center"}
               >
                 <Box
-                  className="nta-text"
                   gridColumn={{
                     base: "initial",
                     md: "span 5",
@@ -178,14 +148,13 @@ export const AdditionalMapLayers = ({
                 >
                   Neighborhood Tabulation Area (NTA)
                 </Box>
-                <Box className="nta-square" justifySelf={"end"}>
+                <Box justifySelf={"end"}>
                   <LayerSelectionSquareNTA />
                 </Box>
               </Box>
             </FormLabel>
           </FormControl>
           <FormControl
-            className="cd-wrapper"
             display={"flex"}
             alignItems={"top"}
             gridGap={".5rem"}
@@ -196,7 +165,6 @@ export const AdditionalMapLayers = ({
             }}
           >
             <Switch
-              className="cd-switch"
               marginTop={".125rem"}
               _focus={{
                 boxShadow: "0 0 0 1px #e2e8f0",
@@ -204,11 +172,10 @@ export const AdditionalMapLayers = ({
               _focusVisible={{
                 boxShadow: "0 0 0 1px #4A5568 !important",
               }}
+              colorScheme={"gray"}
               defaultChecked={false}
-              colorScheme={additionaLayerToggleSelected ? "gray" : "gray"}
               onChange={() => {
                 onToggleDistrictLayer();
-                handleLayerToggleClick();
               }}
             />
             <FormLabel marginBottom={"0"} fontWeight={"normal"}>
@@ -222,7 +189,6 @@ export const AdditionalMapLayers = ({
                 alignItems={"center"}
               >
                 <Box
-                  className="cd-text"
                   gridColumn={{
                     base: "initial",
                     md: "span 5",
@@ -234,7 +200,7 @@ export const AdditionalMapLayers = ({
                 >
                   Community District (CD)*
                 </Box>
-                <Box className="cd-square" justifySelf={"end"}>
+                <Box justifySelf={"end"}>
                   <LayerSelectionSquareCD />
                 </Box>
               </Box>

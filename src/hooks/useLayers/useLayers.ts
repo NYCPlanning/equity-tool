@@ -266,10 +266,6 @@ export const useLayers = (
       getFillColor: [0, 0, 0, 0],
       lineWidthUnits: "pixels",
       getLineWidth: 3,
-      updateTriggers: {
-        getLineColor: [geoid],
-        getLineWidth: [geoid],
-      },
       lineWidthMinPixels: 0.5,
       stroked: true,
       extensions: [new PathStyleExtension({ offset: false })],
@@ -285,11 +281,6 @@ export const useLayers = (
       getFillColor: [0, 0, 0, 0],
       lineWidthUnits: "pixels",
       getLineWidth: 3,
-      updateTriggers: {
-        getLineColor: [geoid],
-        getFillColor: [geoid],
-        getLineWidth: [geoid],
-      },
       lineWidthMinPixels: 0.5,
       stroked: true,
       extensions: [new PathStyleExtension({ offset: false })],

@@ -235,7 +235,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
       {view === "drm" && geoid && <DrmMobileDrawer />}
 
-      <Box flex="2" height="100%" className="thisAndThat">
+      <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
