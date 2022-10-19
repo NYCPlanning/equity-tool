@@ -20,12 +20,21 @@ setDefaultCredentials({
   apiKey: process.env.NEXT_PUBLIC_CARTO_API_KEY,
 });
 
-type MapProps = DeckGLProps<"parent">;
+type DeckProps = DeckGLProps<"parent">;
 
-export const Map = ({ parent }: MapProps) => {
+interface MapProps extends DeckProps {
+  ntaOutlineLayer: boolean;
+  districtOutlineLayer: boolean;
+}
+
+export const Map = ({
+  ntaOutlineLayer,
+  districtOutlineLayer,
+  parent,
+}: MapProps) => {
   const [hoverInfo, setHoverInfo] = useState<any | null>(null);
 
-  const layers = useLayers(setHoverInfo);
+  const layers = useLayers(setHoverInfo, ntaOutlineLayer, districtOutlineLayer);
 
   const view = useView();
   const geography = useGeography();
