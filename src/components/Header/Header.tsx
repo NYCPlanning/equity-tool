@@ -115,6 +115,9 @@ export const Header = () => {
                 as="nav"
                 h="full"
               >
+                <NavLink onClick={onClose} href={logoUrl}>
+                  Home
+                </NavLink>
                 <NavLink onClick={onClose} href="/about">
                   About
                 </NavLink>
