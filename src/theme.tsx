@@ -66,6 +66,7 @@ const theme = extendTheme({
             backgroundColor: "white",
             borderRadius: 50,
             whiteSpace: "nowrap",
+            height: "42px",
           },
         },
       },
@@ -74,6 +75,7 @@ const theme = extendTheme({
       baseStyle: {
         backgroundColor: "white",
         color: "gray.600",
+        height: "42px",
         _hover: {
           backgroundColor: "teal.50",
           color: "teal",
@@ -87,15 +89,17 @@ const theme = extendTheme({
       },
       variants: {
         leftCap: {
-          borderRadius: "50px 0 0 50px",
-          borderRight: "1px solid #A0AEC0",
+          minHeight: "42px",
+          borderRadius: "50px",
+          height: "42px",
         },
         middle: {
-          borderRadius: 0,
-          borderRight: "1px solid #A0AEC0",
+          minHeight: "42px",
+          borderRadius: "50px",
         },
         rightCap: {
-          borderRadius: "0 50px 50px 0",
+          minHeight: "42px",
+          borderRadius: "50px",
         },
         toggle: {
           borderRadius: 50,
@@ -104,6 +108,7 @@ const theme = extendTheme({
             cursor: "default",
             opacity: "1 !important",
           },
+          minHeight: "42px",
         },
         download: {
           backgroundColor: "teal",

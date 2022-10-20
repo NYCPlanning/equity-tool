@@ -117,7 +117,7 @@ export const Map = ({
           md: "1rem",
         }}
       >
-        <NavigationControl />
+        {!isMobile && <NavigationControl />}
       </Box>
 
       <ReactMapGL
