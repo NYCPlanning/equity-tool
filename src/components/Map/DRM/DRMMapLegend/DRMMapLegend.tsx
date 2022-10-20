@@ -28,7 +28,7 @@ export const DRMMapLegend = () => {
       <Box
         position="absolute"
         bottom={8}
-        right={{
+        left={{
           md: 8,
           base: "auto",
         }}
@@ -69,8 +69,8 @@ export const DRMMapLegend = () => {
 
       <Box
         position="absolute"
-        top={5}
-        right={5}
+        top={"4.5rem"}
+        left={"24px"}
         zIndex={100}
         backgroundColor="#FFFFFF"
         padding="0.5rem"
@@ -84,8 +84,8 @@ export const DRMMapLegend = () => {
 
       <Box
         position="absolute"
-        top={5}
-        right={5}
+        top={"4.5rem"}
+        left={"24px"}
         zIndex={100}
         backgroundColor="#FFFFFF"
         padding="0.5rem"

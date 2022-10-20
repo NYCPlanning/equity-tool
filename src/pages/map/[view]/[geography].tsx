@@ -2,9 +2,7 @@ import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { Map, ViewToggle, WelcomeMobileDrawer } from "@components/Map";
-import { CommunityDataMobileDrawer } from "@components/Map/CommunityData";
-import { DrmMobileDrawer } from "@components/Map/DRM";
+import { Map, ViewToggle } from "@components/Map";
 import { GeographySelect as CommunityDataGeographySelect } from "@components/Map/CommunityData";
 import { DRMMapLegend } from "@components/Map/DRM";
 import { SidebarContent } from "@components/SidebarContent";
@@ -228,13 +226,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
       >
         <SidebarContent />
       </Flex>
-
-      {!geoid && <WelcomeMobileDrawer />}
-
-      {view === "data" && geoid && <CommunityDataMobileDrawer />}
-
-      {view === "drm" && geoid && <DrmMobileDrawer />}
-
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
@@ -255,11 +246,11 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             <CommunityDataGeographySelect
               position="absolute"
               top={{
-                base: "1rem",
+                base: "4.5rem",
                 md: "4.5rem",
               }}
               left={{
-                base: "2vmin",
+                base: "4vmin",
                 sm: "4vmin",
                 md: "1rem",
               }}
