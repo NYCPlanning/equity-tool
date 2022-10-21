@@ -41,7 +41,7 @@ export const AdditionalMapLayers = ({
             md: view === "data" ? "14.5rem" : "11rem",
           }}
           left={{
-            base: ".5rem",
+            base: "1.5rem",
             md: view === "data" ? "1rem" : "1rem",
           }}
           zIndex={"99"}

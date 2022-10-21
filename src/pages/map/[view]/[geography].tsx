@@ -2,9 +2,8 @@ import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { Map, ViewToggle } from "@components/Map";
+import { InstructionButton, Map, ViewToggle } from "@components/Map";
 import { GeographySelect as CommunityDataGeographySelect } from "@components/Map/CommunityData";
-import { DRMMapLegend } from "@components/Map/DRM";
 import { SidebarContent } from "@components/SidebarContent";
 import { useView } from "@hooks/useView";
 import { useGeoid } from "@hooks/useGeoid";
@@ -260,7 +259,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             />
           )}
 
-          {view === "drm" && <DRMMapLegend />}
+          <InstructionButton />
 
           <Map
             ntaOutlineLayer={ntaOutlineLayer}
