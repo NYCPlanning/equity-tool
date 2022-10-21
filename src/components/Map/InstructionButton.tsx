@@ -37,7 +37,7 @@ export const InstructionButton = () => {
         padding="0.5rem"
         fontSize="0.875rem"
         lineHeight="0.875rem"
-        borderRadius="5px"
+        borderRadius="8px"
         stroke="1px #4A5568"
         display={displayMinimizedLegend}
       >
@@ -51,17 +51,12 @@ export const InstructionButton = () => {
         zIndex={100}
         backgroundColor="#FFFFFF"
         padding="0.5rem"
-        borderRadius="5px"
+        borderRadius="10px"
         display={displayFullLegend}
         maxWidth="23rem"
       >
         <Flex alignItems={"center"}>
-          <InfoIcon
-            fontSize="0.875rem"
-            lineHeight="0.875rem"
-            color="#4A5568"
-            onClick={toggleLegend}
-          />
+          <InfoIcon color="#4A5568" onClick={toggleLegend} />
           <Text
             paddingLeft="1rem"
             fontWeight={700}
