@@ -12,6 +12,7 @@ import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 import ReactGA from "react-ga4";
 import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
+import { DRMMapLegend } from "@components/Map/DRM/DRMMapLegend";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -259,6 +260,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             />
           )}
 
+          <DRMMapLegend />
           <InstructionButton />
 
           <Map
