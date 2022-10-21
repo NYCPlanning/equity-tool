@@ -1,8 +1,12 @@
 import { Box, HStack, Text, Square, Flex, Spacer } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import { useView } from "@hooks/useView";
+import { View } from "@constants/View";
 
-export const DRMMapLegend = () => {
+export const InstructionButton = () => {
+  const view = useView();
+
   const [displayMinimizedLegend, setDisplayMinimizedLegend] = useState({
     base: "block",
     md: "none",
@@ -69,23 +73,24 @@ export const DRMMapLegend = () => {
 
       <Box
         position="absolute"
-        top={"4.5rem"}
-        left={"24px"}
+        top={view === View.DATA ? "7.75rem" : "4.5rem"}
+        left={"1.5rem"}
         zIndex={100}
         backgroundColor="#FFFFFF"
         padding="0.5rem"
         fontSize="0.875rem"
         lineHeight="0.875rem"
         borderRadius="5px"
+        stroke="1px #4A5568"
         display={displayMinimizedLegend}
       >
-        <InfoIcon onClick={toggleLegend} />
+        <InfoIcon color="#4A5568" onClick={toggleLegend} />
       </Box>
 
       <Box
         position="absolute"
-        top={"4.5rem"}
-        left={"24px"}
+        top={view === View.DATA ? "7.75rem" : "4.5rem"}
+        left={"1.5rem"}
         zIndex={100}
         backgroundColor="#FFFFFF"
         padding="0.5rem"
@@ -94,13 +99,13 @@ export const DRMMapLegend = () => {
         display={displayFullLegend}
       >
         <Flex>
-          <Text fontWeight={700}>Displacement Risk Map</Text>
-          <Spacer minW="10px" />
           <InfoIcon
             fontSize="0.875rem"
             lineHeight="0.875rem"
             onClick={toggleLegend}
           />
+          <Spacer minW="10px" />
+          <Text fontWeight={700}>Displacement Risk Map</Text>
         </Flex>
 
         <HStack direction="row" alignItems="center" spacing="8px">
