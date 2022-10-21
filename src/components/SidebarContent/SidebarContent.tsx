@@ -3,7 +3,7 @@ import { Box, Divider, Button, Flex } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GeographyInfo } from "@components/GeographyInfo";
 import WelcomeContent from "@components/WelcomeContent";
-import WelcomeFooter from "@components/WelcomeFooter";
+import WelcomeFooter from "@components/Footers/WelcomeFooter";
 import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { useView } from "@hooks/useView";
 import { useGeoid } from "@hooks/useGeoid";

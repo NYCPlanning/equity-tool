@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import StaticPageFooter from "@components/StaticPageFooter";
+import StaticPageFooter from "@components/Footers/StaticPageFooter";
 import { useView } from "@hooks/useView";
 
 const WelcomeFooter = () => {

@@ -39,6 +39,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@netlify/plugin-nextjs": "^4.28.3",
+    "@hookform/resolvers": "^2.9.10",
     "@react-hook/window-size": "^3.1.1",
     "@sentry/nextjs": "^6.18.2",
     "@types/d3-color": "^3.0.2",
@@ -55,6 +56,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ga4": "^1.4.1",
+    "react-hook-form": "^7.38.0",
     "react-icons": "^4.4.0",
     "react-map-gl": "^6.1.17",
     "yup": "^0.32.11"

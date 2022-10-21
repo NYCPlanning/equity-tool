@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, IconButton, Flex } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import WelcomeContent from "@components/WelcomeContent";
-import WelcomeFooter from "@components/WelcomeFooter";
+import WelcomeFooter from "@components/Footers/WelcomeFooter";
 import ReactGA from "react-ga4";
 
 export const WelcomeMobileDrawer = () => {
