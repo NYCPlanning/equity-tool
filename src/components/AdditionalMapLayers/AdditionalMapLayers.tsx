@@ -52,6 +52,7 @@ export const AdditionalMapLayers = ({
             padding={"0"}
             width={"1.875rem"}
             height={"1.875rem"}
+            maxHeight="30px"
             boxShadow={"0 0 0 1px rgba(0, 0, 0, .2)"}
             variant={"outline"}
             position={{
@@ -98,6 +99,7 @@ export const AdditionalMapLayers = ({
             flexGrow={"0"}
             width={"1.875rem"}
             height={"1.875rem"}
+            maxHeight="30px"
             variant={"outline"}
             _hover={{ color: "currentColor" }}
           ></Button>
