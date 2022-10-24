@@ -123,6 +123,7 @@ export const Map = ({
       <ReactMapGL
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle={baseMap}
+        attributionControl={!isMobile}
       ></ReactMapGL>
       {tooltipText && !tooltipText.includes("etc") && hoverInfo && (
         <div
