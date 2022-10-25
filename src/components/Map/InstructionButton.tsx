@@ -41,7 +41,7 @@ export const InstructionButton = () => {
         stroke="1px #4A5568"
         display={displayMinimizedLegend}
       >
-        <InfoIcon color="#4A5568" onClick={toggleLegend} />
+        <InfoIcon onClick={toggleLegend} />
       </Box>
 
       <Box
@@ -56,7 +56,7 @@ export const InstructionButton = () => {
         maxWidth="23rem"
       >
         <Flex alignItems={"center"}>
-          <InfoIcon color="#4A5568" onClick={toggleLegend} />
+          <InfoIcon onClick={toggleLegend} />
           <Text
             paddingLeft="1rem"
             fontWeight={700}
