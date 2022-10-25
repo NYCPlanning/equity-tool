@@ -87,6 +87,7 @@ const theme = extendTheme({
           cursor: "default",
           opacity: "revert",
           fontWeight: 700,
+          border: "1px solid teal",
         },
       },
       variants: {

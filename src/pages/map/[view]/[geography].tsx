@@ -21,6 +21,7 @@ import { NYC } from "@constants/geoid";
 import ReactGA from "react-ga4";
 import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
 import { DRMMapLegend } from "@components/Map/DRM/DRMMapLegend";
+import { View } from "@constants/View";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -263,8 +264,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
                 md: "4.5rem",
               }}
               left={{
-                base: "4vmin",
-                sm: "4vmin",
+                base: "2vmin",
+                sm: "2vmin",
                 md: "1rem",
               }}
               zIndex={100}
@@ -273,7 +274,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             />
           )}
 
-          <DRMMapLegend />
+          {view === View.DRM && <DRMMapLegend />}
           <InstructionButton />
 
           <Map
