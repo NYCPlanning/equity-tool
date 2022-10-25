@@ -264,7 +264,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
                 md: "4.5rem",
               }}
               left={{
-                base: "2vmin",
+                base: "4vmin",
                 sm: "2vmin",
                 md: "1rem",
               }}
