@@ -107,9 +107,6 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
     if (layer.id.slice(-14) === "_pumatextlayer") {
       return 10.5 < viewport.zoom && viewport.zoom < 13;
     } else if (layer.id.slice(-13) === "_ntatextlayer") {
-      if (this.props.passedId === "nta") {
-        return 11 < viewport.zoom && viewport.zoom < 15;
-      }
       return 12 < viewport.zoom && viewport.zoom < 15;
     } else if (layer.id.slice(-14) === "_borotextlayer") {
       return viewport.zoom < 11;
