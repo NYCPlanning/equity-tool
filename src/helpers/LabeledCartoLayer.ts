@@ -59,6 +59,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         outlineColor: [255, 255, 255, 255],
         maxWidth: 800,
         sizeUnits: "meters",
+        fontWeight: 700,
       }),
       new TextLayer({
         visible: this.props.visible && this.props.passedId !== NTA,
