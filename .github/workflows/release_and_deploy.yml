@@ -50,8 +50,12 @@ jobs:
       NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
       NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
       NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       WAIT_ON_TIMEOUT: 900000
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      FROM_EDDE_EMAIL: ${{ secrets.FROM_EDDE_EMAIL }}
+      TO_EDDE_EMAIL: ${{ secrets.TO_EDDE_EMAIL }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -78,7 +82,11 @@ jobs:
         NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
         NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
         NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
+        SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        FROM_EDDE_EMAIL: ${{ secrets.FROM_EDDE_EMAIL }}
+        TO_EDDE_EMAIL: ${{ secrets.TO_EDDE_EMAIL }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -100,4 +108,8 @@ jobs:
           npm version patch -m "version %s" --commit-hooks false
           git push https://${{ secrets.SERVICE_ACCOUNT_NAME }}:${{ secrets.SERVICE_ACCOUNT_PAT }}@github.com/${{ github.repository }}.git HEAD:main --follow-tags
       - name: Deploy to Production
-        run: npx netlify-cli deploy --build --prod
+        run: |
+          echo "FROM_EDDE_EMAIL=$FROM_EDDE_EMAIL" >> .env
+          echo "TO_EDDE_EMAIL=$TO_EDDE_EMAIL" >> .env
+          echo "SENDGRID_API_KEY=$SENDGRID_API_KEY" >> .env
+          npx netlify-cli deploy --build --prod

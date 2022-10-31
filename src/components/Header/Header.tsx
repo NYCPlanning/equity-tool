@@ -124,10 +124,7 @@ export const Header = () => {
                 <NavLink onClick={onClose} href="/methods">
                   Methods &amp; Sources
                 </NavLink>
-                <NavLink
-                  onClick={contactUs}
-                  href="mailto:EDDE@planning.nyc.gov?subject=EDDE Question or Comment"
-                >
+                <NavLink onClick={contactUs} href="/contact">
                   Contact
                 </NavLink>
               </Flex>

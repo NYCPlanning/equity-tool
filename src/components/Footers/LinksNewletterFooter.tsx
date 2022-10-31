@@ -75,7 +75,6 @@ const LinksNewletterFooter = (props: BoxProps) => (
       <Spacer />
 
       <Flex
-        className="signupWrapper"
         flexDirection={"column"}
         width={{ base: "full%", md: "60%", lg: "45%" }}
       >
