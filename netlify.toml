@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "out"
+  publish = ".next"
   environment = { NODE_ENV="staging" }
   ignore = "false"
 
