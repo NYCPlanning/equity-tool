@@ -19,3 +19,6 @@
 [[redirects]]
   from = "/map/drm"
   to = "/map/drm/nta"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
