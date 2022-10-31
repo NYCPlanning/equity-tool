@@ -94,7 +94,6 @@ jobs:
       NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
       NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
       NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
-      # NETLIFY_NEXT_PLUGIN_SKIP: ${{ secrets.NETLIFY_NEXT_PLUGIN_SKIP }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       WAIT_ON_TIMEOUT: 900000
     steps:
@@ -130,7 +129,6 @@ jobs:
       NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
       NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
       NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
-      # NETLIFY_NEXT_PLUGIN_SKIP: ${{ secrets.NETLIFY_NEXT_PLUGIN_SKIP }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v2

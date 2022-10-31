@@ -147,6 +147,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Deploy Preview
-        run: |
-          npm run build
-          npx netlify-cli deploy --alias staging
+        run: npx netlify-cli deploy --build --alias staging
+          
