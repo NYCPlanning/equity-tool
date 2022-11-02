@@ -14,6 +14,10 @@ export const NavLink = ({
   ...buttonProps
 }: NavLinkProps): JSX.Element => {
   const { pathname } = useRouter();
+  const isHomeLinkOnMapPage =
+    pathname === "/map/[view]/[geography]" && href.slice(0, 5) === "/map/"
+      ? true
+      : false;
   return (
     <NextLink href={href} passHref>
       <Button
@@ -28,7 +32,7 @@ export const NavLink = ({
         px={{ base: 10, md: 4 }}
         py={{ base: 4, md: 0 }}
         justifyContent={{ base: "left", md: "center" }}
-        aria-current={pathname === href ? "page" : false}
+        aria-current={pathname === href || isHomeLinkOnMapPage ? "page" : false}
         _activeLink={{
           boxShadow: "inset 0 -2px 0 0 #2C7A7B",
           fontWeight: "bold",
