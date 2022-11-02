@@ -25,7 +25,6 @@ export const ViewToggle = ({
         }}
         zIndex={200}
         boxShadow="lg"
-        display="block"
       >
         <Button
           onClick={onCommunityDataClick}

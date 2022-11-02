@@ -67,6 +67,8 @@ const theme = extendTheme({
             borderRadius: 50,
             whiteSpace: "nowrap",
             height: "42px",
+            maxWidth: "21.5rem",
+            display: "flex",
           },
         },
       },

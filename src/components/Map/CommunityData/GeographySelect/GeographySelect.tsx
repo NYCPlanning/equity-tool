@@ -21,7 +21,7 @@ export const GeographySelect = ({
           onGeographySelect(DISTRICT);
         }}
         isActive={geography === DISTRICT}
-        variant="leftCap"
+        variant="toggle"
         data-cy="districtButton"
       >
         Community District*
@@ -31,7 +31,7 @@ export const GeographySelect = ({
           onGeographySelect(BOROUGH);
         }}
         isActive={geography === BOROUGH}
-        variant="middle"
+        variant="toggle"
         data-cy="boroughButton"
       >
         Borough
@@ -41,7 +41,7 @@ export const GeographySelect = ({
           onGeographySelect(CITYWIDE);
         }}
         isActive={geography === CITYWIDE}
-        variant="rightCap"
+        variant="toggle"
         data-cy="citywideButton"
       >
         Citywide
