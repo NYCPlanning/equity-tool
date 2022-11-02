@@ -22,6 +22,7 @@ import ReactGA from "react-ga4";
 import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
 import { DRMMapLegend } from "@components/Map/DRM/DRMMapLegend";
 import { View } from "@constants/View";
+import { useWindowWidth } from "@react-hook/window-size";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -110,6 +111,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const view = useView();
   const geoid = useGeoid();
   const geography = useGeography();
+
+  const isMobile = useWindowWidth() < 768;
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -275,7 +278,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           )}
 
           {view === View.DRM && <DRMMapLegend />}
-          <InstructionButton />
+          {isMobile && <InstructionButton />}
 
           <Map
             ntaOutlineLayer={ntaOutlineLayer}
