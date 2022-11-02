@@ -42,9 +42,29 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         }
       ),
       new TextLayer({
-        visible: this.props.visible,
+        visible: this.props.visible && this.props.passedId == NTA,
         data: ntaLabels.features,
-        id: `${this.props.passedId}_ntatextlayer`,
+        id: `${this.props.passedId}_ntatextlayer_drm`,
+        uniqueIdProperty: "id",
+        getPosition: (x: any) => x.coordinates,
+        getText: (x: any) => x.label.toUpperCase(),
+        getSize: 12,
+        billboard: true,
+        getColor: [74, 85, 104, 200],
+        fontFamily: "Helvetica Neue",
+        fontSettings: {
+          sdf: true,
+        },
+        outlineWidth: 1,
+        outlineColor: [255, 255, 255, 255],
+        maxWidth: 600,
+        sizeUnits: "pixels",
+        fontWeight: 700,
+      }),
+      new TextLayer({
+        visible: this.props.visible && this.props.passedId !== NTA,
+        data: ntaLabels.features,
+        id: `${this.props.passedId}_ntatextlayer_cd`,
         uniqueIdProperty: "id",
         getPosition: (x: any) => x.coordinates,
         getText: (x: any) => x.label.toUpperCase(),
@@ -59,7 +79,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         outlineColor: [255, 255, 255, 255],
         maxWidth: 800,
         sizeUnits: "meters",
-        fontWeight: 700,
+        // fontWeight: 700,
       }),
       new TextLayer({
         visible: this.props.visible && this.props.passedId !== NTA,
@@ -106,7 +126,9 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
   filterSubLayer({ layer, viewport }: { layer: any; viewport: any }) {
     if (layer.id.slice(-14) === "_pumatextlayer") {
       return 10.5 < viewport.zoom && viewport.zoom < 13;
-    } else if (layer.id.slice(-13) === "_ntatextlayer") {
+    } else if (layer.id.slice(-17) === "_ntatextlayer_drm") {
+      return 12 < viewport.zoom && viewport.zoom < 15;
+    } else if (layer.id.slice(-16) === "_ntatextlayer_cd") {
       return 12 < viewport.zoom && viewport.zoom < 15;
     } else if (layer.id.slice(-14) === "_borotextlayer") {
       return viewport.zoom < 11;
