@@ -11,18 +11,19 @@ export const BackToTop = () => {
       <Link onClick={scrollToTop}>
         <Box
           position="fixed"
-          bottom="16px"
-          right="16px"
+          bottom="12px"
+          right="12px"
           zIndex={3}
           onClick={scrollToTop}
         >
           <Button
-            width="1rem"
+            width="48px"
+            height="48px"
             border="1px"
             borderColor="#CBD5E0"
             onClick={scrollToTop}
           >
-            <ArrowUpIcon />
+            <ArrowUpIcon width="24px" height="24px" />
           </Button>
         </Box>
       </Link>

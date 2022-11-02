@@ -164,6 +164,4 @@ jobs:
           npm version patch -m "version %s" --commit-hooks false
           git push https://${{ secrets.SERVICE_ACCOUNT_NAME }}:${{ secrets.SERVICE_ACCOUNT_PAT }}@github.com/${{ github.repository }}.git HEAD:main --follow-tags
       - name: Deploy to Production
-        run: |
-          npm run build
-          npx netlify-cli deploy --prod
+        run: npx netlify-cli deploy --build --prod

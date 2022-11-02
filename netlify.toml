@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "out"
+  publish = ".next"
   environment = { NODE_ENV="staging" }
   ignore = "false"
 
@@ -19,3 +19,6 @@
 [[redirects]]
   from = "/map/drm"
   to = "/map/drm/nta"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
