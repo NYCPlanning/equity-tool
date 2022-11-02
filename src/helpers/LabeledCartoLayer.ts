@@ -48,7 +48,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         uniqueIdProperty: "id",
         getPosition: (x: any) => x.coordinates,
         getText: (x: any) => x.label.toUpperCase(),
-        getSize: 12,
+        getSize: 125,
         billboard: true,
         getColor: [74, 85, 104, 200],
         fontFamily: "Helvetica Neue",
@@ -57,8 +57,8 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         },
         outlineWidth: 1,
         outlineColor: [255, 255, 255, 255],
-        maxWidth: 600,
-        sizeUnits: "pixels",
+        maxWidth: 800,
+        sizeUnits: "meters",
         fontWeight: 700,
       }),
       new TextLayer({
@@ -79,7 +79,6 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         outlineColor: [255, 255, 255, 255],
         maxWidth: 800,
         sizeUnits: "meters",
-        // fontWeight: 700,
       }),
       new TextLayer({
         visible: this.props.visible && this.props.passedId !== NTA,
@@ -127,7 +126,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
     if (layer.id.slice(-14) === "_pumatextlayer") {
       return 10.5 < viewport.zoom && viewport.zoom < 13;
     } else if (layer.id.slice(-17) === "_ntatextlayer_drm") {
-      return 12 < viewport.zoom && viewport.zoom < 15;
+      return 11 < viewport.zoom && viewport.zoom < 15;
     } else if (layer.id.slice(-16) === "_ntatextlayer_cd") {
       return 12 < viewport.zoom && viewport.zoom < 15;
     } else if (layer.id.slice(-14) === "_borotextlayer") {
