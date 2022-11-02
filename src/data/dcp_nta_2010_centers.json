@@ -93,34 +93,6 @@
     },
     {
       "coordinates": [
-        -74.128351,
-        40.545779
-      ],
-      "label": "park-cemetery-etc\nStaten Island"
-    },
-    {
-      "coordinates": [
-        -73.9598,
-        40.787943
-      ],
-      "label": "park-cemetery-etc\nManhattan"
-    },
-    {
-      "coordinates": [
-        -73.832763,
-        40.690302
-      ],
-      "label": "park-cemetery-etc\nQueens"
-    },
-    {
-      "coordinates": [
-        -73.919588,
-        40.623095
-      ],
-      "label": "park-cemetery-etc\nBrooklyn"
-    },
-    {
-      "coordinates": [
         -73.876474,
         40.571485
       ],
@@ -349,13 +321,6 @@
         40.638971
       ],
       "label": "West New Brighton-New Brighton-St. George"
-    },
-    {
-      "coordinates": [
-        -73.847998,
-        40.872461
-      ],
-      "label": "park-cemetery-etc-\nBronx"
     },
     {
       "coordinates": [
