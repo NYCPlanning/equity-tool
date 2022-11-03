@@ -15,9 +15,6 @@ import ReactGA from "react-ga4";
 import React from "react";
 
 class MethodsPage extends React.Component {
-  constructor(props: any) {
-    super(props);
-  }
   componentDidMount() {
     document.getElementById("back-to-top")!.scrollTop = 0;
   }

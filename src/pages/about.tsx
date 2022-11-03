@@ -14,9 +14,6 @@ import StaticPageFooter from "@components/StaticPageFooter";
 import React from "react";
 
 class AboutPage extends React.Component {
-  constructor(props: any) {
-    super(props);
-  }
   componentDidMount() {
     document.getElementById("back-to-top")!.scrollTop = 0;
   }
