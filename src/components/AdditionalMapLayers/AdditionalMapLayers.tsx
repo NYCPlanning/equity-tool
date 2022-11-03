@@ -37,7 +37,7 @@ export const AdditionalMapLayers = ({
           gridGap={"0.5rem"}
           position={"absolute"}
           top={{
-            base: view === "data" ? "10.5rem" : "7.5rem",
+            base: view === "data" ? "10rem" : "6.875em",
             md: view === "data" ? "14.5rem" : "11rem",
           }}
           left={{
