@@ -77,19 +77,9 @@ export const InstructionButton = () => {
           fontWeight={"bold"}
           fontSize={"1.25rem"}
         >
-          <Button
-            leftIcon={<InfoIcon />}
-            minWidth={"auto"}
-            padding={0}
-            backgroundColor={"white"}
-            flexGrow={"0"}
-            width={"1.875rem"}
-            height={"1.875rem"}
-            maxHeight="30px"
-            variant={"outline"}
-            _hover={{ color: "currentColor" }}
-          ></Button>
-          <Text flexGrow={"2"}>Instructions</Text>
+          <Text paddingLeft={"2rem"} flexGrow={"2"}>
+            Instructions
+          </Text>
         </PopoverHeader>
         <PopoverBody>
           <Text fontSize="1rem" lineHeight="26px" fontWeight={400}>
