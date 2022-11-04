@@ -12,7 +12,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
 import StaticPageFooter from "@components/Footers/StaticPageFooter";
-import LinksNewletterFooter from "@components/Footers/LinksNewletterFooter";
+import NewsletterFooter from "@components/Footers/NewsletterFooter";
 
 const AboutPage = () => {
   useEffect(() => {
@@ -292,7 +292,7 @@ const AboutPage = () => {
           margin={"0 auto"}
           width={"100%"}
         >
-          <LinksNewletterFooter />
+          <NewsletterFooter />
         </Box>
       </Center>
 

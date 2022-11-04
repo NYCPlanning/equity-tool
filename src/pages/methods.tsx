@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import StaticPageFooter from "@components/Footers/StaticPageFooter";
-import LinksNewletterFooter from "@components/Footers/LinksNewletterFooter";
+import NewsletterFooter from "@components/Footers/NewsletterFooter";
 
 import ReactGA from "react-ga4";
 
@@ -502,7 +502,7 @@ const MethodsPage = () => {
           bg={"gray.50"}
           padding={"1.5rem 0"}
         >
-          <LinksNewletterFooter />
+          <NewsletterFooter />
         </Box>
       </Center>
 
