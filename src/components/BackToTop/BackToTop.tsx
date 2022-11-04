@@ -11,8 +11,8 @@ export const BackToTop = () => {
       <Link onClick={scrollToTop}>
         <Box
           position="fixed"
-          bottom="12px"
-          right="12px"
+          bottom="14px"
+          right="14px"
           zIndex={3}
           onClick={scrollToTop}
         >
