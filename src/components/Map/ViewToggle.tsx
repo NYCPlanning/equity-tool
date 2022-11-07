@@ -30,6 +30,7 @@ export const ViewToggle = ({
           onClick={onCommunityDataClick}
           isDisabled={view === "data"}
           isActive={view === "data"}
+          _hover={{ _disabled: { bg: "teal.50" } }}
           variant="toggle"
           data-cy="communityDataBtn-desktop"
         >
@@ -39,6 +40,7 @@ export const ViewToggle = ({
           onClick={onDrmClick}
           isActive={view === "drm"}
           isDisabled={view === "drm"}
+          _hover={{ _disabled: { bg: "teal.50" } }}
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
