@@ -22,7 +22,7 @@ import ReactGA from "react-ga4";
 import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
 import { DRMMapLegend } from "@components/Map/DRM/DRMMapLegend";
 import { View } from "@constants/View";
-import { useWindowWidth } from "@react-hook/window-size";
+import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 export interface MapPageProps {
   initialRouteParams: string;
@@ -112,7 +112,9 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
   const geoid = useGeoid();
   const geography = useGeography();
 
-  const isMobile = useWindowWidth() < 768;
+  const windowDimensions = useWindowDimensions();
+  let isMobile;
+  if (windowDimensions.width) isMobile = windowDimensions.width < 768;
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
