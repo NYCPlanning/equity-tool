@@ -41,6 +41,7 @@ import { hasOwnProperty } from "@helpers/hasOwnProperty";
 import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
 import { Geography } from "@constants/geography";
 import { useWindowWidth } from "@react-hook/window-size";
+import { View } from "@constants/View";
 
 export interface DataPageProps {
   indicators: IndicatorRecord[];
@@ -202,7 +203,7 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
             back to map
           </Box>
           <DataDownloadModal
-            downloadType={"data"}
+            downloadType={View.DATA}
             geoid={geoid}
             geography={geography}
           />

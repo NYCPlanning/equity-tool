@@ -15,6 +15,7 @@ import { NYC } from "@constants/geoid";
 import { SubindicatorBin } from "@components/SidebarContent";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 import ntaIndexes from "@data/ntaIndexes.json";
+import { View } from "@constants/View";
 
 export const DrmMobileDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +82,7 @@ export const DrmMobileDrawer = () => {
             {isOpen ? (
               <>
                 <DataDownloadModal
-                  downloadType="drm"
+                  downloadType={View.DRM}
                   geoid={geoid}
                   geography={geography}
                 />
@@ -134,7 +135,7 @@ export const DrmMobileDrawer = () => {
           </Box>
 
           <Box>
-            {view === "drm" && (
+            {view === View.DRM && (
               <SubindicatorBin bin={ntaIndex[geoid ? geoid : ""]} />
             )}
           </Box>

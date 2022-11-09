@@ -15,6 +15,7 @@ import { CategoryMenu } from "@components/CategoryMenu";
 import { SubindicatorBin } from "@components/SidebarContent";
 import ntaIndexes from "@data/ntaIndexes.json";
 import { DataDownloadModal } from "@components/DataDownloadModal";
+import { View } from "@constants/View";
 
 export const SidebarContent = () => {
   const view = useView();
@@ -45,9 +46,9 @@ export const SidebarContent = () => {
             </Button>
           </Box>
           <Box pr="1rem">
-            {view === "drm" && (
+            {view === View.DRM && (
               <DataDownloadModal
-                downloadType="drm"
+                downloadType={View.DRM}
                 geoid={geoid}
                 geography={geography}
               />
@@ -57,7 +58,9 @@ export const SidebarContent = () => {
         <Flex direction="row" justifyContent="space-between">
           <Box
             padding={
-              view === "drm" ? "1rem 1rem 0.5rem 1rem" : "1rem 1rem 1.5rem 1rem"
+              view === View.DRM
+                ? "1rem 1rem 0.5rem 1rem"
+                : "1rem 1rem 1.5rem 1rem"
             }
           >
             <GeographyInfo
@@ -67,10 +70,12 @@ export const SidebarContent = () => {
             />
           </Box>
         </Flex>
-        <Box>{view === "drm" && <SubindicatorBin bin={ntaIndex[geoid]} />}</Box>
+        <Box>
+          {view === View.DRM && <SubindicatorBin bin={ntaIndex[geoid]} />}
+        </Box>
 
-        {view === "drm" && <DRMSelection />}
-        {view === "data" && (
+        {view === View.DRM && <DRMSelection />}
+        {view === View.DATA && (
           <>
             <Divider color={"gray.200"} my={"1.5rem"} />
             <CategoryMenu

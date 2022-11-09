@@ -59,25 +59,25 @@ export const getStaticPaths: GetStaticPaths = () => {
   const paths = [
     {
       params: {
-        view: "data",
+        view: View.DATA,
         geography: "district",
       },
     },
     {
       params: {
-        view: "data",
+        view: View.DATA,
         geography: "borough",
       },
     },
     {
       params: {
-        view: "data",
+        view: View.DATA,
         geography: "citywide",
       },
     },
     {
       params: {
-        view: "drm",
+        view: View.DRM,
         geography: "nta",
       },
     },
@@ -241,15 +241,16 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
         <SidebarContent />
       </Flex>
 
-      {view === "data" && geoid && <CommunityDataMobileDrawer />}
+      {view === View.DATA && geoid && <CommunityDataMobileDrawer />}
 
-      {view === "drm" && geoid && <DrmMobileDrawer />}
+      {view === View.DRM && geoid && <DrmMobileDrawer />}
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
             onDrmClick={onDrmClick}
+            isMobile={isMobile}
           />
 
           <AdditionalMapLayers
@@ -261,7 +262,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             }}
           />
 
-          {view === "data" && (
+          {view === View.DATA && (
             <CommunityDataGeographySelect
               position="absolute"
               top={{
@@ -276,6 +277,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               zIndex={100}
               boxShadow="lg"
               onGeographySelect={onCommunityDataGeographyChange}
+              isMobile={isMobile}
             />
           )}
 

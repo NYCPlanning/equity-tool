@@ -77,7 +77,6 @@ const theme = extendTheme({
       baseStyle: {
         backgroundColor: "white",
         color: "gray.600",
-        height: "42px",
         fontWeight: 400,
         _hover: {
           backgroundColor: "teal.50",
@@ -89,7 +88,6 @@ const theme = extendTheme({
           cursor: "default",
           opacity: "revert",
           fontWeight: 700,
-          border: "1px solid teal",
         },
       },
       variants: {

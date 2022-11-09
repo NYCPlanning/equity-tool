@@ -1,15 +1,18 @@
 import { BoxProps, Button } from "@chakra-ui/react";
 import { ToggleButtonGroup } from "@components/ToggleButtonGroup";
+import { View } from "@constants/View";
 import { useView } from "@hooks/useView";
 
 interface ViewToggleProps extends BoxProps {
   onCommunityDataClick: () => void;
   onDrmClick: () => void;
+  isMobile: boolean | undefined;
 }
 
 export const ViewToggle = ({
   onCommunityDataClick,
   onDrmClick,
+  isMobile,
 }: ViewToggleProps) => {
   const view = useView();
 
@@ -28,9 +31,18 @@ export const ViewToggle = ({
       >
         <Button
           onClick={onCommunityDataClick}
-          isDisabled={view === "data"}
-          isActive={view === "data"}
-          _hover={{ _disabled: { bg: "teal.50" } }}
+          isDisabled={view === View.DATA}
+          isActive={view === View.DATA}
+          _hover={
+            isMobile
+              ? { _disabled: { bg: "teal.50" } }
+              : {
+                  bg: "#F7FAFC",
+                  fontWeight: 800,
+                  stroke: "#2C7A7B",
+                  strokeWidth: "1px",
+                }
+          }
           variant="toggle"
           data-cy="communityDataBtn-desktop"
         >
@@ -38,9 +50,18 @@ export const ViewToggle = ({
         </Button>
         <Button
           onClick={onDrmClick}
-          isActive={view === "drm"}
-          isDisabled={view === "drm"}
-          _hover={{ _disabled: { bg: "teal.50" } }}
+          isActive={view === View.DRM}
+          isDisabled={view === View.DRM}
+          _hover={
+            isMobile
+              ? { _disabled: { bg: "teal.50" } }
+              : {
+                  bg: "#F7FAFC",
+                  fontWeight: 800,
+                  stroke: "#2C7A7B",
+                  strokeWidth: "1px",
+                }
+          }
           variant="toggle"
           data-cy="drmBtn-desktop"
         >

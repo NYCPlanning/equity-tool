@@ -13,6 +13,7 @@ import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
 import { useEffect, useRef, useState } from "react";
 import { useLayers } from "@hooks/useLayers";
+import { View } from "@constants/View";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -108,8 +109,8 @@ export const Map = ({
       <Box
         position="absolute"
         top={{
-          base: view === "data" ? "4.5rem" : "1.3rem",
-          md: view === "data" ? "8rem" : "4.5rem",
+          base: view === View.DATA ? "4.5rem" : "1.3rem",
+          md: view === View.DATA ? "8rem" : "4.5rem",
         }}
         left={{
           base: "2vmin",
