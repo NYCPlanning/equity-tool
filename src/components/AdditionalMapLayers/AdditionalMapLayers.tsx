@@ -17,6 +17,7 @@ import {
   LayerSelectionSquareCD,
   LayerSelectionSquareNTA,
 } from "@components/Icons";
+import { View } from "@constants/View";
 import { useView } from "@hooks/useView";
 
 export interface AdditionalMapLayersProps {
@@ -37,12 +38,12 @@ export const AdditionalMapLayers = ({
           gridGap={"0.5rem"}
           position={"absolute"}
           top={{
-            base: view === "data" ? "10rem" : "6.875em",
-            md: view === "data" ? "14.5rem" : "11rem",
+            base: view === View.DATA ? "10rem" : "6.875em",
+            md: view === View.DATA ? "14.5rem" : "11rem",
           }}
           left={{
             base: "1.5rem",
-            md: view === "data" ? "1rem" : "1rem",
+            md: view === View.DATA ? "1rem" : "1rem",
           }}
           zIndex={10}
         >

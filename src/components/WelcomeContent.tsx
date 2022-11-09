@@ -1,11 +1,12 @@
 import { Heading, Text, Link } from "@chakra-ui/react";
+import { View } from "@constants/View";
 import { useView } from "@hooks/useView";
 import ReactGA from "react-ga4";
 
 const WelcomeContent = () => {
   const view = useView();
 
-  if (view === "data") {
+  if (view === View.DATA) {
     return (
       <>
         <Heading as="h3" fontSize="1.5625rem">
@@ -34,7 +35,7 @@ const WelcomeContent = () => {
     );
   }
 
-  if (view === "drm") {
+  if (view === View.DRM) {
     return (
       <>
         <Heading as="h3" fontSize="1.5625rem">

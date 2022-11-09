@@ -1,11 +1,12 @@
 import { Box, Text } from "@chakra-ui/react";
 import StaticPageFooter from "@components/Footers/StaticPageFooter";
+import { View } from "@constants/View";
 import { useView } from "@hooks/useView";
 
 const WelcomeFooter = () => {
   const view = useView();
 
-  if (view === "data") {
+  if (view === View.DATA) {
     return (
       <Box fontSize="0.8125rem">
         <Text>
@@ -24,7 +25,7 @@ const WelcomeFooter = () => {
     );
   }
 
-  if (view === "drm") {
+  if (view === View.DRM) {
     return (
       <Box fontSize="0.8125rem">
         <Text>

@@ -24,9 +24,10 @@ import { Geography } from "@constants/geography";
 import { getBoroughAbbreviation } from "@helpers/getBoroughAbbreviation";
 import { getBoroughName } from "@helpers/getBoroughName";
 import ReactGA from "react-ga4";
+import { View } from "@constants/View";
 
 export interface DataDownloadModalProps {
-  downloadType: "data" | "drm" | null;
+  downloadType: View.DATA | View.DRM | null;
   geoid: string | null;
   geography: Geography | null;
 }
@@ -48,7 +49,7 @@ export const DataDownloadModal = ({
   const pumaInfo = usePumaInfo();
 
   const getUrl = () => {
-    if (downloadType === "drm") {
+    if (downloadType === View.DRM) {
       return `${baseUrl}/DRI_Subindices_Indicators.xls`;
     }
 
@@ -72,7 +73,7 @@ export const DataDownloadModal = ({
   };
 
   const getLabel = () => {
-    if (downloadType === "drm") {
+    if (downloadType === View.DRM) {
       return "Neighborhood Tabulation Areas: All";
     }
 
@@ -93,7 +94,7 @@ export const DataDownloadModal = ({
   };
 
   const submit = () => {
-    if (downloadType === "drm") {
+    if (downloadType === View.DRM) {
       ReactGA.event({
         category: "Download XLS",
         action: "Click",
@@ -101,7 +102,7 @@ export const DataDownloadModal = ({
       });
       return onClose();
     }
-    if (!formSubmitDisabled && downloadType === "data") {
+    if (!formSubmitDisabled && downloadType === View.DATA) {
       ReactGA.event({
         category: `Download ${filetype.toUpperCase()}`,
         action: "Click",
@@ -174,7 +175,7 @@ export const DataDownloadModal = ({
             >
               REPORT TYPE
             </Heading>
-            {downloadType === "drm" ? (
+            {downloadType === View.DRM ? (
               <Text>Data set (.xls)</Text>
             ) : (
               <FormControl isRequired p="0rem">
@@ -211,7 +212,9 @@ export const DataDownloadModal = ({
                 onClick={submit}
                 variant="download"
                 colorScheme="teal"
-                isDisabled={downloadType === "drm" ? false : formSubmitDisabled}
+                isDisabled={
+                  downloadType === View.DRM ? false : formSubmitDisabled
+                }
               >
                 <FaDownload /> &nbsp;Download data
               </Button>
