@@ -3,37 +3,9 @@ name: 🚀 Create Release and Deploy
 on: workflow_dispatch
 
 jobs:
-  cache-dependencies:
-    name: 📄 Cache Dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: 'main'
-      - name: Setup node env
-        uses: actions/setup-node@v2.1.2
-        with:
-          node-version: 16
-      - name: Cache dependencies and cypress
-        uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-      - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
-
   lint:
     name: 🔎 Lint
     runs-on: ubuntu-latest
-    needs:
-      - cache-dependencies
     steps:
       - uses: actions/checkout@v2
         with:
@@ -42,17 +14,8 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 16
-      - name: Restore dependencies
-        uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install dependencies
+        run: npm ci
       - name: Run lint
         run: npm run lint
 
@@ -69,17 +32,8 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 16
-      - name: Restore dependencies
-        uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install dependencies
+        run: npm ci
       - name: Run tests
         run: npm run test
 
@@ -106,17 +60,8 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 16
-      - name: Restore dependencies
-        uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install dependencies
+        run: npm ci
       - name: Run e2e test
         run: npm run e2e:test
 
@@ -143,17 +88,8 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 16
-      - name: Restore dependencies
-        uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install dependencies
+        run: npm ci
       - name: Version NPM Package
         env:
           SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
