@@ -3,6 +3,7 @@ import { vintageSchema } from "@schemas/vintage";
 
 export const indicatorRecordSchema = object({
   title: string().required(),
+  id: string().nullable(),
   isSurvey: boolean().required(),
   vintages: array().of(vintageSchema).required(),
 });
