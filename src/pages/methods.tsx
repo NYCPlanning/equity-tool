@@ -11,12 +11,17 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import StaticPageFooter from "@components/StaticPageFooter";
+import StaticPageFooter from "@components/Footers/StaticPageFooter";
+import LinksNewletterFooter from "@components/Footers/LinksNewletterFooter";
+
 import ReactGA from "react-ga4";
 
 const MethodsPage = () => {
   useEffect(() => {
-    document.getElementById("back-to-top")!.scrollTop = 0;
+    const backToTop = document.getElementById("back-to-top");
+    if (backToTop != null) {
+      backToTop.scrollTop = 0;
+    }
   }, []);
 
   return (
@@ -489,12 +494,30 @@ const MethodsPage = () => {
         </Flex>
       </Center>
 
+      <Center py={8} px={{ base: 4, lg: 6 }} pt={{ base: 0, lg: 8 }}>
+        <Box
+          maxW={{ base: "565px", md: "none", lg: "1024px" }}
+          margin={"0 auto"}
+          width={"100%"}
+          bg={"gray.50"}
+          padding={"1.5rem 0"}
+        >
+          <LinksNewletterFooter />
+        </Box>
+      </Center>
+
       <Center px={{ base: 4, lg: 6 }}>
-        <Box width={"full"} maxW={{ xl: "1024px" }} py={8}>
+        <Box
+          width={"full"}
+          maxW={{ base: "565px", lg: "1024px" }}
+          py={8}
+          pt={0}
+        >
           <StaticPageFooter />
         </Box>
       </Center>
     </Flex>
   );
 };
+
 export default MethodsPage;

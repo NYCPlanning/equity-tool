@@ -11,11 +11,15 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
-import StaticPageFooter from "@components/StaticPageFooter";
+import StaticPageFooter from "@components/Footers/StaticPageFooter";
+import LinksNewletterFooter from "@components/Footers/LinksNewletterFooter";
 
 const AboutPage = () => {
   useEffect(() => {
-    document.getElementById("back-to-top")!.scrollTop = 0;
+    const backToTop = document.getElementById("back-to-top");
+    if (backToTop != null) {
+      backToTop.scrollTop = 0;
+    }
   }, []);
 
   return (
@@ -277,8 +281,28 @@ const AboutPage = () => {
         />
       </Center>
 
+      <Center
+        py={8}
+        px={{ base: 4, lg: 6 }}
+        pt={{ base: 0, lg: 8 }}
+        bg={"gray.50"}
+      >
+        <Box
+          maxW={{ base: "565px", lg: "1024px" }}
+          margin={"0 auto"}
+          width={"100%"}
+        >
+          <LinksNewletterFooter />
+        </Box>
+      </Center>
+
       <Center px={{ base: 4, lg: 6 }}>
-        <Box width={"full"} maxW={{ base: "565px", lg: "1024px" }} py={8}>
+        <Box
+          width={"full"}
+          maxW={{ base: "565px", lg: "1024px" }}
+          py={8}
+          pt={0}
+        >
           <StaticPageFooter />
         </Box>
       </Center>

@@ -45,3 +45,6 @@ tsconfig.tsbuildinfo
 
 # Sentry
 .sentryclirc
+
+# Sendgrid
+sendgrid.env
