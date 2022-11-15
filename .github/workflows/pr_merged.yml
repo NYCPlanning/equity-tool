@@ -56,6 +56,8 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_EDDE_EMAIL: ${{ secrets.FROM_EDDE_EMAIL }}
       TO_EDDE_EMAIL: ${{ secrets.TO_EDDE_EMAIL }}
+      NEWSLETTER_ENDPOINT: ${{ secrets.NEWSLETTER_ENDPOINT }}
+      NEWSLETTER_LIST_ID: ${{secrets.NEWSLETTER_LIST_ID}}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node env
@@ -85,6 +87,8 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_EDDE_EMAIL: ${{ secrets.FROM_EDDE_EMAIL }}
       TO_EDDE_EMAIL: ${{ secrets.TO_EDDE_EMAIL }}
+      NEWSLETTER_ENDPOINT: ${{ secrets.NEWSLETTER_ENDPOINT }}
+      NEWSLETTER_LIST_ID: ${{secrets.NEWSLETTER_LIST_ID}}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node env
@@ -98,5 +102,7 @@ jobs:
           echo "FROM_EDDE_EMAIL=$FROM_EDDE_EMAIL" >> .env
           echo "TO_EDDE_EMAIL=$TO_EDDE_EMAIL" >> .env
           echo "SENDGRID_API_KEY=$SENDGRID_API_KEY" >> .env
+          echo "NEWSLETTER_ENDPOINT=$NEWSLETTER_ENDPOINT" >> .env
+          echo "NEWSLETTER_LIST_ID=$NEWSLETTER_LIST_ID" >> .env
           npx netlify-cli deploy --build --alias staging
           

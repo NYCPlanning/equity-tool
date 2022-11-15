@@ -20,19 +20,18 @@ import { ErrorIcon } from "@components/Icons";
 const ContactForm = () => {
   const [showContactForm, setShowContactForm] = useState<boolean>(true);
   const [hideErrorMessage, setHideErrorMessage] = useState<boolean>(true);
-  const [textAreaCount, setTextAreaCount] = useState<number | string>(0);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    watch,
   } = useForm<Feedback>({
     resolver: yupResolver(feedbackSchema),
   });
 
-  const getCharacterCount = (e: any) => {
-    setTextAreaCount(e.target.value.length);
-  };
+  const feedback = watch("feedback");
+  const feedbackLength = typeof feedback === "undefined" ? 0 : feedback.length;
 
   async function onSubmit(data: Feedback) {
     const feedbackBody = {
@@ -110,11 +109,10 @@ const ContactForm = () => {
                   resize={"none"}
                   boxShadow={"0 0 0 1px rgba(0, 0, 0, .4)"}
                   paddingLeft={errors.feedback ? "2.5rem" : ""}
-                  onChange={getCharacterCount}
                 />
               </InputGroup>
               <Text fontSize={"xs"} textAlign={"right"}>
-                {textAreaCount}/750
+                {feedbackLength}/750
               </Text>
               <FormErrorMessage position={"relative"} top={"-1rem"}>
                 {errors.feedback && errors.feedback.message}

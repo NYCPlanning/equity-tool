@@ -1,3 +1,3 @@
-export * from "./LinksNewletterFooter";
+export * from "./NewsletterFooter";
 export * from "./StaticPageFooter";
 export * from "./WelcomeFooter";

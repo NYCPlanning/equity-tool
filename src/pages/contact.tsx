@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Flex, Box, Center, Heading, Text } from "@chakra-ui/react";
 import GetInTouch from "@components/GetInTouch/GetInTouch";
 import StaticPageFooter from "@components/Footers/StaticPageFooter";
-import LinksNewletterFooter from "@components/Footers/LinksNewletterFooter";
+import NewsletterFooter from "@components/Footers/NewsletterFooter";
 import ContactForm from "@components/Contact/ContactForm";
 
 const ContactPage = () => {
@@ -78,7 +78,7 @@ const ContactPage = () => {
           margin={"0 auto"}
           width={"100%"}
         >
-          <LinksNewletterFooter />
+          <NewsletterFooter />
         </Box>
       </Center>
 
