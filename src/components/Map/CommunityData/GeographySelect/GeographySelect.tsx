@@ -5,12 +5,10 @@ import { Geography } from "@constants/geography";
 
 export interface GeographySelectInterface extends BoxProps {
   onGeographySelect: (targetGeography: Geography) => void;
-  isMobile: boolean | undefined;
 }
 
 export const GeographySelect = ({
   onGeographySelect,
-  isMobile,
   ...boxProps
 }: GeographySelectInterface) => {
   const geography = useGeography();
@@ -25,16 +23,13 @@ export const GeographySelect = ({
         isActive={geography === DISTRICT}
         variant="toggle"
         data-cy="districtButton"
-        _hover={
-          isMobile
-            ? { _disabled: { bg: "teal.50" } }
-            : {
-                bg: "#F7FAFC",
-                fontWeight: 800,
-                color: "#2C7A7B",
-                border: "1px solid teal",
-              }
-        }
+        _hover={{
+          _disabled: { bg: "teal.50" },
+          bg: "#F7FAFC",
+          fontWeight: 800,
+          color: "#2C7A7B",
+          border: "1px solid teal",
+        }}
       >
         Community District*
       </Button>
@@ -45,16 +40,13 @@ export const GeographySelect = ({
         isActive={geography === BOROUGH}
         variant="toggle"
         data-cy="boroughButton"
-        _hover={
-          isMobile
-            ? { _disabled: { bg: "teal.50" } }
-            : {
-                bg: "#F7FAFC",
-                fontWeight: 800,
-                color: "#2C7A7B",
-                border: "1px solid teal",
-              }
-        }
+        _hover={{
+          _disabled: { bg: "teal.50" },
+          bg: "#F7FAFC",
+          fontWeight: 800,
+          color: "#2C7A7B",
+          border: "1px solid teal",
+        }}
       >
         Borough
       </Button>
@@ -65,16 +57,13 @@ export const GeographySelect = ({
         isActive={geography === CITYWIDE}
         variant="toggle"
         data-cy="citywideButton"
-        _hover={
-          isMobile
-            ? { _disabled: { bg: "teal.50" } }
-            : {
-                bg: "#F7FAFC",
-                fontWeight: 800,
-                color: "#2C7A7B",
-                border: "1px solid teal",
-              }
-        }
+        _hover={{
+          _disabled: { bg: "teal.50" },
+          bg: "#F7FAFC",
+          fontWeight: 800,
+          color: "#2C7A7B",
+          border: "1px solid teal",
+        }}
       >
         Citywide
       </Button>
