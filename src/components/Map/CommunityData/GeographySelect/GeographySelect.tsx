@@ -31,8 +31,8 @@ export const GeographySelect = ({
             : {
                 bg: "#F7FAFC",
                 fontWeight: 800,
-                stroke: "#2C7A7B",
-                strokeWidth: "1px",
+                color: "#2C7A7B",
+                border: "1px solid teal",
               }
         }
       >
@@ -51,8 +51,8 @@ export const GeographySelect = ({
             : {
                 bg: "#F7FAFC",
                 fontWeight: 800,
-                stroke: "#2C7A7B",
-                strokeWidth: "1px",
+                color: "#2C7A7B",
+                border: "1px solid teal",
               }
         }
       >
@@ -71,8 +71,8 @@ export const GeographySelect = ({
             : {
                 bg: "#F7FAFC",
                 fontWeight: 800,
-                stroke: "#2C7A7B",
-                strokeWidth: "1px",
+                color: "#2C7A7B",
+                border: "1px solid teal",
               }
         }
       >
