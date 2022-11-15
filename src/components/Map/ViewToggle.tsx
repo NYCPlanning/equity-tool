@@ -6,11 +6,13 @@ import { useView } from "@hooks/useView";
 interface ViewToggleProps extends BoxProps {
   onCommunityDataClick: () => void;
   onDrmClick: () => void;
+  isMobile: boolean | undefined;
 }
 
 export const ViewToggle = ({
   onCommunityDataClick,
   onDrmClick,
+  isMobile,
 }: ViewToggleProps) => {
   const view = useView();
 
@@ -20,10 +22,11 @@ export const ViewToggle = ({
         position="absolute"
         top="1rem"
         left={{
-          base: "4vmin",
+          base: isMobile ? "50%" : "4vmin",
           sm: "2vmin",
           md: "1rem",
         }}
+        transform={isMobile ? { base: "translate(-50%)" } : undefined}
         zIndex={200}
         boxShadow="lg"
       >
