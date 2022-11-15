@@ -77,7 +77,7 @@ export const InstructionButton = () => {
           fontWeight={"bold"}
           fontSize={"1.25rem"}
         >
-          <Text paddingLeft={"2rem"} flexGrow={"2"}>
+          <Text paddingLeft={"2.75rem"} flexGrow={"2"}>
             Instructions
           </Text>
         </PopoverHeader>
