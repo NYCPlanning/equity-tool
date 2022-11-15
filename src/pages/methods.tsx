@@ -494,19 +494,23 @@ const MethodsPage = () => {
         </Flex>
       </Center>
 
-      <Center py={8} px={{ base: 4, lg: 6 }} pt={{ base: 0, lg: 8 }}>
+      <Center
+        bg={"gray.50"}
+        py={8}
+        px={{ base: 4, lg: 6 }}
+        pt={{ base: 0, lg: 8 }}
+      >
         <Box
           maxW={{ base: "565px", md: "none", lg: "1024px" }}
           margin={"0 auto"}
           width={"100%"}
-          bg={"gray.50"}
           padding={"1.5rem 0"}
         >
           <NewsletterFooter />
         </Box>
       </Center>
 
-      <Center px={{ base: 4, lg: 6 }}>
+      <Center px={{ base: 4, lg: 6 }} bg={"gray.50"}>
         <Box
           width={"full"}
           maxW={{ base: "565px", lg: "1024px" }}

@@ -82,7 +82,7 @@ const ContactPage = () => {
         </Box>
       </Center>
 
-      <Center px={{ base: 4, lg: 6 }}>
+      <Center px={{ base: 4, lg: 6 }} bg={"gray.50"}>
         <Box
           width={"full"}
           maxW={{ base: "565px", lg: "1024px" }}
