@@ -250,7 +250,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
             onDrmClick={onDrmClick}
-            isMobile={isMobile}
           />
 
           <AdditionalMapLayers
@@ -277,7 +276,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               zIndex={100}
               boxShadow="lg"
               onGeographySelect={onCommunityDataGeographyChange}
-              isMobile={isMobile}
             />
           )}
 

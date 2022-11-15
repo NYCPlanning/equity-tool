@@ -6,13 +6,11 @@ import { useView } from "@hooks/useView";
 interface ViewToggleProps extends BoxProps {
   onCommunityDataClick: () => void;
   onDrmClick: () => void;
-  isMobile: boolean | undefined;
 }
 
 export const ViewToggle = ({
   onCommunityDataClick,
   onDrmClick,
-  isMobile,
 }: ViewToggleProps) => {
   const view = useView();
 
@@ -33,16 +31,13 @@ export const ViewToggle = ({
           onClick={onCommunityDataClick}
           isDisabled={view === View.DATA}
           isActive={view === View.DATA}
-          _hover={
-            isMobile
-              ? { _disabled: { bg: "teal.50" } }
-              : {
-                  bg: "#F7FAFC",
-                  fontWeight: 800,
-                  color: "#2C7A7B",
-                  border: "1px solid teal",
-                }
-          }
+          _hover={{
+            _disabled: { bg: "teal.50" },
+            bg: "#F7FAFC",
+            fontWeight: 800,
+            color: "#2C7A7B",
+            border: "1px solid teal",
+          }}
           variant="toggle"
           data-cy="communityDataBtn-desktop"
         >
@@ -52,16 +47,12 @@ export const ViewToggle = ({
           onClick={onDrmClick}
           isActive={view === View.DRM}
           isDisabled={view === View.DRM}
-          _hover={
-            isMobile
-              ? { _disabled: { bg: "teal.50" } }
-              : {
-                  bg: "#F7FAFC",
-                  fontWeight: 800,
-                  color: "#2C7A7B",
-                  border: "1px solid teal",
-                }
-          }
+          _hover={{
+            bg: "#F7FAFC",
+            fontWeight: 800,
+            color: "#2C7A7B",
+            border: "1px solid teal",
+          }}
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
