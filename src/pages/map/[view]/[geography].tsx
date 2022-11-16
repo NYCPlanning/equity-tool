@@ -271,8 +271,8 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
               }}
               left={{
                 base: isMobile ? "50%" : "4vmin",
-                sm: "2vmin",
-                md: "1rem",
+                sm: isMobile ? "50%" : "2vmin",
+                md: isMobile ? "50%" : "1rem",
               }}
               transform={isMobile ? { base: "translate(-50%)" } : undefined}
               zIndex={100}
