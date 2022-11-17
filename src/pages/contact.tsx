@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Flex, Box, Center, Heading, Text } from "@chakra-ui/react";
 import GetInTouch from "@components/GetInTouch/GetInTouch";
-import StaticPageFooter from "@components/Footers/StaticPageFooter";
 import NewsletterFooter from "@components/Footers/NewsletterFooter";
 import ContactForm from "@components/Contact/ContactForm";
 
@@ -46,9 +45,8 @@ const ContactPage = () => {
       </Center>
 
       <Center
-        px={{ base: 4, lg: 6 }}
-        py={8}
-        mt={{ base: "1.875", md: "5.625rem" }}
+        py={{ base: "2.5rem", xl: "5rem" }}
+        px={{ base: "1rem", lg: "1.5rem" }}
       >
         <Flex
           direction="row"
@@ -67,31 +65,7 @@ const ContactPage = () => {
         </Flex>
       </Center>
 
-      <Center
-        py={8}
-        px={{ base: 4, lg: 6 }}
-        mt={{ base: "4.5rem", md: "5.25rem" }}
-        bg={"gray.50"}
-      >
-        <Box
-          maxW={{ base: "565px", lg: "1024px" }}
-          margin={"0 auto"}
-          width={"100%"}
-        >
-          <NewsletterFooter />
-        </Box>
-      </Center>
-
-      <Center px={{ base: 4, lg: 6 }} bg={"gray.50"}>
-        <Box
-          width={"full"}
-          maxW={{ base: "565px", lg: "1024px" }}
-          py={8}
-          pt={{ base: 2 }}
-        >
-          <StaticPageFooter />
-        </Box>
-      </Center>
+      <NewsletterFooter />
     </Flex>
   );
 };
