@@ -11,7 +11,6 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
-import StaticPageFooter from "@components/Footers/StaticPageFooter";
 import NewsletterFooter from "@components/Footers/NewsletterFooter";
 
 const AboutPage = () => {
@@ -54,8 +53,8 @@ const AboutPage = () => {
       </Center>
 
       <Center
-        py={20}
-        px={{ base: 4, lg: 6 }}
+        py={{ base: "2.5rem", xl: "5rem" }}
+        px={{ base: "1rem", lg: "1.5rem" }}
         flexDirection={"column"}
         gridGap={7}
       >
@@ -189,23 +188,17 @@ const AboutPage = () => {
             </Text>
           </Box>
         </Flex>
-      </Center>
-
-      <Center pb={8} px={{ base: 4, lg: 6 }}>
         <Divider
           borderColor={"#A0AEC0"}
           maxW={{ base: "565px", lg: "1024px" }}
         />
-      </Center>
-
-      <Center px={{ base: 4, lg: 6 }}>
         <Flex
           direction={{ base: "column", lg: "row" }}
           justifyContent={"space-between"}
           maxW={{ base: "565px", lg: "1024px" }}
           gridGap={{ base: 6, lg: 12 }}
         >
-          <Box flex={{ base: "auto", lg: 1 }} py={5} px={[10, 0]}>
+          <Box flex={{ base: "auto", lg: 1 }} px={[10, 0]}>
             <Heading size="md" pb="0.5em" fontSize="1.5625rem">
               Methods and Sources
             </Heading>
@@ -223,7 +216,7 @@ const AboutPage = () => {
               </Link>
             </Text>
           </Box>
-          <Box flex={{ base: "auto", lg: 1 }} py={5} px={[10, 0]}>
+          <Box flex={{ base: "auto", lg: 1 }} px={[10, 0]}>
             <Heading size="md" pb="0.5em" fontSize="1.5625rem">
               Bibliography
             </Heading>
@@ -245,7 +238,7 @@ const AboutPage = () => {
               </Link>
             </Text>
           </Box>
-          <Box flex={{ base: "auto", lg: 1 }} py={5} px={[10, 0]}>
+          <Box flex={{ base: "auto", lg: 1 }} px={[10, 0]}>
             <Heading size="md" pb="0.5em" fontSize="1.5625rem">
               Data Dictionary
             </Heading>
@@ -266,46 +259,17 @@ const AboutPage = () => {
             </Text>
           </Box>
         </Flex>
-      </Center>
-      <Center
-        display={{ base: "block", xl: "none" }}
-        py={8}
-        px={{ base: 4, lg: 6 }}
-      >
-        <Divider borderColor={"#A0AEC0"} />
-      </Center>
-      <Center px={{ base: 4, lg: 6 }}>
+        <Divider
+          display={{ base: "block", md: "none", xl: "none" }}
+          borderColor={"#A0AEC0"}
+        />
         <Feedback
           display={{ base: "block", md: "none", xl: "none" }}
           maxW={{ base: "565px", lg: "1024px" }}
         />
       </Center>
 
-      <Center
-        py={8}
-        px={{ base: 4, lg: 6 }}
-        pt={{ base: 0, lg: 8 }}
-        bg={"gray.50"}
-      >
-        <Box
-          maxW={{ base: "565px", lg: "1024px" }}
-          margin={"0 auto"}
-          width={"100%"}
-        >
-          <NewsletterFooter />
-        </Box>
-      </Center>
-
-      <Center px={{ base: 4, lg: 6 }} bg={"gray.50"}>
-        <Box
-          width={"full"}
-          maxW={{ base: "565px", lg: "1024px" }}
-          py={8}
-          pt={0}
-        >
-          <StaticPageFooter />
-        </Box>
-      </Center>
+      <NewsletterFooter />
     </Flex>
   );
 };

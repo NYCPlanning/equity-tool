@@ -11,7 +11,6 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import StaticPageFooter from "@components/Footers/StaticPageFooter";
 import NewsletterFooter from "@components/Footers/NewsletterFooter";
 
 import ReactGA from "react-ga4";
@@ -92,7 +91,10 @@ const MethodsPage = () => {
           </Box>
         </Flex>
       </Center>
-      <Center py={{ base: 10, xl: 20 }} px={{ base: 4, lg: 6 }}>
+      <Center
+        py={{ base: "2.5rem", xl: "5rem" }}
+        px={{ base: "1rem", lg: "1.5rem" }}
+      >
         <Flex
           direction={{ base: "column", xl: "row-reverse" }}
           maxW={{ xl: "1024px" }}
@@ -313,7 +315,7 @@ const MethodsPage = () => {
               <Heading size="lg" pt="1rem" pb="1rem" fontSize="2.125rem">
                 Data Sources
               </Heading>
-              <UnorderedList spacing="2rem" pb="1rem">
+              <UnorderedList spacing="2rem">
                 <ListItem>
                   <Text fontWeight="bold">Decennial Census</Text>
                   <Link
@@ -460,12 +462,12 @@ const MethodsPage = () => {
             </Box>
           </Box>
 
-          <Center display={{ base: "block", xl: "none" }} py="1rem">
+          <Center display={{ base: "block", xl: "none" }} py="2rem">
             <Divider borderColor={"#A0AEC0"} />
           </Center>
 
           <Box flex={{ base: "auto", xl: 1 }}>
-            <Text fontWeight="bold" pt="1rem" fontSize="1.25rem">
+            <Text fontWeight="bold" fontSize="1.25rem">
               Created
             </Text>
             <Text>April 2022</Text>
@@ -494,32 +496,7 @@ const MethodsPage = () => {
         </Flex>
       </Center>
 
-      <Center
-        bg={"gray.50"}
-        py={8}
-        px={{ base: 4, lg: 6 }}
-        pt={{ base: 0, lg: 8 }}
-      >
-        <Box
-          maxW={{ base: "565px", md: "none", lg: "1024px" }}
-          margin={"0 auto"}
-          width={"100%"}
-          padding={"1.5rem 0"}
-        >
-          <NewsletterFooter />
-        </Box>
-      </Center>
-
-      <Center px={{ base: 4, lg: 6 }} bg={"gray.50"}>
-        <Box
-          width={"full"}
-          maxW={{ base: "565px", lg: "1024px" }}
-          py={8}
-          pt={0}
-        >
-          <StaticPageFooter />
-        </Box>
-      </Center>
+      <NewsletterFooter />
     </Flex>
   );
 };
