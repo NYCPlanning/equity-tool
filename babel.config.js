@@ -5,7 +5,7 @@ module.exports = (api) => {
     : {
         presets: [
           "next/babel",
-          ["@babel/preset-env", { targets: { node: "16.13" } }],
+          // ["@babel/preset-env", { targets: { node: "16.13" } }],
           "@babel/preset-typescript",
         ],
       };
