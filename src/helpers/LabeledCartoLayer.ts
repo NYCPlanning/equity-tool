@@ -51,7 +51,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         getSize: 125,
         billboard: true,
         getColor: [74, 85, 104, 200],
-        fontFamily: "Helvetica Neue",
+        fontFamily: "Helvetica Neue, sans-serif",
         fontSettings: {
           sdf: true,
         },
@@ -71,7 +71,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         getSize: 125,
         billboard: true,
         getColor: [74, 85, 104, 200],
-        fontFamily: "Helvetica Neue",
+        fontFamily: "Helvetica Neue, sans-serif",
         fontSettings: {
           sdf: true,
         },
@@ -90,7 +90,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         getSize: 200,
         billboard: true,
         getColor: [74, 85, 104, 255],
-        fontFamily: "Helvetica Neue",
+        fontFamily: "Helvetica Neue, sans-serif",
         fontSettings: {
           sdf: true,
         },
@@ -109,7 +109,7 @@ export class LabeledCartoLayer extends CompositeLayer<any, any> {
         getSize: 14,
         billboard: true,
         getColor: [74, 85, 104, 255],
-        fontFamily: "Helvetica Neue",
+        fontFamily: "Helvetica Neue, sans-serif",
         fontSettings: {
           sdf: true,
         },
