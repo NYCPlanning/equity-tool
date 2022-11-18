@@ -14,8 +14,17 @@ import {
 import { InfoIcon } from "@chakra-ui/icons";
 import { useView } from "@hooks/useView";
 import { View } from "@constants/View";
+import { Dispatch, SetStateAction } from "react";
 
-export const InstructionButton = () => {
+interface InstructionProps {
+  isOpen: boolean;
+  setInstructionsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export const InstructionButton = ({
+  setInstructionsOpen,
+  isOpen,
+}: InstructionProps) => {
   const view = useView();
 
   return (
@@ -43,6 +52,7 @@ export const InstructionButton = () => {
               md: "initial",
             }}
             _hover={{ color: "currentColor" }}
+            onClick={() => setInstructionsOpen(!isOpen)}
           >
             <InfoIcon />
           </Button>
