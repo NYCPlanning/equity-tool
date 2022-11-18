@@ -8,6 +8,7 @@ import { NYC } from "@constants/geoid";
 import { useGeography } from "@hooks/useGeography";
 import { useSubgroup } from "@hooks/useSubgroup";
 import { useCategory } from "@hooks/useCategory";
+import { useGeoid } from "@hooks/useGeoid";
 import { getBoroughName } from "@helpers/getBoroughName";
 
 jest.mock("@hooks/useGeography");
@@ -30,6 +31,9 @@ const mockedGetBoroughName = getBoroughName as jest.MockedFunction<
   typeof getBoroughName
 >;
 
+jest.mock("@hooks/useGeoid");
+const mockedUseGeoid = useGeoid as jest.MockedFunction<typeof useGeoid>;
+
 describe("ExplorerSideNav", () => {
   describe("display selected geography information", () => {
     beforeEach(() => {
@@ -50,6 +54,7 @@ describe("ExplorerSideNav", () => {
       mockedUseGeography.mockReturnValueOnce(Geography.BOROUGH);
       mockedUseSubgroup.mockReturnValueOnce(Subgroup.TOT);
       mockedUseCategory.mockReturnValueOnce(Category.DEMO);
+      mockedUseGeoid.mockReturnValueOnce("3");
       mockedGetBoroughName.mockReturnValue("Brooklyn");
       render(<ExplorerSideNav geoid={"3"} />);
       const textNodes = screen.getAllByText("Brooklyn");
