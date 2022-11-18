@@ -128,6 +128,7 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     null
   );
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
+  const [instructionsOpen, setInstructionsOpen] = useState<boolean>(false);
 
   const onDrmClick = () => {
     setLastCommunityDataGeography(geography);
@@ -252,15 +253,22 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             onDrmClick={onDrmClick}
             isMobile={isMobile}
           />
-
-          <AdditionalMapLayers
-            onToggleNtaLayer={() => {
-              setNtaOutlineLayer(!ntaOutlineLayer);
-            }}
-            onToggleDistrictLayer={() => {
-              setDistrictOutlineLayer(!districtOutlineLayer);
-            }}
-          />
+          {isMobile && (
+            <InstructionButton
+              setInstructionsOpen={setInstructionsOpen}
+              isOpen={instructionsOpen}
+            />
+          )}
+          {!instructionsOpen && (
+            <AdditionalMapLayers
+              onToggleNtaLayer={() => {
+                setNtaOutlineLayer(!ntaOutlineLayer);
+              }}
+              onToggleDistrictLayer={() => {
+                setDistrictOutlineLayer(!districtOutlineLayer);
+              }}
+            />
+          )}
 
           {view === View.DATA && (
             <CommunityDataGeographySelect
@@ -282,7 +290,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
           )}
 
           {view === View.DRM && <DRMMapLegend />}
-          {isMobile && <InstructionButton />}
 
           <Map
             ntaOutlineLayer={ntaOutlineLayer}
