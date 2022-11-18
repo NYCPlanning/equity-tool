@@ -45,7 +45,7 @@ export const AdditionalMapLayers = ({
             base: "1.5rem",
             md: view === View.DATA ? "1rem" : "1rem",
           }}
-          zIndex={10}
+          zIndex={100}
         >
           <Button
             leftIcon={<MapLayersIcon />}
