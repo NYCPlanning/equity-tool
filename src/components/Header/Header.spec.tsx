@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+// import React from "react";
 import { Header } from "./Header";
 
 jest.mock("next/router", () => ({
@@ -6,6 +7,11 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(() => ({
     pathname: "/about",
   })),
+}));
+
+jest.mock("@react-hook/window-size", () => ({
+  __esModule: true,
+  useWindowWidth: jest.fn(() => 960),
 }));
 
 describe("Header", () => {
