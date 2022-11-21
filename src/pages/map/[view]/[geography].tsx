@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import {
   DrmMobileDrawer,
-  InstructionButton,
+  InstructionPanel,
   Map,
   ViewToggle,
 } from "@components/Map";
@@ -19,16 +19,10 @@ import { useGeography } from "@hooks/useGeography";
 import { Geography } from "@constants/geography";
 import { NYC } from "@constants/geoid";
 import ReactGA from "react-ga4";
-import { AdditionalMapLayers } from "@components/AdditionalMapLayers";
+import { AdditionalLayersPanel } from "@components/AdditionalMapLayers";
 import { DRMMapLegend } from "@components/Map/DRM/DRMMapLegend";
 import { View } from "@constants/View";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
-
-export interface MapPageProps {
-  initialRouteParams: string;
-  onToggleNtaLayer: () => void;
-  onToggleDistrictLayer: () => void;
-}
 
 export const getStaticProps: GetStaticProps = (context) => {
   if (!context.params) {
@@ -60,25 +54,25 @@ export const getStaticPaths: GetStaticPaths = () => {
     {
       params: {
         view: View.DATA,
-        geography: "district",
+        geography: Geography.DISTRICT,
       },
     },
     {
       params: {
         view: View.DATA,
-        geography: "borough",
+        geography: Geography.BOROUGH,
       },
     },
     {
       params: {
         view: View.DATA,
-        geography: "citywide",
+        geography: Geography.CITYWIDE,
       },
     },
     {
       params: {
         view: View.DRM,
-        geography: "nta",
+        geography: Geography.NTA,
       },
     },
   ];
@@ -95,9 +89,7 @@ export const getStaticPaths: GetStaticPaths = () => {
     /map/data/:geography
     /map/drm/:geography?geoid=:geoid
 */
-const MapPage = ({ initialRouteParams }: MapPageProps) => {
-  console.log(initialRouteParams); // only here to prevent unused variable initialRouteParams?
-
+const MapPage = () => {
   const [ntaOutlineLayer, setNtaOutlineLayer] = useState<boolean>(false);
 
   const [districtOutlineLayer, setDistrictOutlineLayer] =
@@ -128,7 +120,6 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
     null
   );
   const [lastBoroughGeoid, setLastBoroughGeoid] = useState<string | null>(null);
-  const [instructionsOpen, setInstructionsOpen] = useState<boolean>(false);
 
   const onDrmClick = () => {
     setLastCommunityDataGeography(geography);
@@ -248,28 +239,16 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
 
       <Box flex="2" height="100%">
         <Box ref={mapContainer} position="relative" height="100%" rounded="lg">
+          <Map
+            ntaOutlineLayer={ntaOutlineLayer}
+            districtOutlineLayer={districtOutlineLayer}
+            parent={mapContainer?.current ? mapContainer.current : undefined}
+          />
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
             onDrmClick={onDrmClick}
             isMobile={isMobile}
           />
-          {isMobile && (
-            <InstructionButton
-              setInstructionsOpen={setInstructionsOpen}
-              isOpen={instructionsOpen}
-            />
-          )}
-          {!instructionsOpen && (
-            <AdditionalMapLayers
-              onToggleNtaLayer={() => {
-                setNtaOutlineLayer(!ntaOutlineLayer);
-              }}
-              onToggleDistrictLayer={() => {
-                setDistrictOutlineLayer(!districtOutlineLayer);
-              }}
-            />
-          )}
-
           {view === View.DATA && (
             <CommunityDataGeographySelect
               position="absolute"
@@ -289,13 +268,18 @@ const MapPage = ({ initialRouteParams }: MapPageProps) => {
             />
           )}
 
-          {view === View.DRM && <DRMMapLegend />}
+          <InstructionPanel />
 
-          <Map
-            ntaOutlineLayer={ntaOutlineLayer}
-            districtOutlineLayer={districtOutlineLayer}
-            parent={mapContainer?.current ? mapContainer.current : undefined}
+          <AdditionalLayersPanel
+            onToggleNtaLayer={() => {
+              setNtaOutlineLayer(!ntaOutlineLayer);
+            }}
+            onToggleDistrictLayer={() => {
+              setDistrictOutlineLayer(!districtOutlineLayer);
+            }}
           />
+
+          {view === View.DRM && <DRMMapLegend />}
         </Box>
       </Box>
     </>
