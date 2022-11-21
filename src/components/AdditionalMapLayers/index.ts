@@ -1,1 +1,1 @@
-export * from "./AdditionalMapLayers";
+export * from "./AdditionalLayersPanel";

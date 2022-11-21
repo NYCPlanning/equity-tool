@@ -3,4 +3,5 @@ export * from "./CommunityData";
 export * from "./DRM";
 export * from "./ViewToggle";
 export * from "./MobileDrawer";
-export * from "./InstructionButton";
+export * from "./InstructionPanel";
+export * from "./IconPanel";
