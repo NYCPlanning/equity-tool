@@ -42,8 +42,7 @@ export const IconPanel = ({
         md: isOpen ? "0.375rem" : "1rem",
       }}
       backgroundColor="#FFFFFF"
-      borderRadius="8px"
-      boxShadow={"0 0 0 1px rgba(0, 0, 0, .2)"}
+      borderRadius="0.5rem"
       maxWidth={{ base: "unset", md: "364px" }}
       width={isOpen ? width : "2rem"}
       height={isOpen ? height : "2rem"}
@@ -81,6 +80,7 @@ export const IconPanel = ({
           width={"2rem"}
           height={"2rem"}
           variant={"outline"}
+          borderRadius={"0.5rem"}
           position={{
             base: "relative",
             md: "initial",
