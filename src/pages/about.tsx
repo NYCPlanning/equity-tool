@@ -40,7 +40,7 @@ const AboutPage = () => {
               Preservation and Development (HPD) are introducing a new
               interactive resource that equips New Yorkers with data to navigate
               challenging conversations about housing affordability,
-              displacement, and racial equity in our city.
+              displacement, and racial equity in our city. BLOOP
             </Text>
           </Box>
           <Feedback
