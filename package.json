@@ -26,7 +26,8 @@
     "e2e:test": "start-server-and-test start http://localhost:3000 e2e:run",
     "ci:test-build": "run-s lint test build e2e:test",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "commit-and-tag-version"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.10",
@@ -79,6 +80,7 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "babel-jest": "^29.1.0",
+    "commit-and-tag-version": "^10.1.0",
     "commitizen": "^4.2.6",
     "cypress": "^8.7.0",
     "eslint": "7.32.0",
