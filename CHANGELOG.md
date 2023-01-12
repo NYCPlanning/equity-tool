@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [0.2.1](https://github.com/NYCPlanning/equity-tool/compare/v0.2.0...v0.2.1) (2023-01-12)
+
+
+### Features
+
+* **methods:** change methods copy a bit ([1b36ace](https://github.com/NYCPlanning/equity-tool/commit/1b36acec9dff55002fca7228f646ff691c35cfe3)), closes [#1001](https://github.com/NYCPlanning/equity-tool/issues/1001)
+
 ## [0.2.0](https://github.com/NYCPlanning/equity-tool/compare/v0.1.23...v0.2.0) (2023-01-11)
 
 
