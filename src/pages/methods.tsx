@@ -60,7 +60,7 @@ const MethodsPage = () => {
               determine the complete list of data points and specify
               methodologies for how the data points should be incorporated into
               a displacement risk map. Below, please find descriptions of the
-              data sources and methodologies.
+              data sources and methodologies. foobar
             </Text>
           </Box>
           <Box flex={{ base: "auto", xl: 1 }}>
