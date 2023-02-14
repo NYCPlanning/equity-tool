@@ -12,6 +12,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
 import NewsletterFooter from "@components/Footers/NewsletterFooter";
+import { EXTERNAL_LINK } from "@constants/externalLink";
 
 const AboutPage = () => {
   useEffect(() => {
@@ -249,7 +250,7 @@ const AboutPage = () => {
             <Text color="black">
               Open the{" "}
               <Link
-                href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-data-dictionary.pdf"
+                href={EXTERNAL_LINK.DATA_DICTIONARY}
                 textDecoration="underline"
                 color="teal"
                 isExternal
