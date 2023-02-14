@@ -249,7 +249,7 @@ const AboutPage = () => {
             <Text color="black">
               Open the{" "}
               <Link
-                href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-data-dictionary.pdf"
+                href="https://www.nyc.gov/assets/planning/download/pdf/data-maps/edde/edde-data-dictionary.pdf"
                 textDecoration="underline"
                 color="teal"
                 isExternal

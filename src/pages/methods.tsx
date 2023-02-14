@@ -73,7 +73,7 @@ const MethodsPage = () => {
             </Text>
             <Text>
               <Link
-                href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-data-dictionary.pdf"
+                href="https://www.nyc.gov/assets/planning/download/pdf/data-maps/edde/edde-data-dictionary.pdf"
                 textDecoration="underline"
                 isExternal
                 color={"white"}
@@ -193,7 +193,7 @@ const MethodsPage = () => {
               <Text pb="1rem">
                 See our{" "}
                 <Link
-                  href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-data-dictionary.pdf"
+                  href="https://www.nyc.gov/assets/planning/download/pdf/data-maps/edde/edde-data-dictionary.pdf"
                   isExternal
                   onClick={() => {
                     ReactGA.event({
