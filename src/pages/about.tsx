@@ -12,7 +12,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/react";
 import Feedback from "@components/About/Feedback";
 import NewsletterFooter from "@components/Footers/NewsletterFooter";
-import { EXTERNAL_LINK } from "@constants/externalLink";
+import { DATA_DICTIONARY } from "@constants/externalLink";
 
 const AboutPage = () => {
   useEffect(() => {
@@ -250,7 +250,7 @@ const AboutPage = () => {
             <Text color="black">
               Open the{" "}
               <Link
-                href={EXTERNAL_LINK.DATA_DICTIONARY}
+                href={DATA_DICTIONARY}
                 textDecoration="underline"
                 color="teal"
                 isExternal
