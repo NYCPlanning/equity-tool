@@ -16,6 +16,8 @@ export const VintageList = ({
   shouldShowReliability,
   isSurvey,
 }: VintageListProps) => {
+  // TODO: create headerHeights state
+  // TODO: refactor to body heights
   const [rowHeights, setRowHeights] = useState<number[]>([]);
 
   // This ref is passed to the first VintageTable for the indicator
@@ -35,6 +37,8 @@ export const VintageList = ({
     });
     setRowHeights(heights);
   }, [category, subgroup]);
+
+  // TODO: create effect to get header heights
 
   return (
     <Flex
@@ -61,6 +65,7 @@ export const VintageList = ({
           <VintageTable
             key={`vintage-${i}`}
             vintage={vintage}
+            // TODO: refactor to body heights
             rowHeights={rowHeights}
             shouldShowReliability={shouldShowReliability}
             isSurvey={isSurvey}
