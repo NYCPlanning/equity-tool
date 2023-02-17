@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, RefObject } from "react";
 import { Flex } from "@chakra-ui/react";
 import { Vintage } from "@schemas/vintage";
 import { VintageTable } from "@components/VintageTable";
@@ -10,6 +10,17 @@ export interface VintageListProps {
   shouldShowReliability: boolean;
   isSurvey: boolean;
 }
+
+const getClientHeights =
+  (elements: string) => (ref: RefObject<HTMLTableElement>) => {
+    const heights: number[] = [];
+    ref.current
+      ?.querySelectorAll(elements)
+      .forEach((node) => heights.push(node.clientHeight));
+    return heights;
+  };
+const getHeaderClientHeights = getClientHeights("thead tr");
+const getBodyClientHeights = getClientHeights("tbody tr");
 
 export const VintageList = ({
   vintages,
@@ -28,23 +39,15 @@ export const VintageList = ({
   const category = useCategory();
   const subgroup = useSubgroup();
 
-  // Update row heights whenever category or subgroup changes
+  // Update row header heights whenever category or subgroup changes, or reliability is toggled
   useEffect(() => {
-    const heights: number[] = [];
-    ref.current?.querySelectorAll("tbody tr").forEach((node) => {
-      heights.push(node.clientHeight);
-    });
-    setRowBodyHeights(heights);
-  }, [category, subgroup]);
-
-  // TODO: look into generalizing grabbing the heights of the elements
-  useEffect(() => {
-    const heights: number[] = [];
-    ref.current?.querySelectorAll("thead tr").forEach((node) => {
-      heights.push(node.clientHeight);
-    });
-    setRowHeaderHeights(heights);
+    setRowHeaderHeights(getHeaderClientHeights(ref));
   }, [category, subgroup, shouldShowReliability]);
+
+  // Update row body heights whenever category or subgroup changes
+  useEffect(() => {
+    setRowBodyHeights(getBodyClientHeights(ref));
+  }, [category, subgroup]);
 
   return (
     <Flex
