@@ -33,7 +33,7 @@ export const VintageList = ({
   // This ref is passed to the first VintageTable for the indicator
   // When multiple VintageTables are stacked horizontally on desktop, only the first
   // renders the row labels. This ref is used
-  // to populate rowBodyHeights so that row heights for all
+  // to populate rowBodyHeights and rowHeaderHeights so that row heights for all
   // vintages have the same heights as the corresponding row in the first vintage
   const ref = useRef<HTMLTableElement>(null);
   const category = useCategory();
@@ -63,6 +63,7 @@ export const VintageList = ({
             <VintageTable
               ref={ref}
               key={`vintage-${i}`}
+              isFirstVintage={true}
               vintage={vintage}
               rowHeaderHeights={rowHeaderHeights}
               rowBodyHeights={rowBodyHeights}
@@ -74,6 +75,7 @@ export const VintageList = ({
         return (
           <VintageTable
             key={`vintage-${i}`}
+            isFirstVintage={false}
             vintage={vintage}
             rowHeaderHeights={rowHeaderHeights}
             rowBodyHeights={rowBodyHeights}

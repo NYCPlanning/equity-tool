@@ -4,7 +4,11 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { DataPointRow } from "@components/DataPointRow";
 import { Vintage } from "@schemas/vintage";
 import { useTablesIsOpen } from "@contexts/TablesIsOpenContext";
+
 export interface VintageTableProps {
+  // The first vintage in the list is the reference for the other vintages.
+  // Its height needs to be free to respond to changes.
+  isFirstVintage: boolean;
   vintage: Vintage;
   rowHeaderHeights: number[];
   rowBodyHeights: number[];
@@ -15,6 +19,7 @@ export interface VintageTableProps {
 const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
   (
     {
+      isFirstVintage,
       vintage,
       rowBodyHeights,
       rowHeaderHeights,
@@ -57,7 +62,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
         }}
       >
         <Thead>
-          <Tr height={rowHeaderHeights[0]}>
+          <Tr height={!isFirstVintage ? rowHeaderHeights[0] : undefined}>
             <Th
               rowSpan={headers.length + 1}
               display={{ base: "none", md: "table-cell" }}
@@ -129,7 +134,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 just render first row of headers with colspan of 1 */}
           {isSurvey && !shouldShowReliability ? (
             <Tr
-              height={rowHeaderHeights[1]}
+              height={!isFirstVintage ? rowHeaderHeights[1] : undefined}
               display={{
                 base: isOpen ? "table-row" : "none",
                 md: "table-row",
@@ -174,7 +179,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
             // Otherwise, render all header rows, taking colspans from the data
             headers.map((headerRow, i, headers) => (
               <Tr
-                height={rowHeaderHeights[i + 1]}
+                height={!isFirstVintage ? rowHeaderHeights[i + 1] : undefined}
                 display={{
                   base: isOpen ? "table-row" : "none",
                   md: "table-row",
