@@ -11,6 +11,7 @@ npm i
 This command should install all necessary dependencies and set up Husky to run on all commits
 
 2. Create `.env.local` and set the required environment variables.
+   - Local development credentials are available within the NYC planning password vault under "EDDE Credentials"
 
 
 ### Running locally
