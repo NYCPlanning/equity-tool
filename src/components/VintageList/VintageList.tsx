@@ -44,8 +44,7 @@ export const VintageList = ({
       heights.push(node.clientHeight);
     });
     setRowHeaderHeights(heights);
-    // TODO: check what causes changes to headers
-  }, [category, subgroup]);
+  }, [category, subgroup, shouldShowReliability]);
 
   return (
     <Flex
