@@ -6,15 +6,23 @@ import { Vintage } from "@schemas/vintage";
 import { useTablesIsOpen } from "@contexts/TablesIsOpenContext";
 export interface VintageTableProps {
   vintage: Vintage;
-  // TODO: Variable for header heights
-  // TODO: refactor to body heights
-  rowHeights: number[];
+  rowHeaderHeights: number[];
+  rowBodyHeights: number[];
   shouldShowReliability: boolean;
   isSurvey: boolean;
 }
 
 const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
-  ({ vintage, rowHeights, shouldShowReliability, isSurvey }, ref) => {
+  (
+    {
+      vintage,
+      rowBodyHeights,
+      rowHeaderHeights,
+      shouldShowReliability,
+      isSurvey,
+    },
+    ref
+  ) => {
     const { rows, headers, label, isChange } = vintage;
     const [isOpen, setIsOpen] = useState(true);
 
@@ -49,8 +57,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
         }}
       >
         <Thead>
-          <Tr>
-            {/* TODO: use height of first row for first table  */}
+          <Tr height={rowHeaderHeights[0]}>
             <Th
               rowSpan={headers.length + 1}
               display={{ base: "none", md: "table-cell" }}
@@ -122,7 +129,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 just render first row of headers with colspan of 1 */}
           {isSurvey && !shouldShowReliability ? (
             <Tr
-              // TODO: render the second row for the header rows
+              height={rowHeaderHeights[1]}
               display={{
                 base: isOpen ? "table-row" : "none",
                 md: "table-row",
@@ -167,7 +174,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
             // Otherwise, render all header rows, taking colspans from the data
             headers.map((headerRow, i, headers) => (
               <Tr
-                // TODO: render the second through last header rows
+                height={rowHeaderHeights[i + 1]}
                 display={{
                   base: isOpen ? "table-row" : "none",
                   md: "table-row",
@@ -223,7 +230,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
           {rows.map((row, i) => (
             <DataPointRow
               shouldShowReliability={shouldShowReliability}
-              height={rowHeights[i]}
+              height={rowBodyHeights[i]}
               key={i}
               row={row}
             />

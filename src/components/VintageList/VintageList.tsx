@@ -16,14 +16,13 @@ export const VintageList = ({
   shouldShowReliability,
   isSurvey,
 }: VintageListProps) => {
-  // TODO: create headerHeights state
-  // TODO: refactor to body heights
-  const [rowHeights, setRowHeights] = useState<number[]>([]);
+  const [rowHeaderHeights, setRowHeaderHeights] = useState<number[]>([]);
+  const [rowBodyHeights, setRowBodyHeights] = useState<number[]>([]);
 
   // This ref is passed to the first VintageTable for the indicator
   // When multiple VintageTables are stacked horizontally on desktop, only the first
   // renders the row labels. This ref is used
-  // to populate rowHeights so that row heights for all
+  // to populate rowBodyHeights so that row heights for all
   // vintages have the same heights as the corresponding row in the first vintage
   const ref = useRef<HTMLTableElement>(null);
   const category = useCategory();
@@ -35,10 +34,18 @@ export const VintageList = ({
     ref.current?.querySelectorAll("tbody tr").forEach((node) => {
       heights.push(node.clientHeight);
     });
-    setRowHeights(heights);
+    setRowBodyHeights(heights);
   }, [category, subgroup]);
 
-  // TODO: create effect to get header heights
+  // TODO: look into generalizing grabbing the heights of the elements
+  useEffect(() => {
+    const heights: number[] = [];
+    ref.current?.querySelectorAll("thead tr").forEach((node) => {
+      heights.push(node.clientHeight);
+    });
+    setRowHeaderHeights(heights);
+    // TODO: check what causes changes to headers
+  }, [category, subgroup]);
 
   return (
     <Flex
@@ -55,7 +62,8 @@ export const VintageList = ({
               ref={ref}
               key={`vintage-${i}`}
               vintage={vintage}
-              rowHeights={rowHeights}
+              rowHeaderHeights={rowHeaderHeights}
+              rowBodyHeights={rowBodyHeights}
               shouldShowReliability={shouldShowReliability}
               isSurvey={isSurvey}
             />
@@ -65,8 +73,8 @@ export const VintageList = ({
           <VintageTable
             key={`vintage-${i}`}
             vintage={vintage}
-            // TODO: refactor to body heights
-            rowHeights={rowHeights}
+            rowHeaderHeights={rowHeaderHeights}
+            rowBodyHeights={rowBodyHeights}
             shouldShowReliability={shouldShowReliability}
             isSurvey={isSurvey}
           />
