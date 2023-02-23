@@ -4,10 +4,11 @@ import { forwardRef } from "react";
 
 export interface VintageLabelProps {
   vintage: Vintage;
+  headerHeight: number;
 }
 
 const VintageLabels = forwardRef<HTMLTableElement, VintageLabelProps>(
-  ({ vintage }, ref) => {
+  ({ vintage, headerHeight }, ref) => {
     return (
       <Box
         position="sticky"
@@ -36,6 +37,7 @@ const VintageLabels = forwardRef<HTMLTableElement, VintageLabelProps>(
                 display="table-cell"
                 minWidth={"13.5rem"}
                 maxWidth={"13.5rem"}
+                height={headerHeight}
               ></Th>
             </Tr>
           </Thead>

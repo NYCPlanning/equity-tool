@@ -5,6 +5,7 @@ import { VintageLabels } from "@components/VintageLabels";
 import { VintageTable } from "@components/VintageTable";
 import { useCategory } from "@hooks/useCategory";
 import { useSubgroup } from "@hooks/useSubgroup";
+import sum from "lodash.sum";
 
 const getClientHeights =
   (elements: string) => (ref: RefObject<HTMLTableElement>) => {
@@ -62,7 +63,11 @@ export const VintageList = ({
       direction={{ base: "column", md: "row" }}
       gridGap={{ base: "0.75rem", md: "0rem" }}
     >
-      <VintageLabels ref={labelRef} vintage={vintages[0]} />
+      <VintageLabels
+        ref={labelRef}
+        vintage={vintages[0]}
+        headerHeight={sum(headerRowHeights)}
+      />
       {vintages.map((vintage, i) => {
         if (i === 0) {
           return (
