@@ -36,13 +36,11 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
           // These styles hide the row labels for all vintages after the first
           // on desktop. Because vintages stack horizontally on desktop, we only need to
           // render the labels once.
-          "&:not(:first-of-type)": {
-            "tbody tr th": {
-              display: { base: "table-cell", md: "none" },
-            },
-            "thead tr:first-of-type th:first-of-type": {
-              display: "none",
-            },
+          "tbody tr th": {
+            display: { base: "table-cell", md: "none" },
+          },
+          "thead tr:first-of-type th:first-of-type": {
+            display: "none",
           },
         }}
       >
