@@ -24,6 +24,7 @@ const VintageLabels = forwardRef<HTMLTableElement, VintageLabelProps>(
             display: "block",
             overflowX: "initial",
             borderCollapse: "initial",
+            borderSpacing: 0,
             fontSize: "0.875rem",
             tableLayout: "fixed",
             width: "auto",
