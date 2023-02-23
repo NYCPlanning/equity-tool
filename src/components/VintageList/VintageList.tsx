@@ -57,6 +57,7 @@ export const VintageList = ({
 
   return (
     <Flex
+      backgroundColor={"gray.50"}
       flexShrink={{ base: 1, md: 0 }}
       overflowX={{ base: "auto", md: "auto" }}
       paddingRight={{ base: "0rem", md: "1rem" }}
