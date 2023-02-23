@@ -4,15 +4,28 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { DataPointRow } from "@components/DataPointRow";
 import { Vintage } from "@schemas/vintage";
 import { useTablesIsOpen } from "@contexts/TablesIsOpenContext";
+
 export interface VintageTableProps {
+  isFirstVintage: boolean;
   vintage: Vintage;
-  rowHeights: number[];
+  headerRowHeights: number[];
+  bodyRowHeights: number[];
   shouldShowReliability: boolean;
   isSurvey: boolean;
 }
 
 const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
-  ({ vintage, rowHeights, shouldShowReliability, isSurvey }, ref) => {
+  (
+    {
+      isFirstVintage,
+      vintage,
+      headerRowHeights,
+      bodyRowHeights,
+      shouldShowReliability,
+      isSurvey,
+    },
+    ref
+  ) => {
     const { rows, headers, label, isChange } = vintage;
     const [isOpen, setIsOpen] = useState(true);
 
@@ -33,9 +46,11 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
           fontSize: "0.875rem",
           tableLayout: "fixed",
           width: "auto",
-          // These styles hide the row labels for all vintages after the first
-          // on desktop. Because vintages stack horizontally on desktop, we only need to
-          // render the labels once.
+          /* 
+            On desktop, there is a column dedicated to showing the row labels.
+            Consequently, the label columns for each vintage table only need
+            to be shown on mobile.
+          */
           "tbody tr th": {
             display: { base: "table-cell", md: "none" },
           },
@@ -45,7 +60,15 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
         }}
       >
         <Thead>
-          <Tr>
+          {/*
+              The first vintage table sets its height automatically,
+              while the subsequent tables match their heights to it.
+           */}
+          <Tr
+            sx={{
+              height: { md: !isFirstVintage ? headerRowHeights[0] : undefined },
+            }}
+          >
             <Th
               rowSpan={headers.length + 1}
               display={{ base: "none", md: "table-cell" }}
@@ -121,6 +144,11 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 base: isOpen ? "table-row" : "none",
                 md: "table-row",
               }}
+              sx={{
+                height: {
+                  md: !isFirstVintage ? headerRowHeights[1] : undefined,
+                },
+              }}
             >
               <Th
                 rowSpan={headers.length}
@@ -166,6 +194,11 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                   md: "table-row",
                 }}
                 key={`header-row-${i}`}
+                sx={{
+                  height: {
+                    md: !isFirstVintage ? headerRowHeights[i + 1] : undefined,
+                  },
+                }}
               >
                 {i === 0 && (
                   <Th
@@ -216,7 +249,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
           {rows.map((row, i) => (
             <DataPointRow
               shouldShowReliability={shouldShowReliability}
-              height={rowHeights[i]}
+              height={bodyRowHeights[i]}
               key={i}
               row={row}
             />

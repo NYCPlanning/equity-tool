@@ -14,6 +14,7 @@ const getClientHeights =
       .forEach((node) => heights.push(node.clientHeight));
     return heights;
   };
+const getHeaderClientHeights = getClientHeights("thead tr");
 const getBodyClientHeights = getClientHeights("tbody tr");
 
 export interface VintageListProps {
@@ -27,14 +28,19 @@ export const VintageList = ({
   shouldShowReliability,
   isSurvey,
 }: VintageListProps) => {
+  const [headerRowHeights, setHeaderRowHeights] = useState<number[]>([]);
   const [bodyRowHeights, setBodyRowHeights] = useState<number[]>([]);
 
-  // This ref is passed to the first VintageTable for the indicator
-  // When multiple VintageTables are stacked horizontally on desktop, only the first
-  // renders the row labels. This ref is used
-  // to populate rowHeights so that row heights for all
-  // vintages have the same heights as the corresponding row in the first vintage
+  /*
+    On desktop, the separate vintage tables are arranged horizontally,
+    as if they are a single table. To sell this appearance, the row
+    heights need to be synced across the tables. The label column has the
+    longest body text and is used for the data row heights. The first
+    table with actual data typically has the longest header text and is
+    used for the header row heights.
+  */
   const labelRef = useRef<HTMLTableElement>(null);
+  const firstTableRef = useRef<HTMLTableElement>(null);
   const category = useCategory();
   const subgroup = useSubgroup();
 
@@ -42,6 +48,11 @@ export const VintageList = ({
   useEffect(() => {
     setBodyRowHeights(getBodyClientHeights(labelRef));
   }, [category, subgroup]);
+
+  useEffect(() => {
+    const heights = getHeaderClientHeights(firstTableRef);
+    setHeaderRowHeights(heights);
+  }, [category, subgroup, shouldShowReliability]);
 
   return (
     <Flex
@@ -57,8 +68,11 @@ export const VintageList = ({
           return (
             <VintageTable
               key={`vintage-${i}`}
+              ref={firstTableRef}
+              isFirstVintage={true}
               vintage={vintage}
-              rowHeights={bodyRowHeights}
+              headerRowHeights={headerRowHeights}
+              bodyRowHeights={bodyRowHeights}
               shouldShowReliability={shouldShowReliability}
               isSurvey={isSurvey}
             />
@@ -67,8 +81,10 @@ export const VintageList = ({
         return (
           <VintageTable
             key={`vintage-${i}`}
+            isFirstVintage={false}
             vintage={vintage}
-            rowHeights={bodyRowHeights}
+            headerRowHeights={headerRowHeights}
+            bodyRowHeights={bodyRowHeights}
             shouldShowReliability={shouldShowReliability}
             isSurvey={isSurvey}
           />
