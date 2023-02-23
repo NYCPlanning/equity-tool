@@ -65,9 +65,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
               while the subsequent tables match their heights to it.
            */}
           <Tr
-            sx={{
-              height: { md: !isFirstVintage ? headerRowHeights[0] : undefined },
-            }}
+            height={{ md: !isFirstVintage ? headerRowHeights[0] : undefined }}
           >
             <Th
               rowSpan={headers.length + 1}
@@ -144,10 +142,8 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 base: isOpen ? "table-row" : "none",
                 md: "table-row",
               }}
-              sx={{
-                height: {
-                  md: !isFirstVintage ? headerRowHeights[1] : undefined,
-                },
+              height={{
+                md: !isFirstVintage ? headerRowHeights[1] : undefined,
               }}
             >
               <Th
@@ -194,10 +190,8 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                   md: "table-row",
                 }}
                 key={`header-row-${i}`}
-                sx={{
-                  height: {
-                    md: !isFirstVintage ? headerRowHeights[i + 1] : undefined,
-                  },
+                height={{
+                  md: !isFirstVintage ? headerRowHeights[i + 1] : undefined,
                 }}
               >
                 {i === 0 && (
