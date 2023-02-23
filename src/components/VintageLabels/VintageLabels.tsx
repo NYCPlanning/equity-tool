@@ -30,7 +30,7 @@ const VintageLabels = forwardRef<HTMLTableElement, VintageLabelProps>(
             width: "auto",
           }}
         >
-          <Thead>
+          <Thead opacity={0}>
             <Tr>
               <Th
                 rowSpan={1}
