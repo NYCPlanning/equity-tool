@@ -12,7 +12,7 @@ const getClientHeights =
     const heights: number[] = [];
     ref.current
       ?.querySelectorAll(elements)
-      .forEach((node) => heights.push(node.clientHeight));
+      .forEach((node) => heights.push(node.getBoundingClientRect().height));
     return heights;
   };
 const getHeaderClientHeights = getClientHeights("thead tr");

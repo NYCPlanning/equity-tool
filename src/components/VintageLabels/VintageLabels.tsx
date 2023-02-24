@@ -38,7 +38,7 @@ const VintageLabels = forwardRef<HTMLTableElement, VintageLabelProps>(
                 display="table-cell"
                 minWidth={"13.5rem"}
                 maxWidth={"13.5rem"}
-                height={headerHeight}
+                height={`${headerHeight}px`}
               ></Th>
             </Tr>
           </Thead>
