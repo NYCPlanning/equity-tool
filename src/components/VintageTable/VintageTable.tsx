@@ -66,7 +66,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
            */}
           <Tr
             height={{
-              md: !isFirstVintage ? `${headerRowHeights[0]}px` : undefined,
+              md: !isFirstVintage ? headerRowHeights[0] : undefined,
             }}
           >
             <Th
@@ -145,7 +145,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 md: "table-row",
               }}
               height={{
-                md: !isFirstVintage ? `${headerRowHeights[1]}px` : undefined,
+                md: !isFirstVintage ? headerRowHeights[1] : undefined,
               }}
             >
               <Th
@@ -193,9 +193,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
                 }}
                 key={`header-row-${i}`}
                 height={{
-                  md: !isFirstVintage
-                    ? `${headerRowHeights[i + 1]}px`
-                    : undefined,
+                  md: !isFirstVintage ? headerRowHeights[i + 1] : undefined,
                 }}
               >
                 {i === 0 && (
@@ -247,7 +245,7 @@ const VintageTable = forwardRef<HTMLTableElement, VintageTableProps>(
           {rows.map((row, i) => (
             <DataPointRow
               shouldShowReliability={shouldShowReliability}
-              height={`${bodyRowHeights[i]}px`}
+              height={bodyRowHeights[i]}
               key={i}
               row={row}
             />
