@@ -6,7 +6,7 @@ import { VintageTable } from "@components/VintageTable";
 import { GrayCard } from "@components/VintageList";
 import { useCategory } from "@hooks/useCategory";
 import { useSubgroup } from "@hooks/useSubgroup";
-import sum from "lodash.sum";
+import { sum } from "@helpers/sum";
 
 const getClientHeights =
   (elements: string) => (ref: RefObject<HTMLTableElement>) => {
