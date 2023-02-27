@@ -1,1 +1,1 @@
-export * from "./VintageTable";
+export * from "./VintageTableMobile";
