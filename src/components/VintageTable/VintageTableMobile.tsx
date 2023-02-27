@@ -146,6 +146,6 @@ const VintageTableMobile = ({
   );
 };
 
-VintageTableMobile.displayName = "VintageTable";
+VintageTableMobile.displayName = "VintageTableMobile";
 
 export { VintageTableMobile };

@@ -1,6 +1,9 @@
 import { Flex, Hide, Show } from "@chakra-ui/react";
 import { Vintage } from "@schemas/vintage";
-import { VintageTableMobile } from "@components/VintageTable";
+import {
+  VintageTableDesktop,
+  VintageTableMobile,
+} from "@components/VintageTable";
 
 export interface VintageListProps {
   vintages: Vintage[];
@@ -17,11 +20,11 @@ export const VintageList = ({
     <>
       <Hide above="md">
         <Flex
-          flexShrink={{ base: 1, md: 0 }}
-          overflowX={{ base: "auto", md: "auto" }}
-          paddingRight={{ base: "0rem", md: "1rem" }}
-          direction={{ base: "column", md: "row" }}
-          gridGap={{ base: "0.75rem", md: "0rem" }}
+          flexShrink={1}
+          overflowX="auto"
+          paddingRight="0rem"
+          direction="column"
+          gridGap="0.75rem"
         >
           {vintages.map((vintage, i) => (
             <VintageTableMobile
@@ -34,7 +37,9 @@ export const VintageList = ({
         </Flex>
       </Hide>
       <Show above="md">
-        <Flex>Placeholder</Flex>
+        <Flex overflowX="auto" paddingRight="1rem">
+          <VintageTableDesktop />
+        </Flex>
       </Show>
     </>
   );
