@@ -38,7 +38,11 @@ export const VintageList = ({
       </Hide>
       <Show above="md">
         <Flex overflowX="auto" paddingRight="1rem">
-          <VintageTableDesktop vintages={vintages} />
+          <VintageTableDesktop
+            vintages={vintages}
+            shouldShowReliability={shouldShowReliability}
+            isSurvey={isSurvey}
+          />
         </Flex>
       </Show>
     </>
