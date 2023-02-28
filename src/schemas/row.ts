@@ -1,4 +1,4 @@
-import { object, string, array, boolean, InferType } from "yup";
+import { object, string, boolean, InferType } from "yup";
 import { cellsSchema } from "./cells";
 
 export const rowSchema = object({
