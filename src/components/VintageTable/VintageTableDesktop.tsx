@@ -1,6 +1,8 @@
 import { Table, Tbody, Thead, Th, Tr } from "@chakra-ui/react";
 import { Vintage } from "@schemas/vintage";
 import { HeaderCell } from "@schemas/headerCell";
+import { Row } from "@schemas/row";
+import { Cells } from "@schemas/cells";
 
 export interface VintageTableDesktopProps {
   vintages: Vintage[];
@@ -17,6 +19,27 @@ const VintageTableDesktop = ({ vintages }: VintageTableDesktopProps) => {
         : (vintagesHeaderRows[i] = headerRow);
     });
   });
+
+  const vintagesBodyRows: Array<[{label: string, isDenominator: boolean | undefined}, Cells]> = [];
+  vintages.forEach(vintage => {
+    vintage.rows.forEach((bodyRow, i) => {
+      const vintagesBodyRow = vintagesBodyRows[i];
+      const bodyRowCells = bodyRow.cells ?? [];
+      if(vintagesBodyRow !== undefined) {
+        const vintagesBodyRowCells = vintagesBodyRow[1] ?? [];
+        vintagesBodyRows[i][1] = vintagesBodyRowCells.concat(bodyRowCells);
+      } else {
+        const rowLabel = {
+          label: bodyRow.label,
+          isDenominator: bodyRow.isDenominator
+        }
+        vintagesBodyRows[i] = [
+          rowLabel,
+          bodyRowCells
+        ]
+      }
+    })
+  })
 
   return (
     <Table variant="striped">
