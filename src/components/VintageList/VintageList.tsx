@@ -38,7 +38,7 @@ export const VintageList = ({
       </Hide>
       <Show above="md">
         <Flex overflowX="auto" paddingRight="1rem">
-          <VintageTableDesktop />
+          <VintageTableDesktop vintages={vintages} />
         </Flex>
       </Show>
     </>
