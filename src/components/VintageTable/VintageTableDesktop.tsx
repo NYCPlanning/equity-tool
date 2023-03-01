@@ -16,73 +16,71 @@ const VintageTableDesktop = ({
   shouldShowReliability,
   isSurvey,
 }: VintageTableDesktopProps) => {
-  const vintageHeaderTitles: Array<[string, number, boolean]> = vintages.map(
-    (vintage) => {
-      const headers = vintage.headers;
-      const titleColSpan =
-        isSurvey && !shouldShowReliability
-          ? headers[0].length
-          : headers.reduce(
-              (record, curr) => (curr.length > record ? curr.length : record),
-              0
-            );
-      return [vintage.label, titleColSpan, vintage.isChange];
-    }
-  );
+  const surveyShouldNotShowReliability = isSurvey && !shouldShowReliability;
+  const vintageHeaderTitles: {
+    label: string;
+    colSpan: number;
+    isChange: boolean;
+  }[] = vintages.map((vintage) => {
+    const headers = vintage.headers;
+    const titleColSpan = surveyShouldNotShowReliability
+      ? headers[0].length
+      : headers.reduce(
+          (record, curr) => (curr.length > record ? curr.length : record),
+          0
+        );
+    return {
+      label: vintage.label,
+      colSpan: titleColSpan,
+      isChange: vintage.isChange,
+    };
+  });
   const vintagesHeaderRows: Array<HeaderCell[]> = [];
   vintages.forEach((vintage) => {
-    if (isSurvey && !shouldShowReliability) {
+    if (surveyShouldNotShowReliability) {
       const vintagesHeaderRow = vintagesHeaderRows[0];
       const headerRow = vintage.headers[0];
-      vintagesHeaderRow !== undefined
-        ? (vintagesHeaderRows[0] = vintagesHeaderRow.concat(headerRow))
-        : (vintagesHeaderRows[0] = headerRow);
+      vintagesHeaderRow === undefined
+        ? (vintagesHeaderRows[0] = headerRow)
+        : (vintagesHeaderRows[0] = vintagesHeaderRow.concat(headerRow));
     } else {
       vintage.headers.forEach((headerRow, i) => {
         const vintagesHeaderRow = vintagesHeaderRows[i];
-        vintagesHeaderRow
-          ? (vintagesHeaderRows[i] = vintagesHeaderRow.concat(headerRow))
-          : (vintagesHeaderRows[i] = headerRow);
+        vintagesHeaderRow === undefined
+          ? (vintagesHeaderRows[i] = headerRow)
+          : (vintagesHeaderRows[i] = vintagesHeaderRow.concat(headerRow));
       });
     }
   });
 
-  const vintagesBodyRows: Array<
-    [
-      {
-        label: string;
-        isDenominator: boolean | undefined;
-        placeholder: string | undefined;
-      },
-      Cells
-    ]
-  > = [];
-
+  const vintagesBodyRows: {
+    meta: {
+      label: string;
+      isDenominator: boolean | undefined;
+      placeholder: string | undefined;
+    };
+    cells: Cells;
+  }[] = [];
   vintages.forEach((vintage) => {
     vintage.rows.forEach((bodyRow, i) => {
       const vintagesBodyRow = vintagesBodyRows[i];
       const bodyRowCells = bodyRow.cells ?? [];
-      if (vintagesBodyRow !== undefined) {
-        const vintagesBodyRowCells = vintagesBodyRow[1] ?? [];
-        const applicableBodyRowsCells =
-          isSurvey && !shouldShowReliability
-            ? bodyRowCells.filter((cell) => cell.variance === "NONE")
-            : bodyRowCells;
-        vintagesBodyRows[i][1] = vintagesBodyRowCells.concat(
-          applicableBodyRowsCells
-        );
-      } else {
-        const rowLabel = {
+      const cells = surveyShouldNotShowReliability
+        ? bodyRowCells.filter((cell) => cell.variance === "NONE")
+        : bodyRowCells;
+      if (vintagesBodyRow === undefined) {
+        const meta = {
           label: bodyRow.label,
           isDenominator: bodyRow.isDenominator,
           placeholder: bodyRow.placeholder,
         };
-        vintagesBodyRows[i] = [
-          rowLabel,
-          isSurvey && !shouldShowReliability
-            ? bodyRowCells.filter((cell) => cell.variance === "NONE")
-            : bodyRowCells,
-        ];
+        vintagesBodyRows[i] = {
+          meta,
+          cells,
+        };
+      } else {
+        const vintagesBodyRowCells = vintagesBodyRow.cells ?? [];
+        vintagesBodyRows[i].cells = vintagesBodyRowCells.concat(cells!);
       }
     });
   });
@@ -112,24 +110,24 @@ const VintageTableDesktop = ({
           ></Th>
           {vintageHeaderTitles.map((headerTitle) => (
             <Th
-              key={`vintage-${headerTitle[0]}`}
-              colSpan={headerTitle[1]}
+              key={`vintage-${headerTitle.label}`}
+              colSpan={headerTitle.colSpan}
               minWidth={
                 isSurvey && shouldShowReliability
                   ? "30.5rem"
-                  : headerTitle[2]
+                  : headerTitle.isChange
                   ? "29.25rem"
                   : "15.375rem"
               }
               maxWidth={
                 isSurvey && shouldShowReliability
                   ? "30.5rem"
-                  : headerTitle[2]
+                  : headerTitle.isChange
                   ? "29.25rem"
                   : "15.375rem"
               }
             >
-              {headerTitle[0]}
+              {headerTitle.label}
             </Th>
           ))}
         </Tr>
@@ -139,7 +137,7 @@ const VintageTableDesktop = ({
               <Th
                 key={`header-cell-${headerCell.label}-${i}`}
                 colSpan={
-                  isSurvey && !shouldShowReliability ? 1 : headerCell.colspan
+                  surveyShouldNotShowReliability ? 1 : headerCell.colspan
                 }
                 minWidth="unset"
                 maxWidth="unset"
@@ -156,7 +154,7 @@ const VintageTableDesktop = ({
             <Td
               as="th"
               scope="row"
-              fontWeight={bodyRow[0].isDenominator ? "700" : "400"}
+              fontWeight={bodyRow.meta.isDenominator ? "700" : "400"}
               zIndex={100}
               minWidth="13.5rem"
               maxWidth="13.5rem"
@@ -164,10 +162,10 @@ const VintageTableDesktop = ({
               position="sticky"
               left={0}
             >
-              {bodyRow[0].label}
+              {bodyRow.meta.label}
             </Td>
-            {bodyRow[1] ? (
-              bodyRow[1].map((dataPoint, j) =>
+            {bodyRow.cells ? (
+              bodyRow.cells.map((dataPoint, j) =>
                 ["PERCENT", "PERCENTAGE_POINT"].includes(dataPoint.measure) ? (
                   <PercentDataPointCell
                     key={`data-point-cell-${j}`}
@@ -182,7 +180,7 @@ const VintageTableDesktop = ({
               )
             ) : (
               <Td minWidth="unset" maxWidth="unset" px="1.5rem" colSpan={5}>
-                {bodyRow[0].placeholder}
+                {bodyRow.meta.placeholder}
               </Td>
             )}
           </Tr>
