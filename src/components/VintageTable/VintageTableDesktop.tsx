@@ -16,10 +16,18 @@ const VintageTableDesktop = ({
   shouldShowReliability,
   isSurvey,
 }: VintageTableDesktopProps) => {
-  const vintageHeaderTitles: Array<[string, number]> = vintages.map(
-    // (vintage) => [vintage.label, vintage.rows[0].cells.length]
-    // TODO: Assess the correct span for the width of the cells
-    (vintage) => [vintage.label, vintage.headers[0].length]
+  const vintageHeaderTitles: Array<[string, number, boolean]> = vintages.map(
+    (vintage) => {
+      const headers = vintage.headers;
+      const titleColSpan =
+        isSurvey && !shouldShowReliability
+          ? headers[0].length
+          : headers.reduce(
+              (record, curr) => (curr.length > record ? curr.length : record),
+              0
+            );
+      return [vintage.label, titleColSpan, vintage.isChange];
+    }
   );
   const vintagesHeaderRows: Array<HeaderCell[]> = [];
   vintages.forEach((vintage) => {
@@ -99,7 +107,21 @@ const VintageTableDesktop = ({
           {vintageHeaderTitles.map((headerTitle) => (
             <Th
               key={`vintage-${headerTitle[0]}`}
-              colSpan={isSurvey && !shouldShowReliability ? 1 : headerTitle[1]}
+              colSpan={headerTitle[1]}
+              minWidth={
+                isSurvey && shouldShowReliability
+                  ? "30.5rem"
+                  : headerTitle[2]
+                  ? "29.25rem"
+                  : "15.375rem"
+              }
+              maxWidth={
+                isSurvey && shouldShowReliability
+                  ? "30.5rem"
+                  : headerTitle[2]
+                  ? "29.25rem"
+                  : "15.375rem"
+              }
             >
               {headerTitle[0]}
             </Th>
