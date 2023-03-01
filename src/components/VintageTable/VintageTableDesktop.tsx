@@ -31,14 +31,20 @@ const VintageTableDesktop = ({
   );
   const vintagesHeaderRows: Array<HeaderCell[]> = [];
   vintages.forEach((vintage) => {
-    isSurvey && !shouldShowReliability
-      ? (vintagesHeaderRows[0] = vintage.headers[0])
-      : vintage.headers.forEach((headerRow, i) => {
-          const vintagesHeaderRow = vintagesHeaderRows[i];
-          vintagesHeaderRow
-            ? (vintagesHeaderRows[i] = vintagesHeaderRow.concat(headerRow))
-            : (vintagesHeaderRows[i] = headerRow);
-        });
+    if (isSurvey && !shouldShowReliability) {
+      const vintagesHeaderRow = vintagesHeaderRows[0];
+      const headerRow = vintage.headers[0];
+      vintagesHeaderRow !== undefined
+        ? (vintagesHeaderRows[0] = vintagesHeaderRow.concat(headerRow))
+        : (vintagesHeaderRows[0] = headerRow);
+    } else {
+      vintage.headers.forEach((headerRow, i) => {
+        const vintagesHeaderRow = vintagesHeaderRows[i];
+        vintagesHeaderRow
+          ? (vintagesHeaderRows[i] = vintagesHeaderRow.concat(headerRow))
+          : (vintagesHeaderRows[i] = headerRow);
+      });
+    }
   });
 
   const vintagesBodyRows: Array<
