@@ -1,9 +1,9 @@
 import { Table, Tbody, Thead, Td, Th, Tr } from "@chakra-ui/react";
 import { Vintage } from "@schemas/vintage";
 import { HeaderCell } from "@schemas/headerCell";
-import { Cells } from "@schemas/cells";
 import { DataPointCell } from "@components/DataPointCell";
 import { PercentDataPointCell } from "@components/PercentDataPointCell.tsx";
+import { DataPoint } from "@schemas/dataPoint";
 
 export interface VintageTableDesktopProps {
   vintages: Vintage[];
@@ -59,28 +59,39 @@ const VintageTableDesktop = ({
       isDenominator: boolean | undefined;
       placeholder: string | undefined;
     };
-    cells: Cells;
+    colSpans: number[];
+    cells: Array<DataPoint | null>;
   }[] = [];
-  vintages.forEach((vintage) => {
-    vintage.rows.forEach((bodyRow, i) => {
-      const vintagesBodyRow = vintagesBodyRows[i];
-      const bodyRowCells = bodyRow.cells ?? [];
-      const cells = surveyShouldNotShowReliability
-        ? bodyRowCells.filter((cell) => cell.variance === "NONE")
-        : bodyRowCells;
+  vintages.forEach((vintage, i) => {
+    vintage.rows.forEach((bodyRow, j) => {
+      const vintagesBodyRow = vintagesBodyRows[j];
+      const bodyRowCells = bodyRow.cells;
+      const colSpan =
+        bodyRowCells === null ? vintageHeaderTitles[i].colSpan : 1;
+      const cells =
+        bodyRowCells === null
+          ? [bodyRowCells]
+          : surveyShouldNotShowReliability
+          ? (bodyRowCells.filter(
+              (cell) => cell.variance === "NONE"
+            ) as DataPoint[])
+          : (bodyRowCells as DataPoint[]);
       if (vintagesBodyRow === undefined) {
         const meta = {
           label: bodyRow.label,
           isDenominator: bodyRow.isDenominator,
           placeholder: bodyRow.placeholder,
         };
-        vintagesBodyRows[i] = {
+        vintagesBodyRows[j] = {
           meta,
           cells,
+          colSpans: [colSpan],
         };
       } else {
-        const vintagesBodyRowCells = vintagesBodyRow.cells ?? [];
-        vintagesBodyRows[i].cells = vintagesBodyRowCells.concat(cells!);
+        const vintagesBodyRowSpans = vintagesBodyRow.colSpans;
+        const vintagesBodyRowCells = vintagesBodyRow.cells;
+        vintagesBodyRows[j].cells = vintagesBodyRowCells.concat(cells);
+        vintagesBodyRows[j].colSpans = vintagesBodyRowSpans.concat(colSpan);
       }
     });
   });
@@ -164,24 +175,29 @@ const VintageTableDesktop = ({
             >
               {bodyRow.meta.label}
             </Td>
-            {bodyRow.cells ? (
-              bodyRow.cells.map((dataPoint, j) =>
-                ["PERCENT", "PERCENTAGE_POINT"].includes(dataPoint.measure) ? (
-                  <PercentDataPointCell
-                    key={`data-point-cell-${j}`}
-                    dataPoint={dataPoint}
-                  />
-                ) : (
-                  <DataPointCell
-                    key={`data-point-cell-${j}`}
-                    dataPoint={dataPoint}
-                  />
-                )
+            {bodyRow.cells.map((dataPoint, j) =>
+              dataPoint === null ? (
+                <Td
+                  minWidth="unset"
+                  maxWidth="unset"
+                  px="1.5rem"
+                  colSpan={bodyRow.colSpans[j]}
+                >
+                  {bodyRow.meta.placeholder}
+                </Td>
+              ) : ["PERCENT", "PERCENTAGE_POINT"].includes(
+                  dataPoint.measure
+                ) ? (
+                <PercentDataPointCell
+                  key={`data-point-cell-${j}`}
+                  dataPoint={dataPoint}
+                />
+              ) : (
+                <DataPointCell
+                  key={`data-point-cell-${j}`}
+                  dataPoint={dataPoint}
+                />
               )
-            ) : (
-              <Td minWidth="unset" maxWidth="unset" px="1.5rem" colSpan={5}>
-                {bodyRow.meta.placeholder}
-              </Td>
             )}
           </Tr>
         ))}
