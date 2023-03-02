@@ -17,12 +17,17 @@ const VintageTableDesktop = ({
   isSurvey,
 }: VintageTableDesktopProps) => {
   const surveyShouldNotShowReliability = isSurvey && !shouldShowReliability;
+
+  // Each vintage should have a top header that spans all its columns.
   const vintageHeaderTitles: {
     label: string;
     colSpan: number;
     isChange: boolean;
   }[] = vintages.map((vintage) => {
     const headers = vintage.headers;
+    // When the header is a survey and the reliability inidicators are off,
+    // then the headers should take the length of its first row of headers.
+    // Otherwise, it should take the length of its longest row of headers.
     const titleColSpan = surveyShouldNotShowReliability
       ? headers[0].length
       : headers.reduce(
@@ -35,11 +40,17 @@ const VintageTableDesktop = ({
       isChange: vintage.isChange,
     };
   });
+
+  // Each header row from every vintage needs to be collected into a cross-vintage row
   const vintagesHeaderRows: Array<HeaderCell[]> = [];
   vintages.forEach((vintage) => {
+    // When data are surveys not showing reliability,
+    // then only the first row of headers are collected together into a single row
+    // Otherwise, each header row from every vintage is collected together into cross-vintage rows
     if (surveyShouldNotShowReliability) {
       const vintagesHeaderRow = vintagesHeaderRows[0];
       const headerRow = vintage.headers[0];
+      // Initialize row or append to existing one
       vintagesHeaderRow === undefined
         ? (vintagesHeaderRows[0] = headerRow)
         : (vintagesHeaderRows[0] = vintagesHeaderRow.concat(headerRow));
@@ -53,6 +64,12 @@ const VintageTableDesktop = ({
     }
   });
 
+  // Each body from every vintage needs to be collected into a cross-vintage row
+  // Meta contaings Data about the whole row and is based on the first vintage
+  // colspans and cells contain data for each datapoint
+  // When a vintage contains 'null' for its cells, the data on how many columns
+  // that vintage should be is lost. The data are recoverd by looking at the the
+  // colSpans of the header title for that vintage.
   const vintagesBodyRows: {
     meta: {
       label: string;
@@ -66,16 +83,22 @@ const VintageTableDesktop = ({
     vintage.rows.forEach((bodyRow, j) => {
       const vintagesBodyRow = vintagesBodyRows[j];
       const bodyRowCells = bodyRow.cells;
+      // Unavailable data spans the whole width of its vintage.
+      // All other data spans a single cell
       const colSpan =
         bodyRowCells === null ? vintageHeaderTitles[i].colSpan : 1;
       const cells =
         bodyRowCells === null
-          ? [bodyRowCells]
+          ? // Place null body cells into array for type compatibility
+            [bodyRowCells]
           : surveyShouldNotShowReliability
-          ? (bodyRowCells.filter(
+          ? // Filter out reliability data when not requested
+            (bodyRowCells.filter(
               (cell) => cell.variance === "NONE"
             ) as DataPoint[])
-          : (bodyRowCells as DataPoint[]);
+          : // Otherwise, return all data as-is
+            (bodyRowCells as DataPoint[]);
+      // Initialize body row or append to existing one
       if (vintagesBodyRow === undefined) {
         const meta = {
           label: bodyRow.label,
@@ -112,6 +135,7 @@ const VintageTableDesktop = ({
     >
       <Thead>
         <Tr display="table-row">
+          {/* Top left cornerstone */}
           <Th
             rowSpan={vintagesHeaderRows.length + 1}
             minWidth="13.5rem"
@@ -162,6 +186,7 @@ const VintageTableDesktop = ({
       <Tbody display="table-row-group">
         {vintagesBodyRows.map((bodyRow, i) => (
           <Tr key={i}>
+            {/* Row labels are constructed from meta data */}
             <Td
               as="th"
               scope="row"
@@ -175,6 +200,7 @@ const VintageTableDesktop = ({
             >
               {bodyRow.meta.label}
             </Td>
+            {/* Row data are constructed from lists of cells and col spans */}
             {bodyRow.cells.map((dataPoint, j) =>
               dataPoint === null ? (
                 <Td
