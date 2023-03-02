@@ -1,9 +1,9 @@
-import { object, string, boolean, InferType } from "yup";
-import { cellsSchema } from "./cells";
+import { object, string, array, boolean, InferType } from "yup";
+import { dataPointSchema } from "@schemas/dataPoint";
 
 export const rowSchema = object({
   label: string().required(),
-  cells: cellsSchema,
+  cells: array().of(dataPointSchema).nullable().defined(),
   isDenominator: boolean().optional(),
   placeholder: string().optional(),
 });

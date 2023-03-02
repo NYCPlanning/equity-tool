@@ -68,7 +68,7 @@ const VintageTableDesktop = ({
   // Meta contaings Data about the whole row and is based on the first vintage
   // colspans and cells contain data for each datapoint
   // When a vintage contains 'null' for its cells, the data on how many columns
-  // that vintage should be is lost. The data are recoverd by looking at the the
+  // that vintage should be is lost. The data are recoverd by looking at the
   // colSpans of the header title for that vintage.
   const vintagesBodyRows: {
     meta: {
@@ -204,6 +204,7 @@ const VintageTableDesktop = ({
             {bodyRow.cells.map((dataPoint, j) =>
               dataPoint === null ? (
                 <Td
+                  key={`data-point-cell-${j}`}
                   minWidth="unset"
                   maxWidth="unset"
                   px="1.5rem"

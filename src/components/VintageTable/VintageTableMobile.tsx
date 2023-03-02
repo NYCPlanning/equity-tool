@@ -35,12 +35,6 @@ const VintageTableMobile = ({
         fontSize: "0.875rem",
         tableLayout: "fixed",
         width: "auto",
-        // TODO: update note
-        _notFrist: {
-          "thead tr:first-of-type th:first-of-type": {
-            display: "none",
-          },
-        },
       }}
     >
       <Thead>
