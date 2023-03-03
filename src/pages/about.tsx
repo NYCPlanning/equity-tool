@@ -31,18 +31,6 @@ const AboutPage = () => {
           color="white"
           gridGap={20}
         >
-          <Box flex={{ base: "auto", md: 2, xl: 2 }} py={10}>
-            <Heading size="lg" fontSize="2.375rem" pb="0.5em">
-              About
-            </Heading>
-            <Text fontSize="1.5625rem" lineHeight="2.1875rem">
-              The NYC Departments of City Planning (DCP) and Housing
-              Preservation and Development (HPD) are introducing a new
-              interactive resource that equips New Yorkers with data to navigate
-              challenging conversations about housing affordability,
-              displacement, and racial equity in our city. BLOOP
-            </Text>
-          </Box>
           <Feedback
             flex={1}
             py={10}
