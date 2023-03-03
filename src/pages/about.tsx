@@ -36,7 +36,7 @@ const AboutPage = () => {
               About
             </Heading>
             <Text fontSize="1.5625rem" lineHeight="2.1875rem">
-              The NYC Departments of City Planning (DCP) and Housing
+              foo bar. The NYC Departments of City Planning (DCP) and Housing
               Preservation and Development (HPD) are introducing a new
               interactive resource that equips New Yorkers with data to navigate
               challenging conversations about housing affordability,
