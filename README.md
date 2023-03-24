@@ -1,7 +1,7 @@
 # Equity Explorer (AKA Equitable Development Data Explorer)
 
 ### Setup
-1.  Install project
+1.  Install project **node version listed in .nvmrc**
 ```
 git  clone git@github.com:NYCPlanning/equity-tool.git
 cd equity-tool
