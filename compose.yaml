@@ -3,7 +3,6 @@ services:
     image: localstack/localstack:2.0.2 
     ports:
       - 4566:4566
-      - 4510-4559:4510-4559
     volumes:
       - "./localstack/configs:/var/lib/localstack/configs"
       - "./localstack/setup.sh:/etc/localstack/init/ready.d/init-aws.sh"
