@@ -22,6 +22,19 @@ npm run dev
 
 You can also run unit tests or the linter by running `npm run test` or `npm run lint`, respectively.
 
+#### Testing data updates
+When iterating through data updates, serving the files locally can help accelerate the verification process.
+For this purpose, this repository provides an optional local environment to replicate s3.
+
+To use this environment
+- obtain the configuration files, either by running the script in the `ose-equity-tool-etl` repository or downloading them from the Digital Ocean Space
+- Copy the files into the `localstack/configs` folder
+- update the `NEXT_PUBLIC_DO_SPACE_URL` variable to point to `http://localhost:4566/configs`
+   - If already running the frontend, restart the application to use the updated SPACE_URL.
+- run `docker compose up`
+
+The files will be automatically loaded to, and served from, the local s3 emulator.
+
 ### Tests
 Run the suite of Jest tests under `/test`
 ```
