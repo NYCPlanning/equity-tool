@@ -22,18 +22,59 @@ npm run dev
 
 You can also run unit tests or the linter by running `npm run test` or `npm run lint`, respectively.
 
+
+### Data updates
+
 #### Testing data updates
 When iterating through data updates, serving the files locally can help accelerate the verification process.
 For this purpose, this repository provides an optional local environment to replicate s3.
 
 To use this environment
 - obtain the configuration files, either by running the script in the `ose-equity-tool-etl` repository or downloading them from the Digital Ocean Space
-- Copy the files into the `localstack/configs` folder
-- update the `NEXT_PUBLIC_DO_SPACE_URL` variable to point to `http://localhost:4566/configs`
-   - If already running the frontend, restart the application to use the updated SPACE_URL.
-- run `docker compose up`
+   - Follow the steps for the desired strategy below
+- Copy the files into the `localstack/configs/[etl-tag]` folder
+- update the `NEXT_PUBLIC_DO_SPACE_URL` variable to point to `http://localhost:4566/configs/[etl-tag]`
+   - If already running the frontend, restart the application to use the updated DO_SPACE_URL.
+- run `ETL_TAG=[etl-tag] docker compose up`
 
 The files will be automatically loaded to, and served from, the local s3 emulator.
+
+##### Copying files from Digital Ocean
+1. Download the folder at the target etl-tag
+2. Unzip the folder if necessary.
+3. Copy the etl-tag folder and its contents into the `localstack/configs` directory 
+4. The resulting directory should follow the form `localstack/configs/[etl-tag]`
+
+##### Copying files from the `ose-equity-tool-etl` repository
+Before performing the steps below, ensure the steps to generate data at a specific tag have been performed in the ose-equity-tool-etl repository
+
+Set the ETL_TAG environment variable 
+```sh
+ETL_TAG=[etl-tag]
+```
+
+Create a directly in the localstack config folder
+```sh
+mkdir localstack/configs/$ETL_TAG
+```
+
+Copy the files from the etl repository
+```sh
+cp path/to/ose-equity-tool-etl/output/*.json localstack/configs/$ETL_TAG
+```
+
+Set the url for application to point to
+```sh
+cat > .env.local << EOF
+NEXT_PUBLIC_DO_SPACE_URL=http://localhost:4566/configs/$ETL_TAG
+EOF
+```
+
+Run the localstack server at the specific tag
+```sh
+ETL_TAG=$ETL_TAG docker compose up
+```
+
 
 ### Tests
 Run the suite of Jest tests under `/test`
