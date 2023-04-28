@@ -6,3 +6,5 @@ services:
     volumes:
       - "./localstack/configs:/var/lib/localstack/configs"
       - "./localstack/setup.sh:/etc/localstack/init/ready.d/init-aws.sh"
+    environment:
+      - BUCKET=${BUCKET}
