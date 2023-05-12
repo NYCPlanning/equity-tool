@@ -25,7 +25,7 @@ const VintageTableDesktop = ({
     isChange: boolean;
   }[] = vintages.map((vintage) => {
     const headers = vintage.headers;
-    // When the header is a survey and the reliability inidicators are off,
+    // When the header is a survey and the reliability indicators are off,
     // then the headers should take the length of its first row of headers.
     // Otherwise, it should take the length of its longest row of headers.
     const titleColSpan = surveyShouldNotShowReliability
@@ -65,10 +65,10 @@ const VintageTableDesktop = ({
   });
 
   // Each body from every vintage needs to be collected into a cross-vintage row
-  // Meta contaings Data about the whole row and is based on the first vintage
+  // Meta contains Data about the whole row and is based on the first vintage
   // colspans and cells contain data for each datapoint
   // When a vintage contains 'null' for its cells, the data on how many columns
-  // that vintage should be is lost. The data are recoverd by looking at the
+  // that vintage should be is lost. The data are recovered by looking at the
   // colSpans of the header title for that vintage.
   const vintagesBodyRows: {
     meta: {
