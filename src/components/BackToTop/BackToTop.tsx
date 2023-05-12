@@ -3,7 +3,10 @@ import { Box, Button, Link } from "@chakra-ui/react";
 
 export const BackToTop = () => {
   const scrollToTop = () => {
-    document.getElementById("back-to-top")!.scrollTop = 0;
+    const backToTopElement = document.getElementById("back-to-top");
+    if (backToTopElement !== null) {
+      backToTopElement.scrollTop = 0;
+    }
   };
 
   return (
