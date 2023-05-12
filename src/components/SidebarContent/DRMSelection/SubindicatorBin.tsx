@@ -1,8 +1,9 @@
 import React from "react";
 import { Tag } from "@chakra-ui/react";
+import { NtaIndex } from "@hooks/useNtaIndex";
 
 interface SubindicatorBinProps {
-  bin: string | undefined;
+  bin: NtaIndex | null;
 }
 
 export const SubindicatorBin = ({ bin }: SubindicatorBinProps) => {

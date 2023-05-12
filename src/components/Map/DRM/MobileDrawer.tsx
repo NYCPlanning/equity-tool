@@ -14,7 +14,7 @@ import { useGeography } from "@hooks/useGeography";
 import { NYC } from "@constants/geoid";
 import { SubindicatorBin } from "@components/SidebarContent";
 import { DataDownloadModal } from "@components/DataDownloadModal";
-import ntaIndexes from "@data/ntaIndexes.json";
+import { useNtaIndex } from "@hooks/useNtaIndex";
 import { View } from "@constants/View";
 
 export const DrmMobileDrawer = () => {
@@ -26,7 +26,7 @@ export const DrmMobileDrawer = () => {
 
   const clearSelection = useClearSelection();
 
-  const ntaIndex: { [index: string]: any } = ntaIndexes;
+  const ntaIndex = useNtaIndex();
 
   return (
     <Box
@@ -134,11 +134,7 @@ export const DrmMobileDrawer = () => {
             />
           </Box>
 
-          <Box>
-            {view === View.DRM && (
-              <SubindicatorBin bin={ntaIndex[geoid ? geoid : ""]} />
-            )}
-          </Box>
+          <Box>{view === View.DRM && <SubindicatorBin bin={ntaIndex} />}</Box>
           <DRMSelection />
         </Box>
       </Flex>
