@@ -7,13 +7,13 @@ import WelcomeFooter from "@components/Footers/WelcomeFooter";
 import { DRMSelection } from "@components/SidebarContent/DRMSelection";
 import { useView } from "@hooks/useView";
 import { useGeoid } from "@hooks/useGeoid";
+import { useNtaIndex } from "@hooks/useNtaIndex";
 import { useGeography } from "@hooks/useGeography";
 import { useClearSelection } from "@helpers/useClearSelection";
 import { NYC } from "@constants/geoid";
 import { Geography } from "@constants/geography";
 import { CategoryMenu } from "@components/CategoryMenu";
 import { SubindicatorBin } from "@components/SidebarContent";
-import ntaIndexes from "@data/ntaIndexes.json";
 import { DataDownloadModal } from "@components/DataDownloadModal";
 import { View } from "@constants/View";
 
@@ -22,7 +22,7 @@ export const SidebarContent = () => {
   const geoid = useGeoid();
   const geography = useGeography();
   const clearSelection = useClearSelection();
-  const ntaIndex: { [index: string]: any } = ntaIndexes;
+  const ntaIndex = useNtaIndex();
 
   if (geoid != null) {
     return (
@@ -70,9 +70,7 @@ export const SidebarContent = () => {
             />
           </Box>
         </Flex>
-        <Box>
-          {view === View.DRM && <SubindicatorBin bin={ntaIndex[geoid]} />}
-        </Box>
+        <Box>{view === View.DRM && <SubindicatorBin bin={ntaIndex} />}</Box>
 
         {view === View.DRM && <DRMSelection />}
         {view === View.DATA && (
