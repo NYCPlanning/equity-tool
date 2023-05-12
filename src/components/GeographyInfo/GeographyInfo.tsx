@@ -1,6 +1,6 @@
 import { Heading, Box, BoxProps } from "@chakra-ui/react";
 import { usePumaInfo } from "@hooks/usePumaInfo";
-import { fetchNtaInfo } from "@helpers/fetchNtaInfo";
+import { fetchNtaInfo, NtaInfo } from "@helpers/fetchNtaInfo";
 import { Geography } from "@constants/geography";
 import { useEffect, useState } from "react";
 import { getBoroughName } from "@helpers/getBoroughName";
@@ -21,14 +21,14 @@ export const GeographyInfo = ({
 
   const pumaInfo = usePumaInfo();
 
-  const [ntaInfo, setNtaInfo] = useState({
+  const [ntaInfo, setNtaInfo] = useState<NtaInfo>({
     ntaname: "",
     ntacode: "",
   });
 
   useEffect(() => {
     geography === Geography.NTA &&
-      fetchNtaInfo(geoid, (ntaInfo: any) => {
+      fetchNtaInfo(geoid, (ntaInfo: NtaInfo) => {
         setNtaInfo(ntaInfo);
       });
   }, [geoid]);
