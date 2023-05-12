@@ -4,7 +4,7 @@ import { useGeoid } from "@hooks/useGeoid/useGeoid";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { Geography } from "@constants/geography";
 import { getBoroughName } from "@helpers/getBoroughName";
-import { fetchNtaInfo } from "@helpers/fetchNtaInfo";
+import { fetchNtaInfo, NtaInfo } from "@helpers/fetchNtaInfo";
 
 export interface GeoidDescription {
   id: string;
@@ -18,14 +18,14 @@ export const useGeoidDescription = (): GeoidDescription => {
 
   const pumaInfo = usePumaInfo();
 
-  const [ntaInfo, setNtaInfo] = useState({
+  const [ntaInfo, setNtaInfo] = useState<NtaInfo>({
     ntaname: "",
     ntacode: "",
   });
 
   useEffect(() => {
     geography === Geography.NTA &&
-      fetchNtaInfo(geoid, (ntaInfo: any) => {
+      fetchNtaInfo(geoid, (ntaInfo: NtaInfo) => {
         setNtaInfo(ntaInfo);
       });
   }, [geoid]);
@@ -54,7 +54,6 @@ export const useGeoidDescription = (): GeoidDescription => {
         label: "Citywide",
       };
     case NTA:
-      // primaryHeading = `${ntaInfo?.ntaname}`;
       return {
         id: `NTA: ${geoid}`,
         label: ntaInfo.ntaname,

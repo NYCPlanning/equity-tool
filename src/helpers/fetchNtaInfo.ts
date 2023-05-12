@@ -1,6 +1,11 @@
+export type NtaInfo = {
+  ntacode: string;
+  ntaname: string;
+};
+
 export const fetchNtaInfo = async (
   ntacode: string | null,
-  onNtaInfo: (ntaInfo: any) => void
+  onNtaInfo: (ntaInfo: NtaInfo) => void
 ): Promise<null> => {
   if (!ntacode) return null;
 
