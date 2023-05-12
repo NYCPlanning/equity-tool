@@ -18,7 +18,7 @@ export const ToggleButtonGroup: React.FC<ToggleButtonGroupInterface> = (
   const styles = useMultiStyleConfig("ButtonGroup", { variant: "toggle" });
 
   return (
-    <ButtonGroup isAttached __css={styles.group} {...rest}>
+    <ButtonGroup isAttached={isAttached} __css={styles.group} {...rest}>
       <StylesProvider value={styles}>{children}</StylesProvider>
     </ButtonGroup>
   );
