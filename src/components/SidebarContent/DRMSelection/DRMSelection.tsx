@@ -1,14 +1,11 @@
 import React from "react";
-import drmData from "@data/DRI_Subindices_Indicators.json";
 import { Box, Divider } from "@chakra-ui/react";
-import { useGeoid } from "@hooks/useGeoid";
 import { Subindicator } from "./Subindicator";
 import { DataPoint } from "./DataPoint";
+import { useSubindexSelection } from "@hooks/useSubindexSelection";
 
 export const DRMSelection = () => {
-  const geoid = useGeoid();
-
-  const selectedDRMdata = drmData.find((nta: any) => nta.ntacode === geoid);
+  const selection = useSubindexSelection();
 
   return (
     <>
@@ -16,31 +13,31 @@ export const DRMSelection = () => {
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Population Vulnerability"
-          subindicatorBin={selectedDRMdata?.populationvulnerability_reclass}
+          subindicatorBin={selection?.populationvulnerability_reclass}
         />
         <DataPoint
           title="Non-white Population"
-          value={selectedDRMdata?.percentnotwhite}
+          value={selection?.percentnotwhite}
           percentage={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Population with income below 200% of Federal poverty rate"
-          value={selectedDRMdata?.percentbelow2xpovertyrate}
+          value={selection?.percentbelow2xpovertyrate}
           percentage={true}
-          moe={selectedDRMdata?.percentbelow2xpovertyrate_moe}
+          moe={selection?.percentbelow2xpovertyrate_moe}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="limited-English speaking population"
-          value={selectedDRMdata?.limitedenglishproficiency}
+          value={selection?.limitedenglishproficiency}
           percentage={true}
-          moe={selectedDRMdata?.limitedenglishproficiency_moe}
+          moe={selection?.limitedenglishproficiency_moe}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="households with severe rent burden"
-          value={selectedDRMdata?.percentrentburdenedvscity}
+          value={selection?.percentrentburdenedvscity}
           percentage={false}
           noNumber={true}
         />
@@ -49,66 +46,64 @@ export const DRMSelection = () => {
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Housing Conditions"
-          subindicatorBin={selectedDRMdata?.housingconditions_reclass}
+          subindicatorBin={selection?.housingconditions_reclass}
         />
         <DataPoint
           title="housing with 3+ maintenance deficiencies"
-          value={
-            selectedDRMdata?.percentunitswith3plusmaintenancedeficienciesvscity
-          }
+          value={selection?.percentunitswith3plusmaintenancedeficienciesvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Housing that is not Income-Restricted"
-          value={selectedDRMdata?.percentunitswithnoincomerestrictions}
+          value={selection?.percentunitswithnoincomerestrictions}
           percentage={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Housing that is not Rent-Stabilized"
-          value={selectedDRMdata?.percentunitswithrentregulationsvscity}
+          value={selection?.percentunitswithrentregulationsvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="renter-occupied housing units"
-          value={selectedDRMdata?.percentrenters}
+          value={selection?.percentrenters}
           percentage={true}
-          moe={selectedDRMdata?.percentrenters_moe}
+          moe={selection?.percentrenters_moe}
         />
       </Box>
       <Divider borderColor="gray.400" />
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Market Pressure"
-          subindicatorBin={selectedDRMdata?.marketpressure_reclass}
+          subindicatorBin={selection?.marketpressure_reclass}
         />
         <DataPoint
           title="Rent Change Vs. City"
-          value={selectedDRMdata?.changeinrentsvscity}
+          value={selection?.changeinrentsvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Residential Property Price Appreciation 2000-2020"
-          value={selectedDRMdata?.salespriceappreciation}
+          value={selection?.salespriceappreciation}
           percentage={false}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Bachelors degree Or Higher Change"
-          value={selectedDRMdata?.changeinpopulationwithbachelorsdegreesvscity}
+          value={selection?.changeinpopulationwithbachelorsdegreesvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Adjacent Neighborhood Pressure"
-          value={selectedDRMdata?.adjacency}
+          value={selection?.adjacency}
           percentage={false}
           noNumber={true}
         />
