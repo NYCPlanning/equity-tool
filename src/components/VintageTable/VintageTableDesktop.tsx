@@ -1,17 +1,28 @@
-import { Table, Tbody, Thead, Td, Th, Tr } from "@chakra-ui/react";
+import {
+  Table,
+  Tbody,
+  Thead,
+  Td,
+  Th,
+  Tr,
+  TableCaption,
+} from "@chakra-ui/react";
 import { Vintage } from "@schemas/vintage";
 import { HeaderCell } from "@schemas/headerCell";
 import { DataPointCell } from "@components/DataPointCell";
 import { PercentDataPointCell } from "@components/PercentDataPointCell.tsx";
 import { DataPoint } from "@schemas/dataPoint";
+import { Footnote } from "@schemas/footnote";
 
 export interface VintageTableDesktopProps {
+  footnote: Footnote;
   vintages: Vintage[];
   shouldShowReliability: boolean;
   isSurvey: boolean;
 }
 
 const VintageTableDesktop = ({
+  footnote,
   vintages,
   shouldShowReliability,
   isSurvey,
@@ -133,6 +144,9 @@ const VintageTableDesktop = ({
         width: "auto",
       }}
     >
+      <TableCaption>
+        {footnote != null ? "Not Null" : "Null"}Table Caption
+      </TableCaption>
       <Thead>
         <Tr display="table-row">
           {/* Top left cornerstone */}

@@ -4,9 +4,11 @@ import {
   VintageTableDesktop,
   VintageTableMobile,
 } from "@components/VintageTable";
+import { Footnote } from "@schemas/footnote";
 
 export interface VintageListProps {
   vintages: Vintage[];
+  footnote: Footnote;
   shouldShowReliability: boolean;
   isSurvey: boolean;
 }
@@ -15,6 +17,7 @@ export const VintageList = ({
   vintages,
   shouldShowReliability,
   isSurvey,
+  footnote,
 }: VintageListProps) => {
   return (
     <>
@@ -39,6 +42,7 @@ export const VintageList = ({
       <Show above="md">
         <Flex overflowX="auto" paddingRight="1rem">
           <VintageTableDesktop
+            footnote={footnote}
             vintages={vintages}
             shouldShowReliability={shouldShowReliability}
             isSurvey={isSurvey}

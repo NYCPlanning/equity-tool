@@ -40,6 +40,7 @@ export const Indicator = ({
         )}
       </Flex>
       <VintageList
+        footnote={indicator.footnote}
         vintages={indicator.vintages}
         shouldShowReliability={shouldShowReliability}
         isSurvey={indicator.isSurvey}
