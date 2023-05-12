@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { useGeography } from "@hooks/useGeography";
 import { useGeoid } from "@hooks/useGeoid/useGeoid";
 import { usePumaInfo } from "@hooks/usePumaInfo";
 import { Geography } from "@constants/geography";
 import { getBoroughName } from "@helpers/getBoroughName";
-import { fetchNtaInfo, NtaInfo } from "@helpers/fetchNtaInfo";
+import { useNtaInfo } from "@hooks/useNtaInfo";
 
 export interface GeoidDescription {
   id: string;
@@ -18,17 +17,7 @@ export const useGeoidDescription = (): GeoidDescription => {
 
   const pumaInfo = usePumaInfo();
 
-  const [ntaInfo, setNtaInfo] = useState<NtaInfo>({
-    ntaname: "",
-    ntacode: "",
-  });
-
-  useEffect(() => {
-    geography === Geography.NTA &&
-      fetchNtaInfo(geoid, (ntaInfo: NtaInfo) => {
-        setNtaInfo(ntaInfo);
-      });
-  }, [geoid]);
+  const ntaInfo = useNtaInfo();
 
   if (geoid === null) {
     return {
