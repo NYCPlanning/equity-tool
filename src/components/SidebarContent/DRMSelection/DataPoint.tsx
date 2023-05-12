@@ -4,7 +4,7 @@ import { Heading, Text, Box, Flex } from "@chakra-ui/react";
 interface DataPointProps {
   title: string;
   noNumber?: boolean | null;
-  value: any | null;
+  value: string | number | undefined | null;
   percentage?: boolean | null;
   moe?: number | null;
 }
