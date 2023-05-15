@@ -2,7 +2,7 @@ import { Link, TableCaption, Text } from "@chakra-ui/react";
 
 export const AMITableFootnote = () => (
   <TableCaption>
-    <Text>
+    <Text align="left" paddingBottom={2} fontStyle="italic">
       *AMI, or Area Median Income, refers to U.S. Housing and Urban Development
       annual Income Limits for New York City. HUD establishes these Income
       Limits each year to administer federal housing funds, such as housing tax
@@ -11,7 +11,7 @@ export const AMITableFootnote = () => (
       Limits establish maximum eligible household incomes for new rentals or
       homes for sale.
     </Text>
-    <Text>
+    <Text align="left" fontStyle="italic">
       In New York City, because housing costs are so high, Income Limits are not
       calculated using New Yorkers’ incomes. In NYC, Income Limits are based on
       the income needed to afford currently available market rate housing. Learn
