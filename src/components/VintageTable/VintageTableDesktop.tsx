@@ -137,7 +137,7 @@ const VintageTableDesktop = ({
         width: "auto",
       }}
     >
-      {footnote === "AMI" ? <AMITableFootnote /> : <></>}
+      <AMITableFootnote shouldDisplay={footnote === "AMI"} />
       <Thead>
         <Tr display="table-row">
           {/* Top left cornerstone */}
