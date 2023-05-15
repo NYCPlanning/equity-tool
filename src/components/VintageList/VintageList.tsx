@@ -32,6 +32,7 @@ export const VintageList = ({
           {vintages.map((vintage, i) => (
             <VintageTableMobile
               key={`vintage-${i}`}
+              footnote={footnote}
               vintage={vintage}
               shouldShowReliability={shouldShowReliability}
               isSurvey={isSurvey}

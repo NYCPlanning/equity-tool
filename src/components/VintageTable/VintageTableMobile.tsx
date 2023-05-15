@@ -4,14 +4,18 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { DataPointRow } from "@components/DataPointRow";
 import { Vintage } from "@schemas/vintage";
 import { useTablesIsOpen } from "@contexts/TablesIsOpenContext";
+import { Footnote } from "@schemas/footnote";
+import { AMITableFootnote } from "./Footnote";
 
 export interface VintageTableMobileProps {
+  footnote: Footnote;
   vintage: Vintage;
   shouldShowReliability: boolean;
   isSurvey: boolean;
 }
 
 const VintageTableMobile = ({
+  footnote,
   vintage,
   shouldShowReliability,
   isSurvey,
@@ -37,6 +41,7 @@ const VintageTableMobile = ({
         width: "auto",
       }}
     >
+      <AMITableFootnote shouldDisplay={footnote === "AMI"} />
       <Thead>
         <Tr>
           <Th
