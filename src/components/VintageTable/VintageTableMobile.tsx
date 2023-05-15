@@ -41,7 +41,7 @@ const VintageTableMobile = ({
         width: "auto",
       }}
     >
-      <AMITableFootnote shouldDisplay={footnote === "AMI"} />
+      <AMITableFootnote shouldDisplay={isOpen && footnote === "AMI"} />
       <Thead>
         <Tr>
           <Th
