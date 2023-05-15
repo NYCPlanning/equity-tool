@@ -42,6 +42,7 @@ import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
 import { Geography } from "@constants/geography";
 import { useWindowWidth } from "@react-hook/window-size";
 import { View } from "@constants/View";
+import { AMIFootnote } from "@components/Footnote";
 
 export interface DataPageProps {
   indicators: IndicatorRecord[];
@@ -386,6 +387,13 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
               />
             ))}
           </TablesIsOpenProvider>
+          <AMIFootnote
+            shouldDisplay={[
+              Category.ECON,
+              Category.HSAQ,
+              Category.HOPD,
+            ].includes(category)}
+          />
         </Box>
       </Box>
     </Flex>
