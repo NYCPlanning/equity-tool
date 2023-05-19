@@ -35,7 +35,7 @@ export const AMIFootnote = ({ shouldDisplay }: AMITableFootnoteProps) =>
         housing. Learn more about how HUD calculates NYC’s 2022 Income Limits
         here:{" "}
         <Link
-          href="https://www.huduser.gov/portal/datasets/il/il2022/2022IlCalc.odn"
+          href="https://www.huduser.gov/portal/datasets/il/il2022/2022summary.odn?states=36.0&data=2022&inputname=METRO35620MM5600*3606199999%2BNew+York+County&stname=New+York&statefp=36&year=2022&selection_type=county"
           isExternal
         >
           FY 2022 Income Limits Documentation System -- Income Limits
