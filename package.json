@@ -11,7 +11,7 @@
   ],
   "description": "An interactive citywide equitable development tool for New York City, built by DCP Digital Services.",
   "engines": {
-    "node": ">=16.13.0"
+    "node": "16.20.0"
   },
   "scripts": {
     "dev": "next",
@@ -38,8 +38,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@netlify/plugin-nextjs": "^4.28.4",
     "@hookform/resolvers": "^2.9.10",
+    "@netlify/plugin-nextjs": "^4.28.4",
     "@react-hook/window-size": "^3.1.1",
     "@sendgrid/mail": "^7.7.0",
     "@sentry/nextjs": "^6.18.2",
@@ -47,7 +47,7 @@
     "@types/d3-interpolate": "^3.0.1",
     "@types/d3-scale": "^4.0.2",
     "axios": "^0.26.1",
-    "d3-color": "^3.0.1",
+    "d3-color": "^3.1.0",
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
     "deck.gl": "^8.6.4",
