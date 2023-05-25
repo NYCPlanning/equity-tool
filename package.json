@@ -11,7 +11,7 @@
   ],
   "description": "An interactive citywide equitable development tool for New York City, built by DCP Digital Services.",
   "engines": {
-    "node": "16.20.0"
+    "node": "18.16.0"
   },
   "scripts": {
     "dev": "next",
