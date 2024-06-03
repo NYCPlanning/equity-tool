@@ -475,7 +475,7 @@ const MethodsPage = () => {
             <Text fontWeight="bold" pt="0.5em" fontSize="1.25rem">
               Updated
             </Text>
-            <Text>May 2023</Text>
+            <Text>May 2024</Text>
             <Text fontWeight="bold" pt="0.5em" fontSize="1.25rem">
               Category
             </Text>
