@@ -32,13 +32,12 @@ export const AMIFootnote = ({ shouldDisplay }: AMITableFootnoteProps) =>
         In New York City, because housing costs are so high, Income Limits are
         not calculated using New Yorkers’ incomes. In NYC, Income Limits are
         based on the income needed to afford currently available market rate
-        housing. Learn more about how HUD calculates NYC’s 2022 Income Limits
-        here:{" "}
+        housing. Learn more about how HUD calculated NYC’s Income Limits here:{" "}
         <Link
-          href="https://www.huduser.gov/portal/datasets/il/il2022/2022summary.odn?states=36.0&data=2022&inputname=METRO35620MM5600*3606199999%2BNew+York+County&stname=New+York&statefp=36&year=2022&selection_type=county"
+          href="https://www.huduser.gov/portal/datasets/il/il2024/2024summary.odn?states=36.0&data=2024&inputname=METRO35620MM5600*3606199999%2BNew+York+County&stname=New+York&statefp=36&year=2024&selection_type=county"
           isExternal
         >
-          FY 2022 Income Limits Documentation System -- Income Limits
+          FY 2024 Income Limits Documentation System -- Income Limits
           Calculations for New York, NY HUD Metro FMR Area (huduser.gov)
         </Link>
       </Text>
