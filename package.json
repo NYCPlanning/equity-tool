@@ -11,7 +11,7 @@
   ],
   "description": "An interactive citywide equitable development tool for New York City, built by DCP Digital Services.",
   "engines": {
-    "node": "18.16.0"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "next",
@@ -70,7 +70,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.0.3",
-    "@types/node": "^18.7.23",
+    "@types/node": "^20.17.9",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
