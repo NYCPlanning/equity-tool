@@ -149,7 +149,7 @@ const AboutPage = () => {
             <Text pb="0.5em">
               As of June 1, 2022,{" "}
               <Link
-                href="https://www1.nyc.gov//assets/planning/download/pdf/data-maps/edde/racial-equity-report-applicability-chart.pdf"
+                href="https://s-media.nyc.gov/agencies/dcp/assets/files/AE/racial-equity-report-applicability-chart.pdf"
                 color="teal"
                 textDecoration="underline"
               >
@@ -230,7 +230,7 @@ const AboutPage = () => {
             <Text color="black">
               Open the{" "}
               <Link
-                href="https://www1.nyc.gov/assets/planning/download/pdf/planning-level/housing-economy/eddt-bibliography.pdf"
+                href="https://s-media.nyc.gov/agencies/dcp/assets/files/AE/eddt-bibliography.pdf"
                 textDecoration="underline"
                 color="teal"
                 isExternal
