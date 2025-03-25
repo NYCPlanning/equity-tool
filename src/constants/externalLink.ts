@@ -1,2 +1,2 @@
 export const DATA_DICTIONARY =
-  "https://www.nyc.gov/assets/planning/download/pdf/data-maps/edde/edde-data-dictionary.pdf";
+  "https://s-media.nyc.gov/agencies/dcp/assets/files/AE/eddt-data-dictionary.pdf";
