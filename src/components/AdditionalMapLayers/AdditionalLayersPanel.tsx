@@ -14,6 +14,7 @@ import {
 } from "@components/Icons";
 import { View } from "@constants/View";
 import { useView } from "@hooks/useView";
+import { isWinOS } from "@helpers/detectWindowsOS";
 
 export interface AdditionalLayersPanelProps {
   onToggleNtaLayer: () => void;
@@ -25,13 +26,12 @@ export const AdditionalLayersPanel = ({
   onToggleDistrictLayer,
 }: AdditionalLayersPanelProps) => {
   const view = useView();
-
   return (
     <IconPanel
       heading="Additional Layers"
       icon={<MapLayersIcon />}
       aria-label="Show additional map layer options"
-      height={{ base: "204px", md: "180px" }}
+      height={{ base: "204px", md: isWinOS() ? "200px" : "180px" }}
       top={{
         base: view === View.DATA ? "11rem" : "7.75rem",
         md: view === View.DATA ? "14.5rem" : "11rem",
