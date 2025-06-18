@@ -54,7 +54,7 @@ export const useLayers = (
       visible: geography === DISTRICT,
       type: MAP_TYPES.QUERY,
       id: "unique_id_district",
-      data: `SELECT * FROM dcp_puma_2010`,
+      data: `SELECT * FROM dcp_puma_2020`,
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
         if (feature?.properties?.puma?.trim() === geoid?.trim()) {
@@ -275,7 +275,7 @@ export const useLayers = (
       visible: districtOutlineLayer,
       type: MAP_TYPES.QUERY,
       id: "unique_id_district_outline",
-      data: `SELECT * FROM dcp_puma_2010`,
+      data: `SELECT * FROM dcp_puma_2020`,
       uniqueIdProperty: "id",
       getLineColor: [202, 240, 140, 192],
       getFillColor: [0, 0, 0, 0],
