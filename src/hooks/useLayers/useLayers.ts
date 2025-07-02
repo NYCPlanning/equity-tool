@@ -192,25 +192,25 @@ export const useLayers = (
       data: `SELECT * FROM ${process.env.NTA_LAYER}`,
       uniqueIdProperty: "id",
       getLineColor: (feature: any) => {
-        if (feature?.properties?.ntacode == geoid) {
+        if (feature?.properties?.nta2020 == geoid) {
           return [42, 67, 101, 255];
         }
-        if (feature?.properties?.ntacode === currentGeo && currentGeo !== geoid)
+        if (feature?.properties?.nta2020 === currentGeo && currentGeo !== geoid)
           return [250, 255, 0];
         return [45, 55, 72, 255];
       },
       getFillColor: (feature: any) => {
         const singleDRM = drmData.find(
-          (nta: any) => nta.ntacode === feature?.properties?.ntacode
+          (nta: any) => nta.nta2020 === feature?.properties?.nta2020
         );
         switch (singleDRM?.displacementriskindex_reclass) {
           case "Highest":
             return [119, 47, 122, 178];
-          case "Higher":
+          case "High":
             return [189, 46, 137, 178];
           case "Intermediate":
             return [237, 108, 160, 178];
-          case "Lower":
+          case "Low":
             return [245, 182, 188, 178];
           case "Lowest":
             return [254, 239, 229, 178];
@@ -220,10 +220,10 @@ export const useLayers = (
       },
       lineWidthUnits: "pixels",
       getLineWidth: (feature: any) => {
-        if (feature?.properties?.ntacode == geoid) {
+        if (feature?.properties?.nta2020 == geoid) {
           return 2.5;
         }
-        if (feature?.properties?.ntacode === currentGeo) {
+        if (feature?.properties?.nta2020 === currentGeo) {
           return 3;
         }
         return 0;
@@ -238,8 +238,8 @@ export const useLayers = (
       extensions: [new PathStyleExtension({ offset: true })],
       getOffset: 0.5,
       onClick: (info: any) => {
-        const id: string = info?.object?.properties?.ntacode
-          ? info.object.properties.ntacode.trim()
+        const id: string = info?.object?.properties?.nta2020
+          ? info.object.properties.nta2020.trim()
           : null;
         if (typeof id === "string") {
           toggleGeoSelect(id);
@@ -249,9 +249,9 @@ export const useLayers = (
         if (info.picked === false && currentGeo !== undefined) {
           setCurrentGeo(undefined);
         } else if (
-          info?.object?.properties?.ntacode?.toString() !== currentGeo
+          info?.object?.properties?.nta2020?.toString() !== currentGeo
         ) {
-          setCurrentGeo(info?.object?.properties?.ntacode);
+          setCurrentGeo(info?.object?.properties?.nta2020);
         }
         setTooltip(info);
       },

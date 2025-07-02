@@ -34,10 +34,10 @@ export const AMIFootnote = ({ shouldDisplay }: AMITableFootnoteProps) =>
         based on the income needed to afford currently available market rate
         housing. Learn more about how HUD calculated NYC’s Income Limits here:{" "}
         <Link
-          href="https://www.huduser.gov/portal/datasets/il/il2024/2024summary.odn?states=36.0&data=2024&inputname=METRO35620MM5600*3606199999%2BNew+York+County&stname=New+York&statefp=36&year=2024&selection_type=county"
+          href="https://www.huduser.gov/portal/datasets/il/il2025/2025summary.odn?STATES=36.0&INPUTNAME=METRO35620MM5600*3606199999%2BNew+York+County&statelist=&stname=New+York&wherefrom=&statefp=36&year=2025&ne_flag=&selection_type=county&incpath=&data=2025&SubmitButton=View+County+Calculations"
           isExternal
         >
-          FY 2024 Income Limits Documentation System -- Income Limits
+          FY 2025 Income Limits Documentation System -- Income Limits
           Calculations for New York, NY HUD Metro FMR Area (huduser.gov)
         </Link>
       </Text>

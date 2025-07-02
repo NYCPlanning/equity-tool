@@ -42,7 +42,7 @@ import { TablesIsOpenProvider } from "@contexts/TablesIsOpenContext";
 import { Geography } from "@constants/geography";
 import { useWindowWidth } from "@react-hook/window-size";
 import { View } from "@constants/View";
-import { AMIFootnote, HPSFootnote } from "@components/Footnote";
+import { AMIFootnote, HPSFootnote, HSAQFootnote } from "@components/Footnote";
 
 export interface DataPageProps {
   indicators: IndicatorRecord[];
@@ -111,7 +111,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
-  const spaceFolder = "2025-06-18--v1";
+  const spaceFolder = "2025-07-09--v1";
 
   const dataExplorerService = new DataExplorerService(
     process.env.NEXT_PUBLIC_DO_SPACE_URL
@@ -396,6 +396,7 @@ const DataPage = ({ indicators, geoid }: DataPageProps) => {
             ].includes(category)}
           />
           <HPSFootnote shouldDisplay={[Category.QLAO].includes(category)} />
+          <HSAQFootnote shouldDisplay={[Category.HSAQ].includes(category)} />
         </Box>
       </Box>
     </Flex>
