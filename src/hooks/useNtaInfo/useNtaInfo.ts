@@ -9,7 +9,7 @@ export const useNtaInfo = (): NtaInfo => {
   const geography = useGeography();
   const [ntaInfo, setNtaInfo] = useState<NtaInfo>({
     ntaname: "",
-    ntacode: "",
+    nta2020: "",
   });
 
   useEffect(() => {

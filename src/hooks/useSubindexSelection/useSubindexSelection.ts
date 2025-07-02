@@ -7,7 +7,7 @@ export const useSubindexSelection = (): SubindexSelection | null => {
   const geoid = useGeoid();
 
   const selection = drmData.find(
-    (nta: SubindexSelection) => nta.ntacode === geoid
+    (nta: SubindexSelection) => nta.nta2020 === geoid
   );
 
   return typeof selection === "undefined" ? null : selection;

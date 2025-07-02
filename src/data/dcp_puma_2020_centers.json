@@ -6,7 +6,7 @@
         -73.98554491,
         40.7195872
       ],
-      "label": "Chinatown-Two Bridges, East Village, Lower East Side"
+      "label": "Lower East Side & Chinatown"
     },
     {
       "puma_id": 4104,
@@ -14,7 +14,7 @@
         -73.99780186,
         40.75503996
       ],
-      "label": "Hell's Kitchen, Chelsea-Hudson Yards"
+      "label": "Chelsea & Hell's Kitchen"
     },
     {
       "puma_id": 4107,
@@ -22,7 +22,7 @@
         -73.97191079,
         40.78499614
       ],
-      "label": "Upper West Side-Manhattan Valley, Upper West Side (Central), Upper West Side-Lincoln Square"
+      "label": "Upper West Side"
     },
     {
       "puma_id": 4108,
@@ -30,7 +30,7 @@
         -73.95571659,
         40.7715692
       ],
-      "label": "Upper East Side-Lenox Hill-Roosevelt Island, Upper East Side-Yorkville, Upper East Side-Carnegie Hill"
+      "label": "Upper East Side & Roosevelt Island"
     },
     {
       "puma_id": 4109,
@@ -38,7 +38,7 @@
         -73.95477907,
         40.81819838
       ],
-      "label": "Manhattanville-West Harlem, Hamilton Heights-Sugar Hill, Morningside Heights"
+      "label": "Morningside Heights & Hamilton Heights"
     },
     {
       "puma_id": 4110,
@@ -46,7 +46,7 @@
         -73.94483003,
         40.81341885
       ],
-      "label": "Harlem (North), Harlem (South)"
+      "label": "Harlem"
     },
     {
       "puma_id": 4111,
@@ -54,7 +54,7 @@
         -73.93497869,
         40.79493665
       ],
-      "label": "East Harlem (South), East Harlem (North)"
+      "label": "East Harlem"
     },
     {
       "puma_id": 4112,
@@ -62,7 +62,7 @@
         -73.93067157,
         40.85595156
       ],
-      "label": "Washington Heights (South), Inwood, Washington Heights (North)"
+      "label": "Washington Heights & Inwood"
     },
     {
       "puma_id": 4121,
@@ -70,7 +70,7 @@
         -74.00730748,
         40.71711999
       ],
-      "label": "SoHo-Little Italy-Hudson Square, Financial District-Battery Park City, West Village, Greenwich Village, Tribeca-Civic Center"
+      "label": "Financial District & Greenwich Village"
     },
     {
       "puma_id": 4165,
@@ -78,7 +78,7 @@
         -73.97960312,
         40.74869983
       ],
-      "label": "Stuyvesant Town-Peter Cooper Village, Midtown-Times Square, Murray Hill-Kips Bay, Midtown South-Flatiron-Union Square, Gramercy, East Midtown-Turtle Bay"
+      "label": "Midtown, East Midtown, & Flatiron"
     },
     {
       "puma_id": 4204,
@@ -86,7 +86,7 @@
         -73.92113868,
         40.83285818
       ],
-      "label": "Mount Eden-Claremont (West), Highbridge, Concourse-Concourse Village"
+      "label": "Highbridge & Concourse"
     },
     {
       "puma_id": 4205,
@@ -94,7 +94,7 @@
         -73.9092251,
         40.85249666
       ],
-      "label": "Fordham Heights, Mount Hope, University Heights (South)-Morris Heights"
+      "label": "Morris Heights & Mount Hope"
     },
     {
       "puma_id": 4207,
@@ -102,7 +102,7 @@
         -73.89168024,
         40.87032738
       ],
-      "label": "Norwood, Bedford Park, University Heights (North)-Fordham"
+      "label": "Fordham, Bedford Park, & Norwood"
     },
     {
       "puma_id": 4208,
@@ -110,7 +110,7 @@
         -73.89874448,
         40.89239013
       ],
-      "label": "Kingsbridge-Marble Hill, Kingsbridge Heights-Van Cortlandt Village, Riverdale-Spuyten Duyvil"
+      "label": "Riverdale, Kingsbridge, & Marble Hill"
     },
     {
       "puma_id": 4209,
@@ -118,7 +118,7 @@
         -73.86085194,
         40.8242346
       ],
-      "label": "Soundview-Bruckner-Bronx River, Parkchester, Soundview-Clason Point, Castle Hill-Unionport"
+      "label": "Soundview & Parkchester"
     },
     {
       "puma_id": 4210,
@@ -126,7 +126,7 @@
         -73.81687038,
         40.84920057
       ],
-      "label": "Westchester Square, Pelham Bay-Country Club-City Island, Co-op City, Throgs Neck-Schuylerville"
+      "label": "Co-op City & Throgs Neck"
     },
     {
       "puma_id": 4211,
@@ -134,7 +134,7 @@
         -73.85263317,
         40.85650589
       ],
-      "label": "Allerton, Pelham Parkway-Van Nest, Morris Park, Pelham Gardens"
+      "label": "Pelham Parkway & Morris Park"
     },
     {
       "puma_id": 4212,
@@ -142,7 +142,7 @@
         -73.85128157,
         40.88670626
       ],
-      "label": "Williamsbridge-Olinville, Eastchester-Edenwald-Baychester, Wakefield-Woodlawn"
+      "label": "Wakefield, Williamsbridge, & Eastchester"
     },
     {
       "puma_id": 4221,
@@ -150,7 +150,7 @@
         -73.89914764,
         40.80924901
       ],
-      "label": "Mott Haven-Port Morris, Hunts Point, Melrose, Longwood"
+      "label": "Melrose, Mott Haven, Longwood, & Hunts Point"
     },
     {
       "puma_id": 4263,
@@ -158,7 +158,7 @@
         -73.88765781,
         40.84546819
       ],
-      "label": "Claremont Village-Claremont (East), Belmont, West Farms, Morrisania, Tremont, Crotona Park East"
+      "label": "Melrose, Mott Haven, Longwood, & Hunts Point"
     },
     {
       "puma_id": 4301,
@@ -166,7 +166,7 @@
         -73.94716462,
         40.7168391
       ],
-      "label": "East Williamsburg, Williamsburg, Greenpoint, South Williamsburg"
+      "label": "Williamsburg & Greenpoint"
     },
     {
       "puma_id": 4302,
@@ -174,7 +174,7 @@
         -73.97837913,
         40.6938276
       ],
-      "label": "Fort Greene, Downtown Brooklyn-DUMBO-Boerum Hill, Clinton Hill, Brooklyn Heights"
+      "label": "Downtown Brooklyn & Fort Greene"
     },
     {
       "puma_id": 4303,
@@ -182,7 +182,7 @@
         -73.94085884,
         40.68772369
       ],
-      "label": "Bedford-Stuyvesant (West), Bedford-Stuyvesant (East)"
+      "label": "Bedford-Stuyvesant"
     },
     {
       "puma_id": 4304,
@@ -190,7 +190,7 @@
         -73.91683862,
         40.69455109
       ],
-      "label": "Bushwick (West), Bushwick (East)"
+      "label": "Bushwick"
     },
     {
       "puma_id": 4305,
@@ -198,7 +198,7 @@
         -73.88080959,
         40.66733173
       ],
-      "label": "Spring Creek-Starrett City, East New York-City Line, East New York-New Lots, East New York (North), Cypress Hills"
+      "label": "East New York & Cypress Hills"
     },
     {
       "puma_id": 4306,
@@ -206,7 +206,7 @@
         -73.98799755,
         40.67273558
       ],
-      "label": "Carroll Gardens-Cobble Hill-Gowanus-Red Hook, Park Slope"
+      "label": "Park Slope & Carroll Gardens"
     },
     {
       "puma_id": 4307,
@@ -214,7 +214,7 @@
         -74.00137744,
         40.65160895
       ],
-      "label": "Sunset Park (Central), Sunset Park (West), Windsor Terrace-South Slope"
+      "label": "Sunset Park & Windsor Terrace"
     },
     {
       "puma_id": 4308,
@@ -222,7 +222,7 @@
         -73.94714711,
         40.67450398
       ],
-      "label": "Crown Heights (North), Prospect Heights"
+      "label": "Crown Heights (North)"
     },
     {
       "puma_id": 4309,
@@ -230,7 +230,7 @@
         -73.94707375,
         40.66293581
       ],
-      "label": "Crown Heights (South), Prospect Lefferts Gardens-Wingate"
+      "label": "Crown Heights (South)"
     },
     {
       "puma_id": 4310,
@@ -238,7 +238,7 @@
         -74.02366504,
         40.62309513
       ],
-      "label": "Bay Ridge, Dyker Heights"
+      "label": "Bay Ridge & Dyker Heights"
     },
     {
       "puma_id": 4311,
@@ -246,7 +246,7 @@
         -73.99362856,
         40.6068801
       ],
-      "label": "Bensonhurst, Gravesend (West), Bath Beach"
+      "label": "Bensonhurst & Bath Beach"
     },
     {
       "puma_id": 4312,
@@ -254,7 +254,7 @@
         -73.9833224,
         40.63104672
       ],
-      "label": "Sunset Park (East)-Borough Park (West), Borough Park, Kensington, Mapleton-Midwood (West)"
+      "label": "Borough Park & Kensington"
     },
     {
       "puma_id": 4313,
@@ -262,7 +262,7 @@
         -73.98134561,
         40.58074087
       ],
-      "label": "Brighton Beach, Coney Island-Sea Gate, Gravesend (South)"
+      "label": "Coney Island & Brighton Beach"
     },
     {
       "puma_id": 4314,
@@ -270,7 +270,7 @@
         -73.95890157,
         40.63120746
       ],
-      "label": "Flatbush, Midwood, Flatbush (West)-Ditmas Park-Parkville"
+      "label": "Flatbush & Midwood"
     },
     {
       "puma_id": 4315,
@@ -278,7 +278,7 @@
         -73.94971474,
         40.59491424
       ],
-      "label": "Gravesend (East)-Homecrest, Madison, Sheepshead Bay-Manhattan Beach-Gerritsen Beach"
+      "label": "Sheepshead Bay & Gravesend (East)"
     },
     {
       "puma_id": 4316,
@@ -286,7 +286,7 @@
         -73.91154566,
         40.66880958
       ],
-      "label": "Brownsville, Ocean Hill"
+      "label": "Ocean Hill & Brownsville"
     },
     {
       "puma_id": 4317,
@@ -294,7 +294,7 @@
         -73.93465327,
         40.64812059
       ],
-      "label": "East Flatbush-Erasmus, East Flatbush-Remsen Village, East Flatbush-Rugby, East Flatbush-Farragut"
+      "label": "East Flatbush"
     },
     {
       "puma_id": 4318,
@@ -302,7 +302,7 @@
         -73.90197115,
         40.61704988
       ],
-      "label": "Canarsie, Flatlands, Marine Park-Mill Basin-Bergen Beach"
+      "label": "Canarsie & Flatlands"
     },
     {
       "puma_id": 4401,
@@ -310,7 +310,7 @@
         -73.9096129,
         40.7688677
       ],
-      "label": "Astoria (Central), Queensbridge-Ravenswood-Dutch Kills, Astoria (East)-Woodside (North), Old Astoria-Hallets Point, Astoria (North)-Ditmars-Steinway"
+      "label": "Astoria & Queensbridge"
     },
     {
       "puma_id": 4402,
@@ -318,7 +318,7 @@
         -73.92336014,
         40.74129373
       ],
-      "label": "Sunnyside, Long Island City-Hunters Point, Woodside"
+      "label": "Long Island City, Sunnyside, & Woodside"
     },
     {
       "puma_id": 4403,
@@ -326,7 +326,7 @@
         -73.87738827,
         40.7582694
       ],
-      "label": "North Corona, Jackson Heights, East Elmhurst"
+      "label": "Jackson Heights & East Elmhurst"
     },
     {
       "puma_id": 4404,
@@ -334,7 +334,7 @@
         -73.85774178,
         40.74068137
       ],
-      "label": "Corona, Elmhurst"
+      "label": "Elmhurst & Corona"
     },
     {
       "puma_id": 4405,
@@ -342,7 +342,7 @@
         -73.89123666,
         40.71124048
       ],
-      "label": "Ridgewood, Glendale, Maspeth, Middle Village"
+      "label": "Ridgewood, Maspeth, & Middle Village"
     },
     {
       "puma_id": 4406,
@@ -350,7 +350,7 @@
         -73.85174566,
         40.72269039
       ],
-      "label": "Rego Park, Forest Hills"
+      "label": "Forest Hills & Rego Park"
     },
     {
       "puma_id": 4407,
@@ -358,7 +358,7 @@
         -73.81588748,
         40.77148355
       ],
-      "label": "Flushing-Willets Point, East Flushing, Murray Hill-Broadway Flushing, College Point, Queensboro Hill, Whitestone-Beechhurst, Bay Terrace-Clearview"
+      "label": "Flushing, Murray Hill, & Whitestone"
     },
     {
       "puma_id": 4408,
@@ -366,7 +366,7 @@
         -73.79671102,
         40.7261255
       ],
-      "label": "Jamaica Hills-Briarwood, Pomonok-Electchester-Hillcrest, Fresh Meadows-Utopia, Kew Gardens Hills, Jamaica Estates-Holliswood"
+      "label": "Fresh Meadows, Hillcrest, & Briarwood"
     },
     {
       "puma_id": 4409,
@@ -374,7 +374,7 @@
         -73.8416551,
         40.69635183
       ],
-      "label": "Kew Gardens, Richmond Hill, Ozone Park (North), Woodhaven, South Richmond Hill"
+      "label": "Kew Gardens, Richmond Hill, & Woodhaven"
     },
     {
       "puma_id": 4410,
@@ -382,7 +382,7 @@
         -73.83308939,
         40.66932446
       ],
-      "label": "Ozone Park, South Ozone Park, Howard Beach-Lindenwood"
+      "label": "South Ozone Park & Howard Beach"
     },
     {
       "puma_id": 4411,
@@ -390,7 +390,7 @@
         -73.7592676,
         40.75649349
       ],
-      "label": "Bayside, Auburndale, Oakland Gardens-Hollis Hills, Douglaston-Little Neck"
+      "label": "Auburndale, Bayside, & Douglaston"
     },
     {
       "puma_id": 4412,
@@ -398,7 +398,7 @@
         -73.77855866,
         40.69195362
       ],
-      "label": "Jamaica, Springfield Gardens (North)-Rochdale Village, South Jamaica, Hollis, Baisley Park, St. Albans"
+      "label": "Jamaica, St. Albans, & Hollis"
     },
     {
       "puma_id": 4413,
@@ -406,7 +406,7 @@
         -73.73755773,
         40.69924172
       ],
-      "label": "Springfield Gardens (South)-Brookville, Rosedale, Bellerose, Queens Village, Glen Oaks-Floral Park-New Hyde Park, Laurelton, Cambria Heights"
+      "label": "Queens Village, Bellerose, & Rosedale"
     },
     {
       "puma_id": 4414,
@@ -414,7 +414,7 @@
         -73.80981384,
         40.6127125
       ],
-      "label": "Far Rockaway-Bayswater, Rockaway Beach-Arverne-Edgemere, Breezy Point-Belle Harbor-Rockaway Park-Broad Channel"
+      "label": "The Rockaways"
     },
     {
       "puma_id": 4501,
@@ -422,7 +422,7 @@
         -74.12039708,
         40.626631
       ],
-      "label": "Tompkinsville-Stapleton-Clifton-Fox Hills, St. George-New Brighton, Port Richmond, West New Brighton-Silver Lake-Grymes Hill, Rosebank-Shore Acres-Park Hill, Mariner's Harbor-Arlington-Graniteville, Westerleigh-Castleton Corners"
+      "label": "North Shore"
     },
     {
       "puma_id": 4502,
@@ -430,7 +430,7 @@
         -74.13912392,
         40.59239814
       ],
-      "label": "Grasmere-Arrochar-South Beach-Dongan Hills, New Dorp-Midland Beach, New Springville-Willowbrook-Bulls Head-Travis, Todt Hill-Emerson Hill-Lighthouse Hill-Manor Heights"
+      "label": "Mid-Island"
     },
     {
       "puma_id": 4503,
@@ -438,7 +438,7 @@
         -74.18796829,
         40.54116661
       ],
-      "label": "Oakwood-Richmondtown, Annadale-Huguenot-Prince's Bay-Woodrow, Tottenville-Charleston, Great Kills-Eltingville, Arden Heights-Rossville"
+      "label": "South Shore"
     }
   ]
 }

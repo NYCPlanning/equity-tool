@@ -1,15 +1,15 @@
 export type NtaInfo = {
-  ntacode: string;
+  nta2020: string;
   ntaname: string;
 };
 
 export const fetchNtaInfo = async (
-  ntacode: string | null,
+  nta2020: string | null,
   onNtaInfo: (ntaInfo: NtaInfo) => void
 ): Promise<null> => {
-  if (!ntacode) return null;
+  if (!nta2020) return null;
 
-  const ntaInfoSql = `SELECT ntacode, ntaname FROM ${process.env.NTA_LAYER} WHERE ntacode='${ntacode}'`;
+  const ntaInfoSql = `SELECT nta2020 AS nta2020, ntaname FROM ${process.env.NTA_LAYER} WHERE nta2020='${nta2020}'`;
 
   try {
     const fetchResponse = await (
@@ -22,7 +22,7 @@ export const fetchNtaInfo = async (
       } = fetchResponse;
 
       onNtaInfo({
-        ntacode: ntaInfo?.ntacode,
+        nta2020: ntaInfo?.nta2020,
         ntaname: ntaInfo?.ntaname,
       });
     } else {

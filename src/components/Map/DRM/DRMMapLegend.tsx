@@ -25,7 +25,7 @@ export const DRMMapLegend = () => (
     </HStack>
     <HStack direction="row" alignItems="center" spacing="8px">
       <Square size="16px" bg="#BD2E89" borderRadius="4px" />
-      <Text>Higher</Text>
+      <Text>High</Text>
     </HStack>
     <HStack direction="row" alignItems="center" spacing="8px">
       <Square size="16px" bg="#ED6CA0" borderRadius="4px" />
@@ -33,7 +33,7 @@ export const DRMMapLegend = () => (
     </HStack>
     <HStack direction="row" alignItems="center" spacing="8px">
       <Square size="16px" bg="#F5B6BC" borderRadius="4px" />
-      <Text>Lower</Text>
+      <Text>Low</Text>
     </HStack>
     <HStack direction="row" alignItems="center" spacing="8px">
       <Square size="16px" bg="#FEEFE5" borderRadius="4px" />
