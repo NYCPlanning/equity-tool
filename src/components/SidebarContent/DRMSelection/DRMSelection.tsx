@@ -13,19 +13,19 @@ export const DRMSelection = () => {
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Population Vulnerability"
-          subindicatorBin={selection?.populationvulnerability_reclass}
+          subindicatorBin={selection?.populationvulnerability}
         />
         <DataPoint
           title="Non-white Population"
-          value={selection?.percentnotwhite}
+          value={selection?.notwhite}
           percentage={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Population with income below 200% of Federal poverty rate"
-          value={selection?.percentbelow2xpovertyrate}
+          value={selection?.below2xpovertyrate}
           percentage={true}
-          moe={selection?.percentbelow2xpovertyrate_moe}
+          moe={selection?.below2xpovertyrate_moe}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
@@ -37,7 +37,7 @@ export const DRMSelection = () => {
         <Divider borderColor="gray.100" />
         <DataPoint
           title="households with severe rent burden"
-          value={selection?.percentrentburdenedvscity}
+          value={selection?.severerentburdenvscity}
           percentage={false}
           noNumber={true}
         />
@@ -46,33 +46,33 @@ export const DRMSelection = () => {
       <Box p="0rem 1rem 0rem 1rem">
         <Subindicator
           subindicatorTitle="Housing Conditions"
-          subindicatorBin={selection?.housingconditions_reclass}
+          subindicatorBin={selection?.housingconditions}
         />
         <DataPoint
           title="housing with 3+ maintenance deficiencies"
-          value={selection?.percentunitswith3plusmaintenancedeficienciesvscity}
+          value={selection?.unitswith3ormorehousingproblemsvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Housing that is not Income-Restricted"
-          value={selection?.percentunitswithnoincomerestrictions}
+          value={selection?.notincomerestricted}
           percentage={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="Housing that is not Rent-Stabilized"
-          value={selection?.percentunitswithrentregulationsvscity}
+          value={selection?.occupiedrentstabilizedasashareofalloccupiedvscity}
           percentage={false}
           noNumber={true}
         />
         <Divider borderColor="gray.100" />
         <DataPoint
           title="renter-occupied housing units"
-          value={selection?.percentrenters}
+          value={selection?.rentalhousing}
           percentage={true}
-          moe={selection?.percentrenters_moe}
+          moe={selection?.rentalhousing_moe}
         />
       </Box>
       <Divider borderColor="gray.400" />
@@ -89,7 +89,7 @@ export const DRMSelection = () => {
         />
         <Divider borderColor="gray.100" />
         <DataPoint
-          title="Residential Property Price Appreciation 2000-2020"
+          title="Residential Property Price Appreciation 2000-2024"
           value={selection?.salespriceappreciation}
           percentage={false}
         />
