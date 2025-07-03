@@ -83,7 +83,7 @@ export const Map = ({
       break;
     case "nta":
       hoverInfo?.object
-        ? (tooltipText = `NTA ${hoverInfo?.object?.properties.ntacode}: ${hoverInfo?.object?.properties.ntaname}`)
+        ? (tooltipText = `NTA ${hoverInfo?.object?.properties.nta2020}: ${hoverInfo?.object?.properties.ntaname}`)
         : (tooltipText = undefined);
       break;
     default:

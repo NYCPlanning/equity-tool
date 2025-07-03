@@ -1,277 +1,277 @@
 {
   "4103": {
     "id": "4103",
-    "neighborhoods": "Chinatown-Two Bridges, East Village, Lower East Side",
+    "neighborhoods": "Lower East Side & Chinatown",
     "districts": "Approx. Manhattan CD 3"
   },
   "4104": {
     "id": "4104",
-    "neighborhoods": "Hell's Kitchen, Chelsea-Hudson Yards",
+    "neighborhoods": "Chelsea & Hell's Kitchen",
     "districts": "Approx. Manhattan CD 4"
   },
   "4107": {
     "id": "4107",
-    "neighborhoods": "Upper West Side-Manhattan Valley, Upper West Side (Central), Upper West Side-Lincoln Square",
+    "neighborhoods": "Upper West Side",
     "districts": "Approx. Manhattan CD 7"
   },
   "4108": {
     "id": "4108",
-    "neighborhoods": "Upper East Side-Lenox Hill-Roosevelt Island, Upper East Side-Yorkville, Upper East Side-Carnegie Hill",
+    "neighborhoods": "Upper East Side & Roosevelt Island",
     "districts": "Approx. Manhattan CD 8"
   },
   "4109": {
     "id": "4109",
-    "neighborhoods": "Manhattanville-West Harlem, Hamilton Heights-Sugar Hill, Morningside Heights",
+    "neighborhoods": "Morningside Heights & Hamilton Heights",
     "districts": "Approx. Manhattan CD 9"
   },
   "4110": {
     "id": "4110",
-    "neighborhoods": "Harlem (North), Harlem (South)",
+    "neighborhoods": "Harlem",
     "districts": "Approx. Manhattan CD 10"
   },
   "4111": {
     "id": "4111",
-    "neighborhoods": "East Harlem (South), East Harlem (North)",
+    "neighborhoods": "East Harlem",
     "districts": "Approx. Manhattan CD 11"
   },
   "4112": {
     "id": "4112",
-    "neighborhoods": "Washington Heights (South), Inwood, Washington Heights (North)",
+    "neighborhoods": "Washington Heights & Inwood",
     "districts": "Approx. Manhattan CD 12"
   },
   "4121": {
     "id": "4121",
-    "neighborhoods": "SoHo-Little Italy-Hudson Square, Financial District-Battery Park City, West Village, Greenwich Village, Tribeca-Civic Center",
+    "neighborhoods": "Financial District & Greenwich Village",
     "districts": "Approx. Manhattan CDs 1 & 2"
   },
   "4165": {
     "id": "4165",
-    "neighborhoods": "Stuyvesant Town-Peter Cooper Village, Midtown-Times Square, Murray Hill-Kips Bay, Midtown South-Flatiron-Union Square, Gramercy, East Midtown-Turtle Bay",
+    "neighborhoods": "Midtown, East Midtown, & Flatiron",
     "districts": "Approx. Manhattan CDs 5 & 6"
   },
   "4204": {
     "id": "4204",
-    "neighborhoods": "Mount Eden-Claremont (West), Highbridge, Concourse-Concourse Village",
+    "neighborhoods": "Highbridge & Concourse",
     "districts": "Approx. Bronx CD 4"
   },
   "4205": {
     "id": "4205",
-    "neighborhoods": "Fordham Heights, Mount Hope, University Heights (South)-Morris Heights",
+    "neighborhoods": "Morris Heights & Mount Hope",
     "districts": "Approx. Bronx CD 5"
   },
   "4207": {
     "id": "4207",
-    "neighborhoods": "Norwood, Bedford Park, University Heights (North)-Fordham",
+    "neighborhoods": "Fordham, Bedford Park, & Norwood",
     "districts": "Approx. Bronx CD 7"
   },
   "4208": {
     "id": "4208",
-    "neighborhoods": "Kingsbridge-Marble Hill, Kingsbridge Heights-Van Cortlandt Village, Riverdale-Spuyten Duyvil",
+    "neighborhoods": "Riverdale, Kingsbridge, & Marble Hill",
     "districts": "Approx. Bronx CD 8"
   },
   "4209": {
     "id": "4209",
-    "neighborhoods": "Soundview-Bruckner-Bronx River, Parkchester, Soundview-Clason Point, Castle Hill-Unionport",
+    "neighborhoods": "Soundview & Parkchester",
     "districts": "Approx. Bronx CD 9"
   },
   "4210": {
     "id": "4210",
-    "neighborhoods": "Westchester Square, Pelham Bay-Country Club-City Island, Co-op City, Throgs Neck-Schuylerville",
+    "neighborhoods": "Co-op City & Throgs Neck",
     "districts": "Approx. Bronx CD 10"
   },
   "4211": {
     "id": "4211",
-    "neighborhoods": "Allerton, Pelham Parkway-Van Nest, Morris Park, Pelham Gardens",
+    "neighborhoods": "Pelham Parkway & Morris Park",
     "districts": "Approx. Bronx CD 11"
   },
   "4212": {
     "id": "4212",
-    "neighborhoods": "Williamsbridge-Olinville, Eastchester-Edenwald-Baychester, Wakefield-Woodlawn",
+    "neighborhoods": "Wakefield, Williamsbridge, & Eastchester",
     "districts": "Approx. Bronx CD 12"
   },
   "4221": {
     "id": "4221",
-    "neighborhoods": "Mott Haven-Port Morris, Hunts Point, Melrose, Longwood",
+    "neighborhoods": "Melrose, Mott Haven, Longwood, & Hunts Point",
     "districts": "Approx. Bronx CDs 1 & 2"
   },
-  "4269": {
-    "id": "4269",
-    "neighborhoods": "Claremont Village-Claremont (East), Belmont, West Farms, Morrisania, Tremont, Crotona Park East",
+  "4263": {
+    "id": "4263",
+    "neighborhoods": "Morrisania, Tremont, Belmont, & West Farms",
     "districts": "Approx. Bronx CDs 3 & 6"
   },
   "4301": {
     "id": "4301",
-    "neighborhoods": "East Williamsburg, Williamsburg, Greenpoint, South Williamsburg",
+    "neighborhoods": "Williamsburg & Greenpoint",
     "districts": "Approx. Brooklyn CD 1"
   },
   "4302": {
     "id": "4302",
-    "neighborhoods": "Fort Greene, Downtown Brooklyn-DUMBO-Boerum Hill, Clinton Hill, Brooklyn Heights",
+    "neighborhoods": "Downtown Brooklyn & Fort Greene",
     "districts": "Approx. Brooklyn CD 2"
   },
   "4303": {
     "id": "4303",
-    "neighborhoods": "Bedford-Stuyvesant (West), Bedford-Stuyvesant (East)",
+    "neighborhoods": "Bedford-Stuyvesant",
     "districts": "Approx. Brooklyn CD 3"
   },
   "4304": {
     "id": "4304",
-    "neighborhoods": "Bushwick (West), Bushwick (East)",
+    "neighborhoods": "Bushwick",
     "districts": "Approx. Brooklyn CD 4"
   },
   "4305": {
     "id": "4305",
-    "neighborhoods": "Spring Creek-Starrett City, East New York-City Line, East New York-New Lots, East New York (North), Cypress Hills",
+    "neighborhoods": "East New York & Cypress Hills",
     "districts": "Approx. Brooklyn CD 5"
   },
   "4306": {
     "id": "4306",
-    "neighborhoods": "Carroll Gardens-Cobble Hill-Gowanus-Red Hook, Park Slope",
+    "neighborhoods": "Park Slope & Carroll Gardens",
     "districts": "Approx. Brooklyn CD 6"
   },
   "4307": {
     "id": "4307",
-    "neighborhoods": "Sunset Park (Central), Sunset Park (West), Windsor Terrace-South Slope",
+    "neighborhoods": "Sunset Park & Windsor Terrace",
     "districts": "Approx. Brooklyn CD 7"
   },
   "4308": {
     "id": "4308",
-    "neighborhoods": "Crown Heights (North), Prospect Heights",
+    "neighborhoods": "Crown Heights (North)",
     "districts": "Approx. Brooklyn CD 8"
   },
   "4309": {
     "id": "4309",
-    "neighborhoods": "Crown Heights (South), Prospect Lefferts Gardens-Wingate",
+    "neighborhoods": "Crown Heights (South),",
     "districts": "Approx. Brooklyn CD 9"
   },
   "4310": {
     "id": "4310",
-    "neighborhoods": "Bay Ridge, Dyker Heights",
+    "neighborhoods": "Bay Ridge & Dyker Heights",
     "districts": "Approx. Brooklyn CD 10"
   },
   "4311": {
     "id": "4311",
-    "neighborhoods": "Bensonhurst, Gravesend (West), Bath Beach",
+    "neighborhoods": "Bensonhurst & Bath Beach",
     "districts": "Approx. Brooklyn CD 11"
   },
   "4312": {
     "id": "4312",
-    "neighborhoods": "Sunset Park (East)-Borough Park (West), Borough Park, Kensington, Mapleton-Midwood (West)",
+    "neighborhoods": "Borough Park & Kensington",
     "districts": "Approx. Brooklyn CD 12"
   },
   "4313": {
     "id": "4313",
-    "neighborhoods": "Brighton Beach, Coney Island-Sea Gate, Gravesend (South)",
+    "neighborhoods": "Coney Island & Brighton Beach",
     "districts": "Approx. Brooklyn CD 13"
   },
   "4314": {
     "id": "4314",
-    "neighborhoods": "Flatbush, Midwood, Flatbush (West)-Ditmas Park-Parkville",
+    "neighborhoods": "Flatbush & Midwood",
     "districts": "Approx. Brooklyn CD 14"
   },
   "4315": {
     "id": "4315",
-    "neighborhoods": "Gravesend (East)-Homecrest, Madison, Sheepshead Bay-Manhattan Beach-Gerritsen Beach",
+    "neighborhoods": "Sheepshead Bay & Gravesend (East)",
     "districts": "Approx. Brooklyn CD 15"
   },
   "4316": {
     "id": "4316",
-    "neighborhoods": "Brownsville, Ocean Hill",
+    "neighborhoods": "Ocean Hill & Brownsville",
     "districts": "Approx. Brooklyn CD 16"
   },
   "4317": {
     "id": "4317",
-    "neighborhoods": "East Flatbush-Erasmus, East Flatbush-Remsen Village, East Flatbush-Rugby, East Flatbush-Farragut",
+    "neighborhoods": "East Flatbush",
     "districts": "Approx. Brooklyn CD 17"
   },
   "4318": {
     "id": "4318",
-    "neighborhoods": "Canarsie, Flatlands, Marine Park-Mill Basin-Bergen Beach",
+    "neighborhoods": "Canarsie & Flatlands",
     "districts": "Approx. Brooklyn CD 18"
   },
   "4401": {
     "id": "4401",
-    "neighborhoods": "Astoria (Central), Queensbridge-Ravenswood-Dutch Kills, Astoria (East)-Woodside (North), Old Astoria-Hallets Point, Astoria (North)-Ditmars-Steinway",
+    "neighborhoods": "Astoria & Queensbridge",
     "districts": "Approx. Queens CD 1"
   },
   "4402": {
     "id": "4402",
-    "neighborhoods": "Sunnyside, Long Island City-Hunters Point, Woodside",
+    "neighborhoods": "Long Island City, Sunnyside, & Woodside",
     "districts": "Approx. Queens CD 2"
   },
   "4403": {
     "id": "4403",
-  "neighborhoods": "North Corona, Jackson Heights, East Elmhurst",
+    "neighborhoods": "Jackson Heights & East Elmhurst",
     "districts": "Approx. Queens CD 3"
   },
   "4404": {
     "id": "4404",
-    "neighborhoods": "Corona, Elmhurst",
+    "neighborhoods": "Elmhurst & Corona",
     "districts": "Approx. Queens CD 4"
   },
   "4405": {
     "id": "4405",
-    "neighborhoods": "Ridgewood, Glendale, Maspeth, Middle Village",
+    "neighborhoods": "Ridgewood, Maspeth, & Middle Village",
     "districts": "Approx. Queens CD 5"
   },
   "4406": {
     "id": "4406",
-    "neighborhoods": "Rego Park, Forest Hills",
+    "neighborhoods": "Forest Hills & Rego Park",
     "districts": "Approx. Queens CD 6"
   },
   "4407": {
     "id": "4407",
-    "neighborhoods": "Flushing-Willets Point, East Flushing, Murray Hill-Broadway Flushing, College Point, Queensboro Hill, Whitestone-Beechhurst, Bay Terrace-Clearview",
+    "neighborhoods": "Flushing, Murray Hill, & Whitestone",
     "districts": "Approx. Queens CD 7"
   },
   "4408": {
     "id": "4408",
-    "neighborhoods": "Jamaica Hills-Briarwood, Pomonok-Electchester-Hillcrest, Fresh Meadows-Utopia, Kew Gardens Hills, Jamaica Estates-Holliswood",
+    "neighborhoods": "Fresh Meadows, Hillcrest, & Briarwood",
     "districts": "Approx. Queens CD 8"
   },
   "4409": {
     "id": "4409",
-    "neighborhoods": "Kew Gardens, Richmond Hill, Ozone Park (North), Woodhaven, South Richmond Hill",
+    "neighborhoods": "Kew Gardens, Richmond Hill, & Woodhaven",
     "districts": "Approx. Queens CD 9"
   },
   "4410": {
     "id": "4410",
-    "neighborhoods": "Ozone Park, South Ozone Park, Howard Beach-Lindenwood",
+    "neighborhoods": "South Ozone Park & Howard Beach",
     "districts": "Approx. Queens CD 10"
   },
   "4411": {
     "id": "4411",
-    "neighborhoods": "Bayside, Auburndale, Oakland Gardens-Hollis Hills, Douglaston-Little Neck",
+    "neighborhoods": "Auburndale, Bayside, & Douglaston",
     "districts": "Approx. Queens CD 11"
   },
   "4412": {
     "id": "4412",
-    "neighborhoods": "Jamaica, Springfield Gardens (North)-Rochdale Village, South Jamaica, Hollis, Baisley Park, St. Albans",
+    "neighborhoods": "Jamaica, St. Albans, & Hollis",
     "districts": "Approx. Queens CD 12"
   },
   "4413": {
     "id": "4413",
-    "neighborhoods": "Springfield Gardens (South)-Brookville, Rosedale, Bellerose, Queens Village, Glen Oaks-Floral Park-New Hyde Park, Laurelton, Cambria Heights",
+    "neighborhoods": "Queens Village, Bellerose, & Rosedale",
     "districts": "Approx. Queens CD 13"
   },
   "4414": {
     "id": "4414",
-    "neighborhoods": "Far Rockaway-Bayswater, Rockaway Beach-Arverne-Edgemere, Breezy Point-Belle Harbor-Rockaway Park-Broad Channel",
+    "neighborhoods": "The Rockaways",
     "districts": "Approx. Queens CD 14"
   },
   "4501": {
     "id": "4501",
-    "neighborhoods": "Tompkinsville-Stapleton-Clifton-Fox Hills, St. George-New Brighton, Port Richmond, West New Brighton-Silver Lake-Grymes Hill, Rosebank-Shore Acres-Park Hill, Mariner's Harbor-Arlington-Graniteville, Westerleigh-Castleton Corners",
+    "neighborhoods": "North Shore",
     "districts": "Approx. Staten Island CD 1"
   },
   "4502": {
     "id": "4502",
-    "neighborhoods": "Grasmere-Arrochar-South Beach-Dongan Hills, New Dorp-Midland Beach, New Springville-Willowbrook-Bulls Head-Travis, Todt Hill-Emerson Hill-Lighthouse Hill-Manor Heights",
+    "neighborhoods": "Mid-Island",
     "districts": "Approx. Staten Island CD 2"
   },
   "4503": {
     "id": "4503",
-    "neighborhoods": "Oakwood-Richmondtown, Annadale-Huguenot-Prince's Bay-Woodrow, Tottenville-Charleston, Great Kills-Eltingville, Arden Heights-Rossville",
+    "neighborhoods": "South Shore",
     "districts": "Approx. Staten Island CD 3"
   }
 }
