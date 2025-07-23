@@ -14,7 +14,7 @@ export const HSAQFootnote = ({ shouldDisplay }: HSAQTableFootnoteProps) =>
         fontSize="md"
         color={"gray"}
       >
-        *The Census Bureau has reviewed this data product to ensure appropriate
+        **The Census Bureau has reviewed this data product to ensure appropriate
         access, use, and disclosure avoidance protection of the confidential
         source data used to produce this product (Data Management System (DMS)
         number: P-7519373, Disclosure Review Board (DRB) approval number:
