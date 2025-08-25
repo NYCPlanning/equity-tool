@@ -294,7 +294,7 @@ const MethodsPage = () => {
               <Text pb="1rem" lineHeight="1.625rem">
                 For more information, visit{" "}
                 <Link
-                  href="https://www1.nyc.gov/site/planning/data-maps/nyc-population/geographic-reference.page"
+                  href="https://www.nyc.gov/content/planning/pages/resources?active=census%2Cpopulation#datasets"
                   isExternal
                   onClick={() => {
                     ReactGA.event({
@@ -408,7 +408,7 @@ const MethodsPage = () => {
                     New York City Department of City Planning
                   </Text>
                   <Link
-                    href="https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page"
+                    href="https://www.nyc.gov/content/planning/pages/resources/datasets/mappluto-pluto-change"
                     isExternal
                     onClick={() => {
                       ReactGA.event({
