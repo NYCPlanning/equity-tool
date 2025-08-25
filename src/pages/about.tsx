@@ -179,7 +179,7 @@ const AboutPage = () => {
               , and project specific data about anticipated housing units and
               jobs. See additional information about the Reports{" "}
               <Link
-                href="https://www1.nyc.gov/site/planning/data-maps/edde/edde-overview.page"
+                href="https://www.nyc.gov/content/planning/pages/applicants/preparing-application#step-7"
                 color="teal"
                 textDecoration="underline"
               >
