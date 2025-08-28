@@ -1,7 +1,6 @@
-import { Heading, Text, Link } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 import { View } from "@constants/View";
 import { useView } from "@hooks/useView";
-import ReactGA from "react-ga4";
 
 const WelcomeContent = () => {
   const view = useView();
@@ -55,21 +54,7 @@ const WelcomeContent = () => {
           displacement risk in neighborhoods citywide as compared to each other.
           Select a neighborhood to see a breakdown of the factors contributing
           to displacement risk (population vulnerability, housing conditions,
-          and market pressure) and the data points that comprise them. See maps
-          of each of the individual data points&nbsp;
-          <Link
-            href="https://storymaps.arcgis.com/stories/79237333bb90492ba0de486c0705f9f7"
-            onClick={() => {
-              ReactGA.event({
-                category: "DRM Sidebar",
-                action: "Outbound Click",
-                label: "Storymaps",
-              });
-            }}
-          >
-            here
-          </Link>
-          .
+          and market pressure) and the data points that comprise them.
         </Text>
         <br />
         <Text>
