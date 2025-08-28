@@ -1,4 +1,4 @@
-import { Box, HStack, Text, Square, Link } from "@chakra-ui/react";
+import { Box, HStack, Text, Square } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import { IconPanel } from "@components/Map/IconPanel";
 import { useView } from "@hooks/useView";
@@ -32,17 +32,7 @@ export const InstructionPanel = () => {
         >
           Select a neighborhood to see a breakdown of the factors contributing
           to displacement risk (population vulnerability, housing conditions,
-          and market pressure) and the data points that comprise them. See maps
-          of each of the individual data points{" "}
-          <Link
-            fontWeight={700}
-            color="000"
-            href="https://storymaps.arcgis.com/stories/79237333bb90492ba0de486c0705f9f7"
-            target="blank"
-          >
-            here
-          </Link>
-          .
+          and market pressure) and the data points that comprise them.
         </Text>
       )}
 
