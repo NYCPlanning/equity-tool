@@ -111,7 +111,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
-  const spaceFolder = "2025-07-09--v1";
+  const spaceFolder = "2026-09-01--v1";
 
   const dataExplorerService = new DataExplorerService(
     process.env.NEXT_PUBLIC_DO_SPACE_URL
