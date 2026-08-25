@@ -1,0 +1,32 @@
+
+sources:
+https://blog.amosti.net/local-reverse-proxy-with-nginx-mkcert-and-docker-compose/
+
+https://github.com/oktadev/mkcert-nginx-example
+
+https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/
+
+// to test in the terminal
+curl -Ik --http2 https://equitableexplorer.planning.nyc.gov/map/data/district
+curl -Ik --http2 https://staging--equity-tool.netlify.app/map/data/district
+
+
+# set up
+# add to: /etc/hosts (remove when done testing)
+127.0.0.1 equitableexplorer.planning.nyc.gov
+127.0.0.1 equitableexplorer.planninglabs.nyc
+127.0.0.1 staging-equitableexplorer.planninglabs.nyc
+
+
+
+brew install mkcert
+mkcert -install
+
+then
+
+mkcert \
+  -cert-file certs/equitableexplorer-local.pem \
+  -key-file certs/equitableexplorer-local-key.pem \
+  equitableexplorer.planning.nyc.gov \
+  equitableexplorer.planninglabs.nyc \
+  staging-equitableexplorer.planninglabs.nyc
