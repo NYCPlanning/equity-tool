@@ -97,27 +97,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Version NPM package
-        shell: bash
-        env:
-          SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
-          SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
-          SERVICE_ACCOUNT_PAT: ${{ secrets.SERVICE_ACCOUNT_PAT }}
-        run: |
-          set -euo pipefail
-
-          git config --local user.name "$SERVICE_ACCOUNT_NAME"
-          git config --local user.email "$SERVICE_ACCOUNT_EMAIL"
-
-          npm version patch \
-            -m "version %s" \
-            --commit-hooks false
-
-          git push \
-            "https://${SERVICE_ACCOUNT_NAME}:${SERVICE_ACCOUNT_PAT}@github.com/${GITHUB_REPOSITORY}.git" \
-            HEAD:main \
-            --follow-tags
-
       - name: Setup Node environment for Netlify CLI
         uses: actions/setup-node@v4
         with:
