@@ -35,11 +35,11 @@ export const ViewToggle = ({
           isDisabled={view === View.DATA}
           isActive={view === View.DATA}
           _hover={{
-            _disabled: { bg: "teal.50" },
+            _disabled: { bg: "primary.50" },
             bg: "#F7FAFC",
             fontWeight: 800,
             color: "#2C7A7B",
-            border: "1px solid teal",
+            border: "1px solid primary.600",
           }}
           variant="toggle"
           data-cy="communityDataBtn-desktop"
@@ -54,7 +54,7 @@ export const ViewToggle = ({
             bg: "#F7FAFC",
             fontWeight: 800,
             color: "#2C7A7B",
-            border: "1px solid teal",
+            border: "1px solid primary.600",
           }}
           variant="toggle"
           data-cy="drmBtn-desktop"

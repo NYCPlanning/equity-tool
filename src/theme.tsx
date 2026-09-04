@@ -17,6 +17,13 @@ const theme = extendTheme({
   },
   colors: {
     black: "#16161D",
+    primary: {
+      50: "#E6FFFA",
+      100: "#B2F5EA",
+      500: "#319795",
+      600: "#2C7A7B",
+      700: "#285E61",
+    },
   },
   sizes: {
     xs: "85vw",
@@ -80,11 +87,13 @@ const theme = extendTheme({
         fontWeight: 400,
         _hover: {
           backgroundColor: "teal.50",
-          color: "teal",
+          color: "teal.600",
+          border: "1px solid",
+          borderColor: "teal.600",
         },
         _active: {
           backgroundColor: "teal.50",
-          color: "teal",
+          color: "teal.600",
           cursor: "default",
           opacity: "revert",
           fontWeight: 700,
@@ -107,29 +116,31 @@ const theme = extendTheme({
         toggle: {
           borderRadius: 50,
           _active: {
-            border: "1px solid teal",
+            border: "1px solid",
+            borderColor: "teal.600",
             cursor: "default",
             opacity: "1 !important",
           },
           minHeight: "42px",
         },
         download: {
-          backgroundColor: "teal",
+          backgroundColor: "teal.600",
           color: "white",
           _hover: {
             backgroundColor: "teal.50",
-            color: "teal",
+            color: "teal.600",
           },
           _disabled: {
             backgroundColor: "white",
-            color: "teal",
+            color: "teal.600",
           },
         },
         mobileButton: {
           opacity: "1 !important",
           borderRadius: 50,
           _active: {
-            border: "1px solid teal",
+            border: "1px solid",
+            borderColor: "teal.600",
             cursor: "default",
             opacity: "1 !important",
           },
@@ -138,7 +149,7 @@ const theme = extendTheme({
     },
     Link: {
       baseStyle: {
-        color: "teal.600",
+        color: "teal.600.600",
         textDecoration: "underline",
         lineHeight: "1.625rem",
       },

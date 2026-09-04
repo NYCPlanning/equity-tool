@@ -122,7 +122,7 @@ const ContactForm = () => {
               mt={4}
               width={"7.0625rem"}
               type={"submit"}
-              colorScheme={"teal"}
+              colorScheme="teal"
               isLoading={isSubmitting}
               _hover={{
                 background: "#E6FFFA",
