@@ -198,6 +198,21 @@ export const Header = () => {
         </Flex>
       )}
       <Flex
+        h={{ base: "auto", md: "full" }}
+        width={{ base: "100%", md: "auto" }}
+        px={{ base: 6, md: 0 }}
+        align="center"
+        className={"siteAddressSearchHeader"}
+      >
+        <AddressSearch
+          combobox={combobox}
+          addressSearchQuery={addressSearchQuery}
+          addressSearchResults={addressSearchResults}
+          addressSearchError={addressSearchError}
+          isLoading={isLoading}
+        />
+      </Flex>
+      <Flex
         direction="row"
         display={{ base: "none", md: "flex" }}
         flex={{ md: "1", lg: "0 0 auto" }}
