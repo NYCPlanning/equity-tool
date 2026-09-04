@@ -1,9 +1,13 @@
 import {
   BoxProps,
   ButtonGroup,
-  StylesProvider,
+  createStylesContext,
   useMultiStyleConfig,
 } from "@chakra-ui/react";
+
+// Create the scoped styles context once, at module level.
+// The string names the component (used in error messages).
+const [StylesProvider] = createStylesContext("ToggleButtonGroup");
 
 interface ToggleButtonGroupInterface extends BoxProps {
   isAttached?: boolean;
