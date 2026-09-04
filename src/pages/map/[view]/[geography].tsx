@@ -22,7 +22,6 @@ import ReactGA from "react-ga4";
 import { AdditionalLayersPanel } from "@components/AdditionalMapLayers";
 import { DRMMapLegend } from "@components/Map/DRM/DRMMapLegend";
 import { View } from "@constants/View";
-import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 export const getStaticProps: GetStaticProps = (context) => {
   if (!context.params) {
@@ -103,10 +102,6 @@ const MapPage = () => {
   const view = useView();
   const geoid = useGeoid();
   const geography = useGeography();
-
-  const windowDimensions = useWindowDimensions();
-  let isMobile;
-  if (windowDimensions.width) isMobile = windowDimensions.width < 768;
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -247,7 +242,6 @@ const MapPage = () => {
           <ViewToggle
             onCommunityDataClick={onCommunityDataClick}
             onDrmClick={onDrmClick}
-            isMobile={isMobile}
           />
           {view === View.DATA && (
             <CommunityDataGeographySelect
@@ -257,11 +251,13 @@ const MapPage = () => {
                 md: "4.5rem",
               }}
               left={{
-                base: isMobile ? "50%" : "4vmin",
-                sm: isMobile ? "50%" : "2vmin",
-                md: isMobile ? "50%" : "1rem",
+                base: "50%",
+                md: "1rem",
               }}
-              transform={isMobile ? { base: "translate(-50%)" } : undefined}
+              transform={{
+                base: "translate(-50%)",
+                md: "none",
+              }}
               zIndex={100}
               boxShadow="lg"
               onGeographySelect={onCommunityDataGeographyChange}

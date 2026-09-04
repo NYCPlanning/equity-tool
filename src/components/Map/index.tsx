@@ -5,3 +5,4 @@ export * from "./ViewToggle";
 export * from "./MobileDrawer";
 export * from "./InstructionPanel";
 export * from "./IconPanel";
+export * from "./TimeLocationToggle";

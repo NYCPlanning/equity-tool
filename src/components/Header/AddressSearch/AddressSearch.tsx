@@ -34,7 +34,7 @@ export const AddressSearch = ({
   isLoading: boolean;
 }) => {
   return (
-    <Box width={{ base: "100%", md: "366px" }}>
+    <Box width={"100%"}>
       <Combobox.RootProvider value={combobox}>
         <Combobox.Control width="100%">
           <SearchIcon
