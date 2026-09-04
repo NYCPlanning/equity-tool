@@ -11,6 +11,8 @@ module.exports = {
     "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
     "^@helpers/(.*)$": "<rootDir>/src/helpers/$1",
     "^@constants/(.*)$": "<rootDir>/src/constants/$1",
+    "^@contexts/(.*)$": "<rootDir>/src/contexts/$1",
+    "^@services/(.*)$": "<rootDir>/src/services/$1",
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
       "<rootDir>/test/__mocks__/fileMock.js",
   },
@@ -26,4 +28,5 @@ module.exports = {
       { configFile: "./babel.config.jest.js" },
     ],
   },
+  transformIgnorePatterns: ["/node_modules/(?!@nycplanning/streetscape/)"],
 };
