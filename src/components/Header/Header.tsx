@@ -1,3 +1,8 @@
+import * as React from "react";
+import { useRouter } from "next/router";
+import ReactGA from "react-ga4";
+import NextLink from "next/link";
+import { useDisclosure, Image } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -7,18 +12,30 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerBody,
-  useDisclosure,
-  Image,
-} from "@chakra-ui/react";
+} from "@nycplanning/streetscape";
+import type {
+  UseComboboxReturn,
+  ListCollection,
+} from "@nycplanning/streetscape";
 import { useWindowWidth } from "@react-hook/window-size";
-import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
-import * as React from "react";
-import { useRouter } from "next/router";
-import ReactGA from "react-ga4";
+import { AddressSearch } from "@components/Header/AddressSearch";
 
-export const Header = () => {
+export const Header = ({
+  combobox,
+  addressSearchQuery,
+  addressSearchResults,
+  addressSearchError,
+  isLoading,
+}: {
+  clearSelections?: () => void | undefined;
+  combobox: UseComboboxReturn;
+  addressSearchQuery: string | null;
+  addressSearchResults: ListCollection;
+  addressSearchError: Error | null;
+  isLoading: boolean;
+}) => {
   const { isOpen, onClose, onToggle } = useDisclosure();
 
   const router = useRouter();
@@ -156,6 +173,16 @@ export const Header = () => {
             Equitable Development Data Explorer
           </Heading>
         </NextLink>
+      </Flex>
+      <Flex>
+        <AddressSearch
+          combobox={combobox}
+          addressSearchQuery={addressSearchQuery}
+          addressSearchResults={addressSearchResults}
+          addressSearchError={addressSearchError}
+          isLoading={isLoading}
+          aria-label="address search dropdown"
+        />
       </Flex>
       <Flex
         direction="row"
