@@ -28,7 +28,7 @@ export const GeographySelect = ({
           bg: "#F7FAFC",
           fontWeight: 800,
           color: "#2C7A7B",
-          border: "1px solid teal",
+          border: "1px solid teal.600",
         }}
       >
         Community District*
@@ -45,7 +45,7 @@ export const GeographySelect = ({
           bg: "#F7FAFC",
           fontWeight: 800,
           color: "#2C7A7B",
-          border: "1px solid teal",
+          border: "1px solid teal.600",
         }}
       >
         Borough
@@ -62,7 +62,7 @@ export const GeographySelect = ({
           bg: "#F7FAFC",
           fontWeight: 800,
           color: "#2C7A7B",
-          border: "1px solid teal",
+          border: "1px solid teal.600",
         }}
       >
         Citywide

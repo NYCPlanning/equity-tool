@@ -24,7 +24,7 @@ const AboutPage = () => {
 
   return (
     <Flex direction="column" width="100%">
-      <Center px={{ base: 4, lg: 6 }} py={8} bg="teal">
+      <Center px={{ base: 4, lg: 6 }} py={8} bg="teal.600">
         <Flex
           direction="row"
           maxW={{ base: "565px", lg: "1024px" }}
@@ -89,7 +89,7 @@ const AboutPage = () => {
             </Text>
             <Text color="black">
               Go to{" "}
-              <Link href="/map" color="teal" textDecoration="underline">
+              <Link href="/map" color={"teal.600"} textDecoration="underline">
                 Community Data
               </Link>
             </Text>
@@ -131,7 +131,11 @@ const AboutPage = () => {
             </Text>
             <Text color="black">
               Go to the{" "}
-              <Link href="/map/drm" color="teal" textDecoration="underline">
+              <Link
+                href="/map/drm"
+                color={"teal.600"}
+                textDecoration="underline"
+              >
                 Displacement Risk Map
               </Link>
             </Text>
@@ -150,7 +154,7 @@ const AboutPage = () => {
               As of June 1, 2022,{" "}
               <Link
                 href="https://s-media.nyc.gov/agencies/dcp/assets/files/AE/racial-equity-report-applicability-chart.pdf"
-                color="teal"
+                color={"teal.600"}
                 textDecoration="underline"
               >
                 certain property owners
@@ -161,7 +165,7 @@ const AboutPage = () => {
               process known as{" "}
               <Link
                 href="https://www.youtube.com/watch?v=G-k0kAn1GBQ"
-                color="teal"
+                color={"teal.600"}
                 textDecoration="underline"
               >
                 ULURP
@@ -171,7 +175,7 @@ const AboutPage = () => {
               City&apos;s goals and strategies to{" "}
               <Link
                 href="https://wherewelive.cityofnewyork.us/"
-                color="teal"
+                color={"teal.600"}
                 textDecoration="underline"
               >
                 affirmatively further fair housing
@@ -180,7 +184,7 @@ const AboutPage = () => {
               jobs. See additional information about the Reports{" "}
               <Link
                 href="https://www.nyc.gov/content/planning/pages/applicants/preparing-application#step-7"
-                color="teal"
+                color={"teal.600"}
                 textDecoration="underline"
               >
                 here
@@ -212,7 +216,11 @@ const AboutPage = () => {
             </Text>
             <Text color="black">
               Read more about the{" "}
-              <Link href="/methods" color="teal" textDecoration="underline">
+              <Link
+                href="/methods"
+                color={"teal.600"}
+                textDecoration="underline"
+              >
                 methodologies
               </Link>
             </Text>
@@ -232,7 +240,7 @@ const AboutPage = () => {
               <Link
                 href="https://s-media.nyc.gov/agencies/dcp/assets/files/AE/eddt-bibliography.pdf"
                 textDecoration="underline"
-                color="teal"
+                color={"teal.600"}
                 isExternal
               >
                 Bibliography <ExternalLinkIcon mx="2px" />
@@ -252,7 +260,7 @@ const AboutPage = () => {
               <Link
                 href={DATA_DICTIONARY}
                 textDecoration="underline"
-                color="teal"
+                color={"teal.600"}
                 isExternal
               >
                 Data Dictionary <ExternalLinkIcon mx="2px" />

@@ -14,7 +14,7 @@ const ContactPage = () => {
 
   return (
     <Flex direction="column" width="100%">
-      <Center px={{ base: 4, lg: 6 }} py={8} bg="teal">
+      <Center px={{ base: 4, lg: 6 }} py={8} bg={"teal.600"}>
         <Flex
           direction="row"
           maxW={{ base: "565px", lg: "1024px" }}

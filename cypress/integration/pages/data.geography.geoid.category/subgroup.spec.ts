@@ -15,13 +15,17 @@ describe("data/geography/geoid/category/subgroup page", () => {
 
     it("should return user to map page through header logo with current geography selected", () => {
       cy.get('[data-test="header-app-title"]').click();
-
       cy.url().should("include", "/map/data/borough?geoid=1");
 
       cy.visit("data/borough/1/hsaq/tot");
 
-      cy.get('[data-test="header-app-logo"]').click();
+      // Guard: wait until the header has finished re-rendering
+      cy.get('[data-test="header-app-logo"]')
+        .parents("a")
+        .should("have.attr", "href", "/map/data/borough?geoid=1")
+        .click({ force: true });
 
+      cy.get('[data-test="header-app-logo"]').click();
       cy.url().should("include", "/map/data/borough?geoid=1");
     });
   });
