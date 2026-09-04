@@ -44,7 +44,7 @@ export const CategoryMenuLink = ({
   );
 
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href}>
       <Button
         display={"flex"}
         justifyContent={"start"}

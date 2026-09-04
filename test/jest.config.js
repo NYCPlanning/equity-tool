@@ -16,7 +16,14 @@ module.exports = {
   },
   testPathIgnorePatterns: [
     "<rootDir>/.next/",
+    "<rootDir>/.netlify/",
     "<rootDir>/node_modules/",
     "<rootDir>/cypress/",
   ],
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": [
+      "babel-jest",
+      { configFile: "./babel.config.jest.js" },
+    ],
+  },
 };

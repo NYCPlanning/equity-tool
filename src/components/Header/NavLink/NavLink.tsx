@@ -19,7 +19,7 @@ export const NavLink = ({
       ? true
       : false;
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href}>
       <Button
         bg="white"
         h={{ base: "auto", md: "full" }}
