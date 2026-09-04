@@ -12,7 +12,7 @@
       "esnext"
     ],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
@@ -23,14 +23,30 @@
     "resolveJsonModule": true,
     "incremental": true,
     "paths": {
-      "@components/*": ["components/*"],
-      "@data/*": ["data/*"],
-      "@hooks/*": ["hooks/*"],
-      "@helpers/*": ["helpers/*"],
-      "@constants/*": ["constants/*"],
-      "@services/*": ["services/*"],
-      "@schemas/*": ["schemas/*"],
-      "@contexts/*": ["contexts/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@data/*": [
+        "data/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@helpers/*": [
+        "helpers/*"
+      ],
+      "@constants/*": [
+        "constants/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@schemas/*": [
+        "schemas/*"
+      ],
+      "@contexts/*": [
+        "contexts/*"
+      ]
     }
   },
   "include": [

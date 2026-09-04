@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20.18.3
+          node-version: 22.13.0
           cache: npm
 
       - name: Install dependencies
@@ -40,7 +40,7 @@ jobs:
       - name: Setup Node environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20.18.3
+          node-version: 22.13.0
           cache: npm
 
       - name: Install dependencies
@@ -86,7 +86,7 @@ jobs:
       - name: Setup Node environment for Netlify CLI
         uses: actions/setup-node@v4
         with:
-          node-version: 22.23.1
+          node-version: 22.13.0
           cache: npm
 
       - name: Install dependencies
