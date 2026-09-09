@@ -69,7 +69,7 @@ jobs:
       NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
       NEXT_PUBLIC_DO_SPACE_URL: ${{ secrets.DO_SPACE_URL }}
 
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}

@@ -19,42 +19,41 @@ export const NavLink = ({
       ? true
       : false;
   return (
-    <NextLink href={href}>
-      <Button
-        bg="white"
-        h={{ base: "auto", md: "full" }}
-        w={{ base: "full", md: "auto" }}
-        borderRadius={"none"}
-        color="gray.600"
-        fontWeight="medium"
-        fontSize={{ base: "2xl", md: "md" }}
-        m={0}
-        px={{ base: 10, md: 4 }}
-        py={{ base: 4, md: 0 }}
-        justifyContent={{ base: "left", md: "center" }}
-        aria-current={pathname === href || isHomeLinkOnMapPage ? "page" : false}
-        _activeLink={{
+    <Button
+      as={NextLink}
+      href={href}
+      bg="white"
+      h={{ base: "auto", md: "full" }}
+      w={{ base: "full", md: "auto" }}
+      borderRadius={"none"}
+      color="gray.600"
+      fontWeight="medium"
+      fontSize={{ base: "2xl", md: "md" }}
+      m={0}
+      px={{ base: 10, md: 4 }}
+      py={{ base: 4, md: 0 }}
+      justifyContent={{ base: "left", md: "center" }}
+      aria-current={pathname === href || isHomeLinkOnMapPage ? "page" : false}
+      _activeLink={{
+        boxShadow: "inset 0 -2px 0 0 #2C7A7B",
+        fontWeight: "bold",
+        color: "gray.700",
+        bg: "gray.50",
+        py: { base: 6, md: 0 },
+      }}
+      _hover={{
+        boxShadow: "inset 0 -2px 0 0 #2C7A7B",
+        color: "gray.700",
+      }}
+      _focus={{
+        md: {
           boxShadow: "inset 0 -2px 0 0 #2C7A7B",
-          fontWeight: "bold",
           color: "gray.700",
-          bg: "gray.50",
-          py: { base: 6, md: 0 },
-        }}
-        _hover={{
-          boxShadow: "inset 0 -2px 0 0 #2C7A7B",
-          color: "gray.700",
-        }}
-        _focus={{
-          md: {
-            boxShadow: "inset 0 -2px 0 0 #2C7A7B",
-            color: "gray.700",
-          },
-        }}
-        as="a"
-        {...buttonProps}
-      >
-        {children}
-      </Button>
-    </NextLink>
+        },
+      }}
+      {...buttonProps}
+    >
+      {children}
+    </Button>
   );
 };

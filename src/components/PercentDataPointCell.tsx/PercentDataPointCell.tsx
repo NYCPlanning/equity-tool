@@ -13,7 +13,7 @@ export const PercentDataPointCell = ({
   if (value === null) {
     formattedValue = "";
   } else {
-    formattedValue = value.toLocaleString(undefined, {
+    formattedValue = value.toLocaleString("en-US", {
       maximumFractionDigits: 1,
       minimumFractionDigits: 1,
     });

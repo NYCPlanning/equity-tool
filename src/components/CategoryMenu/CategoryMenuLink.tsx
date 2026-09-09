@@ -44,45 +44,44 @@ export const CategoryMenuLink = ({
   );
 
   return (
-    <NextLink href={href}>
-      <Button
-        display={"flex"}
-        justifyContent={"start"}
-        flexDirection={{ base: "column", md: "row" }}
-        leftIcon={<ChakraIcon w={"2.25rem"} h={"2.25rem"} as={Icon} />}
-        iconSpacing={{ base: "0rem", md: "1rem" }}
-        bg="inherit"
-        w={{ base: "auto", md: "100%" }}
-        minW={"4.75rem"}
-        h={"auto"}
-        borderRadius={{ base: "0.25rem", md: "none" }}
-        color="gray.700"
-        fontWeight="400"
-        fontSize={{ base: "0.625rem", md: "1rem" }}
-        whiteSpace={"normal"}
-        textAlign={{ base: "center", md: "left" }}
-        px={{ base: "0.25rem", md: "1rem" }}
-        py={{ base: "0.5rem", md: "0rem" }}
-        isActive={isActive}
-        aria-current={isActive ? "page" : false}
-        _activeLink={{
-          fontWeight: "bold",
-          color: "gray.700",
-          bg: "gray.200",
-        }}
-        _hover={{
-          background: "rgba(56, 178, 172, 0.1)",
-          fontWeight: "700",
-        }}
-        _focus={{
-          background: "rgba(56, 178, 172, 0.1)",
-          fontWeight: "700",
-        }}
-        as="a"
-        {...buttonProps}
-      >
-        {children}
-      </Button>
-    </NextLink>
+    <Button
+      as={NextLink}
+      href={href}
+      display={"flex"}
+      justifyContent={"start"}
+      flexDirection={{ base: "column", md: "row" }}
+      leftIcon={<ChakraIcon w={"2.25rem"} h={"2.25rem"} as={Icon} />}
+      iconSpacing={{ base: "0rem", md: "1rem" }}
+      bg="inherit"
+      w={{ base: "auto", md: "100%" }}
+      minW={"4.75rem"}
+      h={"auto"}
+      borderRadius={{ base: "0.25rem", md: "none" }}
+      color="gray.700"
+      fontWeight="400"
+      fontSize={{ base: "0.625rem", md: "1rem" }}
+      whiteSpace={"normal"}
+      textAlign={{ base: "center", md: "left" }}
+      px={{ base: "0.25rem", md: "1rem" }}
+      py={{ base: "0.5rem", md: "0rem" }}
+      isActive={isActive}
+      aria-current={isActive ? "page" : false}
+      _activeLink={{
+        fontWeight: "bold",
+        color: "gray.700",
+        bg: "gray.200",
+      }}
+      _hover={{
+        background: "rgba(56, 178, 172, 0.1)",
+        fontWeight: "700",
+      }}
+      _focus={{
+        background: "rgba(56, 178, 172, 0.1)",
+        fontWeight: "700",
+      }}
+      {...buttonProps}
+    >
+      {children}
+    </Button>
   );
 };

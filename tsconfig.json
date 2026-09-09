@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "allowJs": true,
     "alwaysStrict": true,
     "esModuleInterop": true,
@@ -24,28 +23,28 @@
     "incremental": true,
     "paths": {
       "@components/*": [
-        "components/*"
+        "./src/components/*"
       ],
       "@data/*": [
-        "data/*"
+        "./src/data/*"
       ],
       "@hooks/*": [
-        "hooks/*"
+        "./src/hooks/*"
       ],
       "@helpers/*": [
-        "helpers/*"
+        "./src/helpers/*"
       ],
       "@constants/*": [
-        "constants/*"
+        "./src/constants/*"
       ],
       "@services/*": [
-        "services/*"
+        "./src/services/*"
       ],
       "@schemas/*": [
-        "schemas/*"
+        "./src/schemas/*"
       ],
       "@contexts/*": [
-        "contexts/*"
+        "./src/contexts/*"
       ]
     }
   },
