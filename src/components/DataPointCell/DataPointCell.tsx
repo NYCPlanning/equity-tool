@@ -19,7 +19,7 @@ export const DataPointCell = ({ dataPoint }: DataPointCellProps) => {
       scale = dataPoint.scale;
     }
     // const roundTo = variance === "CV" ? 1 : 0;
-    formattedValue = value.toLocaleString(undefined, {
+    formattedValue = value.toLocaleString("en-US", {
       maximumFractionDigits: scale,
       minimumFractionDigits: scale,
     });
