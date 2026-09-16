@@ -13,30 +13,22 @@ import {
   DrawerContent,
   DrawerBody,
 } from "@nycplanning/streetscape";
-import type {
-  UseComboboxReturn,
-  ListCollection,
-} from "@nycplanning/streetscape";
 import { useWindowWidth } from "@react-hook/window-size";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
 import { AddressSearch } from "@components/Header/AddressSearch";
+import { useAddressSearchContext } from "@contexts/AddressSearchContext";
 
-export const Header = ({
-  combobox,
-  addressSearchQuery,
-  addressSearchResults,
-  addressSearchError,
-  isLoading,
-}: {
-  clearSelections?: () => void | undefined;
-  combobox: UseComboboxReturn;
-  addressSearchQuery: string | null;
-  addressSearchResults: ListCollection;
-  addressSearchError: Error | null;
-  isLoading: boolean;
-}) => {
+export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
+
+  const {
+    combobox,
+    addressSearchQuery,
+    addressSearchResults,
+    addressSearchError,
+    isLoading,
+  } = useAddressSearchContext();
 
   const router = useRouter();
 
@@ -76,14 +68,20 @@ export const Header = ({
   return (
     <Flex
       align="center"
-      justify="space-between"
+      justify="flex-start"
+      columnGap={4}
       as="header"
       height="4.375rem"
       backgroundColor="white"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       zIndex="1500"
     >
-      <Flex h="full" paddingLeft={{ base: 3, md: 6 }} align="center">
+      <Flex
+        h="full"
+        paddingLeft={{ base: 3, md: 6 }}
+        align="center"
+        className={"siteHeader"}
+      >
         <IconButton
           aria-label="Site Navigation"
           icon={
@@ -174,23 +172,29 @@ export const Header = ({
           </Heading>
         </NextLink>
       </Flex>
-      <Flex>
+      <Flex
+        h="full"
+        align="center"
+        width={{ base: "100%", md: "auto" }}
+        className={"siteaddressSearchHeader"}
+      >
         <AddressSearch
           combobox={combobox}
           addressSearchQuery={addressSearchQuery}
           addressSearchResults={addressSearchResults}
           addressSearchError={addressSearchError}
           isLoading={isLoading}
-          aria-label="address search dropdown"
         />
       </Flex>
       <Flex
         direction="row"
+        marginLeft="auto"
         display={{ base: "none", md: "flex" }}
         align="flex-start"
         justify="flex-start"
         as="nav"
         h="full"
+        className={"linkWrapper"}
       >
         <NavLink href="/about">About</NavLink>
         <NavLink href="/methods">Methods &amp; Sources</NavLink>
