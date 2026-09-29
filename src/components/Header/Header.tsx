@@ -1,3 +1,8 @@
+import * as React from "react";
+import { useRouter } from "next/router";
+import ReactGA from "react-ga4";
+import NextLink from "next/link";
+import { useDisclosure, Image } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -7,19 +12,23 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerBody,
-  useDisclosure,
-  Image,
-} from "@chakra-ui/react";
+} from "@nycplanning/streetscape";
 import { useWindowWidth } from "@react-hook/window-size";
-import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink } from "@components/Header/NavLink";
-import * as React from "react";
-import { useRouter } from "next/router";
-import ReactGA from "react-ga4";
+import { AddressSearch } from "@components/Header/AddressSearch";
+import { useAddressSearchContext } from "@contexts/AddressSearchContext";
 
 export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
+
+  const {
+    combobox,
+    addressSearchQuery,
+    addressSearchResults,
+    addressSearchError,
+    isLoading,
+  } = useAddressSearchContext();
 
   const router = useRouter();
 
@@ -58,15 +67,25 @@ export const Header = () => {
 
   return (
     <Flex
-      align="center"
-      justify="space-between"
+      align={{ base: "stretch", md: "center" }}
+      justify="flex-start"
+      direction={{ base: "column", md: "row" }}
+      rowGap={{ base: 3, md: 0 }}
+      pt={{ base: 3, md: 0 }}
+      pb={{ base: 4, md: 0 }}
       as="header"
-      height="4.375rem"
+      height={{ base: "auto", md: "4.375rem" }}
       backgroundColor="white"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       zIndex="1500"
     >
-      <Flex h="full" paddingLeft={{ base: 3, md: 6 }} align="center">
+      <Flex
+        h={{ base: "auto", md: "full" }}
+        minH={{ base: "3.5rem", md: "auto" }}
+        px={{ base: 6, md: 6 }}
+        align="center"
+        className={"siteHeader"}
+      >
         <IconButton
           aria-label="Site Navigation"
           icon={
@@ -91,7 +110,7 @@ export const Header = () => {
             color: "teal.600",
             outline: "none",
           }}
-          mr={6}
+          mr={{ base: 4, md: 6 }}
           transform={`scale(${isOpen ? "1.125, 1.0833" : "1, 1"})`}
           bg="none"
           borderRadius={0}
@@ -145,11 +164,12 @@ export const Header = () => {
         <NextLink href={logoUrl}>
           <Heading
             as="h1"
-            fontSize={{ base: "sm", md: "md" }}
+            fontSize={{ base: "md", md: "md" }}
             color="gray.600"
             fontWeight={{ base: "medium", md: "bold" }}
             lineHeight="none"
-            marginLeft={{ base: 2, md: 4 }}
+            marginLeft={{ base: 3, md: 4 }}
+            display={{ base: "block", md: "none", lg: "block" }}
             cursor="pointer"
             data-test="header-app-title"
           >
@@ -158,12 +178,30 @@ export const Header = () => {
         </NextLink>
       </Flex>
       <Flex
+        h={{ base: "auto", md: "full" }}
+        width={{ base: "100%", md: "auto" }}
+        px={{ base: 6, md: 0 }}
+        align="center"
+        className={"siteAddressSearchHeader"}
+      >
+        <AddressSearch
+          combobox={combobox}
+          addressSearchQuery={addressSearchQuery}
+          addressSearchResults={addressSearchResults}
+          addressSearchError={addressSearchError}
+          isLoading={isLoading}
+        />
+      </Flex>
+      <Flex
         direction="row"
         display={{ base: "none", md: "flex" }}
-        align="flex-start"
-        justify="flex-start"
+        flex={{ md: "1", lg: "0 0 auto" }}
+        marginLeft={{ md: 0, lg: "auto" }}
+        justify={{ md: "center", lg: "flex-start" }}
+        align="center"
         as="nav"
         h="full"
+        className={"linkWrapper"}
       >
         <NavLink href="/about">About</NavLink>
         <NavLink href="/methods">Methods &amp; Sources</NavLink>
