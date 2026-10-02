@@ -35,31 +35,38 @@ export const ViewToggle = ({
           isDisabled={view === View.DATA}
           isActive={view === View.DATA}
           _hover={{
-            _disabled: { bg: "teal.50" },
-            bg: "#F7FAFC",
-            fontWeight: 800,
-            color: "#2C7A7B",
-            border: "1px solid teal",
+            _disabled: {
+              bg: "teal.50",
+            },
+            bg: "gray.50",
+            fontWeight: "bold",
+            color: "teal.600",
+            border: "1px solid",
+            borderColor: "teal.600",
           }}
           variant="toggle"
           data-cy="communityDataBtn-desktop"
         >
-          Community Data
+          Community Data?
         </Button>
         <Button
           onClick={onDrmClick}
           isActive={view === View.DRM}
           isDisabled={view === View.DRM}
           _hover={{
-            bg: "#F7FAFC",
-            fontWeight: 800,
-            color: "#2C7A7B",
-            border: "1px solid teal",
+            _disabled: {
+              bg: "teal.50",
+            },
+            bg: "gray.50",
+            fontWeight: "bold",
+            color: "teal.600",
+            border: "1px solid",
+            borderColor: "teal.600",
           }}
           variant="toggle"
           data-cy="drmBtn-desktop"
         >
-          Displacement Risk Map
+          Displacement Risk Map?
         </Button>
       </ToggleButtonGroup>
     </>
