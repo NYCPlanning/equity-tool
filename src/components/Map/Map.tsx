@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { DeckGL } from "@deck.gl/react";
 import { DeckGLProps } from "@deck.gl/react/deckgl";
 import ReactMapGL, {
@@ -5,15 +6,16 @@ import ReactMapGL, {
   NavigationControl,
 } from "react-map-gl";
 import { setDefaultCredentials, API_VERSIONS } from "@deck.gl/carto";
+import { FlyToInterpolator, Viewport } from "@deck.gl/core";
+import { Box, MapPinIcon } from "@nycplanning/streetscape";
 import baseMap from "@data/basemap.json";
-import { Box } from "@chakra-ui/react";
-import { useView } from "@hooks/useView";
 import { useWindowWidth } from "@react-hook/window-size";
+import { useView } from "@hooks/useView";
 import { pumaInfo, usePumaInfo } from "@hooks/usePumaInfo";
 import { useGeography } from "@hooks/useGeography";
-import { useEffect, useRef, useState } from "react";
-import { useLayers } from "@hooks/useLayers";
 import { View } from "@constants/View";
+import { useLayers } from "@hooks/useLayers";
+import { useAddressSearchContext } from "@contexts/AddressSearchContext";
 
 setDefaultCredentials({
   apiVersion: API_VERSIONS.V2,
@@ -27,6 +29,16 @@ interface MapProps extends DeckProps {
   ntaOutlineLayer: boolean;
   districtOutlineLayer: boolean;
 }
+
+type MapViewState = {
+  longitude: number;
+  latitude: number;
+  zoom: number;
+  pitch: number;
+  bearing: number;
+  transitionDuration?: number;
+  transitionInterpolator?: FlyToInterpolator;
+};
 
 export const Map = ({
   ntaOutlineLayer,
@@ -57,6 +69,11 @@ export const Map = ({
         bearing: 0,
       };
 
+  const [mapViewState, setMapViewState] =
+    useState<MapViewState>(INITIAL_VIEW_STATE);
+
+  const { selectedAddress } = useAddressSearchContext();
+
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   const hoverInfoPuma = hoverInfo?.object?.properties
@@ -73,21 +90,43 @@ export const Map = ({
   const [tooltipWidth, setTooltipWidth] = useState<number>(0);
 
   useEffect(() => {
-    if (tooltipRef?.current?.offsetWidth)
+    if (tooltipRef?.current?.offsetWidth) {
       setTooltipWidth(tooltipRef.current.offsetWidth / 2);
+    }
   }, [hoverInfo?.x, hoverInfo?.y, tooltipWidth]);
+
+  useEffect(() => {
+    if (selectedAddress === null) {
+      return;
+    }
+
+    const [longitude, latitude] = selectedAddress.coordinates;
+
+    setMapViewState((currentViewState) => ({
+      ...currentViewState,
+      longitude,
+      latitude,
+      zoom: 14,
+      transitionDuration: 500,
+      transitionInterpolator: new FlyToInterpolator(),
+    }));
+  }, [selectedAddress]);
 
   switch (geography) {
     case "borough":
       tooltipText = hoverInfo?.object?.properties.boroname;
       break;
+
     case "nta":
       hoverInfo?.object
         ? (tooltipText = `NTA ${hoverInfo?.object?.properties.nta2020}: ${hoverInfo?.object?.properties.ntaname}`)
         : (tooltipText = undefined);
       break;
+
     default:
-      if (!hoverInfo?.object) tooltipText = undefined;
+      if (!hoverInfo?.object) {
+        tooltipText = undefined;
+      }
       break;
   }
 
@@ -97,7 +136,7 @@ export const Map = ({
   // https://deck.gl/docs/api-reference/react/deckgl#react-context
   const map = (
     <DeckGL
-      initialViewState={INITIAL_VIEW_STATE}
+      initialViewState={mapViewState}
       controller={true}
       layers={layers}
       parent={parent}
@@ -125,7 +164,29 @@ export const Map = ({
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle={baseMap}
         attributionControl={!isMobile}
-      ></ReactMapGL>
+      />
+
+      {({ viewport }: { viewport: Viewport }) => {
+        if (!selectedAddress) {
+          return null;
+        }
+
+        const [x, y] = viewport.project(selectedAddress.coordinates);
+
+        return (
+          <Box
+            position="absolute"
+            left={`${x}px`}
+            top={`${y}px`}
+            transform="translate(-50%, -100%)"
+            zIndex={10}
+            pointerEvents="none"
+          >
+            <MapPinIcon width={6} height={6} color="rgba(217, 107, 39, 1)" />
+          </Box>
+        );
+      }}
+
       {tooltipText && !tooltipText.includes("etc") && hoverInfo && (
         <div
           ref={tooltipRef}
