@@ -28,9 +28,9 @@ export const NavLink = ({
       borderRadius={"none"}
       color="gray.600"
       fontWeight="medium"
-      fontSize={{ base: "2xl", md: "md" }}
+      fontSize={{ base: "2xl", md: "sm", lg: "md" }}
       m={0}
-      px={{ base: 10, md: 4 }}
+      px={{ base: 10, md: 3, lg: 4 }}
       py={{ base: 4, md: 0 }}
       justifyContent={{ base: "left", md: "center" }}
       aria-current={pathname === href || isHomeLinkOnMapPage ? "page" : false}

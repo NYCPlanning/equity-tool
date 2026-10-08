@@ -87,6 +87,7 @@ export const Header = () => {
         minH={{ base: "3.5rem", md: "auto" }}
         px={{ base: 6, md: 6 }}
         align="center"
+        flexShrink={0}
         className={"siteHeader"}
       >
         <IconButton
@@ -154,7 +155,7 @@ export const Header = () => {
           </DrawerContent>
         </Drawer>
         <NextLink href={logoUrl}>
-          <Box cursor="pointer">
+          <Box cursor="pointer" flexShrink={0}>
             <Image
               src="/logo.png"
               alt="City of New York Logo"
@@ -167,12 +168,13 @@ export const Header = () => {
         <NextLink href={logoUrl}>
           <Heading
             as="h1"
-            fontSize={{ base: "md", md: "md" }}
+            fontSize={"md"}
             color="gray.600"
-            fontWeight={{ base: "medium", md: "bold" }}
-            lineHeight="none"
+            fontWeight={{ base: "medium", lg: "bold" }}
+            lineHeight="shorter"
             marginLeft={{ base: 3, md: 4 }}
             display={{ base: "block", md: "none", lg: "block" }}
+            whiteSpace="nowrap"
             cursor="pointer"
             data-test="header-app-title"
           >
@@ -182,11 +184,13 @@ export const Header = () => {
       </Flex>
       {isMapRoute && (
         <Flex
-          h={{ base: "auto", md: "full" }}
-          width={{ base: "100%", md: "auto" }}
+          height={{ base: "auto", md: "full" }}
+          width={{ base: "100%", md: "300px", lg: "366px" }}
+          minW={0}
+          flexShrink={{ base: 1, md: 1, lg: 0 }}
           px={{ base: 6, md: 0 }}
           align="center"
-          className="siteAddressSearchHeader"
+          className={"siteAddressSearchHeader"}
         >
           <AddressSearch
             combobox={combobox}
@@ -198,29 +202,14 @@ export const Header = () => {
         </Flex>
       )}
       <Flex
-        h={{ base: "auto", md: "full" }}
-        width={{ base: "100%", md: "auto" }}
-        px={{ base: 6, md: 0 }}
-        align="center"
-        className={"siteAddressSearchHeader"}
-      >
-        <AddressSearch
-          combobox={combobox}
-          addressSearchQuery={addressSearchQuery}
-          addressSearchResults={addressSearchResults}
-          addressSearchError={addressSearchError}
-          isLoading={isLoading}
-        />
-      </Flex>
-      <Flex
         direction="row"
         display={{ base: "none", md: "flex" }}
-        flex={{ md: "1", lg: "0 0 auto" }}
-        marginLeft={{ md: 0, lg: "auto" }}
-        justify={{ md: "center", lg: "flex-start" }}
+        flexShrink={0}
+        marginLeft="auto"
+        justify="flex-start"
         align="center"
         as="nav"
-        h="full"
+        height="full"
         className={"linkWrapper"}
       >
         <NavLink href="/about">About</NavLink>
