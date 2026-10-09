@@ -26,7 +26,7 @@ const MethodsPage = () => {
 
   return (
     <Flex direction="column" width="100%">
-      <Center px={{ base: 4, lg: 6 }} py={8} bg="teal">
+      <Center px={{ base: 4, lg: 6 }} py={8} bg={"teal.600"}>
         <Flex
           direction={{ base: "column", xl: "row" }}
           maxW={{ xl: "1024px" }}
