@@ -20,7 +20,7 @@ const Feedback = (props: BoxProps) => (
         href="https://github.com/NYCPlanning/equity-tool/issues"
         textDecoration="underline"
         isExternal
-        color={{ base: "teal.600", md: "white" }}
+        color={{ base: "primary.600", md: "white" }}
       >
         GitHub Issue
       </Link>
