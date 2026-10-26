@@ -149,7 +149,7 @@ const theme = extendTheme({
     },
     Link: {
       baseStyle: {
-        color: "teal.600.600",
+        color: "teal.600",
         textDecoration: "underline",
         lineHeight: "1.625rem",
       },
