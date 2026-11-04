@@ -133,43 +133,53 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // Validate file follows expected schema
     const profile = await categoryProfileSchema.validate(res.data);
 
-    const boroughGeoid = geoid.charAt(1);
-
-    const boroughRes = await dataExplorerService.get(
-      "borough",
-      boroughGeoid,
-      category
-    );
-
-    const boroughProfile = await categoryProfileSchema.validate(
-      boroughRes.data
-    );
-
-    const citywideRes = await dataExplorerService.get(
-      "citywide",
-      "nyc",
-      category
-    );
-
-    const citywideProfile = await categoryProfileSchema.validate(
-      citywideRes.data
-    );
-
-    // Return Profile data for given subgroup
-    if (hasOwnProperty(profile, subgroup)) {
+    // 404 if profile doesn't have data for subgroup
+    if (!hasOwnProperty(profile, subgroup)) {
       return {
-        props: {
-          indicators: profile[subgroup],
-          boroughIndicators: boroughProfile[subgroup],
-          citywideIndicators: citywideProfile[subgroup],
-          geoid,
-        },
+        notFound: true,
       };
     }
 
-    // Return 404 if Profile doesn't have data for subgroup
+    const subgroupKey = subgroup as keyof typeof profile;
+
+    let boroughIndicators: IndicatorRecord[] = [];
+    let citywideIndicators: IndicatorRecord[] = [];
+
+    // Comparison data is only needed for district/PUMA pages.
+    if (geography === Geography.DISTRICT) {
+      const boroughGeoid = geoid.charAt(1);
+
+      const boroughRes = await dataExplorerService.get(
+        "borough",
+        boroughGeoid,
+        category
+      );
+
+      const boroughProfile = await categoryProfileSchema.validate(
+        boroughRes.data
+      );
+
+      const citywideRes = await dataExplorerService.get(
+        "citywide",
+        "nyc",
+        category
+      );
+
+      const citywideProfile = await categoryProfileSchema.validate(
+        citywideRes.data
+      );
+
+      boroughIndicators = boroughProfile[subgroupKey] ?? [];
+      citywideIndicators = citywideProfile[subgroupKey] ?? [];
+    }
+
     return {
-      notFound: true,
+      props: {
+        indicators: profile[subgroupKey],
+        boroughIndicators,
+        citywideIndicators,
+        geoid,
+      },
     };
   } catch (e) {
     Sentry.withScope((scope) => {
@@ -427,12 +437,14 @@ const DataPage = ({
                 </FormControl>
               )}
 
-              <Box transform={{ base: "none", md: "translateY(-1px)" }}>
-                <TimeLocationToggle
-                  selectedView={timeLocationView}
-                  onViewChange={setTimeLocationView}
-                />
-              </Box>
+              {geography === Geography.DISTRICT && (
+                <Box transform={{ base: "none", md: "translateY(-1px)" }}>
+                  <TimeLocationToggle
+                    selectedView={timeLocationView}
+                    onViewChange={setTimeLocationView}
+                  />
+                </Box>
+              )}
             </Flex>
           </Flex>
         </Box>
